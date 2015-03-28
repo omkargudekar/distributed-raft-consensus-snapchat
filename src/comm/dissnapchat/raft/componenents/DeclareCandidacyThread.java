@@ -14,13 +14,11 @@ public class DeclareCandidacyThread implements Runnable
 		while(true)
 		{
 		
-			if(RAFTStatus.isLeaderElected()==false && RAFTStatus.isNomionated()==false)
+			if(RAFTStatus.isLeaderElected()==false && RAFTStatus.isNominated()==false)
 			{
-				RAFTStatus.setNomionated(true);
+				RAFTStatus.setNominated(true);
 				MulticastMessage multicast=new MulticastMessage();
-				multicast.send(RAFTStatus.getNodes(),"Candidate-"+RAFTStatus.getServerID()+"-192.168.0.1-8992"+"\r\n");
-				
-			
+				multicast.send(RAFTStatus.getNodes(),"Candidate-"+RAFTStatus.getCurrentHost().getNodeID()+"-"+RAFTStatus.getCurrentHost().getNodeIP()+"-"+RAFTStatus.getCurrentHost().getNodePort()+"\r\n");
 			}
 			try
 			{
@@ -28,7 +26,6 @@ public class DeclareCandidacyThread implements Runnable
 			}
 			catch (InterruptedException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

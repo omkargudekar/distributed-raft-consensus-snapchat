@@ -54,7 +54,7 @@ public class UnicastMessage implements Runnable
 						
 
 					}
-					System.out.println("Unicast Message Sent to "+HOST+" "+" PORT"+PORT );
+					
 				}
 				else
 				{

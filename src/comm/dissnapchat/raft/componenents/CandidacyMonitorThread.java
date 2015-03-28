@@ -27,7 +27,6 @@ public class CandidacyMonitorThread implements Runnable
 			}
 			catch (InterruptedException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -40,7 +39,7 @@ public class CandidacyMonitorThread implements Runnable
 		Node candidate=CandidacyBuffer.popNode();	
 		System.out.println("Voting for candidate : "+candidate);
 		CandidacyBuffer.reset();
-		new Thread(new UnicastMessage(candidate.getNodeIP(),candidate.getNodePort(),"Vote-"+RAFTStatus.getServerID()+"\r\n")).start();;
+		new Thread(new UnicastMessage(candidate.getNodeIP(),candidate.getNodePort(),"Vote-"+RAFTStatus.getCurrentHost().getNodeID()+"-"+RAFTStatus.getCurrentHost().getNodeIP()+"-"+RAFTStatus.getCurrentHost().getNodePort()+"\r\n")).start();;
 				
 
 		

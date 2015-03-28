@@ -13,13 +13,8 @@ public class RunMain
 
 	public static void main(String args[])
 	{
-		
-		
 
-		
-		
 		new Thread(new Receiver()).start();
-		
 		
 		try
 		{
@@ -27,11 +22,12 @@ public class RunMain
 		}
 		catch (InterruptedException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		RAFTStatus.setServerID("Server1");
+		
+		RAFTStatus.setUpCurrentHost("Server1", "192.168.0.1", 8992);
+		
 		ArrayList<Node> nodes=new ArrayList<Node>();
 		nodes.add(new Node("Server2","192.168.0.2",8992));
 

@@ -11,11 +11,11 @@ public class HeartbeatMonitorThread implements Runnable
 	public void run()
 	{
 		int missed = 0;
-		System.out.println("HeartBeatMoniotor Thread Started");
+		System.out.println("HeartBeatMonitor Thread Started");
 
 		while (true)
 		{
-			if (RAFTStatus.isLeaderElected() == true && missed==0)
+			if (RAFTStatus.isLeaderElected() == true && missed==0 && RAFTStatus.isCuurentLeader()==false)
 			{
 				heartbeatWait();
 				if (HeartbeatBuffer.popNode() == null)
@@ -35,7 +35,15 @@ public class HeartbeatMonitorThread implements Runnable
 				}
 			}
 			
-
+			try
+			{
+				Thread.sleep(1000);
+			}
+			catch (InterruptedException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 

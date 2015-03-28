@@ -12,7 +12,7 @@ public class LeaderElectionThread implements Runnable
 	    new Thread(new VoteCounterThread()).start();
 		new Thread(new CandidacyMonitorThread()).start();
 		new Thread(new HeartbeatMonitorThread()).start();
-		new Thread(new HeartbeatSenderThread()).start();
+		
 		
 	}
 

@@ -9,34 +9,49 @@ import com.distsnapchat.communication.receiver.buffers.VoteBuffer;
 
 public class RAFTStatus
 {
-	private static String serverID=null;
+	private static Node currentHost=null;
 	private static ArrayList<Node> nodes=new ArrayList<Node>();
 	private static Node declaredLeader=null;
-	private static boolean nomionated=false;
-	public static boolean isNomionated()
-	{
-		return nomionated;
-	}
-
-	public static void setNomionated(boolean nomionated)
-	{
-		RAFTStatus.nomionated = nomionated;
-	}
-
-
+	private static boolean nominated=false;
 	private static int raftTimer=360;
 	private static int heartBeatTimeOut=5000;
 	private static int heartBeatFrequency=1000;
 	private static int netwotkSize=2;
+	private static boolean cuurentLeader=false;
 	
-	private static boolean leader=false;
+	public static void  setUpCurrentHost(String machineID,String IP,int port)
+	{
+		currentHost=new Node();
+		currentHost.setNodeID(machineID);
+		currentHost.setNodeIP(IP);
+		currentHost.setNodePort(port);
+	}
+	
+	
 
-	
-	
+	public static Node getCurrentHost()
+	{
+		return currentHost;
+	}
+
+	public static void setCurrentHost(Node currentHost)
+	{
+		RAFTStatus.currentHost = currentHost;
+	}
+
+	public static boolean isNominated()
+	{
+		return nominated;
+	}
+
+	public static void setNominated(boolean nominated)
+	{
+		RAFTStatus.nominated = nominated;
+	}
 	
 	public static void afterLeaderElectinReset()
 	{
-		setNomionated(false);
+		setNominated(false);
 		VoteBuffer.reset();
 		CandidacyBuffer.reset();
 		
@@ -44,7 +59,7 @@ public class RAFTStatus
 	
 	public static void afterHeartbeatMissedReset()
 	{
-		setNomionated(false);
+		setNominated(false);
 		declaredLeader=null;
 
 	}
@@ -76,31 +91,25 @@ public class RAFTStatus
 	}
 
 
-	public static boolean isLeader()
-	{
-		return leader;
-	}
 
 
-	public static void setLeader(boolean leader)
-	{
-		RAFTStatus.leader = leader;
-	}
-
-
-	public static String getServerID()
-	{
-		return serverID;
-	}
-
-
-	public static void setServerID(String serverID)
-	{
-		RAFTStatus.serverID = serverID;
-	}
 
 
 	
+	public static boolean isCuurentLeader()
+	{
+		return cuurentLeader;
+	}
+
+
+
+	public static void setCuurentLeader(boolean cuurentLeader)
+	{
+		RAFTStatus.cuurentLeader = cuurentLeader;
+	}
+
+
+
 	public static ArrayList<Node> getNodes()
 	{
 		return nodes;

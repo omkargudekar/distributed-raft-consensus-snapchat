@@ -2,6 +2,11 @@ package com.distsnapchat.beans;
 
 public class Node
 {
+	@Override
+	public String toString()
+	{
+		return "Node [nodeID=" + nodeID + ", nodeIP=" + nodeIP + ", nodePort=" + nodePort + "]";
+	}
 	public Node()
 	{
 		super();

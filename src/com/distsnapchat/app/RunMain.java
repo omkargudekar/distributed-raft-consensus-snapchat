@@ -14,7 +14,22 @@ public class RunMain
 	public static void main(String args[])
 	{
 		
+		
+
+		
+		
 		new Thread(new Receiver()).start();
+		
+		
+		try
+		{
+			Thread.sleep(5000);
+		}
+		catch (InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		RAFTStatus.setServerID("Server1");
 		ArrayList<Node> nodes=new ArrayList<Node>();

@@ -36,6 +36,7 @@ public class ReceiverHandler extends SimpleChannelInboundHandler<String>
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception
 	{
+		System.out.println("*** Raw Message"+msg);
 		if(msg.contains("Heartbeat"))
 		{
 			System.out.println("Heartbeat Message Received");

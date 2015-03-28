@@ -4,6 +4,7 @@ package comm.dissnapchat.raft.componenents;
 import com.distsnapchat.beans.Node;
 import com.distsnapchat.communication.UnicastMessage;
 import com.distsnapchat.communication.receiver.buffers.CandidacyBuffer;
+
 import comm.dissnapchat.raft.RAFTStatus;
 
 public class CandidacyMonitorThread implements Runnable
@@ -13,23 +14,36 @@ public class CandidacyMonitorThread implements Runnable
 	public void run()
 	{
 		System.out.println("CandidacyMonitor Thread Started");
-		Node candidate=null;
-		while(RAFTStatus.isLeaderElected()==false)
+		while(true)
 		{
-			
-			if(CandidacyBuffer.getNodeCount()>0)
+			if(RAFTStatus.isLeaderElected()==false && CandidacyBuffer.getNodeCount()>0)
 			{
-					candidate=CandidacyBuffer.popNode();
-					CandidacyBuffer.reset();
+				vote();
 			
-										
-					new Thread(new UnicastMessage(candidate.getNodeIP(),candidate.getNodePort(),"VOTE-YES-"+RAFTStatus.getServerID())).start();;
-					
-					
 			}
-			
+			try
+			{
+				Thread.sleep(100);
+			}
+			catch (InterruptedException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		System.out.println("CandidacyMonitor Thread Exited");
+	
+	}
+	
+	public void vote()
+	{
+
+		Node candidate=CandidacyBuffer.popNode();	
+		System.out.println("Voting for candidate : "+candidate);
+		CandidacyBuffer.reset();
+		new Thread(new UnicastMessage(candidate.getNodeIP(),candidate.getNodePort(),"Vote -"+RAFTStatus.getServerID())).start();;
+				
+
+		
 	}
 	
 	

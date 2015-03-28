@@ -10,27 +10,27 @@ public class VoteCounterThread implements Runnable
 	@Override
 	public void run()
 	{
-		System.out.println("VoteCounter Thread Started");
-		while(VoteBuffer.getMessageCount()<(RAFTStatus.getNetwotkSize()/2) || RAFTStatus.isLeaderElected()==false)
+		while (true)
 		{
-			try
+			while (VoteBuffer.getMessageCount() < (RAFTStatus.getNetwotkSize() / 2) || RAFTStatus.isLeaderElected() == false)
 			{
-				Thread.sleep(100);
+				try
+				{
+					Thread.sleep(100);
+				}
+				catch (InterruptedException e)
+				{
+					e.printStackTrace();
+				}
 			}
-			catch (InterruptedException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 
-		if((RAFTStatus.isLeaderElected()==false) && (VoteBuffer.getMessageCount()>(RAFTStatus.getNetwotkSize()/2)))
-		{
-			RAFTStatus.setLeader(true);
-			RAFTStatus.afterHeartbeatMissedReset();
-			new Thread(new HeartbeatSenderThread()).start();
+			if ((RAFTStatus.isLeaderElected() == false) && (VoteBuffer.getMessageCount() > (RAFTStatus.getNetwotkSize() / 2)))
+			{
+				RAFTStatus.setLeader(true);
+				RAFTStatus.afterHeartbeatMissedReset();
+				new Thread(new HeartbeatSenderThread()).start();
+			}
 		}
-		System.out.println("VoteCounter Thread Exited");
 	}
 
 }

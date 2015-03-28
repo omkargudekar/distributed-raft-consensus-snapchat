@@ -10,18 +10,19 @@ public class DeclareCandidacyThread implements Runnable
 	@Override
 	public void run()
 	{
-		
 		System.out.println("DeclareCandidacy Thread Started");
-		if(RAFTStatus.isLeaderElected()==false)
+		while(true)
 		{
+		
+			if(RAFTStatus.isLeaderElected()==false)
+			{
 			
-			MulticastMessage multicast=new MulticastMessage();
-			multicast.send(RAFTStatus.getNodes(),RAFTStatus.getServerID()+"\r\n");
+				MulticastMessage multicast=new MulticastMessage();
+				multicast.send(RAFTStatus.getNodes(),"Candidate-"+RAFTStatus.getServerID()+"-localhost-8992"+"\r\n");
+			
+			}
 			
 		}
-		System.out.println("DeclareCandidacy Thread Exited");
-		
-		
 	}
 
 }

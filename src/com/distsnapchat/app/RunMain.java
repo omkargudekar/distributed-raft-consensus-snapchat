@@ -3,6 +3,7 @@ package com.distsnapchat.app;
 import java.util.ArrayList;
 
 import com.distsnapchat.beans.Node;
+import com.distsnapchat.communication.receiver.Receiver;
 
 import comm.dissnapchat.raft.RAFTStatus;
 import comm.dissnapchat.raft.algorithm.RAFT;
@@ -12,9 +13,12 @@ public class RunMain
 
 	public static void main(String args[])
 	{
+		
+		new Thread(new Receiver()).start();
+		
 		RAFTStatus.setServerID("Server1");
 		ArrayList<Node> nodes=new ArrayList<Node>();
-		nodes.add(new Node("Server2","192.168.1.2",8080));
+		nodes.add(new Node("Server2","192.168.0.2",8992));
 
 		RAFTStatus.setNodes(nodes);
 		

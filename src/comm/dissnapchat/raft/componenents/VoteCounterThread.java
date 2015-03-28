@@ -1,5 +1,6 @@
 package comm.dissnapchat.raft.componenents;
 
+import com.distsnapchat.beans.Node;
 import com.distsnapchat.communication.receiver.buffers.VoteBuffer;
 
 import comm.dissnapchat.raft.RAFTStatus;
@@ -27,6 +28,8 @@ public class VoteCounterThread implements Runnable
 
 			else if ((RAFTStatus.isLeaderElected() == false) && (VoteBuffer.getMessageCount() >= (RAFTStatus.getNetwotkSize() / 2)))
 			{
+				System.out.println("Declaring Leader "+RAFTStatus.getServerID());
+				RAFTStatus.setDeclaredLeader(new Node("Server1","localhost",8995));
 				RAFTStatus.setLeader(true);
 				RAFTStatus.afterLeaderElectinReset();
 			

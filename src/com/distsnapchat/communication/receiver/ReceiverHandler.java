@@ -21,8 +21,7 @@ public class ReceiverHandler extends SimpleChannelInboundHandler<String>
 	@Override
 	public void channelActive(final ChannelHandlerContext ctx)
 	{
-		System.out.println("Client Channel added..");
-		ctx.writeAndFlush("Hello Client");
+
 		channels.add(ctx.channel());
 	
 	}

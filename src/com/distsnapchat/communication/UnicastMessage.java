@@ -38,16 +38,14 @@ public class UnicastMessage implements Runnable
 			Channel ch = b.connect(HOST, PORT).sync().channel();
 			if (getMessageCount() > 0)
 			{
-					System.out.println("Sending Message...");
+					
 					while (getMessageCount() > 0)
 					{
 						while (ch.isWritable() == false)
 						{
-							System.out.println("Wating for channel to get active...");
 							Thread.sleep(1000);
 						}
 						lastWriteFuture = ch.writeAndFlush(popMessage());
-						System.out.println("Message sent...");
 						ch.closeFuture().sync();
 						if (lastWriteFuture != null)
 						{

@@ -14,16 +14,17 @@ public class DeclareCandidacyThread implements Runnable
 		while(true)
 		{
 		
-			if(RAFTStatus.isLeaderElected()==false)
+			if(RAFTStatus.isLeaderElected()==false && RAFTStatus.isNomionated()==false)
 			{
-			
+				RAFTStatus.setNomionated(true);
 				MulticastMessage multicast=new MulticastMessage();
 				multicast.send(RAFTStatus.getNodes(),"Candidate-"+RAFTStatus.getServerID()+"-localhost-8992"+"\r\n");
+				
 			
 			}
 			try
 			{
-				Thread.sleep(100);
+				Thread.sleep(RAFTStatus.getHeartBeatTimeOut());
 			}
 			catch (InterruptedException e)
 			{

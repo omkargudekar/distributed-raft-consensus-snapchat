@@ -12,7 +12,18 @@ public class RAFTStatus
 	private static String serverID=null;
 	private static ArrayList<Node> nodes=new ArrayList<Node>();
 	private static Node declaredLeader=null;
-	
+	private static boolean nomionated=false;
+	public static boolean isNomionated()
+	{
+		return nomionated;
+	}
+
+	public static void setNomionated(boolean nomionated)
+	{
+		RAFTStatus.nomionated = nomionated;
+	}
+
+
 	private static int raftTimer=360;
 	private static int heartBeatTimeOut=20;
 	private static int heartBeatFrequency=120;
@@ -25,6 +36,7 @@ public class RAFTStatus
 	
 	public static void afterLeaderElectinReset()
 	{
+		setNomionated(false);
 		VoteBuffer.reset();
 		CandidacyBuffer.reset();
 		
@@ -32,6 +44,7 @@ public class RAFTStatus
 	
 	public static void afterHeartbeatMissedReset()
 	{
+		setNomionated(false);
 		declaredLeader=null;
 
 	}

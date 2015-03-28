@@ -24,7 +24,7 @@ public class DeclareCandidacyThread implements Runnable
 			}
 			try
 			{
-				Thread.sleep(RAFTStatus.getHeartBeatTimeOut());
+				Thread.sleep(1000);
 			}
 			catch (InterruptedException e)
 			{

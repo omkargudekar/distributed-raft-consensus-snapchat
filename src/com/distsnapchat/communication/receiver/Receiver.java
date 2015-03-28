@@ -16,6 +16,7 @@ public final class Receiver implements Runnable
     static final int PORT = Integer.parseInt(System.getProperty("port", "8992"));
     public void run()
     {
+    	System.out.println("Receiver Thread Started...");
     	EventLoopGroup bossGroup=null;
     	EventLoopGroup workerGroup=null;
         try {

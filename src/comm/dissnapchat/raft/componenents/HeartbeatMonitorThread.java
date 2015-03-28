@@ -15,7 +15,7 @@ public class HeartbeatMonitorThread implements Runnable
 
 		while (true)
 		{
-			if (missed == 0 && RAFTStatus.isLeader() == false)
+			if (RAFTStatus.isLeaderElected() == true && missed==0)
 			{
 				heartbeatWait();
 				if (HeartbeatBuffer.popNode() == null)

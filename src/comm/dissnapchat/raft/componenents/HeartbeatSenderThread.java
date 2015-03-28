@@ -15,9 +15,10 @@ public class HeartbeatSenderThread implements Runnable
 
 		while (true)
 		{
-			while (RAFTStatus.isLeader() == true)
+			if (RAFTStatus.isLeader() == true)
 			{
-				multicast.send(RAFTStatus.getNodes(), "Hearbeat from " + RAFTStatus.getServerID() + "\r\n");
+				System.out.println("Sending Heartbeat..");
+				multicast.send(RAFTStatus.getNodes(), "Heartbeat-" + RAFTStatus.getServerID() + "\r\n");
 
 				try
 				{

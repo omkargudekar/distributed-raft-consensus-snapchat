@@ -28,9 +28,9 @@ public class VoteCounterThread implements Runnable
 
 			else if ((RAFTStatus.isLeaderElected() == false) && (VoteBuffer.getMessageCount() >= (RAFTStatus.getNetwotkSize() / 2)))
 			{
+				RAFTStatus.setLeader(true);
 				System.out.println("Declaring Leader "+RAFTStatus.getServerID());
 				RAFTStatus.setDeclaredLeader(new Node("Server1","localhost",8995));
-				RAFTStatus.setLeader(true);
 				RAFTStatus.afterLeaderElectinReset();
 			
 			}

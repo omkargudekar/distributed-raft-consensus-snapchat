@@ -25,8 +25,8 @@ public class RAFTStatus
 
 
 	private static int raftTimer=360;
-	private static int heartBeatTimeOut=20;
-	private static int heartBeatFrequency=120;
+	private static int heartBeatTimeOut=5000;
+	private static int heartBeatFrequency=1000;
 	private static int netwotkSize=2;
 	
 	private static boolean leader=false;

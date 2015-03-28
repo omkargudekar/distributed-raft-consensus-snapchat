@@ -45,7 +45,7 @@ public class HeartbeatMonitorThread implements Runnable
 	{
 		try
 		{
-			Thread.sleep(RAFTStatus.getHeartBeatFrequency());
+			Thread.sleep(RAFTStatus.getHeartBeatTimeOut());
 		}
 		catch (InterruptedException e)
 		{

@@ -38,9 +38,9 @@ public class CandidacyMonitorThread implements Runnable
 	{
 
 		Node candidate=CandidacyBuffer.popNode();	
-		System.out.println("Voting for candidate : "+candidate);
+		System.out.println("Voting for candidate : ");
 		CandidacyBuffer.reset();
-		new Thread(new UnicastMessage(candidate.getNodeIP(),candidate.getNodePort(),"Vote -"+RAFTStatus.getServerID())).start();;
+		new Thread(new UnicastMessage(candidate.getNodeIP(),candidate.getNodePort(),"Vote-"+RAFTStatus.getServerID())).start();;
 				
 
 		

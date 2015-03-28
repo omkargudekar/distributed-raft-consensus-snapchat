@@ -16,9 +16,9 @@ public class DeclareCandidacyThread implements Runnable
 		
 			if(RAFTStatus.isLeaderElected()==false && RAFTStatus.isNomionated()==false)
 			{
-				//RAFTStatus.setNomionated(true);
+				RAFTStatus.setNomionated(true);
 				MulticastMessage multicast=new MulticastMessage();
-				multicast.send(RAFTStatus.getNodes(),"Candidate-"+RAFTStatus.getServerID()+"-localhost-8992"+"\r\n");
+				multicast.send(RAFTStatus.getNodes(),"Candidate-"+RAFTStatus.getServerID()+"-192.168.0.1-8992"+"\r\n");
 				
 			
 			}

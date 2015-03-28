@@ -13,7 +13,7 @@ public class VoteCounterThread implements Runnable
 		System.out.println("VoteCounterThread started...");
 		while (true)
 		{
-			if (VoteBuffer.getMessageCount() < (RAFTStatus.getNetwotkSize() / 2) || RAFTStatus.isLeaderElected() == false)
+			if (VoteBuffer.getMessageCount() ==0 || RAFTStatus.isLeaderElected() == true)
 			{
 				try
 				{
@@ -28,8 +28,8 @@ public class VoteCounterThread implements Runnable
 			else if ((RAFTStatus.isLeaderElected() == false) && (VoteBuffer.getMessageCount() >= (RAFTStatus.getNetwotkSize() / 2)))
 			{
 				RAFTStatus.setLeader(true);
-				RAFTStatus.afterHeartbeatMissedReset();
-				new Thread(new HeartbeatSenderThread()).start();
+				RAFTStatus.afterLeaderElectinReset();
+			
 			}
 		}
 	}

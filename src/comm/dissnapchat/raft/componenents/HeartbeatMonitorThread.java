@@ -20,12 +20,15 @@ public class HeartbeatMonitorThread implements Runnable
 				heartbeatWait();
 				if (HeartbeatBuffer.popNode() == null)
 				{
+					System.out.println("Heartbeat Missed...");
 					missed++;
 					RAFTStatus.afterHeartbeatMissedReset();
 					
 				}
 				else
 				{
+					System.out.println("Heartbeat Received...");
+
 					RAFTStatus.setUpTimer();
 					HeartbeatBuffer.reset();
 					

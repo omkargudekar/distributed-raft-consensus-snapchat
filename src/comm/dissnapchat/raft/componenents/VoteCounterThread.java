@@ -10,6 +10,7 @@ public class VoteCounterThread implements Runnable
 	@Override
 	public void run()
 	{
+		System.out.println("VoteCounterThread started...");
 		while (true)
 		{
 			while (VoteBuffer.getMessageCount() < (RAFTStatus.getNetwotkSize() / 2) || RAFTStatus.isLeaderElected() == false)

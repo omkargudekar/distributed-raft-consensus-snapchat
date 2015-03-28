@@ -21,7 +21,15 @@ public class DeclareCandidacyThread implements Runnable
 				multicast.send(RAFTStatus.getNodes(),"Candidate-"+RAFTStatus.getServerID()+"-localhost-8992"+"\r\n");
 			
 			}
-			
+			try
+			{
+				Thread.sleep(100);
+			}
+			catch (InterruptedException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

@@ -13,7 +13,6 @@ public class LeaderElectionThread implements Runnable
 		new Thread(new CandidacyMonitorThread()).start();
 		new Thread(new HeartbeatMonitorThread()).start();
 		
-		System.out.println("leader election threads exited...");
 		
 	}
 

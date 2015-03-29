@@ -13,7 +13,7 @@ public class RAFTStatus
 	private static ArrayList<Node> nodes=new ArrayList<Node>();
 	private static Node declaredLeader=null;
 	private static boolean nominated=false;
-	private static int raftTimer=360;
+	private static int raftTimer=3600;
 	private static int heartBeatFrequency=1000;
 	private static int netwotkSize=2;
 	private static boolean cuurentLeader=false;
@@ -155,12 +155,12 @@ public class RAFTStatus
 	}
 	
 	
-	public static void setUpTimer() 
+	public static void raftTimerInit() 
 	{
 
 	    Random rand = new Random();
 
-	    int randomNum = rand.nextInt((3000 - 1500) + 1) + 1500;
+	    int randomNum = rand.nextInt((6000 - 4500) + 1) + 4500;
 	    
 	    setRaftTimer(randomNum);
 	}

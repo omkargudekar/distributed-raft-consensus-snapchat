@@ -25,11 +25,16 @@ public class RunMain
 			e.printStackTrace();
 		}
 		
-		
 		RAFTStatus.setUpCurrentHost("Server1", "192.168.0.1", 8992);
 		
+		
+		RAFTStatus.raftTimerInit();
+
+		
 		ArrayList<Node> nodes=new ArrayList<Node>();
+		
 		nodes.add(new Node("Server2","192.168.0.2",8992));
+		nodes.add(new Node("Server3","192.168.0.3",8992));
 
 		RAFTStatus.setNodes(nodes);
 		

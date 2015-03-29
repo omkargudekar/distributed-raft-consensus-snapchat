@@ -1,0 +1,44 @@
+package com.dissnapchat.raft.controlmessage.handler;
+import com.dissnapchat.raft.RAFTStatus;
+import com.distsnapchat.beans.Node;
+import com.distsnapchat.communication.buffers.HeartbeatBuffer;
+import com.distsnapchat.communication.receiver.MessageDecoder;
+
+public class HeartbeatHandler implements Handler
+{
+
+	@Override
+	public void handle(String msg)
+	{
+		Node node=MessageDecoder.extractNodeInformation(msg);
+		HeartbeatBuffer.pushNode(node);
+		
+		
+		switch (RAFTStatus.getCurrentNodeState())
+		{
+		case Leader:
+			break;
+
+		case Candidate:
+			RAFTStatus.setDeclaredLeader(node);
+			break;
+
+		case OrphanFollower:
+			RAFTStatus.setDeclaredLeader(node);
+			break;
+
+		case Follower:
+			if(!RAFTStatus.getDeclaredLeader().getNodeID().equals(node.getNodeID()))
+			{
+				RAFTStatus.setDeclaredLeader(node);
+			}
+			break;
+
+		default:
+			break;
+		}
+		
+	}
+	
+
+}

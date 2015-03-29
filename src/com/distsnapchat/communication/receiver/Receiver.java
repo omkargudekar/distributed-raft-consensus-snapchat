@@ -1,5 +1,7 @@
 package com.distsnapchat.communication.receiver;
 
+import com.dissnapchat.raft.RAFTStatus;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -13,7 +15,6 @@ import io.netty.handler.logging.LoggingHandler;
  */
 public final class Receiver implements Runnable
 {
-    static final int PORT = Integer.parseInt(System.getProperty("port", "8992"));
     public void run()
     {
     	System.out.println("Receiver Thread Started...");
@@ -29,15 +30,15 @@ public final class Receiver implements Runnable
              .handler(new LoggingHandler(LogLevel.INFO))
              .childHandler(new ReceiverInitializer());
 
-            b.bind(PORT).sync().channel().closeFuture().sync();
+            b.bind(RAFTStatus.getCurrentNode().getNodePort()).sync().channel().closeFuture().sync();
         } 
         catch(Exception e)
         {
         	System.out.println(e);
         }
-        finally {
+        finally 
+        {
         	
-        	System.out.println("Shutting down Server");
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }

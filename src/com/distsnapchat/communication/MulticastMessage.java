@@ -13,7 +13,7 @@ public class MulticastMessage
 		
 		for(Node node : nodes)
 		{
-			
+			System.out.println("Sending Message to "+node);
 			new Thread(new UnicastMessage(node.getNodeIP(),node.getNodePort(),message)).start();
 		}
 		

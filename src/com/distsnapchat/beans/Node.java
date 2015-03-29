@@ -10,7 +10,6 @@ public class Node
 	public Node()
 	{
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	private String nodeID;
 	public Node(String nodeID, String nodeIP, int nodePort)

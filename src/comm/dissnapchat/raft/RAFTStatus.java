@@ -14,7 +14,6 @@ public class RAFTStatus
 	private static Node declaredLeader=null;
 	private static boolean nominated=false;
 	private static int raftTimer=360;
-	private static int heartBeatTimeOut=5000;
 	private static int heartBeatFrequency=1000;
 	private static int netwotkSize=2;
 	private static boolean cuurentLeader=false;
@@ -142,16 +141,6 @@ public class RAFTStatus
 	}
 
 
-	public static int getHeartBeatTimeOut()
-	{
-		return heartBeatTimeOut;
-	}
-
-
-	public static void setHeartBeatTimeOut(int heartBeatTimeOut)
-	{
-		RAFTStatus.heartBeatTimeOut = heartBeatTimeOut;
-	}
 
 
 	public static int getNetwotkSize()

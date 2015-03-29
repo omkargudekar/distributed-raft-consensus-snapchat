@@ -17,7 +17,7 @@ public class HeartbeatMonitorThread implements Runnable
 		{
 			if (RAFTStatus.isLeaderElected() == true && missed==0 && RAFTStatus.isCuurentLeader()==false)
 			{
-				heartbeatWait();
+				startNodeTimer();
 				if (HeartbeatBuffer.popNode() == null)
 				{
 					System.out.println("Heartbeat Missed...");
@@ -29,7 +29,7 @@ public class HeartbeatMonitorThread implements Runnable
 				{
 					System.out.println("Heartbeat Received...");
 
-					RAFTStatus.setUpTimer();
+					//RAFTStatus.setUpTimer();
 					HeartbeatBuffer.reset();
 					
 				}
@@ -49,11 +49,11 @@ public class HeartbeatMonitorThread implements Runnable
 
 	}
 	
-	public void heartbeatWait()
+	public void startNodeTimer()
 	{
 		try
 		{
-			Thread.sleep(RAFTStatus.getHeartBeatTimeOut());
+			Thread.sleep(RAFTStatus.getRaftTimer());
 		}
 		catch (InterruptedException e)
 		{

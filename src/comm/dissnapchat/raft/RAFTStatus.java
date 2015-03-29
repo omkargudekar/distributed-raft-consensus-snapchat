@@ -15,7 +15,7 @@ public class RAFTStatus
 	private static boolean nominated=false;
 	private static int raftTimer=3600;
 	private static int heartBeatFrequency=1000;
-	private static int netwotkSize=2;
+	private static int netwotkSize=3;
 	private static boolean cuurentLeader=false;
 	
 	public static void  setUpCurrentHost(String machineID,String IP,int port)

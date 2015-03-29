@@ -44,6 +44,7 @@ public class ReceiverHandler extends SimpleChannelInboundHandler<String>
 			HeartbeatBuffer.pushNode(node);
 			if(RAFTStatus.isLeaderElected()==false)
 			{
+				RAFTStatus.afterLeaderElectinReset();
 				RAFTStatus.setDeclaredLeader(node);
 				
 			}

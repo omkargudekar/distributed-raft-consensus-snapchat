@@ -1,4 +1,4 @@
-package com.dissnapchat.raft.componenents;
+package com.dissnapchat.raft.election.componenents;
 
 import com.dissnapchat.raft.RAFTStatus;
 import com.distsnapchat.communication.MulticastMessage;
@@ -9,7 +9,7 @@ public class HeartbeatSenderThread implements Runnable
 	@Override
 	public void run()
 	{
-		System.out.println("heartBeatSender Thread Started");
+		System.out.println("heartbeatSenderThread Started");
 
 		while (true)
 		{

@@ -1,8 +1,8 @@
 package com.distsnapchat.communication.receiver;
-import com.dissnapchat.raft.controlmessage.handler.HeartbeatHandler;
-import com.dissnapchat.raft.controlmessage.handler.MessageHandler;
-import com.dissnapchat.raft.controlmessage.handler.NominationHandler;
-import com.dissnapchat.raft.controlmessage.handler.VoteHandler;
+import com.dissnapchat.raft.message.handlers.HeartbeatHandler;
+import com.dissnapchat.raft.message.handlers.MessageHandler;
+import com.dissnapchat.raft.message.handlers.NominationHandler;
+import com.dissnapchat.raft.message.handlers.VoteHandler;
 import com.distsnapchat.beans.Node;
 
 
@@ -11,7 +11,7 @@ public class MessageDecoder
 {
 	
 	
-	public static void decodeMessage(String msg)
+	public static void handle(String msg)
 	{
 		if(msg.contains("Heartbeat"))
 		{

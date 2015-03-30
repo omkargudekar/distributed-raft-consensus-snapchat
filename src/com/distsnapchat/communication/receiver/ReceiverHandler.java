@@ -28,6 +28,7 @@ public class ReceiverHandler extends SimpleChannelInboundHandler<String>
 	protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception
 	{
 		System.out.println("Raw Message : ["+msg+"]");
+		MessageDecoder.handle(msg);
 	}
 	
 	

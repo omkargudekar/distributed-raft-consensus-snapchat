@@ -20,18 +20,28 @@ public class RAFTStatus
 	private static Node declaredLeader=null;
 	private static int raftTimer=3600;
 	private static int heartBeatFrequency=1000;
-	
+	private static boolean voted=false;
 	
 	
 
 	
 	
-	public static NodeState getCurrentNodeState()
+	public static synchronized boolean isVoted()
+	{
+		return voted;
+	}
+
+	public static synchronized void setVoted(boolean voted)
+	{
+		RAFTStatus.voted = voted;
+	}
+
+	public static synchronized NodeState getCurrentNodeState()
 	{
 		return currentNodeState;
 	}
 
-	public static void setCurrentNodeState(NodeState currentNodeState)
+	public static synchronized void setCurrentNodeState(NodeState currentNodeState)
 	{
 		RAFTStatus.currentNodeState = currentNodeState;
 	}
@@ -40,25 +50,25 @@ public class RAFTStatus
 	
 
 
-	public static Node getCurrentNode()
+	public static synchronized Node getCurrentNode()
 	{
 		return currentNode;
 	}
 
-	public static void setCurrentNode(Node currentNode)
+	public static synchronized void setCurrentNode(Node currentNode)
 	{
 		RAFTStatus.currentNode = currentNode;
 	}
 
 	
-	public static void afterLeaderElectinReset()
+	public static synchronized void afterLeaderElectinReset()
 	{
 		VoteBuffer.reset();
 		NominationsBuffer.reset();
 		
 	}
 	
-	public static void afterHeartbeatMissedReset()
+	public static synchronized void afterHeartbeatMissedReset()
 	{
 		declaredLeader=null;
 
@@ -68,24 +78,24 @@ public class RAFTStatus
 	
 	
 
-	public static Node getDeclaredLeader()
+	public static synchronized Node getDeclaredLeader()
 	{
 		return declaredLeader;
 	}
 
-	public static void setDeclaredLeader(Node declaredLeader)
+	public static synchronized void setDeclaredLeader(Node declaredLeader)
 	{
 		RAFTStatus.declaredLeader = declaredLeader;
 	}
 	
 
-	public static int getHeartBeatFrequency()
+	public static synchronized int getHeartBeatFrequency()
 	{
 		return heartBeatFrequency;
 	}
 
 
-	public static void setHeartBeatFrequency(int heartBeatFrequency)
+	public static synchronized void setHeartBeatFrequency(int heartBeatFrequency)
 	{
 		RAFTStatus.heartBeatFrequency = heartBeatFrequency;
 	}
@@ -95,18 +105,18 @@ public class RAFTStatus
 
 
 
-	public static ArrayList<Node> getNodes()
+	public static synchronized ArrayList<Node> getNodes()
 	{
 		return nodes;
 	}
 
 
-	public static void setNodes(ArrayList<Node> nodes)
+	public static synchronized void setNodes(ArrayList<Node> nodes)
 	{
 		RAFTStatus.nodes = nodes;
 	}
 	
-	public static boolean isLeaderElected()
+	public static synchronized boolean isLeaderElected()
 	{
 		if(getDeclaredLeader()==null)
 		{
@@ -115,13 +125,13 @@ public class RAFTStatus
 		return true;
 	}
 
-	public static int getRaftTimer()
+	public static synchronized int getRaftTimer()
 	{
 		return raftTimer;
 	}
 
 
-	public static void setRaftTimer(int raftTimer)
+	public static synchronized void setRaftTimer(int raftTimer)
 	{
 		RAFTStatus.raftTimer = raftTimer;
 	}
@@ -129,14 +139,14 @@ public class RAFTStatus
 
 
 
-	public static int getNetwotkSize()
+	public static synchronized int getNetwotkSize()
 	{
 		return nodes.size();
 	}
 
 
 	
-	public static void raftTimerInit() 
+	public static synchronized void raftTimerInit() 
 	{
 
 	    Random rand = new Random();

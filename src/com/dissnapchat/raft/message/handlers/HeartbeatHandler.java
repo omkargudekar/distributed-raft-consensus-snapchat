@@ -1,4 +1,4 @@
-package com.dissnapchat.raft.controlmessage.handler;
+package com.dissnapchat.raft.message.handlers;
 import com.dissnapchat.raft.RAFTStatus;
 import com.distsnapchat.beans.Node;
 import com.distsnapchat.communication.buffers.HeartbeatBuffer;
@@ -38,12 +38,14 @@ public class HeartbeatHandler implements Handler
 	
 	public void setLeader(Node node)
 	{
+			RAFTStatus.setVoted(false);
 			RAFTStatus.setDeclaredLeader(node);
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Follower);
 	}
 	
 	public void updateLeader(Node node)
 	{
+		RAFTStatus.setVoted(false);
 		if(!RAFTStatus.getDeclaredLeader().getNodeID().equals(node.getNodeID()))
 		{
 			RAFTStatus.setDeclaredLeader(node);

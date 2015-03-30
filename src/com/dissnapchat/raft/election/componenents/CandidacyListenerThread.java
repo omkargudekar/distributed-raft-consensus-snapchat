@@ -1,4 +1,4 @@
-package com.dissnapchat.raft.componenents;
+package com.dissnapchat.raft.election.componenents;
 
 import com.dissnapchat.raft.RAFTStatus;
 import com.distsnapchat.beans.Node;
@@ -11,7 +11,7 @@ public class CandidacyListenerThread implements Runnable
 	@Override
 	public void run()
 	{
-		System.out.println("CandidacyMonitor Thread Started");
+		System.out.println("CandidacyListernerThread  Started");
 		while (true)
 		{
 
@@ -56,10 +56,11 @@ public class CandidacyListenerThread implements Runnable
 
 	private  void vote()
 	{
-		if (NominationsBuffer.getNodeCount() > 0)
+		if (NominationsBuffer.getNodeCount() > 0 &&  RAFTStatus.isVoted()==false)
 		{
 			Node candidate = NominationsBuffer.popCandidate();
 			NominationsBuffer.reset();
+			RAFTStatus.setVoted(true);
 			System.out.println("Voting for candidate : " + candidate);
 			new Thread(new UnicastMessage(candidate.getNodeIP(), candidate.getNodePort(), "Vote-" + RAFTStatus.getCurrentNode().getNodeID() + "-" + RAFTStatus.getCurrentNode().getNodeIP() + "-" + RAFTStatus.getCurrentNode().getNodePort() + "\r\n")).start();
 		}

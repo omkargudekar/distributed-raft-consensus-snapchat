@@ -1,9 +1,9 @@
-package com.dissnapchat.raft.componenents;
+package com.dissnapchat.raft.election.componenents;
 
 import com.dissnapchat.raft.RAFTStatus;
 import com.distsnapchat.communication.buffers.VoteBuffer;
 
-public class VotesListenerThread implements Runnable
+public class VoteListenerThread implements Runnable
 {
 
 	@Override

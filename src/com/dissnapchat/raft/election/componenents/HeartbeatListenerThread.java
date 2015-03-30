@@ -1,4 +1,4 @@
-package com.dissnapchat.raft.componenents;
+package com.dissnapchat.raft.election.componenents;
 
 import com.dissnapchat.raft.RAFTStatus;
 import com.distsnapchat.communication.buffers.HeartbeatBuffer;
@@ -9,7 +9,7 @@ public class HeartbeatListenerThread implements Runnable
 	@Override
 	public void run()
 	{
-		System.out.println("HeartbeatMonitor Thread Started");
+		System.out.println("HeartbeatListenerThread Thread Started");
 
 		while (true)
 		{

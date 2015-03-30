@@ -1,4 +1,4 @@
-package com.dissnapchat.raft.controlmessage.handler;
+package com.dissnapchat.raft.message.handlers;
 
 import com.dissnapchat.raft.RAFTStatus;
 import com.distsnapchat.beans.Node;

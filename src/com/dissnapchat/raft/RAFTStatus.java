@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.distsnapchat.beans.Node;
-import com.distsnapchat.communication.buffers.CandidacyBuffer;
+import com.distsnapchat.communication.buffers.NominationsBuffer;
 import com.distsnapchat.communication.buffers.VoteBuffer;
 
 public class RAFTStatus
@@ -54,7 +54,7 @@ public class RAFTStatus
 	public static void afterLeaderElectinReset()
 	{
 		VoteBuffer.reset();
-		CandidacyBuffer.reset();
+		NominationsBuffer.reset();
 		
 	}
 	

@@ -48,7 +48,7 @@ public class VotesListenerThread implements Runnable
 	
 	public void checkVotes()
 	{
-		if (VoteBuffer.getVoteCount() > (RAFTStatus.getNetwotkSize() / 2) )
+		if (VoteBuffer.getNodeVoteCount() > (RAFTStatus.getNetwotkSize() / 2) )
 		{	
 			System.out.println("****  Elected As Leader ****");
 			RAFTStatus.setDeclaredLeader(RAFTStatus.getCurrentNode());

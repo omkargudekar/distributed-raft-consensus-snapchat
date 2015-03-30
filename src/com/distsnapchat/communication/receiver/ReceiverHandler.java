@@ -14,9 +14,7 @@ public class ReceiverHandler extends SimpleChannelInboundHandler<String>
 	@Override
 	public void channelActive(final ChannelHandlerContext ctx)
 	{
-
 		channels.add(ctx.channel());
-	
 	}
 
 	@Override
@@ -30,8 +28,6 @@ public class ReceiverHandler extends SimpleChannelInboundHandler<String>
 	protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception
 	{
 		System.out.println("Raw Message : ["+msg+"]");
-	
-
 	}
 	
 	

@@ -3,7 +3,7 @@ package com.dissnapchat.raft.componenents;
 import com.dissnapchat.raft.RAFTStatus;
 import com.distsnapchat.beans.Node;
 import com.distsnapchat.communication.UnicastMessage;
-import com.distsnapchat.communication.buffers.CandidacyBuffer;
+import com.distsnapchat.communication.buffers.NominationsBuffer;
 
 public class CandidacyListenerThread implements Runnable
 {
@@ -56,10 +56,10 @@ public class CandidacyListenerThread implements Runnable
 
 	private  void vote()
 	{
-		if (CandidacyBuffer.getNodeCount() > 0)
+		if (NominationsBuffer.getNodeCount() > 0)
 		{
-			Node candidate = CandidacyBuffer.popCandidate();
-			CandidacyBuffer.reset();
+			Node candidate = NominationsBuffer.popCandidate();
+			NominationsBuffer.reset();
 			System.out.println("Voting for candidate : " + candidate);
 			new Thread(new UnicastMessage(candidate.getNodeIP(), candidate.getNodePort(), "Vote-" + RAFTStatus.getCurrentNode().getNodeID() + "-" + RAFTStatus.getCurrentNode().getNodeIP() + "-" + RAFTStatus.getCurrentNode().getNodePort() + "\r\n")).start();
 		}

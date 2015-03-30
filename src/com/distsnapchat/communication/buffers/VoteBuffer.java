@@ -2,52 +2,56 @@ package com.distsnapchat.communication.buffers;
 
 import java.util.ArrayList;
 
+import com.dissnapchat.raft.RAFTStatus;
+import com.distsnapchat.beans.Node;
+
 public class VoteBuffer
 {
-		private static ArrayList<String> recMessages = new ArrayList<String>();
-		
-		
-		public static int getVoteCount()
+	private static ArrayList<Node> nodes = new ArrayList<Node>();
+	
+	public static int getNodeVoteCount()
+	{
+		if(RAFTStatus.getCurrentNodeState()==RAFTStatus.NodeState.Candidate)
 		{
-			return recMessages.size();
+			return nodes.size()+1;
 		}
-		public static String popVote()
+		return 0;
+	}
+	public static Node popNode()
+	{
+		if(getNodeVoteCount()>0)
 		{
-			if(getVoteCount()>0)
-			{
-				String message=recMessages.get(0);
-				recMessages.remove(0);
-				return message;
-			}
+			Node node=nodes.get(0);
+			nodes.remove(0);
+			return node;
+		}
 
-			return null;
-			
-		}
+		return null;
 		
-		public static ArrayList<String> popVotes()
+	}
+	
+	public static ArrayList<Node> popNodes()
+	{
+		if(getNodeVoteCount()>0)
 		{
-			if(getVoteCount()>0)
-			{
 
-				return recMessages;
-			}
+			return nodes;
+		}
 
-			return null;
-			
-		}
+		return null;
 		
-		public static void pushVote(String message)
-		{
-				recMessages.add(message);
-			
-		}
+	}
+	
+	public static void pushNode(Node node)
+	{
+			nodes.add(node);
 		
-		public static void reset()
-		{
-				recMessages = new ArrayList<String>();
-			
-		}
+	}
+	
+	public static void reset()
+	{
+			nodes = new ArrayList<Node>();
 		
-		
+	}
 
 }

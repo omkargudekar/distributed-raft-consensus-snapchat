@@ -28,9 +28,7 @@ public class MessageDecoder
 		}
 		else
 		{
-			
 			new MessageHandler().handle(msg);
-		
 		}
 	}
 	

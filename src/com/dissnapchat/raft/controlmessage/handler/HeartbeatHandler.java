@@ -20,25 +20,37 @@ public class HeartbeatHandler implements Handler
 			break;
 
 		case Candidate:
-			RAFTStatus.setDeclaredLeader(node);
+			setLeader(node);
 			break;
 
 		case OrphanFollower:
-			RAFTStatus.setDeclaredLeader(node);
+			setLeader(node);
 			break;
 
 		case Follower:
-			if(!RAFTStatus.getDeclaredLeader().getNodeID().equals(node.getNodeID()))
-			{
-				RAFTStatus.setDeclaredLeader(node);
-			}
+			updateLeader(node);
 			break;
-
 		default:
 			break;
 		}
 		
 	}
 	
+	public void setLeader(Node node)
+	{
+			RAFTStatus.setDeclaredLeader(node);
+			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Follower);
+	}
+	
+	public void updateLeader(Node node)
+	{
+		if(!RAFTStatus.getDeclaredLeader().getNodeID().equals(node.getNodeID()))
+		{
+			RAFTStatus.setDeclaredLeader(node);
+			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Follower);
+		}
+		
+		
+	}
 
 }

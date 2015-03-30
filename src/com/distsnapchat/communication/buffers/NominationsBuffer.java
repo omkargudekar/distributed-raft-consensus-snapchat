@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.distsnapchat.beans.Node;
 
-public class CandidacyBuffer
+public class NominationsBuffer
 {
 	private static ArrayList<Node> nodes = new ArrayList<Node>();
 	
@@ -12,6 +12,11 @@ public class CandidacyBuffer
 	public static int getNodeCount()
 	{
 		return nodes.size();
+	}
+	
+	public static void pushCandidate(Node node)
+	{
+		nodes.add(node);
 	}
 	public static Node popCandidate()
 	{

@@ -46,7 +46,7 @@ public class HeartbeatHandler implements Handler
 	public void updateLeader(Node node)
 	{
 		RAFTStatus.setVoted(false);
-		if(!RAFTStatus.getDeclaredLeader().getNodeID().equals(node.getNodeID()))
+		if(RAFTStatus.getDeclaredLeader() == null || !RAFTStatus.getDeclaredLeader().getNodeID().equals(node.getNodeID()))
 		{
 			RAFTStatus.setDeclaredLeader(node);
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Follower);

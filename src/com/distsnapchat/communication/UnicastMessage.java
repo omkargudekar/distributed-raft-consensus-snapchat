@@ -19,7 +19,7 @@ public class UnicastMessage implements Runnable
 	
 	Stack<Packet> packetStack=new Stack<Packet>();
 	
-	public void pusPacket(Packet packet)
+	public void pushPacket(Packet packet)
 	{
 		packetStack.add(packet);
 	}
@@ -35,21 +35,20 @@ public class UnicastMessage implements Runnable
 		Message msg=null;
 		try
 		{
-			
-			
+			group = new NioEventLoopGroup(1);
+			Bootstrap b = new Bootstrap();
+			b.group(group).channel(NioSocketChannel.class).handler(new UnicastMessagetInitializer());
 			
 			while(packetStack.empty()==false)
 			{
-				group = new NioEventLoopGroup();
-				Bootstrap b = new Bootstrap();
-				b.group(group).channel(NioSocketChannel.class).handler(new UnicastMessagetInitializer());
 				packet=packetStack.pop();
 				node=packet.getNode();
 				msg=packet.getMsg();
 				ch = b.connect(node.getNodeIP(), node.getNodePort()).sync().channel();
+				System.out.println(ch);
 				lastWriteFuture = ch.writeAndFlush(msg);
-				lastWriteFuture.channel().closeFuture().sync();
-				group.shutdownGracefully();
+				lastWriteFuture.channel().close();
+				System.out.println("****************Write Complete"+node);
 			}
 	
 		
@@ -61,7 +60,8 @@ public class UnicastMessage implements Runnable
 		}
 		finally
 		{
-			//group.shutdownGracefully();
+			System.out.println("****************Closing Connection");
+			group.shutdown();
 		}
 
 	}

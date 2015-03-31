@@ -72,7 +72,7 @@ public class NominationListenerThread implements Runnable
 			Packet packet=new Packet();
 			packet.setNode(candidate);
 			packet.setMsg(msg);
-			unicastMsg.pusPacket(packet);
+			unicastMsg.pushPacket(packet);
 			
 			new Thread(unicastMsg).start();
 			NominationsBuffer.reset();

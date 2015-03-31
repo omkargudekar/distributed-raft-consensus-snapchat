@@ -33,7 +33,7 @@ public class MulticastMessage
 			packet=new Packet();
 			packet.setNode(node);
 			packet.setMsg(msg);
-			unicastMsg.pusPacket(packet);
+			unicastMsg.pushPacket(packet);
 			
 		}
 		System.out.println("Sending Messages");

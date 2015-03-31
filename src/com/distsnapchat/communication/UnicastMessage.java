@@ -36,11 +36,7 @@ public class UnicastMessage implements Runnable
 			Channel ch = b.connect(HOST, PORT).sync().channel();
 
 			lastWriteFuture = ch.writeAndFlush(message);
-			ch.closeFuture().sync();
-			if (lastWriteFuture != null)
-			{
-				lastWriteFuture.sync();
-			}
+			lastWriteFuture.channel().closeFuture().sync();
 
 		}
 		catch (Exception e)

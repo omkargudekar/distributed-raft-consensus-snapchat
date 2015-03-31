@@ -12,6 +12,7 @@ public class RunMain
 
 	public static void main(String args[])
 	{
+
 		//Starting Receiver Thread.
 		new Thread(new Receiver()).start();
 		
@@ -23,8 +24,9 @@ public class RunMain
 		RAFTStatus.raftTimerInit();
 
 		ArrayList<Node> nodes=new ArrayList<Node>();
-		nodes.add(new Node("Server3","192.168.0.3",8992));
 		nodes.add(new Node("Server2","192.168.0.2",8992));
+		nodes.add(new Node("Server3","192.168.0.3",8992));
+		
 		RAFTStatus.setNodes(nodes);
 		
 		new Thread(new RAFT()).start();

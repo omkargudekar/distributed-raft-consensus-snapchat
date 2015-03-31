@@ -29,13 +29,14 @@ public class MulticastMessage
 		UnicastMessage unicastMsg=new UnicastMessage();
 		for(Node node : RAFTStatus.getNodes())
 		{
-			System.out.println("Sending Message to "+node);
+			
 			packet=new Packet();
 			packet.setNode(node);
 			packet.setMsg(msg);
 			unicastMsg.pusPacket(packet);
 			
 		}
+		System.out.println("Sending Messages");
 		new Thread(unicastMsg).start();
 	}
 	

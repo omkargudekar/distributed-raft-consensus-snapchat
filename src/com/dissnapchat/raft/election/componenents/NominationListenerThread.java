@@ -6,6 +6,7 @@ import org.dissnapchat.protobuf.MessageProto.Message.MessageType;
 
 import com.dissnapchat.raft.RAFTStatus;
 import com.distsnapchat.beans.Node;
+import com.distsnapchat.beans.Packet;
 import com.distsnapchat.communication.UnicastMessage;
 import com.distsnapchat.communication.buffers.NominationsBuffer;
 
@@ -66,7 +67,14 @@ public class NominationListenerThread implements Runnable
 			RAFTStatus.setVoted(true);
 			System.out.println("Voting for candidate : " + candidate);
 			Message msg = MessageProto.Message.newBuilder().setMessageType(MessageType.VOTE).setNodeId(RAFTStatus.getCurrentNode().getNodeID()).setNodeIp(RAFTStatus.getCurrentNode().getNodeIP()).setNodePort(RAFTStatus.getCurrentNode().getNodePort()).build();
-			new Thread(new UnicastMessage(candidate.getNodeIP(), candidate.getNodePort(), msg)).start();
+			
+			UnicastMessage unicastMsg=new UnicastMessage();
+			Packet packet=new Packet();
+			packet.setNode(candidate);
+			packet.setMsg(msg);
+			unicastMsg.pusPacket(packet);
+			
+			new Thread(unicastMsg).start();
 			NominationsBuffer.reset();
 
 		}

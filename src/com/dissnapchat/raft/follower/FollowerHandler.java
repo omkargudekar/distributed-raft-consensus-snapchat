@@ -18,10 +18,12 @@ package com.dissnapchat.raft.follower;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
+import org.dissnapchat.protobuf.MessageProto.Message;
+
 /**
  * Handles a client-side channel.
  */
-public class FollowerHandler extends SimpleChannelInboundHandler<String> {
+public class FollowerHandler extends SimpleChannelInboundHandler<Message> {
 /*
     public void messageReceived(ChannelHandlerContext ctx, String msg) {
         
@@ -33,14 +35,10 @@ public class FollowerHandler extends SimpleChannelInboundHandler<String> {
         ctx.close();
     }
 
-	
-
-
 	@Override
-	protected void channelRead0(ChannelHandlerContext arg0, String arg1) throws Exception
-	{
-
-		System.out.println("Unicast Response Received " + arg1);
+	protected void channelRead0(ChannelHandlerContext arg0, Message arg1)
+			throws Exception {
+		// TODO Auto-generated method stub
 		
 	}
 }

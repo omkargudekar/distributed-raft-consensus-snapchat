@@ -5,8 +5,10 @@ import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
+import org.dissnapchat.protobuf.MessageProto.Message;
 
-public class ReceiverHandler extends SimpleChannelInboundHandler<String>
+
+public class ReceiverHandler extends SimpleChannelInboundHandler<Message>
 {
 
 	static final ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
@@ -25,10 +27,10 @@ public class ReceiverHandler extends SimpleChannelInboundHandler<String>
 	}
 
 	@Override
-	protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception
-	{
-		System.out.println("Raw Message : ["+msg+"]");
-		MessageDecoder.handle(msg);
+	protected void channelRead0(ChannelHandlerContext arg0, Message arg1)
+			throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

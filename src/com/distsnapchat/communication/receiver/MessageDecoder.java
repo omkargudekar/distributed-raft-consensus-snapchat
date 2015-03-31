@@ -1,4 +1,6 @@
 package com.distsnapchat.communication.receiver;
+import org.dissnapchat.protobuf.MessageProto.Message;
+
 import com.dissnapchat.raft.message.handlers.HeartbeatHandler;
 import com.dissnapchat.raft.message.handlers.MessageHandler;
 import com.dissnapchat.raft.message.handlers.NominationHandler;
@@ -11,9 +13,9 @@ public class MessageDecoder
 {
 	
 	
-	public static void handle(String msg)
+	public static void handle(Message msg)
 	{
-		if(msg.contains("Heartbeat"))
+	/*	if(msg.contains("Heartbeat"))
 		{
 			new HeartbeatHandler().handle(msg);
 			
@@ -30,6 +32,8 @@ public class MessageDecoder
 		{
 			new MessageHandler().handle(msg);
 		}
+		*/
+		System.out.println(msg.toString());
 	}
 	
 	

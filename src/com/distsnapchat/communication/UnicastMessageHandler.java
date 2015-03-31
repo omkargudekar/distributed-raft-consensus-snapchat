@@ -14,7 +14,7 @@ public class UnicastMessageHandler extends SimpleChannelInboundHandler<Message>
     }
     
 	@Override
-	protected void channelRead0(ChannelHandlerContext arg0, Message arg1)
+	protected void channelRead0(ChannelHandlerContext ctx, Message msg)
 			throws Exception {
 		// TODO Auto-generated method stub
 		

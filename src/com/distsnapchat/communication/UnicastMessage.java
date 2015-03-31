@@ -6,23 +6,26 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
+
 import java.util.ArrayList;
+
+import org.dissnapchat.protobuf.MessageProto.Message;
 
 
 
 public class UnicastMessage implements Runnable
 {
-	private ArrayList<String> messages = new ArrayList<String>();
+	private ArrayList<Message> messages = new ArrayList<Message>();
 
 	static String HOST = null;
 	static int PORT = 0;
 
 	
-	public UnicastMessage(String host, int port,String message)
+	public UnicastMessage(String host, int port,Message msg)
 	{
 		HOST = host;
 		PORT = port;
-		pushMessage(message);
+		pushMessage(msg);
 	}
 
 	public void run()
@@ -78,11 +81,11 @@ public class UnicastMessage implements Runnable
 		return messages.size();
 	}
 
-	public String popMessage()
+	public Message popMessage()
 	{
 		if (getMessageCount() > 0)
 		{
-			String message = messages.get(0);
+			Message message = messages.get(0);
 			messages.remove(0);
 			return message;
 		}
@@ -91,7 +94,7 @@ public class UnicastMessage implements Runnable
 
 	}
 
-	public ArrayList<String> popMessages()
+	public ArrayList<Message> popMessages()
 	{
 		if (getMessageCount() > 0)
 		{
@@ -103,7 +106,7 @@ public class UnicastMessage implements Runnable
 
 	}
 
-	public void pushMessage(String message)
+	public void pushMessage(Message message)
 	{
 		messages.add(message);
 

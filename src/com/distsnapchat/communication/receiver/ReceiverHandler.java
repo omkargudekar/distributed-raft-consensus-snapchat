@@ -27,10 +27,11 @@ public class ReceiverHandler extends SimpleChannelInboundHandler<Message>
 	}
 
 	@Override
-	protected void channelRead0(ChannelHandlerContext arg0, Message arg1)
-			throws Exception {
-		// TODO Auto-generated method stub
-		
+	protected void channelRead0(ChannelHandlerContext arg0, Message msg)
+			throws Exception 
+	{
+			
+			MessageDecoder.handle(msg);
 	}
 	
 	

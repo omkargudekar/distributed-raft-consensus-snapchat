@@ -1,5 +1,9 @@
 package com.dissnapchat.raft.election.componenents;
 
+import org.dissnapchat.protobuf.MessageProto;
+import org.dissnapchat.protobuf.MessageProto.Message;
+import org.dissnapchat.protobuf.MessageProto.Message.MessageType;
+
 import com.dissnapchat.raft.RAFTStatus;
 import com.distsnapchat.beans.Node;
 import com.distsnapchat.communication.UnicastMessage;
@@ -62,7 +66,8 @@ public class CandidacyListenerThread implements Runnable
 			NominationsBuffer.reset();
 			RAFTStatus.setVoted(true);
 			System.out.println("Voting for candidate : " + candidate);
-			new Thread(new UnicastMessage(candidate.getNodeIP(), candidate.getNodePort(), "Vote-" + RAFTStatus.getCurrentNode().getNodeID() + "-" + RAFTStatus.getCurrentNode().getNodeIP() + "-" + RAFTStatus.getCurrentNode().getNodePort() + "\r\n")).start();
+			Message msg = MessageProto.Message.newBuilder().setMessageType(MessageType.VOTE).setNodeId(RAFTStatus.getCurrentNode().getNodeID()).setNodeIp(RAFTStatus.getCurrentNode().getNodeIP()).setNodePort(RAFTStatus.getCurrentNode().getNodePort()).build();
+			new Thread(new UnicastMessage(candidate.getNodeIP(), candidate.getNodePort(), msg)).start();
 		}
 
 	}

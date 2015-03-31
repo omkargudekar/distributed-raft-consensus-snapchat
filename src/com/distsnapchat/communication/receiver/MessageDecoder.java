@@ -40,18 +40,22 @@ public class MessageDecoder
 		switch (msg.getMessageType())
 		{
 		case HEARTBEAT:
+			System.out.println("Heartbeat Received");
 			new HeartbeatHandler().handle(msg);
 			break;
 
 		case VOTE:
+			System.out.println("Vote Received");
 			new VoteHandler().handle(msg);
 			break;
 
 		case NOMINATION:
+			System.out.println("Nomination Received");
 			new NominationHandler().handle(msg);
 			break;
 
 		default:
+			System.out.println("Message Received");
 			new MessageHandler().handle(msg);
 			break;
 		}

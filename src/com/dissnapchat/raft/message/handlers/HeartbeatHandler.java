@@ -42,22 +42,27 @@ public class HeartbeatHandler implements Handler
 	
 	public void setLeader(Node node)
 	{
+			System.out.println("New Elected Leader : "+node);
+			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Follower);
 			RAFTStatus.setVoted(false);
 			RAFTStatus.setDeclaredLeader(node);
 			NominationsBuffer.reset();
 			VoteBuffer.reset();
-			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Follower);
+			
 	}
 	
 	public void updateLeader(Node node)
 	{
-		RAFTStatus.setVoted(false);
+		
 		if(RAFTStatus.getDeclaredLeader() == null || !RAFTStatus.getDeclaredLeader().getNodeID().equals(node.getNodeID()))
 		{
+			System.out.println("New Elected Leader : "+node);
+			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Follower);
+			RAFTStatus.setVoted(false);
 			RAFTStatus.setDeclaredLeader(node);
 			NominationsBuffer.reset();
 			VoteBuffer.reset();
-			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Follower);
+			
 		}
 		
 		

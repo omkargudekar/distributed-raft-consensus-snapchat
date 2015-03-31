@@ -43,6 +43,7 @@ public class RAFTStatus
 
 	public static synchronized void setCurrentNodeState(NodeState currentNodeState)
 	{
+		System.out.println("Changing Node State From "+RAFTStatus.currentNodeState +" to "+currentNodeState);
 		RAFTStatus.currentNodeState = currentNodeState;
 	}
 

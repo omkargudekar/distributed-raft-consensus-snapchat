@@ -48,6 +48,7 @@ public class HeartbeatSenderThread implements Runnable
 	
 	private void sendHeartbeat()
 	{
+
 		MulticastMessage multicast = new MulticastMessage();
 		Message msg = MessageProto.Message.newBuilder().setMessageType(MessageType.HEARTBEAT).setNodeId(RAFTStatus.getCurrentNode().getNodeID()).setNodeIp(RAFTStatus.getCurrentNode().getNodeIP()).setNodePort(RAFTStatus.getCurrentNode().getNodePort()).build();
 		multicast.send(msg);

@@ -50,6 +50,7 @@ public class ElectionParticipationThread implements Runnable
 			RAFTStatus.setVoted(true);
 			System.out.println("Declaring Candidacy...");
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Candidate);
+			
 			MulticastMessage multicast = new MulticastMessage();
 			Message msg = MessageProto.Message.newBuilder().setMessageType(MessageType.NOMINATION).setNodeId(RAFTStatus.getCurrentNode().getNodeID()).setNodeIp(RAFTStatus.getCurrentNode().getNodeIP()).setNodePort(RAFTStatus.getCurrentNode().getNodePort()).build();
 			multicast.send(msg);

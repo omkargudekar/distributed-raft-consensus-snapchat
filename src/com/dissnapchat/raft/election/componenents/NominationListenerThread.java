@@ -63,11 +63,12 @@ public class NominationListenerThread implements Runnable
 		if (NominationsBuffer.getNodeCount() > 0 &&  RAFTStatus.isVoted()==false)
 		{
 			Node candidate = NominationsBuffer.popCandidate();
-			NominationsBuffer.reset();
 			RAFTStatus.setVoted(true);
 			System.out.println("Voting for candidate : " + candidate);
 			Message msg = MessageProto.Message.newBuilder().setMessageType(MessageType.VOTE).setNodeId(RAFTStatus.getCurrentNode().getNodeID()).setNodeIp(RAFTStatus.getCurrentNode().getNodeIP()).setNodePort(RAFTStatus.getCurrentNode().getNodePort()).build();
 			new Thread(new UnicastMessage(candidate.getNodeIP(), candidate.getNodePort(), msg)).start();
+			NominationsBuffer.reset();
+
 		}
 
 	}

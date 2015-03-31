@@ -2,20 +2,22 @@ package com.distsnapchat.communication.buffers;
 
 import java.util.ArrayList;
 
+import org.dissnapchat.protobuf.MessageProto.Message;
+
 public class ReceivedMessageBuffer
 {
-		private static ArrayList<String> recMessages = new ArrayList<String>();
+		private static ArrayList<Message> recMessages = new ArrayList<Message>();
 		
 		
 		public static int getMessageCount()
 		{
 			return recMessages.size();
 		}
-		public static String popMessage()
+		public static Message popMessage()
 		{
 			if(getMessageCount()>0)
 			{
-				String message=recMessages.get(0);
+				Message message=recMessages.get(0);
 				recMessages.remove(0);
 				return message;
 			}
@@ -24,7 +26,7 @@ public class ReceivedMessageBuffer
 			
 		}
 		
-		public static ArrayList<String> popMessages()
+		public static ArrayList<Message> popMessages()
 		{
 			if(getMessageCount()>0)
 			{
@@ -36,7 +38,7 @@ public class ReceivedMessageBuffer
 			
 		}
 		
-		public static void pushMessage(String message)
+		public static void pushMessage(Message message)
 		{
 				recMessages.add(message);
 			
@@ -44,7 +46,7 @@ public class ReceivedMessageBuffer
 		
 		public static void reset()
 		{
-				recMessages = new ArrayList<String>();
+				recMessages = new ArrayList<Message>();
 			
 		}
 		

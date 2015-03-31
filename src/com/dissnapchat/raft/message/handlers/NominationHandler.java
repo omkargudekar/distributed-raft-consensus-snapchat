@@ -1,4 +1,6 @@
 package com.dissnapchat.raft.message.handlers;
+import org.dissnapchat.protobuf.MessageProto.Message;
+
 import com.dissnapchat.raft.RAFTStatus;
 import com.distsnapchat.beans.Node;
 import com.distsnapchat.communication.buffers.NominationsBuffer;
@@ -8,10 +10,10 @@ public class NominationHandler implements Handler
 {
 
 	@Override
-	public void handle(String msg)
+	public void handle(Message msg)
 	{
 
-		Node node=MessageDecoder.extractNodeInformation(msg);
+		Node node=new Node(msg.getNodeId(),msg.getNodeIp(),msg.getNodePort());
 		NominationsBuffer.pushCandidate(node);
 		
 		switch (RAFTStatus.getCurrentNodeState())

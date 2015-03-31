@@ -1,6 +1,7 @@
 package com.distsnapchat.communication.receiver;
 import org.dissnapchat.protobuf.MessageProto.Message;
 
+import com.dissnapchat.raft.RAFTStatus;
 import com.dissnapchat.raft.message.handlers.HeartbeatHandler;
 import com.dissnapchat.raft.message.handlers.MessageHandler;
 import com.dissnapchat.raft.message.handlers.NominationHandler;
@@ -34,18 +35,31 @@ public class MessageDecoder
 		}
 		*/
 		System.out.println(msg.toString());
+		
+
+		switch (msg.getMessageType())
+		{
+		case HEARTBEAT:
+			new HeartbeatHandler().handle(msg);
+			break;
+
+		case VOTE:
+			new VoteHandler().handle(msg);
+			break;
+
+		case NOMINATION:
+			new NominationHandler().handle(msg);
+			break;
+
+		default:
+			new MessageHandler().handle(msg);
+			break;
+		}
+		
+		
+	
 	}
 	
 	
 	
-	 public static Node extractNodeInformation(String msg)
-	 {
-		 	String[] msg_parts = msg.split("-");
-		 	Node node=new Node();
-		 	node.setNodeID(msg_parts[1]);
-		 	node.setNodeIP(msg_parts[2]);
-		 	node.setNodePort(Integer.parseInt(msg_parts[3]));
-		 	
-		 	return node;
-	 }
 }

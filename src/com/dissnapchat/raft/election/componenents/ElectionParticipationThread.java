@@ -7,7 +7,7 @@ import org.dissnapchat.protobuf.MessageProto.Message.MessageType;
 import com.dissnapchat.raft.RAFTStatus;
 import com.distsnapchat.communication.MulticastMessage;
 
-public class NominationThread implements Runnable
+public class ElectionParticipationThread implements Runnable
 {
 
 	@Override
@@ -52,8 +52,8 @@ public class NominationThread implements Runnable
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Candidate);
 			MulticastMessage multicast = new MulticastMessage();
 			Message msg = MessageProto.Message.newBuilder().setMessageType(MessageType.NOMINATION).setNodeId(RAFTStatus.getCurrentNode().getNodeID()).setNodeIp(RAFTStatus.getCurrentNode().getNodeIP()).setNodePort(RAFTStatus.getCurrentNode().getNodePort()).build();
-//			multicast.send(RAFTStatus.getNodes(), "Candidate-" + RAFTStatus.getCurrentNode().getNodeID() + "-" + RAFTStatus.getCurrentNode().getNodeIP() + "-" + RAFTStatus.getCurrentNode().getNodePort() + "\r\n");
 			multicast.send(msg);
+//			multicast.send(RAFTStatus.getNodes(), "Candidate-" + RAFTStatus.getCurrentNode().getNodeID() + "-" + RAFTStatus.getCurrentNode().getNodeIP() + "-" + RAFTStatus.getCurrentNode().getNodePort() + "\r\n");
 		}
 	}
 	

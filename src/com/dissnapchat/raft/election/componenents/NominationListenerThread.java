@@ -9,13 +9,13 @@ import com.distsnapchat.beans.Node;
 import com.distsnapchat.communication.UnicastMessage;
 import com.distsnapchat.communication.buffers.NominationsBuffer;
 
-public class CandidacyListenerThread implements Runnable
+public class NominationListenerThread implements Runnable
 {
 
 	@Override
 	public void run()
 	{
-		System.out.println("CandidacyListernerThread  Started");
+		System.out.println("NominationListernerThread  Started");
 		while (true)
 		{
 

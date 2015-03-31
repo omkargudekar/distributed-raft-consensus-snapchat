@@ -29,24 +29,27 @@ public class UnicastMessage implements Runnable
 		
 		EventLoopGroup group = null;
 		ChannelFuture lastWriteFuture = null;
+		Packet packet=null;
+		Channel ch=null;
+		Node node=null;
+		Message msg=null;
 		try
 		{
 			
-			group = new NioEventLoopGroup();
-			Bootstrap b = new Bootstrap();
-			b.group(group).channel(NioSocketChannel.class).handler(new UnicastMessagetInitializer());
-			Packet packet=null;
-			Channel ch=null;
-			Node node=null;
-			Message msg=null;
+			
+			
 			while(packetStack.empty()==false)
 			{
+				group = new NioEventLoopGroup();
+				Bootstrap b = new Bootstrap();
+				b.group(group).channel(NioSocketChannel.class).handler(new UnicastMessagetInitializer());
 				packet=packetStack.pop();
 				node=packet.getNode();
 				msg=packet.getMsg();
 				ch = b.connect(node.getNodeIP(), node.getNodePort()).sync().channel();
 				lastWriteFuture = ch.writeAndFlush(msg);
 				lastWriteFuture.channel().closeFuture().sync();
+				group.shutdownGracefully();
 			}
 	
 		
@@ -58,7 +61,7 @@ public class UnicastMessage implements Runnable
 		}
 		finally
 		{
-			group.shutdownGracefully();
+			//group.shutdownGracefully();
 		}
 
 	}

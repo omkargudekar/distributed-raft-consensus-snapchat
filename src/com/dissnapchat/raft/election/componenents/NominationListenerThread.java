@@ -67,7 +67,6 @@ public class NominationListenerThread implements Runnable
 			System.out.println("Voting for candidate : " + candidate);
 			Message msg = MessageProto.Message.newBuilder().setMessageType(MessageType.VOTE).setNodeId(RAFTStatus.getCurrentNode().getNodeID()).setNodeIp(RAFTStatus.getCurrentNode().getNodeIP()).setNodePort(RAFTStatus.getCurrentNode().getNodePort()).build();
 			new Thread(new UnicastMessage(candidate.getNodeIP(), candidate.getNodePort(), msg)).start();
-			NominationsBuffer.reset();
 
 		}
 

@@ -13,7 +13,7 @@ public class ElectionParticipationThread implements Runnable
 	@Override
 	public void run()
 	{
-		System.out.println("NominationThread Started");
+		System.out.println("ElectionLeaderParticipationThread Started");
 		while (true)
 		{
 
@@ -75,7 +75,7 @@ public class ElectionParticipationThread implements Runnable
 	{
 		try
 		{
-			Thread.sleep(2000);
+			Thread.sleep(100);
 		}
 		catch (InterruptedException e)
 		{

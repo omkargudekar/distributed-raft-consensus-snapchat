@@ -14,7 +14,7 @@ public class RAFTStatus
 	{
 	    Follower, Candidate, Leader,OrphanFollower
 	}
-	private static NodeState currentNodeState = NodeState.Follower;
+	private static NodeState currentNodeState = NodeState.OrphanFollower;
 	private static Node currentNode=null;
 	private static ArrayList<Node> nodes=new ArrayList<Node>();
 	private static Node declaredLeader=null;

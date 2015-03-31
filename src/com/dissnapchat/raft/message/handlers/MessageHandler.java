@@ -10,6 +10,7 @@ public class MessageHandler implements Handler
 	@Override
 	public void handle(Message msg)
 	{
+		System.out.println("Inside Message Handelr ");
 		ReceivedMessageBuffer.pushMessage(msg);		
 	}
 

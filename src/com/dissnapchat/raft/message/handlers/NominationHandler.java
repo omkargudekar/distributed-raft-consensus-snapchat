@@ -12,9 +12,10 @@ public class NominationHandler implements Handler
 	@Override
 	public void handle(Message msg)
 	{
-
+		
 		Node node=new Node(msg.getNodeId(),msg.getNodeIp(),msg.getNodePort());
-		NominationsBuffer.pushCandidate(node);
+		System.out.println("Inside NominationHandler "+node);
+
 		
 		switch (RAFTStatus.getCurrentNodeState())
 		{
@@ -29,7 +30,6 @@ public class NominationHandler implements Handler
 			break;
 
 			case Follower:
-
 			break;
 
 		default:

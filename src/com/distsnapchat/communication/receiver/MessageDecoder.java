@@ -34,7 +34,7 @@ public class MessageDecoder
 			new MessageHandler().handle(msg);
 		}
 		*/
-		System.out.println(msg.toString());
+		//System.out.println(msg.toString());
 		
 
 		switch (msg.getMessageType())

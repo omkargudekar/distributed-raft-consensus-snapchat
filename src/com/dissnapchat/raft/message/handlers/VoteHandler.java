@@ -16,7 +16,7 @@ public class VoteHandler implements Handler
 	{
 
 		Node node=new Node(msg.getNodeId(),msg.getNodeIp(),msg.getNodePort());
-		NominationsBuffer.pushCandidate(node);
+		System.out.println("Inside VoteHandler "+node);
 		
 		switch (RAFTStatus.getCurrentNodeState())
 		{

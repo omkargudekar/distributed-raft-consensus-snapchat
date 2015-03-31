@@ -15,6 +15,7 @@ public class HeartbeatHandler implements Handler
 	public void handle(Message msg)
 	{
 		Node node=new Node(msg.getNodeId(),msg.getNodeIp(),msg.getNodePort());
+		System.out.println("Inside HeartbeatHandler "+node);
 		HeartbeatBuffer.pushNode(node);
 		
 		

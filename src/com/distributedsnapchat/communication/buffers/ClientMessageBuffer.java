@@ -2,22 +2,22 @@ package com.distributedsnapchat.communication.buffers;
 
 import java.util.ArrayList;
 
-import com.distributedsnapchat.communication.protobuf.NodeMessageProto.Message;
+import com.distributedsnapchat.communication.protobuf.ClientMessageProto.ClientMessage;
 
-public class ReceivedMessageBuffer
+public class ClientMessageBuffer
 {
-		private static ArrayList<Message> recMessages = new ArrayList<Message>();
+		private static ArrayList<ClientMessage> recMessages = new ArrayList<ClientMessage>();
 		
 		
 		public static int getMessageCount()
 		{
 			return recMessages.size();
 		}
-		public static Message popMessage()
+		public static ClientMessage popMessage()
 		{
 			if(getMessageCount()>0)
 			{
-				Message message=recMessages.get(0);
+				ClientMessage message=recMessages.get(0);
 				recMessages.remove(0);
 				return message;
 			}
@@ -26,7 +26,7 @@ public class ReceivedMessageBuffer
 			
 		}
 		
-		public static ArrayList<Message> popMessages()
+		public static ArrayList<ClientMessage> popMessages()
 		{
 			if(getMessageCount()>0)
 			{
@@ -38,7 +38,7 @@ public class ReceivedMessageBuffer
 			
 		}
 		
-		public static void pushMessage(Message message)
+		public static void pushMessage(ClientMessage message)
 		{
 				recMessages.add(message);
 			
@@ -46,7 +46,7 @@ public class ReceivedMessageBuffer
 		
 		public static void reset()
 		{
-				recMessages = new ArrayList<Message>();
+				recMessages = new ArrayList<ClientMessage>();
 			
 		}
 		

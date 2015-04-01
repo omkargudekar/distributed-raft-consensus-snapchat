@@ -1,9 +1,6 @@
 package com.distributedsnapchat.communication.nodes.receiver;
-import com.distributedsnapchat.beans.Node;
 import com.distributedsnapchat.communication.protobuf.NodeMessageProto.Message;
-import com.distributedsnapchat.raft.RAFTStatus;
 import com.distributedsnapchat.raft.message.handlers.HeartbeatHandler;
-import com.distributedsnapchat.raft.message.handlers.MessageHandler;
 import com.distributedsnapchat.raft.message.handlers.NominationHandler;
 import com.distributedsnapchat.raft.message.handlers.VoteHandler;
 
@@ -34,8 +31,7 @@ public class MessageDecoder
 			break;
 
 		default:
-			System.out.println("Message Received");
-			new MessageHandler().handle(msg);
+			System.out.println("Unknown Message Received");
 			break;
 		}
 		

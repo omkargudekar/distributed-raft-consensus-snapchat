@@ -4,11 +4,10 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
+import com.distributedsnapchat.communication.protobuf.ClientMessageProto.ClientMessage;
 
-import com.distributedsnapchat.communication.protobuf.NodeMessageProto.Message;
 
-
-public class ClientReceiverHandler extends SimpleChannelInboundHandler<Message>
+public class ClientReceiverHandler extends SimpleChannelInboundHandler<ClientMessage>
 {
 
 	static final ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
@@ -27,10 +26,10 @@ public class ClientReceiverHandler extends SimpleChannelInboundHandler<Message>
 	}
 
 	@Override
-	protected void channelRead0(ChannelHandlerContext arg0, Message msg)
+	protected void channelRead0(ChannelHandlerContext arg0, ClientMessage msg)
 			throws Exception 
 	{
-			System.out.println("[RAW] Received Message ");
+			System.out.println("[RAW] Client Message Received ");
 			ClientMessageDecoder.handle(msg);
 	}
 	

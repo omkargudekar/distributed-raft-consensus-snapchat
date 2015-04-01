@@ -6,6 +6,18 @@ import com.distributedsnapchat.beans.Node;
 
 public class GlobalConfiguration
 {
+	
+	private static String clientMessageStorageDir="client_messages/";
+	public static String getClientMessageStorageDir()
+	{
+		return clientMessageStorageDir;
+	}
+
+	public static void setClientMessageStorageDir(String clientMessageStorageDir)
+	{
+		GlobalConfiguration.clientMessageStorageDir = clientMessageStorageDir;
+	}
+
 	private static int clinetListenerPort=4000;
 
 	private static Node currentNode=null;

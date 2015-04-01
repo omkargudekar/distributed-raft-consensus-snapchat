@@ -1,6 +1,7 @@
 package com.distributedsnapchat.communication.client.receiver;
 
 
+import com.distributedsnapchat.communication.protobuf.ClientMessageProto.ClientMessage;
 import com.distributedsnapchat.communication.protobuf.NodeMessageProto.Message;
 
 import io.netty.channel.ChannelInitializer;
@@ -24,7 +25,7 @@ public class ClientReceiverInitializer extends ChannelInitializer<SocketChannel>
     public void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
         pipeline.addLast ("frameDecoder", new ProtobufVarint32FrameDecoder ());
-        pipeline.addLast ("protobufDecoder", new ProtobufDecoder(Message.getDefaultInstance()));
+        pipeline.addLast ("protobufDecoder", new ProtobufDecoder(ClientMessage.getDefaultInstance()));
         pipeline.addLast ("frameEncoder", new ProtobufVarint32LengthFieldPrepender ());
         pipeline.addLast ("protobufEncoder", new ProtobufEncoder ());
         pipeline.addLast(new ClientReceiverHandler());

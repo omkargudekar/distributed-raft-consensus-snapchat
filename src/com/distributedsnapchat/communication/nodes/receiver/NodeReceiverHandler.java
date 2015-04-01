@@ -30,7 +30,7 @@ public class NodeReceiverHandler extends SimpleChannelInboundHandler<Message>
 	protected void channelRead0(ChannelHandlerContext arg0, Message msg)
 			throws Exception 
 	{
-			System.out.println("[RAW] Received Message ");
+		
 			MessageDecoder.handle(msg);
 	}
 	

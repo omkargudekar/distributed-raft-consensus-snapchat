@@ -18,26 +18,29 @@ public class MessageDecoder
 		switch (msg.getMessageType())
 		{
 		case HEARTBEAT:
-			System.out.println("Heartbeat Received");
+			//System.out.println("Heartbeat Received");
 			new HeartbeatHandler().handle(msg);
 			break;
 
 		case VOTE:
-			System.out.println("Vote Received");
+			//System.out.println("Vote Received");
 			new VoteHandler().handle(msg);
 			break;
 
 		case NOMINATION:
-			System.out.println("Nomination Received");
+			//System.out.println("Nomination Received");
 			new NominationHandler().handle(msg);
 			break;
 
 		case LOG_REPLICATION_REQUEST:
+			System.out.println("Received LOG_REPLICATION_REQUEST ");
 			new LogReplicationRequestHandler().handle(msg.getClientMessage());
-
+			break;
 		case LOG_REPLICATION_COMPLETE_NOTIFICATION:
+			System.out.println("Received LOG_REPLICATION_COMPLETE Response ");
 			new LogReplicationCompleteResponseHandler().handle(msg);
-			
+			break;
+
 		default:
 			System.out.println("Unknown Message Received");
 			break;

@@ -33,6 +33,7 @@ public class LogReplicationRequestHandler implements Handler
 			break;
 
 		case Follower:
+			System.out.println("Received Log Replication Request..");
 			LogReplicationRequestBuffer.pushMessage(msg);
 			break;
 			

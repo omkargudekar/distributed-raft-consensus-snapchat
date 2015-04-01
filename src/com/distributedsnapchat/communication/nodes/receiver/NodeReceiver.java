@@ -35,7 +35,7 @@ public final class NodeReceiver implements Runnable
         } 
         catch(Exception e)
         {
-        	System.out.println(e);
+        	
         }
         finally 
         {

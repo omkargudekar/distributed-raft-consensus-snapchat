@@ -36,7 +36,6 @@ public class MulticastMessage
 			unicastMsg.pushPacket(packet);
 			
 		}
-		System.out.println("Sending Messages");
 		new Thread(unicastMsg).start();
 	}
 	

@@ -47,7 +47,7 @@ public class UnicastMessage implements Runnable
 				System.out.println(ch);
 				lastWriteFuture = ch.writeAndFlush(msg);
 				lastWriteFuture.channel().close();
-				System.out.println("Sending Message to node : "+node);
+				
 			}
 	
 		

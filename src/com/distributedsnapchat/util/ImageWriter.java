@@ -4,12 +4,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.distributedsnapchat.app.GlobalConfiguration;
-import com.distributedsnapchat.communication.protobuf.ClientMessageProto.ClientMessage;
+
+import com.distributedsnapchat.communication.protobuf.NodeMessageProto;
 
 public class ImageWriter
 {
 
-	public void storeImage(ClientMessage message)
+	public void storeImage(NodeMessageProto.ClientMessage message)
 	{
 		FileOutputStream fileOuputStream = null;
 		try

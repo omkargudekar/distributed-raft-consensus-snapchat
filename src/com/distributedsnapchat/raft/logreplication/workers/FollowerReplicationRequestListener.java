@@ -1,26 +1,28 @@
 package com.distributedsnapchat.raft.logreplication.workers;
 
 import com.distributedsnapchat.app.GlobalConfiguration;
+import com.distributedsnapchat.beans.Packet;
 import com.distributedsnapchat.communication.MulticastMessage;
+import com.distributedsnapchat.communication.UnicastMessage;
 import com.distributedsnapchat.communication.buffers.ClientMessageBuffer;
 import com.distributedsnapchat.communication.protobuf.NodeMessageProto;
 import com.distributedsnapchat.communication.protobuf.NodeMessageProto.Message;
 import com.distributedsnapchat.communication.protobuf.NodeMessageProto.Message.MessageType;
 import com.distributedsnapchat.raft.RAFTStatus;
+import com.distributedsnapchat.util.ImageWriter;
 
 public class FollowerReplicationRequestListener implements Runnable
 {
 	
 	public void run()
 	{
-		System.out.println("LeaderReplicationRequestThread Started");
+		System.out.println("FollowerReplicationRequestThread Started");
 		while (true)
 		{
 
 			switch (RAFTStatus.getCurrentNodeState())
 			{
 			case Leader:
-				checkClientMessageBuffer();
 				break;
 
 			case Candidate:
@@ -30,6 +32,7 @@ public class FollowerReplicationRequestListener implements Runnable
 				break;
 
 			case Follower:
+				replicate();
 				break;
 
 			default:
@@ -38,18 +41,27 @@ public class FollowerReplicationRequestListener implements Runnable
 		}
 	}
 	
-	public void checkClientMessageBuffer()
+	public void replicate()
 	{
 		if(ClientMessageBuffer.getMessageCount()>0)
 		{
 			while(ClientMessageBuffer.getMessageCount()>0)
 			{
 				NodeMessageProto.ClientMessage clientMessage=ClientMessageBuffer.popMessage();
-				MulticastMessage multicast = new MulticastMessage();
-				Message msg = NodeMessageProto.Message.newBuilder().setClientMessage(clientMessage)
-						.setMessageType(MessageType.LOG_REPLICATION_REQUEST).setNodeId(GlobalConfiguration.getCurrentNode().getNodeID()).setNodeIp(GlobalConfiguration.getCurrentNode().getNodeIP()).setNodePort(GlobalConfiguration.getCurrentNode().getNodePort()).build();
-				multicast.send(msg);
-
+				ImageWriter imgWriter=new ImageWriter();
+				imgWriter.storeImage(clientMessage);
+				
+				Message msg = NodeMessageProto.Message.newBuilder().setMessageType(MessageType.LOG_REPLICATION_COMPLETE_NOTIFICATION).setNodeId(GlobalConfiguration.getCurrentNode().getNodeID()).setNodeIp(GlobalConfiguration.getCurrentNode().getNodeIP()).setNodePort(GlobalConfiguration.getCurrentNode().getNodePort()).build();
+				
+				UnicastMessage unicastMsg=new UnicastMessage();
+				Packet packet=new Packet();
+				packet.setNode(RAFTStatus.getDeclaredLeader());
+				packet.setMsg(msg);
+				unicastMsg.pushPacket(packet);
+				
+				new Thread(unicastMsg).start();
+				
+				
 				
 			}
 			

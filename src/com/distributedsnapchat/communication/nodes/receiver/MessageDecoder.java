@@ -14,7 +14,7 @@ public class MessageDecoder
 	
 	public static void handle(Message msg)
 	{		
-		
+		System.out.println("Message Received : "+msg.getMessageType());
 		
 		switch (msg.getMessageType())
 		{

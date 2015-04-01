@@ -2,9 +2,7 @@ package com.distributedsnapchat.raft.logreplication.workers;
 
 import com.distributedsnapchat.app.GlobalConfiguration;
 import com.distributedsnapchat.beans.Packet;
-import com.distributedsnapchat.communication.MulticastMessage;
 import com.distributedsnapchat.communication.UnicastMessage;
-import com.distributedsnapchat.communication.buffers.ClientMessageBuffer;
 import com.distributedsnapchat.communication.buffers.LogReplicationRequestBuffer;
 import com.distributedsnapchat.communication.protobuf.NodeMessageProto;
 import com.distributedsnapchat.communication.protobuf.NodeMessageProto.Message;
@@ -48,7 +46,7 @@ public class FollowerReplicationRequestListener implements Runnable
 		{
 			while(LogReplicationRequestBuffer.getMessageCount()>0)
 			{
-				NodeMessageProto.ClientMessage clientMessage=LogReplicationRequestBuffer.popMessage();
+				Message clientMessage=LogReplicationRequestBuffer.popMessage();
 				ImageWriter imgWriter=new ImageWriter();
 				imgWriter.storeImage(clientMessage);
 				

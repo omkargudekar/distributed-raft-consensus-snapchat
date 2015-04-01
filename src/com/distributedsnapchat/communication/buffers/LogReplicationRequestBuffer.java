@@ -3,21 +3,22 @@ package com.distributedsnapchat.communication.buffers;
 import java.util.ArrayList;
 
 import com.distributedsnapchat.communication.protobuf.NodeMessageProto;
+import com.distributedsnapchat.communication.protobuf.NodeMessageProto.Message;
 
 public class LogReplicationRequestBuffer
 {
-		private static ArrayList<NodeMessageProto.ClientMessage> recMessages = new ArrayList<NodeMessageProto.ClientMessage>();
+		private static ArrayList<Message> recMessages = new ArrayList<Message>();
 		
 		
 		public static int getMessageCount()
 		{
 			return recMessages.size();
 		}
-		public static NodeMessageProto.ClientMessage popMessage()
+		public static Message popMessage()
 		{
 			if(getMessageCount()>0)
 			{
-				NodeMessageProto.ClientMessage message=recMessages.get(0);
+				Message message=recMessages.get(0);
 				recMessages.remove(0);
 				return message;
 			}
@@ -26,7 +27,7 @@ public class LogReplicationRequestBuffer
 			
 		}
 		
-		public static ArrayList<NodeMessageProto.ClientMessage> popMessages()
+		public static ArrayList<Message> popMessages()
 		{
 			if(getMessageCount()>0)
 			{
@@ -38,7 +39,7 @@ public class LogReplicationRequestBuffer
 			
 		}
 		
-		public static void pushMessage(NodeMessageProto.ClientMessage message)
+		public static void pushMessage(Message message)
 		{
 				recMessages.add(message);
 			
@@ -46,7 +47,7 @@ public class LogReplicationRequestBuffer
 		
 		public static void reset()
 		{
-				recMessages = new ArrayList<NodeMessageProto.ClientMessage>();
+				recMessages = new ArrayList<Message>();
 			
 		}
 		

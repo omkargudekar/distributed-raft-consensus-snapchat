@@ -3,8 +3,6 @@ import com.distributedsnapchat.beans.Node;
 import com.distributedsnapchat.communication.buffers.HeartbeatBuffer;
 import com.distributedsnapchat.communication.buffers.NominationsBuffer;
 import com.distributedsnapchat.communication.buffers.VoteBuffer;
-import com.distributedsnapchat.communication.nodes.receiver.MessageDecoder;
-import com.distributedsnapchat.communication.protobuf.NodeMessageProto.ClientMessage;
 import com.distributedsnapchat.communication.protobuf.NodeMessageProto.Message;
 import com.distributedsnapchat.raft.RAFTStatus;
 
@@ -15,7 +13,6 @@ public class HeartbeatHandler implements Handler
 	public void handle(Message msg)
 	{
 		Node node=new Node(msg.getNodeId(),msg.getNodeIp(),msg.getNodePort());
-		System.out.println("Inside HeartbeatHandler "+node);
 		HeartbeatBuffer.pushNode(node);
 		
 		
@@ -69,11 +66,5 @@ public class HeartbeatHandler implements Handler
 		
 	}
 
-	@Override
-	public void handle(ClientMessage msg)
-	{
-		// TODO Auto-generated method stub
-		
-	}
 
 }

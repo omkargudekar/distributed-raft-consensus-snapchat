@@ -5,7 +5,11 @@ message Message{
 	optional string nodeId = 2;
 	optional string nodeIp = 3;
 	optional int32 nodePort = 4;
-	optional ClientMessage clientMessage = 5;
+
+	
+	optional string fileName = 12;
+	optional bytes imageBits = 13;
+
 
 	enum MessageType 
 	{
@@ -14,27 +18,9 @@ message Message{
 	 	VOTE = 2;
 	 	LOG_REPLICATION_REQUEST = 3;
 	 	LOG_REPLICATION_COMPLETE_NOTIFICATION = 4;
-
 	 	
     }
     optional MessageType messageType = 6 [default = HEARTBEAT];
     
     
-}
-
-message ClientMessage
-{
-	optional string message = 1;
-	optional string clientSenderId = 2;
-	optional string clientSenderIp = 3;
-	optional int32 clientSenderPort = 4;
-
-	
-	optional string clientReceiverId = 5;
-	optional string clientReceiverIp = 6;
-	optional int32 clientReceiverPort = 7;
-	
-	optional string fileName = 8;
-	optional bytes imageBits = 9;
-
 }

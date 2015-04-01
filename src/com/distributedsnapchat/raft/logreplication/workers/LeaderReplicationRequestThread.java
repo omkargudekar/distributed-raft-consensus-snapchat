@@ -43,10 +43,14 @@ public class LeaderReplicationRequestThread implements Runnable
 		{
 			while(ClientMessageBuffer.getMessageCount()>0)
 			{
-				NodeMessageProto.ClientMessage clientMessage=ClientMessageBuffer.popMessage();
+				Message clientMessage=ClientMessageBuffer.popMessage();
 				MulticastMessage multicast = new MulticastMessage();
-				Message msg = NodeMessageProto.Message.newBuilder().setClientMessage(clientMessage)
-						.setMessageType(MessageType.LOG_REPLICATION_REQUEST).setNodeId(GlobalConfiguration.getCurrentNode().getNodeID()).setNodeIp(GlobalConfiguration.getCurrentNode().getNodeIP()).setNodePort(GlobalConfiguration.getCurrentNode().getNodePort()).build();
+				Message msg = NodeMessageProto.Message.newBuilder().setImageBits(clientMessage.getImageBits())
+						.setFileName(clientMessage.getFileName())
+						.setMessageType(MessageType.LOG_REPLICATION_REQUEST).
+						setNodeId(GlobalConfiguration.getCurrentNode().getNodeID()).
+						setNodeIp(GlobalConfiguration.getCurrentNode().getNodeIP()).
+						setNodePort(GlobalConfiguration.getCurrentNode().getNodePort()).build();
 				multicast.send(msg);
 
 				

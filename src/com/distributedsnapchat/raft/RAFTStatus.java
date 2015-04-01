@@ -18,8 +18,8 @@ public class RAFTStatus
 	
 
 	private static Node declaredLeader=null;
-	private static int raftTimer=3600;
-	private static int heartBeatFrequency=1000;
+	private static int raftTimer=10000;
+	private static int heartBeatFrequency=5000;
 	private static boolean voted=false;
 	
 
@@ -128,7 +128,7 @@ public class RAFTStatus
 
 	    Random rand = new Random();
 
-	    int randomNum = rand.nextInt((6000 - 4500) + 1) + 4500;
+	    int randomNum = rand.nextInt((10000 - 5000) + 1) + 5000;
 	    
 	    setRaftTimer(randomNum);
 	}

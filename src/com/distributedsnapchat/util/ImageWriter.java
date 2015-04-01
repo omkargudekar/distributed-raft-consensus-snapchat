@@ -4,19 +4,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.distributedsnapchat.app.GlobalConfiguration;
-
-import com.distributedsnapchat.communication.protobuf.NodeMessageProto;
+import com.distributedsnapchat.communication.protobuf.NodeMessageProto.Message;
 
 public class ImageWriter
 {
 
-	public void storeImage(NodeMessageProto.ClientMessage message)
+	public void storeImage(Message message)
 	{
 		FileOutputStream fileOuputStream = null;
 		try
 		{
 			byte[] bFile = message.getImageBits().toByteArray();
-			fileOuputStream = new FileOutputStream(GlobalConfiguration.getClientMessageStorageDir() + message.getFileName() + ".png");
+			fileOuputStream = new FileOutputStream(GlobalConfiguration.getClientMessageStorageDir() + message.getFileName());
 			fileOuputStream.write(bFile);
 
 		}

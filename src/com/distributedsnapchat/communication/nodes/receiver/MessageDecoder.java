@@ -15,29 +15,25 @@ public class MessageDecoder
 	public static void handle(Message msg)
 	{		
 		
+		
 		switch (msg.getMessageType())
 		{
 		case HEARTBEAT:
-			//System.out.println("Heartbeat Received");
 			new HeartbeatHandler().handle(msg);
 			break;
 
 		case VOTE:
-			//System.out.println("Vote Received");
 			new VoteHandler().handle(msg);
 			break;
 
 		case NOMINATION:
-			//System.out.println("Nomination Received");
 			new NominationHandler().handle(msg);
 			break;
 
 		case LOG_REPLICATION_REQUEST:
-			System.out.println("Received LOG_REPLICATION_REQUEST ");
-			new LogReplicationRequestHandler().handle(msg.getClientMessage());
+			new LogReplicationRequestHandler().handle(msg);
 			break;
 		case LOG_REPLICATION_COMPLETE_NOTIFICATION:
-			System.out.println("Received LOG_REPLICATION_COMPLETE Response ");
 			new LogReplicationCompleteResponseHandler().handle(msg);
 			break;
 

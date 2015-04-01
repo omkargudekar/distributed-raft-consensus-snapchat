@@ -46,7 +46,7 @@ public class UnicastMessage implements Runnable
 				ch = b.connect(node.getNodeIP(), node.getNodePort()).sync().channel();
 				System.out.println(ch);
 				lastWriteFuture = ch.writeAndFlush(msg);
-				lastWriteFuture.channel().close();
+				lastWriteFuture.channel().close().sync();
 				
 			}
 	
@@ -59,7 +59,7 @@ public class UnicastMessage implements Runnable
 		}
 		finally
 		{
-			System.out.println("Message Sent : Connection closed");
+
 			try
 			{
 				group.shutdown();

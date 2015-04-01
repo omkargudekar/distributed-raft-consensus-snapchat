@@ -8,32 +8,30 @@ import com.distributedsnapchat.communication.protobuf.NodeMessageProto.ClientMes
 import com.distributedsnapchat.communication.protobuf.NodeMessageProto.Message;
 import com.distributedsnapchat.raft.RAFTStatus;
 
-public class HeartbeatHandler implements Handler
+public class LogReplicationCompleteResponseHandler implements Handler
 {
 
 	@Override
 	public void handle(Message msg)
 	{
 		Node node=new Node(msg.getNodeId(),msg.getNodeIp(),msg.getNodePort());
-		System.out.println("Inside HeartbeatHandler "+node);
+		System.out.println("Inside LogReplicationCompleteResponseHandler "+node);
 		HeartbeatBuffer.pushNode(node);
 		
 		
 		switch (RAFTStatus.getCurrentNodeState())
 		{
 		case Leader:
+			commitLog(msg);
 			break;
 
 		case Candidate:
-			setLeader(node);
 			break;
 
 		case OrphanFollower:
-			setLeader(node);
 			break;
 
 		case Follower:
-			updateLeader(node);
 			break;
 		default:
 			break;
@@ -41,39 +39,18 @@ public class HeartbeatHandler implements Handler
 		
 	}
 	
-	public void setLeader(Node node)
-	{
-			System.out.println("New Elected Leader : "+node);
-			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Follower);
-			RAFTStatus.setVoted(false);
-			RAFTStatus.setDeclaredLeader(node);
-			NominationsBuffer.reset();
-			VoteBuffer.reset();
-			
-	}
 	
-	public void updateLeader(Node node)
-	{
-		
-		if(RAFTStatus.getDeclaredLeader() == null || !RAFTStatus.getDeclaredLeader().getNodeID().equals(node.getNodeID()))
-		{
-			System.out.println("New Elected Leader : "+node);
-			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Follower);
-			RAFTStatus.setVoted(false);
-			RAFTStatus.setDeclaredLeader(node);
-			NominationsBuffer.reset();
-			VoteBuffer.reset();
-			
-		}
-		
-		
-	}
-
 	@Override
 	public void handle(ClientMessage msg)
 	{
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void commitLog(Message msg)
+	{
+		System.out.println("Log Replication Completed on : ");
+		System.out.println(msg.getNodeId()+" "+msg.getNodeIp());
 	}
 
 }

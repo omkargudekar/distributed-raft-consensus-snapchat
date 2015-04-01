@@ -5,6 +5,7 @@ import com.distributedsnapchat.beans.Packet;
 import com.distributedsnapchat.communication.MulticastMessage;
 import com.distributedsnapchat.communication.UnicastMessage;
 import com.distributedsnapchat.communication.buffers.ClientMessageBuffer;
+import com.distributedsnapchat.communication.buffers.LogReplicationRequestBuffer;
 import com.distributedsnapchat.communication.protobuf.NodeMessageProto;
 import com.distributedsnapchat.communication.protobuf.NodeMessageProto.Message;
 import com.distributedsnapchat.communication.protobuf.NodeMessageProto.Message.MessageType;
@@ -43,11 +44,11 @@ public class FollowerReplicationRequestListener implements Runnable
 	
 	public void replicate()
 	{
-		if(ClientMessageBuffer.getMessageCount()>0)
+		if(LogReplicationRequestBuffer.getMessageCount()>0)
 		{
-			while(ClientMessageBuffer.getMessageCount()>0)
+			while(LogReplicationRequestBuffer.getMessageCount()>0)
 			{
-				NodeMessageProto.ClientMessage clientMessage=ClientMessageBuffer.popMessage();
+				NodeMessageProto.ClientMessage clientMessage=LogReplicationRequestBuffer.popMessage();
 				ImageWriter imgWriter=new ImageWriter();
 				imgWriter.storeImage(clientMessage);
 				

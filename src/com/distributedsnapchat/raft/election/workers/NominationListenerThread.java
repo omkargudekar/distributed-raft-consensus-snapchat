@@ -1,5 +1,6 @@
 package com.distributedsnapchat.raft.election.workers;
 
+import com.distributedsnapchat.app.GlobalConfiguration;
 import com.distributedsnapchat.beans.Node;
 import com.distributedsnapchat.beans.Packet;
 import com.distributedsnapchat.communication.UnicastMessage;
@@ -65,7 +66,7 @@ public class NominationListenerThread implements Runnable
 			Node candidate = NominationsBuffer.popCandidate();
 			RAFTStatus.setVoted(true);
 			System.out.println("Voting for candidate : " + candidate);
-			Message msg = NodeMessageProto.Message.newBuilder().setMessageType(MessageType.VOTE).setNodeId(RAFTStatus.getCurrentNode().getNodeID()).setNodeIp(RAFTStatus.getCurrentNode().getNodeIP()).setNodePort(RAFTStatus.getCurrentNode().getNodePort()).build();
+			Message msg = NodeMessageProto.Message.newBuilder().setMessageType(MessageType.VOTE).setNodeId(GlobalConfiguration.getCurrentNode().getNodeID()).setNodeIp(GlobalConfiguration.getCurrentNode().getNodeIP()).setNodePort(GlobalConfiguration.getCurrentNode().getNodePort()).build();
 			
 			UnicastMessage unicastMsg=new UnicastMessage();
 			Packet packet=new Packet();

@@ -1,5 +1,6 @@
 package com.distributedsnapchat.raft.election.workers;
 
+import com.distributedsnapchat.app.GlobalConfiguration;
 import com.distributedsnapchat.communication.MulticastMessage;
 import com.distributedsnapchat.communication.protobuf.NodeMessageProto;
 import com.distributedsnapchat.communication.protobuf.NodeMessageProto.Message;
@@ -51,7 +52,7 @@ public class ElectionParticipationThread implements Runnable
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Candidate);
 			
 			MulticastMessage multicast = new MulticastMessage();
-			Message msg = NodeMessageProto.Message.newBuilder().setMessageType(MessageType.NOMINATION).setNodeId(RAFTStatus.getCurrentNode().getNodeID()).setNodeIp(RAFTStatus.getCurrentNode().getNodeIP()).setNodePort(RAFTStatus.getCurrentNode().getNodePort()).build();
+			Message msg = NodeMessageProto.Message.newBuilder().setMessageType(MessageType.NOMINATION).setNodeId(GlobalConfiguration.getCurrentNode().getNodeID()).setNodeIp(GlobalConfiguration.getCurrentNode().getNodeIP()).setNodePort(GlobalConfiguration.getCurrentNode().getNodePort()).build();
 			multicast.send(msg);
 //			multicast.send(RAFTStatus.getNodes(), "Candidate-" + RAFTStatus.getCurrentNode().getNodeID() + "-" + RAFTStatus.getCurrentNode().getNodeIP() + "-" + RAFTStatus.getCurrentNode().getNodePort() + "\r\n");
 		}

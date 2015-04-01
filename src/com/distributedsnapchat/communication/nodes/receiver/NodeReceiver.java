@@ -1,5 +1,6 @@
 package com.distributedsnapchat.communication.nodes.receiver;
 
+import com.distributedsnapchat.app.GlobalConfiguration;
 import com.distributedsnapchat.raft.RAFTStatus;
 
 import io.netty.bootstrap.ServerBootstrap;
@@ -30,7 +31,7 @@ public final class NodeReceiver implements Runnable
              .handler(new LoggingHandler(LogLevel.INFO))
              .childHandler(new NodeReceiverInitializer());
 
-            b.bind(RAFTStatus.getCurrentNode().getNodePort()).sync().channel().closeFuture().sync();
+            b.bind(GlobalConfiguration.getCurrentNode().getNodePort()).sync().channel().closeFuture().sync();
         } 
         catch(Exception e)
         {

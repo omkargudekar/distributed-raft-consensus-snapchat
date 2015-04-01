@@ -3,6 +3,7 @@ package com.distributedsnapchat.communication;
 
 import java.util.ArrayList;
 
+import com.distributedsnapchat.app.GlobalConfiguration;
 import com.distributedsnapchat.beans.Node;
 import com.distributedsnapchat.beans.Packet;
 import com.distributedsnapchat.communication.protobuf.NodeMessageProto.Message;
@@ -26,7 +27,7 @@ public class MulticastMessage
 	{
 		Packet packet=null;
 		UnicastMessage unicastMsg=new UnicastMessage();
-		for(Node node : RAFTStatus.getNodes())
+		for(Node node : GlobalConfiguration.getNodes())
 		{
 			
 			packet=new Packet();

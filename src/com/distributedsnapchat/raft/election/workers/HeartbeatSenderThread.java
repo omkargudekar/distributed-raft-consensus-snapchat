@@ -1,5 +1,6 @@
 package com.distributedsnapchat.raft.election.workers;
 
+import com.distributedsnapchat.app.GlobalConfiguration;
 import com.distributedsnapchat.communication.MulticastMessage;
 import com.distributedsnapchat.communication.protobuf.NodeMessageProto;
 import com.distributedsnapchat.communication.protobuf.NodeMessageProto.Message;
@@ -49,7 +50,7 @@ public class HeartbeatSenderThread implements Runnable
 	{
 
 		MulticastMessage multicast = new MulticastMessage();
-		Message msg = NodeMessageProto.Message.newBuilder().setMessageType(MessageType.HEARTBEAT).setNodeId(RAFTStatus.getCurrentNode().getNodeID()).setNodeIp(RAFTStatus.getCurrentNode().getNodeIP()).setNodePort(RAFTStatus.getCurrentNode().getNodePort()).build();
+		Message msg = NodeMessageProto.Message.newBuilder().setMessageType(MessageType.HEARTBEAT).setNodeId(GlobalConfiguration.getCurrentNode().getNodeID()).setNodeIp(GlobalConfiguration.getCurrentNode().getNodeIP()).setNodePort(GlobalConfiguration.getCurrentNode().getNodePort()).build();
 		multicast.send(msg);
 //		multicast.send(RAFTStatus.getNodes(), "Heartbeat-"+RAFTStatus.getCurrentNode().getNodeID()+"-"+RAFTStatus.getCurrentNode().getNodeIP()+"-"+RAFTStatus.getCurrentNode().getNodePort()+"\r\n");
 		nextHeartbeatWait();

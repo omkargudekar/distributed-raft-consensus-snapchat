@@ -1,5 +1,6 @@
 package com.distributedsnapchat.raft.election.workers;
 
+import com.distributedsnapchat.app.GlobalConfiguration;
 import com.distributedsnapchat.communication.buffers.HeartbeatBuffer;
 import com.distributedsnapchat.communication.buffers.NominationsBuffer;
 import com.distributedsnapchat.communication.buffers.VoteBuffer;
@@ -50,10 +51,10 @@ public class VoteListenerThread implements Runnable
 	
 	public void checkVotes()
 	{
-		if (VoteBuffer.getNodeVoteCount() > (RAFTStatus.getNetwotkSize()/2) )
+		if (VoteBuffer.getNodeVoteCount() > (GlobalConfiguration.getNetwotkSize()/2) )
 		{	
 			System.out.println("****  Elected As Leader ****");
-			RAFTStatus.setDeclaredLeader(RAFTStatus.getCurrentNode());
+			RAFTStatus.setDeclaredLeader(GlobalConfiguration.getCurrentNode());
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Leader);
 			VoteBuffer.reset();
 			NominationsBuffer.reset();

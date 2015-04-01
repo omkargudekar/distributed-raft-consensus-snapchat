@@ -15,8 +15,8 @@ public class RAFTStatus
 	    Follower, Candidate, Leader,OrphanFollower
 	}
 	private static NodeState currentNodeState = NodeState.OrphanFollower;
-	private static Node currentNode=null;
-	private static ArrayList<Node> nodes=new ArrayList<Node>();
+	
+
 	private static Node declaredLeader=null;
 	private static int raftTimer=3600;
 	private static int heartBeatFrequency=1000;
@@ -49,15 +49,6 @@ public class RAFTStatus
 	
 
 
-	public static synchronized Node getCurrentNode()
-	{
-		return currentNode;
-	}
-
-	public static synchronized void setCurrentNode(Node currentNode)
-	{
-		RAFTStatus.currentNode = currentNode;
-	}
 
 	
 	public static synchronized void afterLeaderElectinReset()
@@ -104,16 +95,6 @@ public class RAFTStatus
 
 
 
-	public static synchronized ArrayList<Node> getNodes()
-	{
-		return nodes;
-	}
-
-
-	public static synchronized void setNodes(ArrayList<Node> nodes)
-	{
-		RAFTStatus.nodes = nodes;
-	}
 	
 	public static synchronized boolean isLeaderElected()
 	{
@@ -138,10 +119,7 @@ public class RAFTStatus
 
 
 
-	public static synchronized int getNetwotkSize()
-	{
-		return nodes.size();
-	}
+
 
 
 	

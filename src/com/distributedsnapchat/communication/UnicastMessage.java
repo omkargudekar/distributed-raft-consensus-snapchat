@@ -47,7 +47,7 @@ public class UnicastMessage implements Runnable
 				System.out.println(ch);
 				lastWriteFuture = ch.writeAndFlush(msg);
 				lastWriteFuture.channel().close();
-				System.out.println("****************Write Complete"+node);
+				System.out.println("Sending Message to node : "+node);
 			}
 	
 		
@@ -55,12 +55,19 @@ public class UnicastMessage implements Runnable
 		}
 		catch (Exception e)
 		{
-			System.out.println(e);
+			//System.out.println(e);
 		}
 		finally
 		{
-			System.out.println("****************Closing Connection");
-			group.shutdown();
+			System.out.println("Message Sent : Connection closed");
+			try
+			{
+				group.shutdown();
+			}
+			catch(Exception e)
+			{
+				
+			}
 		}
 
 	}

@@ -62,34 +62,34 @@ public final class NodeMessageProto {
     int getNodePort();
 
     /**
-     * <code>optional string fileName = 12;</code>
+     * <code>optional string fileName = 5;</code>
      */
     boolean hasFileName();
     /**
-     * <code>optional string fileName = 12;</code>
+     * <code>optional string fileName = 5;</code>
      */
     java.lang.String getFileName();
     /**
-     * <code>optional string fileName = 12;</code>
+     * <code>optional string fileName = 5;</code>
      */
     com.google.protobuf.ByteString
         getFileNameBytes();
 
     /**
-     * <code>optional bytes imageBits = 13;</code>
+     * <code>optional bytes imageBits = 6;</code>
      */
     boolean hasImageBits();
     /**
-     * <code>optional bytes imageBits = 13;</code>
+     * <code>optional bytes imageBits = 6;</code>
      */
     com.google.protobuf.ByteString getImageBits();
 
     /**
-     * <code>optional .Message.MessageType messageType = 6 [default = HEARTBEAT];</code>
+     * <code>optional .Message.MessageType messageType = 7 [default = HEARTBEAT];</code>
      */
     boolean hasMessageType();
     /**
-     * <code>optional .Message.MessageType messageType = 6 [default = HEARTBEAT];</code>
+     * <code>optional .Message.MessageType messageType = 7 [default = HEARTBEAT];</code>
      */
     NodeMessageProto.Message.MessageType getMessageType();
   }
@@ -168,26 +168,26 @@ public final class NodeMessageProto {
               nodePort_ = input.readInt32();
               break;
             }
-            case 48: {
-              int rawValue = input.readEnum();
-              NodeMessageProto.Message.MessageType value = NodeMessageProto.Message.MessageType.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(6, rawValue);
-              } else {
-                bitField0_ |= 0x00000040;
-                messageType_ = value;
-              }
-              break;
-            }
-            case 98: {
+            case 42: {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000010;
               fileName_ = bs;
               break;
             }
-            case 106: {
+            case 50: {
               bitField0_ |= 0x00000020;
               imageBits_ = input.readBytes();
+              break;
+            }
+            case 56: {
+              int rawValue = input.readEnum();
+              NodeMessageProto.Message.MessageType value = NodeMessageProto.Message.MessageType.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(7, rawValue);
+              } else {
+                bitField0_ |= 0x00000040;
+                messageType_ = value;
+              }
               break;
             }
           }
@@ -480,16 +480,16 @@ public final class NodeMessageProto {
       return nodePort_;
     }
 
-    public static final int FILENAME_FIELD_NUMBER = 12;
+    public static final int FILENAME_FIELD_NUMBER = 5;
     private java.lang.Object fileName_;
     /**
-     * <code>optional string fileName = 12;</code>
+     * <code>optional string fileName = 5;</code>
      */
     public boolean hasFileName() {
       return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     /**
-     * <code>optional string fileName = 12;</code>
+     * <code>optional string fileName = 5;</code>
      */
     public java.lang.String getFileName() {
       java.lang.Object ref = fileName_;
@@ -506,7 +506,7 @@ public final class NodeMessageProto {
       }
     }
     /**
-     * <code>optional string fileName = 12;</code>
+     * <code>optional string fileName = 5;</code>
      */
     public com.google.protobuf.ByteString
         getFileNameBytes() {
@@ -522,31 +522,31 @@ public final class NodeMessageProto {
       }
     }
 
-    public static final int IMAGEBITS_FIELD_NUMBER = 13;
+    public static final int IMAGEBITS_FIELD_NUMBER = 6;
     private com.google.protobuf.ByteString imageBits_;
     /**
-     * <code>optional bytes imageBits = 13;</code>
+     * <code>optional bytes imageBits = 6;</code>
      */
     public boolean hasImageBits() {
       return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     /**
-     * <code>optional bytes imageBits = 13;</code>
+     * <code>optional bytes imageBits = 6;</code>
      */
     public com.google.protobuf.ByteString getImageBits() {
       return imageBits_;
     }
 
-    public static final int MESSAGETYPE_FIELD_NUMBER = 6;
+    public static final int MESSAGETYPE_FIELD_NUMBER = 7;
     private NodeMessageProto.Message.MessageType messageType_;
     /**
-     * <code>optional .Message.MessageType messageType = 6 [default = HEARTBEAT];</code>
+     * <code>optional .Message.MessageType messageType = 7 [default = HEARTBEAT];</code>
      */
     public boolean hasMessageType() {
       return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     /**
-     * <code>optional .Message.MessageType messageType = 6 [default = HEARTBEAT];</code>
+     * <code>optional .Message.MessageType messageType = 7 [default = HEARTBEAT];</code>
      */
     public NodeMessageProto.Message.MessageType getMessageType() {
       return messageType_;
@@ -586,14 +586,14 @@ public final class NodeMessageProto {
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeInt32(4, nodePort_);
       }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeEnum(6, messageType_.getNumber());
-      }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBytes(12, getFileNameBytes());
+        output.writeBytes(5, getFileNameBytes());
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeBytes(13, imageBits_);
+        output.writeBytes(6, imageBits_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeEnum(7, messageType_.getNumber());
       }
       getUnknownFields().writeTo(output);
     }
@@ -620,17 +620,17 @@ public final class NodeMessageProto {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(4, nodePort_);
       }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(6, messageType_.getNumber());
-      }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(12, getFileNameBytes());
+          .computeBytesSize(5, getFileNameBytes());
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(13, imageBits_);
+          .computeBytesSize(6, imageBits_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(7, messageType_.getNumber());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1153,13 +1153,13 @@ public final class NodeMessageProto {
 
       private java.lang.Object fileName_ = "";
       /**
-       * <code>optional string fileName = 12;</code>
+       * <code>optional string fileName = 5;</code>
        */
       public boolean hasFileName() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       /**
-       * <code>optional string fileName = 12;</code>
+       * <code>optional string fileName = 5;</code>
        */
       public java.lang.String getFileName() {
         java.lang.Object ref = fileName_;
@@ -1176,7 +1176,7 @@ public final class NodeMessageProto {
         }
       }
       /**
-       * <code>optional string fileName = 12;</code>
+       * <code>optional string fileName = 5;</code>
        */
       public com.google.protobuf.ByteString
           getFileNameBytes() {
@@ -1192,7 +1192,7 @@ public final class NodeMessageProto {
         }
       }
       /**
-       * <code>optional string fileName = 12;</code>
+       * <code>optional string fileName = 5;</code>
        */
       public Builder setFileName(
           java.lang.String value) {
@@ -1205,7 +1205,7 @@ public final class NodeMessageProto {
         return this;
       }
       /**
-       * <code>optional string fileName = 12;</code>
+       * <code>optional string fileName = 5;</code>
        */
       public Builder clearFileName() {
         bitField0_ = (bitField0_ & ~0x00000010);
@@ -1214,7 +1214,7 @@ public final class NodeMessageProto {
         return this;
       }
       /**
-       * <code>optional string fileName = 12;</code>
+       * <code>optional string fileName = 5;</code>
        */
       public Builder setFileNameBytes(
           com.google.protobuf.ByteString value) {
@@ -1229,19 +1229,19 @@ public final class NodeMessageProto {
 
       private com.google.protobuf.ByteString imageBits_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>optional bytes imageBits = 13;</code>
+       * <code>optional bytes imageBits = 6;</code>
        */
       public boolean hasImageBits() {
         return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       /**
-       * <code>optional bytes imageBits = 13;</code>
+       * <code>optional bytes imageBits = 6;</code>
        */
       public com.google.protobuf.ByteString getImageBits() {
         return imageBits_;
       }
       /**
-       * <code>optional bytes imageBits = 13;</code>
+       * <code>optional bytes imageBits = 6;</code>
        */
       public Builder setImageBits(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -1253,7 +1253,7 @@ public final class NodeMessageProto {
         return this;
       }
       /**
-       * <code>optional bytes imageBits = 13;</code>
+       * <code>optional bytes imageBits = 6;</code>
        */
       public Builder clearImageBits() {
         bitField0_ = (bitField0_ & ~0x00000020);
@@ -1264,19 +1264,19 @@ public final class NodeMessageProto {
 
       private NodeMessageProto.Message.MessageType messageType_ = NodeMessageProto.Message.MessageType.HEARTBEAT;
       /**
-       * <code>optional .Message.MessageType messageType = 6 [default = HEARTBEAT];</code>
+       * <code>optional .Message.MessageType messageType = 7 [default = HEARTBEAT];</code>
        */
       public boolean hasMessageType() {
         return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       /**
-       * <code>optional .Message.MessageType messageType = 6 [default = HEARTBEAT];</code>
+       * <code>optional .Message.MessageType messageType = 7 [default = HEARTBEAT];</code>
        */
       public NodeMessageProto.Message.MessageType getMessageType() {
         return messageType_;
       }
       /**
-       * <code>optional .Message.MessageType messageType = 6 [default = HEARTBEAT];</code>
+       * <code>optional .Message.MessageType messageType = 7 [default = HEARTBEAT];</code>
        */
       public Builder setMessageType(NodeMessageProto.Message.MessageType value) {
         if (value == null) {
@@ -1288,7 +1288,7 @@ public final class NodeMessageProto {
         return this;
       }
       /**
-       * <code>optional .Message.MessageType messageType = 6 [default = HEARTBEAT];</code>
+       * <code>optional .Message.MessageType messageType = 7 [default = HEARTBEAT];</code>
        */
       public Builder clearMessageType() {
         bitField0_ = (bitField0_ & ~0x00000040);
@@ -1324,8 +1324,8 @@ public final class NodeMessageProto {
     java.lang.String[] descriptorData = {
       "\n\021NodeMessage.proto\"\247\002\n\007Message\022\017\n\007messa" +
       "ge\030\001 \001(\t\022\016\n\006nodeId\030\002 \001(\t\022\016\n\006nodeIp\030\003 \001(\t" +
-      "\022\020\n\010nodePort\030\004 \001(\005\022\020\n\010fileName\030\014 \001(\t\022\021\n\t" +
-      "imageBits\030\r \001(\014\0224\n\013messageType\030\006 \001(\0162\024.M" +
+      "\022\020\n\010nodePort\030\004 \001(\005\022\020\n\010fileName\030\005 \001(\t\022\021\n\t" +
+      "imageBits\030\006 \001(\014\0224\n\013messageType\030\007 \001(\0162\024.M" +
       "essage.MessageType:\tHEARTBEAT\"~\n\013Message" +
       "Type\022\r\n\tHEARTBEAT\020\000\022\016\n\nNOMINATION\020\001\022\010\n\004V" +
       "OTE\020\002\022\033\n\027LOG_REPLICATION_REQUEST\020\003\022)\n%LO" +

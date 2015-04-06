@@ -42,6 +42,7 @@ public class OutboundQueue
 	
 	public static void pushMessage(Packet packet)
 	{
+		System.out.println("Message stored in outbound queue");
 		outgoingMessages.add(packet);
 		
 	}

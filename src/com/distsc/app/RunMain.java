@@ -14,6 +14,7 @@ public class RunMain
 
 	public static void main(String args[])
 	{
+		GlobalConfiguration.setCurrentNode(new Node("Server1", "192.168.0.1", 8992));
 		//Starting Server Thread.
 		new Thread(new Server()).start();
 		
@@ -27,7 +28,7 @@ public class RunMain
 		
 		
 		//Starting Receiver Current Host Information.
-		GlobalConfiguration.setCurrentNode(new Node("Server1", "192.168.0.1", 8992));
+		
 		
 		//Setting RAFT Time.
 		

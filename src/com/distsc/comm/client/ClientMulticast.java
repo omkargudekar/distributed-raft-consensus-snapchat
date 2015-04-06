@@ -15,6 +15,7 @@ public class ClientMulticast
 
 	public void send(Message msg)
 	{
+		System.out.println("Sending Message to Clients...");
 		Packet packet=null;
 		for(Node node : GlobalConfiguration.getNodes())
 		{

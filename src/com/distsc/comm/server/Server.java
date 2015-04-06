@@ -1,7 +1,6 @@
 package com.distsc.comm.server;
 
 import com.distsc.app.GlobalConfiguration;
-import com.distsc.raft.RAFTStatus;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.EventLoopGroup;
@@ -22,7 +21,7 @@ public final class Server implements Runnable
     	EventLoopGroup bossGroup=null;
     	EventLoopGroup workerGroup=null;
         try {
-          
+        	 System.out.println("Starting Server on : "+GlobalConfiguration.getCurrentNode().getNodePort());
             bossGroup = new NioEventLoopGroup(1);
             workerGroup = new NioEventLoopGroup();
             ServerBootstrap b = new ServerBootstrap();
@@ -31,10 +30,11 @@ public final class Server implements Runnable
              .handler(new LoggingHandler(LogLevel.INFO))
              .childHandler(new ServerrInitializer());
             b.bind(GlobalConfiguration.getCurrentNode().getNodePort()).sync().channel().closeFuture().sync();
+           
         } 
         catch(Exception e)
         {
-        	
+        	System.out.println(e);
         }
         finally 
         {

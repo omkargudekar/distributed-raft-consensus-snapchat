@@ -11,7 +11,7 @@ public class ClientMessageDecoder
 	
 	public static void handle(Message msg)
 	{
-		System.out.println("************************ Received Client Message**************");
+		System.out.println("************** Received Client Message **************");
 		ClientMessageBuffer.pushMessage(msg);
 		ImageWriter imgWriter=new ImageWriter();
 		imgWriter.storeImage(msg);

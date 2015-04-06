@@ -1,6 +1,6 @@
 package com.distsc.raft;
 
-import com.distsc.raft.election.workers.ElectionParticipationThread;
+import com.distsc.raft.election.workers.DeclareCandidacyThread;
 import com.distsc.raft.election.workers.HeartbeatListenerThread;
 import com.distsc.raft.election.workers.HeartbeatSenderThread;
 import com.distsc.raft.election.workers.NominationListenerThread;
@@ -16,7 +16,7 @@ public class LeaderElectionThread implements Runnable
 	{
 		System.out.println("Starting leader election threads...");
 		
-		new Thread(new ElectionParticipationThread()).start();
+		new Thread(new DeclareCandidacyThread()).start();
 	    new Thread(new VoteListenerThread()).start();
 		new Thread(new NominationListenerThread()).start();
 		new Thread(new HeartbeatListenerThread()).start();

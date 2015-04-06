@@ -1,8 +1,6 @@
 package com.distsc.comm.msg.handlers;
 import com.distsc.beans.Node;
 import com.distsc.comm.msg.queues.inbound.HeartbeatBuffer;
-import com.distsc.comm.msg.queues.inbound.NominationsBuffer;
-import com.distsc.comm.msg.queues.inbound.VoteBuffer;
 import com.distsc.comm.protobuf.NodeMessageProto.Message;
 import com.distsc.raft.RAFTStatus;
 

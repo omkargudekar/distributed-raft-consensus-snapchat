@@ -32,7 +32,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<Message>
 			throws Exception 
 	{
 			ServerMessageDecoder.handle(msg);
-			arg0.close();
+			//arg0.close();
 	}
 	
 	

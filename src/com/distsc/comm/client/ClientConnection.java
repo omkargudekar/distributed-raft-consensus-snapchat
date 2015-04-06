@@ -15,10 +15,6 @@ import com.distsc.comm.protobuf.NodeMessageProto.Message;
 
 public class ClientConnection implements Runnable
 {
-	
-
-	
-
 	public void run()
 	{
 
@@ -35,16 +31,29 @@ public class ClientConnection implements Runnable
 			Bootstrap b = new Bootstrap();
 			b.group(group).channel(NioSocketChannel.class).handler(new ClientConnectionInitializer());
 			
+			System.out.println("Cluster Client Thread Started...");
 			while(true)
 			{
 				if(OutboundQueue.getMessageCount()>0)
 				{
-					packet=OutboundQueue.popMessage();
-					node=packet.getNode();
-					msg=packet.getMsg();
-					ch = b.connect(node.getNodeIP(), node.getNodePort()).sync().channel();
-					lastWriteFuture = ch.writeAndFlush(msg);
-					lastWriteFuture.channel().close().sync();	
+					try
+					{
+						packet=OutboundQueue.popMessage();
+						node=packet.getNode();
+						msg=packet.getMsg();
+						System.out.println("Message Received in Outbound Queue : "+msg.getMessageType());
+						ch = b.connect(node.getNodeIP(), node.getNodePort()).sync().channel();
+						lastWriteFuture = ch.writeAndFlush(msg);
+						lastWriteFuture.channel().close().sync();	
+					}
+					catch(Exception e)
+					{
+						System.out.println(e);
+					}
+				}
+				else
+				{
+					pause();
 				}
 			}
 	
@@ -57,10 +66,10 @@ public class ClientConnection implements Runnable
 		}
 		finally
 		{
-
+			System.out.println("Client Terminated...");
 			try
 			{
-				group.shutdownGracefully();
+				group.shutdown();
 			}
 			catch(Exception e)
 			{
@@ -68,6 +77,19 @@ public class ClientConnection implements Runnable
 			}
 		}
 
+	}
+	public void pause()
+	{
+		try
+		{
+			Thread.sleep(100);
+		}
+		catch (InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

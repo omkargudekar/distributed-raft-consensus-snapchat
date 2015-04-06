@@ -69,7 +69,7 @@ public class ClientConnection implements Runnable
 			System.out.println("Client Terminated...");
 			try
 			{
-				group.shutdown();
+				group.shutdownGracefully();
 			}
 			catch(Exception e)
 			{

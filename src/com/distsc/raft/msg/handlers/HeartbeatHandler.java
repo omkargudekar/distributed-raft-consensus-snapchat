@@ -22,32 +22,19 @@ public class HeartbeatHandler implements RAFTMsgHandler
 			break;
 
 		case Candidate:
-			setLeader(node);
-			break;
-
-		case OrphanFollower:
-			setLeader(node);
+			updateLeader(node);
 			break;
 
 		case Follower:
 			updateLeader(node);
 			break;
+			
 		default:
 			break;
 		}
 		
 	}
-	
-	public void setLeader(Node node)
-	{
-			System.out.println("New Elected Leader : "+node);
-			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Follower);
-			RAFTStatus.setVoted(false);
-			RAFTStatus.setDeclaredLeader(node);
-			NominationsQueue.reset();
-			VotesQueue.reset();
-			
-	}
+
 	
 	public void updateLeader(Node node)
 	{

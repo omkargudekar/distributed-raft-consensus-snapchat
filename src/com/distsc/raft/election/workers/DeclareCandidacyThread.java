@@ -30,12 +30,8 @@ public class DeclareCandidacyThread implements Runnable
 				pause();
 				break;
 
-			case OrphanFollower:
-				nominate();
-				break;
-
 			case Follower:
-				pause();
+				nominate();
 				break;
 
 			default:
@@ -48,7 +44,7 @@ public class DeclareCandidacyThread implements Runnable
 	private void nominate()
 	{
 		waitForRAFTTimeOut();
-		if(RAFTStatus.getCurrentNodeState()==RAFTStatus.NodeState.OrphanFollower)
+		if(RAFTStatus.getCurrentNodeState()==RAFTStatus.NodeState.Follower && RAFTStatus.getDeclaredLeader()==null)
 		{
 			RAFTStatus.setVoted(true);
 			System.out.println("Declaring Candidacy...");
@@ -80,7 +76,7 @@ public class DeclareCandidacyThread implements Runnable
 	
 	public void reset()
 	{
-		RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.OrphanFollower);
+		RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Follower);
 		VotesQueue.reset();
 		NominationsQueue.reset();
 		HeartbeatQueue.reset();

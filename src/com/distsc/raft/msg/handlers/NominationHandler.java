@@ -22,11 +22,8 @@ public class NominationHandler implements RAFTMsgHandler
 			case Candidate:
 			break;
 
-			case OrphanFollower:
-			NominationsQueue.pushCandidate(node);
-			break;
-
 			case Follower:
+			NominationsQueue.pushCandidate(node);
 			break;
 
 		default:

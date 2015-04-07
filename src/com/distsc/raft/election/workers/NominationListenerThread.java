@@ -30,12 +30,9 @@ public class NominationListenerThread implements Runnable
 				pause();
 				break;
 
-			case OrphanFollower:
-				vote();
-				break;
 
 			case Follower:
-				pause();
+				vote();
 				break;
 
 			default:
@@ -61,7 +58,7 @@ public class NominationListenerThread implements Runnable
 
 	private  void vote()
 	{
-		if (NominationsQueue.getNodeCount() > 0 &&  RAFTStatus.isVoted()==false)
+		if (NominationsQueue.getNodeCount() > 0 &&  RAFTStatus.isVoted()==false && RAFTStatus.getDeclaredLeader()==null)
 		{
 			Node candidate = NominationsQueue.popCandidate();
 			RAFTStatus.setVoted(true);

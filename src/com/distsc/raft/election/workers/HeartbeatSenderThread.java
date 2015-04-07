@@ -28,10 +28,6 @@ public class HeartbeatSenderThread implements Runnable
 				pause();
 				break;
 
-			case OrphanFollower:
-				pause();
-				break;
-
 			case Follower:
 				pause();
 				break;
@@ -52,7 +48,6 @@ public class HeartbeatSenderThread implements Runnable
 		OutboundMulticast multicast = new OutboundMulticast();
 		Message msg = NodeMessageProto.Message.newBuilder().setMessageType(MessageType.HEARTBEAT).setNodeId(GlobalConfiguration.getCurrentNode().getNodeID()).setNodeIp(GlobalConfiguration.getCurrentNode().getNodeIP()).setNodePort(GlobalConfiguration.getCurrentNode().getNodePort()).build();
 		multicast.send(msg);
-//		multicast.send(RAFTStatus.getNodes(), "Heartbeat-"+RAFTStatus.getCurrentNode().getNodeID()+"-"+RAFTStatus.getCurrentNode().getNodeIP()+"-"+RAFTStatus.getCurrentNode().getNodePort()+"\r\n");
 		nextHeartbeatWait();
 	}
 	

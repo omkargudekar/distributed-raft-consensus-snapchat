@@ -19,8 +19,6 @@ public class LogReplicationRequestHandler implements RAFTMsgHandler
 		case Candidate:
 			break;
 
-		case OrphanFollower:
-			break;
 
 		case Follower:
 			System.out.println("Received Log Replication Request..");

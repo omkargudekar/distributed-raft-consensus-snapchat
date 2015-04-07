@@ -23,8 +23,6 @@ public class LogReplicationCompleteResponseHandler implements RAFTMsgHandler
 		case Candidate:
 			break;
 
-		case OrphanFollower:
-			break;
 
 		case Follower:
 			break;

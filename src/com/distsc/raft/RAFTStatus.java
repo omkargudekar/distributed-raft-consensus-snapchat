@@ -1,6 +1,5 @@
 package com.distsc.raft;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import com.distsc.beans.Node;
@@ -12,9 +11,9 @@ public class RAFTStatus
 	
 	public static enum NodeState 
 	{
-	    Follower, Candidate, Leader,OrphanFollower
+	    Follower, Candidate, Leader
 	}
-	private static NodeState currentNodeState = NodeState.OrphanFollower;
+	private static NodeState currentNodeState = NodeState.Follower;
 	
 
 	private static Node declaredLeader=null;

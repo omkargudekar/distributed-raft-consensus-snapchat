@@ -23,9 +23,6 @@ public class VoteHandler implements RAFTMsgHandler
 			VotesQueue.pushNode(node);
 			break;
 
-			case OrphanFollower:
-			break;
-
 			case Follower:
 			break;
 

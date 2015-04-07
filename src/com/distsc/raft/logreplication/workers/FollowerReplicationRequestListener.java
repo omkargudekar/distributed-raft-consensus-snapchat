@@ -27,9 +27,6 @@ public class FollowerReplicationRequestListener implements Runnable
 			case Candidate:
 				break;
 
-			case OrphanFollower:
-				break;
-
 			case Follower:
 				replicate();
 				break;

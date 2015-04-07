@@ -24,10 +24,6 @@ public class LogoutHandler implements ClientMsgHandler
 			sendError(ctx,msg);
 			break;
 
-		case OrphanFollower:
-			sendError(ctx,msg);
-			break;
-
 		case Follower:
 			redirectToLeader(ctx,msg);
 			break;

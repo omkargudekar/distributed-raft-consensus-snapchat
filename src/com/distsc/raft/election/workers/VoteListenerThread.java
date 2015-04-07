@@ -28,10 +28,6 @@ public class VoteListenerThread implements Runnable
 					checkVotes();
 					break;
 
-				case OrphanFollower:
-					pause();
-					break;
-
 				case Follower:
 					pause();
 					break;

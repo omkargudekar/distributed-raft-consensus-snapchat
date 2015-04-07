@@ -25,11 +25,7 @@ public class ErrorHandler  implements ClientMsgHandler
 		case Candidate:
 			sendError(ctx,msg);
 			break;
-
-		case OrphanFollower:
-			sendError(ctx,msg);
-			break;
-
+			
 		case Follower:
 			redirectToLeader(ctx,msg);
 			break;

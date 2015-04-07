@@ -26,10 +26,6 @@ public class HeartbeatListenerThread implements Runnable
 				pause();
 				break;
 
-			case OrphanFollower:
-				pause();
-				break;
-
 			case Follower:
 				checkHeartbeat();
 				break;
@@ -48,7 +44,7 @@ public class HeartbeatListenerThread implements Runnable
 		starRAFTTimer();
 		if (HeartbeatQueue.popNode() == null)
 		{
-			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.OrphanFollower);
+			RAFTStatus.setDeclaredLeader(null);
 		}
 		else
 		{

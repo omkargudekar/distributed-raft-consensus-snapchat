@@ -9,14 +9,32 @@ import java.util.Formatter;
 public class SH1Generator 
 {
 	
-	public static String getCheckSum(String password)
+	public static String getByteChecksum(Byte bytMsg)
 	{
 	    String sha1 = "";
 	    try
 	    {
 	        MessageDigest crypt = MessageDigest.getInstance("SHA-1");
 	        crypt.reset();
-	        crypt.update(password.getBytes("UTF-8"));
+	        crypt.update(bytMsg);
+	        sha1 = byteToHex(crypt.digest());
+	    }
+	    catch(NoSuchAlgorithmException e)
+	    {
+	        e.printStackTrace();
+	    }
+	    return sha1;
+	}
+
+	
+	public static String getStringCheckSum(String msg)
+	{
+	    String sha1 = "";
+	    try
+	    {
+	        MessageDigest crypt = MessageDigest.getInstance("SHA-1");
+	        crypt.reset();
+	        crypt.update(msg.getBytes("UTF-8"));
 	        sha1 = byteToHex(crypt.digest());
 	    }
 	    catch(NoSuchAlgorithmException e)

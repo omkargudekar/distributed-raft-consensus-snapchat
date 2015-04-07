@@ -5,7 +5,7 @@ import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
-import com.distsc.chat.msg.handler.RequestValidator;
+import com.distsc.chat.msg.handler.MessageValidator;
 import com.distsc.comm.msg.decoders.ClientMessageDecoder;
 import com.distsc.comm.protobuf.ClientMessage.ClientMsg;
 
@@ -13,7 +13,7 @@ import com.distsc.comm.protobuf.ClientMessage.ClientMsg;
 public class ClientServerHandler extends SimpleChannelInboundHandler<ClientMsg>
 {
 
-	RequestValidator validator =new RequestValidator();
+	MessageValidator validator =new MessageValidator();
 	
 	
 	static final ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);

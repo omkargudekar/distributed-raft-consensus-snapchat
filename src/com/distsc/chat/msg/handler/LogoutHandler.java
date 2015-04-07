@@ -60,19 +60,11 @@ public class LogoutHandler implements ClientMsgHandler
 	public void disconnectUser(ChannelHandlerContext ctx,ClientMsg msg)
 	{
 		if(ClientContext.isExist(msg.getSenderUserName()))
-		{
-			ClientMsg message = ClientMessage.ClientMsg.newBuilder().setMessageType(MessageType.ERROR)
-					.setErrorType(ErrorType.INVALID_LOGIN)
-					.setMsgText("Username Already Taken...").build();
-			ctx.writeAndFlush(message);
+		{	
+			ctx.close();
+			ClientContext.removeClientContext(msg.getSenderUserName());
 		}
-		else
-		{
-			ClientContext.addClientContext(msg.getSenderUserName(), ctx);
-			ClientMsg message = ClientMessage.ClientMsg.newBuilder().setMessageType(MessageType.LOGIN_SUCCESS)
-					.setMsgText("Logged In...").build();
-			ctx.writeAndFlush(message);
-		}
+		
 	}
 
 

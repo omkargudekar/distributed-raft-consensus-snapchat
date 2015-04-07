@@ -2,8 +2,8 @@ package com.distsc.raft.logreplication.workers;
 
 import com.distsc.app.GlobalConfiguration;
 import com.distsc.beans.Packet;
-import com.distsc.comm.msg.queues.inbound.LogReplicationRequestBuffer;
-import com.distsc.comm.msg.queues.outbound.OutboundQueue;
+import com.distsc.comm.msg.queues.inbound.LogReplicationRequestQueue;
+import com.distsc.comm.msg.queues.outbound.OutboundClusterMessageQueue;
 import com.distsc.comm.protobuf.NodeMessageProto;
 import com.distsc.comm.protobuf.NodeMessageProto.Message;
 import com.distsc.comm.protobuf.NodeMessageProto.Message.MessageType;
@@ -42,11 +42,11 @@ public class FollowerReplicationRequestListener implements Runnable
 	
 	public void replicate()
 	{
-		if(LogReplicationRequestBuffer.getMessageCount()>0)
+		if(LogReplicationRequestQueue.getMessageCount()>0)
 		{
-			while(LogReplicationRequestBuffer.getMessageCount()>0)
+			while(LogReplicationRequestQueue.getMessageCount()>0)
 			{
-				Message clientMessage=LogReplicationRequestBuffer.popMessage();
+				Message clientMessage=LogReplicationRequestQueue.popMessage();
 				ImageWriter imgWriter=new ImageWriter();
 				imgWriter.storeImage(clientMessage);
 				
@@ -55,7 +55,7 @@ public class FollowerReplicationRequestListener implements Runnable
 				Packet packet=new Packet();
 				packet.setNode(RAFTStatus.getDeclaredLeader());
 				packet.setMsg(msg);
-				OutboundQueue.pushMessage(packet);
+				OutboundClusterMessageQueue.pushMessage(packet);
 				
 				
 				

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.distsc.beans.Node;
 
-public class HeartbeatBuffer
+public class HeartbeatQueue
 {
 	private static ArrayList<Node> nodes = new ArrayList<Node>();
 	public static int getNodeCount()

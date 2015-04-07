@@ -1,4 +1,4 @@
-package com.distsc.comm.client.handler;
+package com.distsc.chat.msg.handler;
 
 import com.distsc.app.GlobalConfiguration;
 import com.distsc.comm.protobuf.ClientMessage.ClientMsg;

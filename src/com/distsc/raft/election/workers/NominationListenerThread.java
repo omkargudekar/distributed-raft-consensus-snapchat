@@ -3,8 +3,8 @@ package com.distsc.raft.election.workers;
 import com.distsc.app.GlobalConfiguration;
 import com.distsc.beans.Node;
 import com.distsc.beans.Packet;
-import com.distsc.comm.msg.queues.inbound.NominationsBuffer;
-import com.distsc.comm.msg.queues.outbound.OutboundQueue;
+import com.distsc.comm.msg.queues.inbound.NominationsQueue;
+import com.distsc.comm.msg.queues.outbound.OutboundClusterMessageQueue;
 import com.distsc.comm.protobuf.NodeMessageProto;
 import com.distsc.comm.protobuf.NodeMessageProto.Message;
 import com.distsc.comm.protobuf.NodeMessageProto.Message.MessageType;
@@ -61,9 +61,9 @@ public class NominationListenerThread implements Runnable
 
 	private  void vote()
 	{
-		if (NominationsBuffer.getNodeCount() > 0 &&  RAFTStatus.isVoted()==false)
+		if (NominationsQueue.getNodeCount() > 0 &&  RAFTStatus.isVoted()==false)
 		{
-			Node candidate = NominationsBuffer.popCandidate();
+			Node candidate = NominationsQueue.popCandidate();
 			RAFTStatus.setVoted(true);
 			System.out.println("Voting for candidate : " + candidate);
 			Message msg = NodeMessageProto.Message.newBuilder().setMessageType(MessageType.VOTE).setNodeId(GlobalConfiguration.getCurrentNode().getNodeID()).setNodeIp(GlobalConfiguration.getCurrentNode().getNodeIP()).setNodePort(GlobalConfiguration.getCurrentNode().getNodePort()).build();
@@ -71,13 +71,13 @@ public class NominationListenerThread implements Runnable
 			Packet packet=new Packet();
 			packet.setNode(candidate);
 			packet.setMsg(msg);
-			OutboundQueue.pushMessage(packet);
-			NominationsBuffer.reset();
+			OutboundClusterMessageQueue.pushMessage(packet);
+			NominationsQueue.reset();
 
 		}
-		else if(NominationsBuffer.getNodeCount() > 0 &&  RAFTStatus.isVoted()==true)
+		else if(NominationsQueue.getNodeCount() > 0 &&  RAFTStatus.isVoted()==true)
 		{
-			NominationsBuffer.reset();
+			NominationsQueue.reset();
 		}
 
 	}

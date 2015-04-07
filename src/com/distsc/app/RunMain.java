@@ -3,7 +3,7 @@ package com.distsc.app;
 import java.util.ArrayList;
 
 import com.distsc.beans.Node;
-import com.distsc.comm.client.server.ClientServer;
+import com.distsc.chat.server.ClientServer;
 import com.distsc.comm.outbound.OutboundConnection;
 import com.distsc.comm.server.Server;
 import com.distsc.raft.RAFTStatus;

@@ -13,11 +13,11 @@ message ClientMsg
 
 	enum MessageType
 	{
-	 	HANDSHAKE = 0;
+	 	LOGIN = 0;
 	 	MESSAGE = 1;
 		ACKNOWLEDGE=2;
 		ERROR=3;
-		CLOSE=4;
+		LOGOUT=4;
     }
 
     enum ErrorType
@@ -26,8 +26,9 @@ message ClientMsg
     	MESSAGE_CORRUPT=1;
     	DELIVERY_FAIL=2;
     	MESSAGE_SIZE=3;
+    	INVALID_LOGIN=4;
     }
-    optional MessageType messageType = 9 [default = HANDSHAKE];
+    optional MessageType messageType = 9 [default = LOGIN];
     optional ErrorType errorType = 10[default = INVALID_LEADER];
 
     

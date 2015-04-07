@@ -1,4 +1,4 @@
-package com.distsc.comm.client.server;
+package com.distsc.chat.server;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;

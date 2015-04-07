@@ -1,6 +1,6 @@
 package com.distsc.raft.election.workers;
 
-import com.distsc.comm.msg.queues.inbound.HeartbeatBuffer;
+import com.distsc.comm.msg.queues.inbound.HeartbeatQueue;
 import com.distsc.raft.RAFTStatus;
 
 public class HeartbeatListenerThread implements Runnable
@@ -46,13 +46,13 @@ public class HeartbeatListenerThread implements Runnable
 	public void checkHeartbeat()
 	{
 		starRAFTTimer();
-		if (HeartbeatBuffer.popNode() == null)
+		if (HeartbeatQueue.popNode() == null)
 		{
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.OrphanFollower);
 		}
 		else
 		{
-			HeartbeatBuffer.reset();
+			HeartbeatQueue.reset();
 		}
 	}
 	

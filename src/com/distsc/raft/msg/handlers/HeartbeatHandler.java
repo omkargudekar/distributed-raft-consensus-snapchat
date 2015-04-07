@@ -1,19 +1,19 @@
-package com.distsc.comm.msg.handlers;
+package com.distsc.raft.msg.handlers;
 import com.distsc.beans.Node;
-import com.distsc.comm.msg.queues.inbound.HeartbeatBuffer;
-import com.distsc.comm.msg.queues.inbound.NominationsBuffer;
-import com.distsc.comm.msg.queues.inbound.VoteBuffer;
+import com.distsc.comm.msg.queues.inbound.HeartbeatQueue;
+import com.distsc.comm.msg.queues.inbound.NominationsQueue;
+import com.distsc.comm.msg.queues.inbound.VotesQueue;
 import com.distsc.comm.protobuf.NodeMessageProto.Message;
 import com.distsc.raft.RAFTStatus;
 
-public class HeartbeatHandler implements Handler
+public class HeartbeatHandler implements RAFTMsgHandler
 {
 
 	@Override
 	public void handle(Message msg)
 	{
 		Node node=new Node(msg.getNodeId(),msg.getNodeIp(),msg.getNodePort());
-		HeartbeatBuffer.pushNode(node);
+		HeartbeatQueue.pushNode(node);
 		
 		
 		switch (RAFTStatus.getCurrentNodeState())
@@ -44,8 +44,8 @@ public class HeartbeatHandler implements Handler
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Follower);
 			RAFTStatus.setVoted(false);
 			RAFTStatus.setDeclaredLeader(node);
-			NominationsBuffer.reset();
-			VoteBuffer.reset();
+			NominationsQueue.reset();
+			VotesQueue.reset();
 			
 	}
 	
@@ -58,8 +58,8 @@ public class HeartbeatHandler implements Handler
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Follower);
 			RAFTStatus.setVoted(false);
 			RAFTStatus.setDeclaredLeader(node);
-			NominationsBuffer.reset();
-			VoteBuffer.reset();
+			NominationsQueue.reset();
+			VotesQueue.reset();
 			
 		}
 		

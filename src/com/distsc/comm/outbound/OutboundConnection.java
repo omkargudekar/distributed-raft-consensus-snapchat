@@ -10,7 +10,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 import com.distsc.beans.Node;
 import com.distsc.beans.Packet;
-import com.distsc.comm.msg.queues.outbound.OutboundQueue;
+import com.distsc.comm.msg.queues.outbound.OutboundClusterMessageQueue;
 import com.distsc.comm.protobuf.NodeMessageProto.Message;
 
 public class OutboundConnection implements Runnable
@@ -34,11 +34,11 @@ public class OutboundConnection implements Runnable
 			System.out.println("Cluster Client Thread Started...");
 			while(true)
 			{
-				if(OutboundQueue.getMessageCount()>0)
+				if(OutboundClusterMessageQueue.getMessageCount()>0)
 				{
 					try
 					{
-						packet=OutboundQueue.popMessage();
+						packet=OutboundClusterMessageQueue.popMessage();
 						node=packet.getNode();
 						msg=packet.getMsg();
 						System.out.println("Message Received in Outbound Queue : "+msg.getMessageType());

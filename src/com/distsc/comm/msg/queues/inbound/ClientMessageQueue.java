@@ -1,11 +1,9 @@
 package com.distsc.comm.msg.queues.inbound;
 
 import java.util.ArrayList;
-
-import com.distsc.comm.protobuf.NodeMessageProto;
 import com.distsc.comm.protobuf.NodeMessageProto.Message;
 
-public class LogReplicationRequestBuffer
+public class ClientMessageQueue
 {
 		private static ArrayList<Message> recMessages = new ArrayList<Message>();
 		

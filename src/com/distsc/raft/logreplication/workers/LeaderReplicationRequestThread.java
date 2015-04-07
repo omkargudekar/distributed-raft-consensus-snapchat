@@ -1,7 +1,7 @@
 package com.distsc.raft.logreplication.workers;
 
 import com.distsc.app.GlobalConfiguration;
-import com.distsc.comm.msg.queues.inbound.ClientMessageBuffer;
+import com.distsc.comm.msg.queues.inbound.ClientMessageQueue;
 import com.distsc.comm.outbound.OutboundMulticast;
 import com.distsc.comm.protobuf.NodeMessageProto;
 import com.distsc.comm.protobuf.NodeMessageProto.Message;
@@ -39,11 +39,11 @@ public class LeaderReplicationRequestThread implements Runnable
 	
 	public void checkClientMessageBuffer()
 	{
-		if(ClientMessageBuffer.getMessageCount()>0)
+		if(ClientMessageQueue.getMessageCount()>0)
 		{
-			while(ClientMessageBuffer.getMessageCount()>0)
+			while(ClientMessageQueue.getMessageCount()>0)
 			{
-				Message clientMessage=ClientMessageBuffer.popMessage();
+				Message clientMessage=ClientMessageQueue.popMessage();
 				OutboundMulticast multicast = new OutboundMulticast();
 				Message msg = NodeMessageProto.Message.newBuilder().setImageBits(clientMessage.getImageBits())
 						.setFileName(clientMessage.getFileName())

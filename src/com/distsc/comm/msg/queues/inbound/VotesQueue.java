@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.distsc.beans.Node;
 import com.distsc.raft.RAFTStatus;
 
-public class VoteBuffer
+public class VotesQueue
 {
 	private static ArrayList<Node> nodes = new ArrayList<Node>();
 	

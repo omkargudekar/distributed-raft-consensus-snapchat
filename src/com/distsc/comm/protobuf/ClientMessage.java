@@ -120,11 +120,11 @@ public final class ClientMessage {
         getChecksumImageBitsBytes();
 
     /**
-     * <code>optional .ClientMsg.MessageType messageType = 9 [default = HANDSHAKE];</code>
+     * <code>optional .ClientMsg.MessageType messageType = 9 [default = LOGIN];</code>
      */
     boolean hasMessageType();
     /**
-     * <code>optional .ClientMsg.MessageType messageType = 9 [default = HANDSHAKE];</code>
+     * <code>optional .ClientMsg.MessageType messageType = 9 [default = LOGIN];</code>
      */
     ClientMessage.ClientMsg.MessageType getMessageType();
 
@@ -303,9 +303,9 @@ public final class ClientMessage {
     public enum MessageType
         implements com.google.protobuf.ProtocolMessageEnum {
       /**
-       * <code>HANDSHAKE = 0;</code>
+       * <code>LOGIN = 0;</code>
        */
-      HANDSHAKE(0, 0),
+      LOGIN(0, 0),
       /**
        * <code>MESSAGE = 1;</code>
        */
@@ -319,15 +319,15 @@ public final class ClientMessage {
        */
       ERROR(3, 3),
       /**
-       * <code>CLOSE = 4;</code>
+       * <code>LOGOUT = 4;</code>
        */
-      CLOSE(4, 4),
+      LOGOUT(4, 4),
       ;
 
       /**
-       * <code>HANDSHAKE = 0;</code>
+       * <code>LOGIN = 0;</code>
        */
-      public static final int HANDSHAKE_VALUE = 0;
+      public static final int LOGIN_VALUE = 0;
       /**
        * <code>MESSAGE = 1;</code>
        */
@@ -341,20 +341,20 @@ public final class ClientMessage {
        */
       public static final int ERROR_VALUE = 3;
       /**
-       * <code>CLOSE = 4;</code>
+       * <code>LOGOUT = 4;</code>
        */
-      public static final int CLOSE_VALUE = 4;
+      public static final int LOGOUT_VALUE = 4;
 
 
       public final int getNumber() { return value; }
 
       public static MessageType valueOf(int value) {
         switch (value) {
-          case 0: return HANDSHAKE;
+          case 0: return LOGIN;
           case 1: return MESSAGE;
           case 2: return ACKNOWLEDGE;
           case 3: return ERROR;
-          case 4: return CLOSE;
+          case 4: return LOGOUT;
           default: return null;
         }
       }
@@ -427,6 +427,10 @@ public final class ClientMessage {
        * <code>MESSAGE_SIZE = 3;</code>
        */
       MESSAGE_SIZE(3, 3),
+      /**
+       * <code>INVALID_LOGIN = 4;</code>
+       */
+      INVALID_LOGIN(4, 4),
       ;
 
       /**
@@ -445,6 +449,10 @@ public final class ClientMessage {
        * <code>MESSAGE_SIZE = 3;</code>
        */
       public static final int MESSAGE_SIZE_VALUE = 3;
+      /**
+       * <code>INVALID_LOGIN = 4;</code>
+       */
+      public static final int INVALID_LOGIN_VALUE = 4;
 
 
       public final int getNumber() { return value; }
@@ -455,6 +463,7 @@ public final class ClientMessage {
           case 1: return MESSAGE_CORRUPT;
           case 2: return DELIVERY_FAIL;
           case 3: return MESSAGE_SIZE;
+          case 4: return INVALID_LOGIN;
           default: return null;
         }
       }
@@ -819,13 +828,13 @@ public final class ClientMessage {
     public static final int MESSAGETYPE_FIELD_NUMBER = 9;
     private ClientMessage.ClientMsg.MessageType messageType_;
     /**
-     * <code>optional .ClientMsg.MessageType messageType = 9 [default = HANDSHAKE];</code>
+     * <code>optional .ClientMsg.MessageType messageType = 9 [default = LOGIN];</code>
      */
     public boolean hasMessageType() {
       return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     /**
-     * <code>optional .ClientMsg.MessageType messageType = 9 [default = HANDSHAKE];</code>
+     * <code>optional .ClientMsg.MessageType messageType = 9 [default = LOGIN];</code>
      */
     public ClientMessage.ClientMsg.MessageType getMessageType() {
       return messageType_;
@@ -855,7 +864,7 @@ public final class ClientMessage {
       msgImageBits_ = com.google.protobuf.ByteString.EMPTY;
       checksumMsgText_ = "";
       checksumImageBits_ = "";
-      messageType_ = ClientMessage.ClientMsg.MessageType.HANDSHAKE;
+      messageType_ = ClientMessage.ClientMsg.MessageType.LOGIN;
       errorType_ = ClientMessage.ClientMsg.ErrorType.INVALID_LEADER;
     }
     private byte memoizedIsInitialized = -1;
@@ -1091,7 +1100,7 @@ public final class ClientMessage {
         bitField0_ = (bitField0_ & ~0x00000040);
         checksumImageBits_ = "";
         bitField0_ = (bitField0_ & ~0x00000080);
-        messageType_ = ClientMessage.ClientMsg.MessageType.HANDSHAKE;
+        messageType_ = ClientMessage.ClientMsg.MessageType.LOGIN;
         bitField0_ = (bitField0_ & ~0x00000100);
         errorType_ = ClientMessage.ClientMsg.ErrorType.INVALID_LEADER;
         bitField0_ = (bitField0_ & ~0x00000200);
@@ -1825,21 +1834,21 @@ public final class ClientMessage {
         return this;
       }
 
-      private ClientMessage.ClientMsg.MessageType messageType_ = ClientMessage.ClientMsg.MessageType.HANDSHAKE;
+      private ClientMessage.ClientMsg.MessageType messageType_ = ClientMessage.ClientMsg.MessageType.LOGIN;
       /**
-       * <code>optional .ClientMsg.MessageType messageType = 9 [default = HANDSHAKE];</code>
+       * <code>optional .ClientMsg.MessageType messageType = 9 [default = LOGIN];</code>
        */
       public boolean hasMessageType() {
         return ((bitField0_ & 0x00000100) == 0x00000100);
       }
       /**
-       * <code>optional .ClientMsg.MessageType messageType = 9 [default = HANDSHAKE];</code>
+       * <code>optional .ClientMsg.MessageType messageType = 9 [default = LOGIN];</code>
        */
       public ClientMessage.ClientMsg.MessageType getMessageType() {
         return messageType_;
       }
       /**
-       * <code>optional .ClientMsg.MessageType messageType = 9 [default = HANDSHAKE];</code>
+       * <code>optional .ClientMsg.MessageType messageType = 9 [default = LOGIN];</code>
        */
       public Builder setMessageType(ClientMessage.ClientMsg.MessageType value) {
         if (value == null) {
@@ -1851,11 +1860,11 @@ public final class ClientMessage {
         return this;
       }
       /**
-       * <code>optional .ClientMsg.MessageType messageType = 9 [default = HANDSHAKE];</code>
+       * <code>optional .ClientMsg.MessageType messageType = 9 [default = LOGIN];</code>
        */
       public Builder clearMessageType() {
         bitField0_ = (bitField0_ & ~0x00000100);
-        messageType_ = ClientMessage.ClientMsg.MessageType.HANDSHAKE;
+        messageType_ = ClientMessage.ClientMsg.MessageType.LOGIN;
         onChanged();
         return this;
       }
@@ -1920,19 +1929,20 @@ public final class ClientMessage {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\023ClientMessage.proto\"\333\003\n\tClientMsg\022\r\n\005m" +
+      "\n\023ClientMessage.proto\"\347\003\n\tClientMsg\022\r\n\005m" +
       "sgId\030\001 \001(\t\022\026\n\016senderUserName\030\002 \002(\t\022\030\n\020re" +
       "ceiverUserName\030\003 \002(\t\022\017\n\007msgText\030\004 \001(\t\022\024\n" +
       "\014msgImageName\030\005 \001(\t\022\024\n\014msgImageBits\030\006 \001(" +
       "\014\022\027\n\017checksumMsgText\030\007 \001(\t\022\031\n\021checksumIm" +
-      "ageBits\030\010 \001(\t\0226\n\013messageType\030\t \001(\0162\026.Cli" +
-      "entMsg.MessageType:\tHANDSHAKE\0227\n\terrorTy" +
-      "pe\030\n \001(\0162\024.ClientMsg.ErrorType:\016INVALID_" +
-      "LEADER\"P\n\013MessageType\022\r\n\tHANDSHAKE\020\000\022\013\n\007" +
-      "MESSAGE\020\001\022\017\n\013ACKNOWLEDGE\020\002\022\t\n\005ERROR\020\003\022\t\n",
-      "\005CLOSE\020\004\"Y\n\tErrorType\022\022\n\016INVALID_LEADER\020" +
-      "\000\022\023\n\017MESSAGE_CORRUPT\020\001\022\021\n\rDELIVERY_FAIL\020" +
-      "\002\022\020\n\014MESSAGE_SIZE\020\003B\017B\rClientMessage"
+      "ageBits\030\010 \001(\t\0222\n\013messageType\030\t \001(\0162\026.Cli" +
+      "entMsg.MessageType:\005LOGIN\0227\n\terrorType\030\n" +
+      " \001(\0162\024.ClientMsg.ErrorType:\016INVALID_LEAD" +
+      "ER\"M\n\013MessageType\022\t\n\005LOGIN\020\000\022\013\n\007MESSAGE\020" +
+      "\001\022\017\n\013ACKNOWLEDGE\020\002\022\t\n\005ERROR\020\003\022\n\n\006LOGOUT\020",
+      "\004\"l\n\tErrorType\022\022\n\016INVALID_LEADER\020\000\022\023\n\017ME" +
+      "SSAGE_CORRUPT\020\001\022\021\n\rDELIVERY_FAIL\020\002\022\020\n\014ME" +
+      "SSAGE_SIZE\020\003\022\021\n\rINVALID_LOGIN\020\004B\017B\rClien" +
+      "tMessage"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

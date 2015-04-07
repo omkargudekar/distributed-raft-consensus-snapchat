@@ -1,4 +1,4 @@
-package com.distsc.comm.client.server;
+package com.distsc.chat.server;
 
 import com.distsc.app.GlobalConfiguration;
 

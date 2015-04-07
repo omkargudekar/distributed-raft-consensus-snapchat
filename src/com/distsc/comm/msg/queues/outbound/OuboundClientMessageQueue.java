@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.distsc.comm.protobuf.ClientMessage.ClientMsg;
 
-public class OuboundClientQueue 
+public class OuboundClientMessageQueue 
 {
 private static ArrayList<ClientMsg> outgoingMessages = new ArrayList<ClientMsg>();
 	

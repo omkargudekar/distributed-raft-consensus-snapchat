@@ -1,8 +1,7 @@
 package com.distsc.comm.msg.decoders;
 import io.netty.channel.ChannelHandlerContext;
 
-import com.distsc.comm.client.server.ClientContext;
-import com.distsc.comm.msg.queues.outbound.OuboundClientQueue;
+import com.distsc.chat.msg.handler.*;
 import com.distsc.comm.protobuf.ClientMessage.ClientMsg;
 
 
@@ -11,26 +10,30 @@ public class ClientMessageDecoder
 {
 	
 	
-	public static void handle(ChannelHandlerContext ctx,ClientMsg msg)
+	public synchronized static void handle(ChannelHandlerContext ctx,ClientMsg msg)
 	{
+		
 		
 		switch (msg.getMessageType())
 		{
 		
-		case HANDSHAKE:
-			ClientContext.addClientContext(msg.getSenderUserName(), ctx);
+		case LOGIN:
+			new LoginHandler().handle(ctx,msg);
 			break;
 
 		case MESSAGE:
-			OuboundClientQueue.pushMessage(msg);
+			new MessageHandler().handle(ctx,msg);
 			break;
 
 		case ACKNOWLEDGE:
-			OuboundClientQueue.pushMessage(msg);
+			new AckHandler().handle(ctx,msg);
 			break;
 
 		case ERROR:
-			OuboundClientQueue.pushMessage(msg);
+			new ErrorHandler().handle(ctx,msg);
+			break;
+		case LOGOUT:
+			new LogoutHandler().handle(ctx,msg);
 			break;
 		
 		default:

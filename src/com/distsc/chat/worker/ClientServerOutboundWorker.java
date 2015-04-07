@@ -1,6 +1,7 @@
-package com.distsc.comm.client.server;
+package com.distsc.chat.worker;
 
-import com.distsc.comm.msg.queues.outbound.OuboundClientQueue;
+import com.distsc.chat.server.ClientContext;
+import com.distsc.comm.msg.queues.outbound.OuboundClientMessageQueue;
 import com.distsc.comm.protobuf.ClientMessage.ClientMsg;
 
 public class ClientServerOutboundWorker implements Runnable
@@ -13,9 +14,9 @@ public class ClientServerOutboundWorker implements Runnable
 		try
 		{
 			ClientMsg msg=null;
-			if(OuboundClientQueue.getMessageCount()>0)
+			if(OuboundClientMessageQueue.getMessageCount()>0)
 			{
-				msg=OuboundClientQueue.popMessage();
+				msg=OuboundClientMessageQueue.popMessage();
 				ClientContext.getClientContext(msg.getReceiverUserName()).writeAndFlush(msg);
 			
 			}

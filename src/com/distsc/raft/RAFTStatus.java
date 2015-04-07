@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.distsc.beans.Node;
-import com.distsc.comm.msg.queues.inbound.NominationsBuffer;
-import com.distsc.comm.msg.queues.inbound.VoteBuffer;
+import com.distsc.comm.msg.queues.inbound.NominationsQueue;
+import com.distsc.comm.msg.queues.inbound.VotesQueue;
 
 public class RAFTStatus
 {
@@ -53,8 +53,8 @@ public class RAFTStatus
 	
 	public static synchronized void afterLeaderElectinReset()
 	{
-		VoteBuffer.reset();
-		NominationsBuffer.reset();
+		VotesQueue.reset();
+		NominationsQueue.reset();
 		
 	}
 	

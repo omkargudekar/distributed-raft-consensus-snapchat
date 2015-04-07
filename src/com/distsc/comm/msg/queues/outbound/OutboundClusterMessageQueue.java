@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.distsc.beans.Packet;
 
 
-public class OutboundQueue
+public class OutboundClusterMessageQueue
 {
 
 	private static ArrayList<Packet> outgoingMessages = new ArrayList<Packet>();

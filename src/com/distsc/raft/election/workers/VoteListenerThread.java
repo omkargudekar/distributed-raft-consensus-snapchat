@@ -1,9 +1,9 @@
 package com.distsc.raft.election.workers;
 
 import com.distsc.app.GlobalConfiguration;
-import com.distsc.comm.msg.queues.inbound.HeartbeatBuffer;
-import com.distsc.comm.msg.queues.inbound.NominationsBuffer;
-import com.distsc.comm.msg.queues.inbound.VoteBuffer;
+import com.distsc.comm.msg.queues.inbound.HeartbeatQueue;
+import com.distsc.comm.msg.queues.inbound.NominationsQueue;
+import com.distsc.comm.msg.queues.inbound.VotesQueue;
 import com.distsc.raft.RAFTStatus;
 
 public class VoteListenerThread implements Runnable
@@ -51,14 +51,14 @@ public class VoteListenerThread implements Runnable
 	
 	public void checkVotes()
 	{
-		if (VoteBuffer.getNodeVoteCount() > (GlobalConfiguration.getNetwotkSize()/2) )
+		if (VotesQueue.getNodeVoteCount() > (GlobalConfiguration.getNetwotkSize()/2) )
 		{	
 			System.out.println("****  Elected As Leader ****");
 			RAFTStatus.setDeclaredLeader(GlobalConfiguration.getCurrentNode());
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Leader);
-			VoteBuffer.reset();
-			NominationsBuffer.reset();
-			HeartbeatBuffer.reset();
+			VotesQueue.reset();
+			NominationsQueue.reset();
+			HeartbeatQueue.reset();
 			RAFTStatus.setVoted(false);
 		}
 		else 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.distsc.beans.Node;
 
-public class NominationsBuffer
+public class NominationsQueue
 {
 	private static ArrayList<Node> nodes = new ArrayList<Node>();
 	

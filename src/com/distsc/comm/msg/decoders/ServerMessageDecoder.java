@@ -1,10 +1,10 @@
 package com.distsc.comm.msg.decoders;
-import com.distsc.comm.msg.handlers.HeartbeatHandler;
-import com.distsc.comm.msg.handlers.LogReplicationCompleteResponseHandler;
-import com.distsc.comm.msg.handlers.LogReplicationRequestHandler;
-import com.distsc.comm.msg.handlers.NominationHandler;
-import com.distsc.comm.msg.handlers.VoteHandler;
 import com.distsc.comm.protobuf.NodeMessageProto.Message;
+import com.distsc.raft.msg.handlers.HeartbeatHandler;
+import com.distsc.raft.msg.handlers.LogReplicationCompleteResponseHandler;
+import com.distsc.raft.msg.handlers.LogReplicationRequestHandler;
+import com.distsc.raft.msg.handlers.NominationHandler;
+import com.distsc.raft.msg.handlers.VoteHandler;
 
 
 
@@ -12,7 +12,7 @@ public class ServerMessageDecoder
 {
 	
 	
-	public static void handle(Message msg)
+	public synchronized static void handle(Message msg)
 	{		
 		System.out.println("Message Received : "+msg.getMessageType());
 		

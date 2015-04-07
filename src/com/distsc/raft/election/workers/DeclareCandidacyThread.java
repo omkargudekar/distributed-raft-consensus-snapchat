@@ -1,9 +1,9 @@
 package com.distsc.raft.election.workers;
 
 import com.distsc.app.GlobalConfiguration;
-import com.distsc.comm.msg.queues.inbound.HeartbeatBuffer;
-import com.distsc.comm.msg.queues.inbound.NominationsBuffer;
-import com.distsc.comm.msg.queues.inbound.VoteBuffer;
+import com.distsc.comm.msg.queues.inbound.HeartbeatQueue;
+import com.distsc.comm.msg.queues.inbound.NominationsQueue;
+import com.distsc.comm.msg.queues.inbound.VotesQueue;
 import com.distsc.comm.outbound.OutboundMulticast;
 import com.distsc.comm.protobuf.NodeMessageProto;
 import com.distsc.comm.protobuf.NodeMessageProto.Message;
@@ -81,9 +81,9 @@ public class DeclareCandidacyThread implements Runnable
 	public void reset()
 	{
 		RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.OrphanFollower);
-		VoteBuffer.reset();
-		NominationsBuffer.reset();
-		HeartbeatBuffer.reset();
+		VotesQueue.reset();
+		NominationsQueue.reset();
+		HeartbeatQueue.reset();
 		RAFTStatus.setVoted(false);
 
 	}

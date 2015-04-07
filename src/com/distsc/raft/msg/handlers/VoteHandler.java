@@ -1,11 +1,11 @@
-package com.distsc.comm.msg.handlers;
+package com.distsc.raft.msg.handlers;
 
 import com.distsc.beans.Node;
-import com.distsc.comm.msg.queues.inbound.VoteBuffer;
+import com.distsc.comm.msg.queues.inbound.VotesQueue;
 import com.distsc.comm.protobuf.NodeMessageProto.Message;
 import com.distsc.raft.RAFTStatus;
 
-public class VoteHandler implements Handler
+public class VoteHandler implements RAFTMsgHandler
 {
 
 	@Override
@@ -20,7 +20,7 @@ public class VoteHandler implements Handler
 			break;
 
 			case Candidate:
-			VoteBuffer.pushNode(node);
+			VotesQueue.pushNode(node);
 			break;
 
 			case OrphanFollower:

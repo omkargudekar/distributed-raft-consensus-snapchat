@@ -25,6 +25,13 @@ public class ClientContext
 		contextMap.remove(username);
 		
 	}
-	
+	public static boolean isExist(String username)
+	{
+		if(contextMap.containsKey(username))
+		{
+			return true;
+		}
+		return false;
+	}
 	
 }

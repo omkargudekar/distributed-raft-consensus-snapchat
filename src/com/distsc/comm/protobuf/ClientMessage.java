@@ -322,6 +322,10 @@ public final class ClientMessage {
        * <code>LOGOUT = 4;</code>
        */
       LOGOUT(4, 4),
+      /**
+       * <code>LOGIN_SUCCESS = 5;</code>
+       */
+      LOGIN_SUCCESS(5, 5),
       ;
 
       /**
@@ -344,6 +348,10 @@ public final class ClientMessage {
        * <code>LOGOUT = 4;</code>
        */
       public static final int LOGOUT_VALUE = 4;
+      /**
+       * <code>LOGIN_SUCCESS = 5;</code>
+       */
+      public static final int LOGIN_SUCCESS_VALUE = 5;
 
 
       public final int getNumber() { return value; }
@@ -355,6 +363,7 @@ public final class ClientMessage {
           case 2: return ACKNOWLEDGE;
           case 3: return ERROR;
           case 4: return LOGOUT;
+          case 5: return LOGIN_SUCCESS;
           default: return null;
         }
       }
@@ -1929,7 +1938,7 @@ public final class ClientMessage {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\023ClientMessage.proto\"\347\003\n\tClientMsg\022\r\n\005m" +
+      "\n\023ClientMessage.proto\"\372\003\n\tClientMsg\022\r\n\005m" +
       "sgId\030\001 \001(\t\022\026\n\016senderUserName\030\002 \002(\t\022\030\n\020re" +
       "ceiverUserName\030\003 \002(\t\022\017\n\007msgText\030\004 \001(\t\022\024\n" +
       "\014msgImageName\030\005 \001(\t\022\024\n\014msgImageBits\030\006 \001(" +
@@ -1937,12 +1946,12 @@ public final class ClientMessage {
       "ageBits\030\010 \001(\t\0222\n\013messageType\030\t \001(\0162\026.Cli" +
       "entMsg.MessageType:\005LOGIN\0227\n\terrorType\030\n" +
       " \001(\0162\024.ClientMsg.ErrorType:\016INVALID_LEAD" +
-      "ER\"M\n\013MessageType\022\t\n\005LOGIN\020\000\022\013\n\007MESSAGE\020" +
+      "ER\"`\n\013MessageType\022\t\n\005LOGIN\020\000\022\013\n\007MESSAGE\020" +
       "\001\022\017\n\013ACKNOWLEDGE\020\002\022\t\n\005ERROR\020\003\022\n\n\006LOGOUT\020",
-      "\004\"l\n\tErrorType\022\022\n\016INVALID_LEADER\020\000\022\023\n\017ME" +
-      "SSAGE_CORRUPT\020\001\022\021\n\rDELIVERY_FAIL\020\002\022\020\n\014ME" +
-      "SSAGE_SIZE\020\003\022\021\n\rINVALID_LOGIN\020\004B\017B\rClien" +
-      "tMessage"
+      "\004\022\021\n\rLOGIN_SUCCESS\020\005\"l\n\tErrorType\022\022\n\016INV" +
+      "ALID_LEADER\020\000\022\023\n\017MESSAGE_CORRUPT\020\001\022\021\n\rDE" +
+      "LIVERY_FAIL\020\002\022\020\n\014MESSAGE_SIZE\020\003\022\021\n\rINVAL" +
+      "ID_LOGIN\020\004B\017B\rClientMessage"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

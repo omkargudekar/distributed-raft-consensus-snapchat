@@ -9,7 +9,7 @@ import java.util.Formatter;
 public class SH1Generator 
 {
 	
-	public static String getByteChecksum(Byte bytMsg)
+	public static String getByteChecksum(byte[] bytMsg)
 	{
 	    String sha1 = "";
 	    try

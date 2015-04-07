@@ -42,19 +42,12 @@ public class MessageHandler implements ClientMsgHandler
 		
 		MessageValidator validator=new MessageValidator();
 		
-		if(ClientContext.isExist(msg.getReceiverUserName()))
+		if(validator.validateMessageSize(ctx,msg)==true)
 		{
 			
 			ClientContext.getClientContext(msg.getReceiverUserName()).writeAndFlush(msg);
 		}
-		else
-		{
-			ClientContext.addClientContext(msg.getSenderUserName(), ctx);
-			ClientMsg message = ClientMessage.ClientMsg.newBuilder().setMessageType(MessageType.ERROR)
-					.setErrorType(ErrorType.DELIVERY_FAIL)
-					.setMsgText("Delivery failed..").build();
-			ctx.writeAndFlush(message);
-		}
+		
 	}
 	public void redirectToLeader(ChannelHandlerContext ctx,ClientMsg msg)
 	{

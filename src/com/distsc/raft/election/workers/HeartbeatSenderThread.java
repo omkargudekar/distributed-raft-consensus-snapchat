@@ -1,7 +1,7 @@
 package com.distsc.raft.election.workers;
 
 import com.distsc.app.GlobalConfiguration;
-import com.distsc.comm.client.ClientMulticast;
+import com.distsc.comm.outbound.OutboundMulticast;
 import com.distsc.comm.protobuf.NodeMessageProto;
 import com.distsc.comm.protobuf.NodeMessageProto.Message;
 import com.distsc.comm.protobuf.NodeMessageProto.Message.MessageType;
@@ -49,7 +49,7 @@ public class HeartbeatSenderThread implements Runnable
 	private void sendHeartbeat()
 	{
 
-		ClientMulticast multicast = new ClientMulticast();
+		OutboundMulticast multicast = new OutboundMulticast();
 		Message msg = NodeMessageProto.Message.newBuilder().setMessageType(MessageType.HEARTBEAT).setNodeId(GlobalConfiguration.getCurrentNode().getNodeID()).setNodeIp(GlobalConfiguration.getCurrentNode().getNodeIP()).setNodePort(GlobalConfiguration.getCurrentNode().getNodePort()).build();
 		multicast.send(msg);
 //		multicast.send(RAFTStatus.getNodes(), "Heartbeat-"+RAFTStatus.getCurrentNode().getNodeID()+"-"+RAFTStatus.getCurrentNode().getNodeIP()+"-"+RAFTStatus.getCurrentNode().getNodePort()+"\r\n");

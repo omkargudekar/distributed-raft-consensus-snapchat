@@ -1,4 +1,4 @@
-package com.distsc.comm.client;
+package com.distsc.comm.outbound;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
@@ -9,10 +9,10 @@ import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 
 import com.distsc.comm.protobuf.NodeMessageProto.Message;
 
-public class ClientConnectionInitializer extends ChannelInitializer<SocketChannel> {
+public class OutboundConnectionInitializer extends ChannelInitializer<SocketChannel> {
 
  
-    public ClientConnectionInitializer() {
+    public OutboundConnectionInitializer() {
     }
 
     @Override
@@ -26,6 +26,6 @@ public class ClientConnectionInitializer extends ChannelInitializer<SocketChanne
         pipeline.addLast ("frameEncoder", new ProtobufVarint32LengthFieldPrepender ());
         pipeline.addLast ("protobufEncoder", new ProtobufEncoder ());
 
-        pipeline.addLast(new ClientConnectionHandler());
+        pipeline.addLast(new OutboundConnectionHandler());
     }
 }

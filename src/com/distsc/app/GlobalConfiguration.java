@@ -7,6 +7,17 @@ import com.distsc.beans.Node;
 public class GlobalConfiguration
 {
 	
+	private static int messageLimit=20000000;
+	public static int getMessageLimit()
+	{
+		return messageLimit;
+	}
+
+	public static void setMessageLimit(int messageLimit)
+	{
+		GlobalConfiguration.messageLimit = messageLimit;
+	}
+
 	private static String clientMessageStorageDir="client_messages/";
 	public static String getClientMessageStorageDir()
 	{

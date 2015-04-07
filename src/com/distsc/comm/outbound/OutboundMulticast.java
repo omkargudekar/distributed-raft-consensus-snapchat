@@ -1,4 +1,4 @@
-package com.distsc.comm.client;
+package com.distsc.comm.outbound;
 
 
 
@@ -8,7 +8,7 @@ import com.distsc.beans.Packet;
 import com.distsc.comm.msg.queues.outbound.OutboundQueue;
 import com.distsc.comm.protobuf.NodeMessageProto.Message;
 
-public class ClientMulticast
+public class OutboundMulticast
 {
 
 

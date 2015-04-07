@@ -1,4 +1,4 @@
-package com.distsc.comm.server.external;
+package com.distsc.comm.client.server;
 
 import com.distsc.app.GlobalConfiguration;
 
@@ -13,7 +13,7 @@ import io.netty.handler.logging.LoggingHandler;
 /**
  * Simple SSL chat server modified from {@link TelnetServer}.
  */
-public final class ExternalClientServer implements Runnable
+public final class ClientServer implements Runnable
 {
     public void run()
     {
@@ -28,7 +28,7 @@ public final class ExternalClientServer implements Runnable
             b.group(bossGroup, workerGroup)
              .channel(NioServerSocketChannel.class)
              .handler(new LoggingHandler(LogLevel.INFO))
-             .childHandler(new ExternalClientServerInitializer());
+             .childHandler(new ClientServerInitializer());
 
             b.bind(GlobalConfiguration.getClinetListenerPort()).sync().channel().closeFuture().sync();
         } 

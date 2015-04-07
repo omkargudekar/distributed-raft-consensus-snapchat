@@ -3,9 +3,9 @@ package com.distsc.app;
 import java.util.ArrayList;
 
 import com.distsc.beans.Node;
-import com.distsc.comm.client.ClientConnection;
+import com.distsc.comm.client.server.ClientServer;
+import com.distsc.comm.outbound.OutboundConnection;
 import com.distsc.comm.server.Server;
-import com.distsc.comm.server.external.ExternalClientServer;
 import com.distsc.raft.RAFTStatus;
 import com.distsc.raft.algorithm.RAFT;
 
@@ -20,11 +20,11 @@ public class RunMain
 		
 		//Starting Clinet Thread.
 
-		new Thread(new ClientConnection()).start();
+		new Thread(new OutboundConnection()).start();
 		
 		//Starting ExternalClietn Thread.
 
-		new Thread(new ExternalClientServer()).start();
+		new Thread(new ClientServer()).start();
 		
 		
 		//Starting Receiver Current Host Information.

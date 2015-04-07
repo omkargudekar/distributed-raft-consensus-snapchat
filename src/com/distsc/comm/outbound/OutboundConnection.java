@@ -1,4 +1,4 @@
-package com.distsc.comm.client;
+package com.distsc.comm.outbound;
 
 
 import io.netty.bootstrap.Bootstrap;
@@ -13,7 +13,7 @@ import com.distsc.beans.Packet;
 import com.distsc.comm.msg.queues.outbound.OutboundQueue;
 import com.distsc.comm.protobuf.NodeMessageProto.Message;
 
-public class ClientConnection implements Runnable
+public class OutboundConnection implements Runnable
 {
 	public void run()
 	{
@@ -29,7 +29,7 @@ public class ClientConnection implements Runnable
 		{
 			group = new NioEventLoopGroup(1);
 			Bootstrap b = new Bootstrap();
-			b.group(group).channel(NioSocketChannel.class).handler(new ClientConnectionInitializer());
+			b.group(group).channel(NioSocketChannel.class).handler(new OutboundConnectionInitializer());
 			
 			System.out.println("Cluster Client Thread Started...");
 			while(true)

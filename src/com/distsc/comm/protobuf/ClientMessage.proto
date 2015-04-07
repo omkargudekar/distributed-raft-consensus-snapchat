@@ -1,0 +1,34 @@
+option java_outer_classname = "ClientMessage";
+
+message ClientMsg
+{
+	optional string msgId = 1;
+	required string senderUserName = 2;
+	required string receiverUserName = 3;
+	optional string msgText = 4;
+	optional string msgImageName = 5;
+	optional bytes 	msgImageBits = 6;
+	optional string checksumMsgText = 7;
+	optional string checksumImageBits = 8;
+
+	enum MessageType
+	{
+	 	HANDSHAKE = 0;
+	 	MESSAGE = 1;
+		ACKNOWLEDGE=2;
+		ERROR=3;
+		CLOSE=4;
+    }
+
+    enum ErrorType
+    {
+    	INVALID_LEADER=0;
+    	MESSAGE_CORRUPT=1;
+    	DELIVERY_FAIL=2;
+    	MESSAGE_SIZE=3;
+    }
+    optional MessageType messageType = 9 [default = HANDSHAKE];
+    optional ErrorType errorType = 10[default = INVALID_LEADER];
+
+    
+}

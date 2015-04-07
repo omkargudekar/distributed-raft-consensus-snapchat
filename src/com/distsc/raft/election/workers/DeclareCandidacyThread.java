@@ -1,10 +1,10 @@
 package com.distsc.raft.election.workers;
 
 import com.distsc.app.GlobalConfiguration;
-import com.distsc.comm.client.ClientMulticast;
 import com.distsc.comm.msg.queues.inbound.HeartbeatBuffer;
 import com.distsc.comm.msg.queues.inbound.NominationsBuffer;
 import com.distsc.comm.msg.queues.inbound.VoteBuffer;
+import com.distsc.comm.outbound.OutboundMulticast;
 import com.distsc.comm.protobuf.NodeMessageProto;
 import com.distsc.comm.protobuf.NodeMessageProto.Message;
 import com.distsc.comm.protobuf.NodeMessageProto.Message.MessageType;
@@ -54,7 +54,7 @@ public class DeclareCandidacyThread implements Runnable
 			System.out.println("Declaring Candidacy...");
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Candidate);
 			
-			ClientMulticast multicast = new ClientMulticast();
+			OutboundMulticast multicast = new OutboundMulticast();
 			Message msg = NodeMessageProto.Message.newBuilder().setMessageType(MessageType.NOMINATION).setNodeId(GlobalConfiguration.getCurrentNode().getNodeID()).setNodeIp(GlobalConfiguration.getCurrentNode().getNodeIP()).setNodePort(GlobalConfiguration.getCurrentNode().getNodePort()).build();
 			multicast.send(msg);
 			RAFTTimeout();

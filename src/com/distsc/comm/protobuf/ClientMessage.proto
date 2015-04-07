@@ -1,4 +1,4 @@
-option java_outer_classname = "ClientMessage";
+option java_outer_classname = "ClientMessageProto";
 
 message ClientMsg
 {

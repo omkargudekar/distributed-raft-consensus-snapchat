@@ -3,11 +3,11 @@ package com.distsc.raft.election.workers;
 import com.distsc.app.GlobalConfiguration;
 import com.distsc.beans.Node;
 import com.distsc.beans.Packet;
+import com.distsc.comm.msg.protobuf.NodeMessageProto;
+import com.distsc.comm.msg.protobuf.NodeMessageProto.Message;
+import com.distsc.comm.msg.protobuf.NodeMessageProto.Message.MessageType;
 import com.distsc.comm.msg.queues.inbound.NominationsQueue;
 import com.distsc.comm.msg.queues.outbound.OutboundClusterMessageQueue;
-import com.distsc.comm.protobuf.NodeMessageProto;
-import com.distsc.comm.protobuf.NodeMessageProto.Message;
-import com.distsc.comm.protobuf.NodeMessageProto.Message.MessageType;
 import com.distsc.raft.RAFTStatus;
 
 public class NominationListenerThread implements Runnable

@@ -3,10 +3,10 @@ package com.distsc.chat.msg.handler;
 import io.netty.channel.ChannelHandlerContext;
 
 import com.distsc.chat.server.ClientContext;
-import com.distsc.comm.protobuf.ClientMessage;
-import com.distsc.comm.protobuf.ClientMessage.ClientMsg;
-import com.distsc.comm.protobuf.ClientMessage.ClientMsg.ErrorType;
-import com.distsc.comm.protobuf.ClientMessage.ClientMsg.MessageType;
+import com.distsc.comm.msg.protobuf.ClientMessageProto;
+import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg;
+import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg.ErrorType;
+import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg.MessageType;
 import com.distsc.raft.RAFTStatus;
 
 public class LogoutHandler implements ClientMsgHandler
@@ -35,7 +35,7 @@ public class LogoutHandler implements ClientMsgHandler
 	public void redirectToLeader(ChannelHandlerContext ctx,ClientMsg msg)
 	{
 		
-		ClientMsg message = ClientMessage.ClientMsg.newBuilder().setMessageType(MessageType.ERROR)
+		ClientMsg message = ClientMessageProto.ClientMsg.newBuilder().setMessageType(MessageType.ERROR)
 				.setErrorType(ErrorType.INVALID_LEADER)
 				.setMsgText(RAFTStatus.getDeclaredLeader().getNodeIP()+"-"+RAFTStatus.getDeclaredLeader().getNodePort()).build();
 		ctx.writeAndFlush(message);
@@ -46,7 +46,7 @@ public class LogoutHandler implements ClientMsgHandler
 	public void sendError(ChannelHandlerContext ctx,ClientMsg msg)
 	{
 		
-		ClientMsg message = ClientMessage.ClientMsg.newBuilder().setMessageType(MessageType.ERROR)
+		ClientMsg message = ClientMessageProto.ClientMsg.newBuilder().setMessageType(MessageType.ERROR)
 				.setErrorType(ErrorType.DELIVERY_FAIL)
 				.setMsgText("Please Wait...").build();
 		ctx.writeAndFlush(message);

@@ -4,7 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.distsc.app.GlobalConfiguration;
-import com.distsc.comm.protobuf.NodeMessageProto.Message;
+import com.distsc.comm.msg.protobuf.NodeMessageProto.Message;
 
 public class ImageWriter
 {

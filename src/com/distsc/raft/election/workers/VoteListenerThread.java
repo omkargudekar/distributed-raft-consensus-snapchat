@@ -57,12 +57,6 @@ public class VoteListenerThread implements Runnable
 			HeartbeatQueue.reset();
 			RAFTStatus.setVoted(false);
 		}
-		else 
-		{
-	
-			
-				
-		}
 	
 	}
 	

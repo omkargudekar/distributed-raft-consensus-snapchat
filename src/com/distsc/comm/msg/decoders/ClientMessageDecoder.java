@@ -2,7 +2,7 @@ package com.distsc.comm.msg.decoders;
 import io.netty.channel.ChannelHandlerContext;
 
 import com.distsc.chat.msg.handler.*;
-import com.distsc.comm.protobuf.ClientMessage.ClientMsg;
+import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg;
 
 
 

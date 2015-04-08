@@ -2,7 +2,7 @@ package com.distsc.comm.msg.queues.outbound;
 
 import java.util.ArrayList;
 
-import com.distsc.comm.protobuf.ClientMessage.ClientMsg;
+import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg;
 
 public class OuboundClientMessageQueue 
 {
@@ -40,7 +40,6 @@ private static ArrayList<ClientMsg> outgoingMessages = new ArrayList<ClientMsg>(
 	
 	public static void pushMessage(ClientMsg packet)
 	{
-		System.out.println("Message stored in outbound queue");
 		outgoingMessages.add(packet);
 		
 	}

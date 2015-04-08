@@ -2,8 +2,8 @@ package com.distsc.comm.msg.queues.inbound;
 
 import java.util.ArrayList;
 
-import com.distsc.comm.protobuf.NodeMessageProto;
-import com.distsc.comm.protobuf.NodeMessageProto.Message;
+import com.distsc.comm.msg.protobuf.NodeMessageProto;
+import com.distsc.comm.msg.protobuf.NodeMessageProto.Message;
 
 public class LogReplicationRequestQueue
 {

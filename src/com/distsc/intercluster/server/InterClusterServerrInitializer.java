@@ -9,7 +9,7 @@ import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 
-import com.distsc.intercluster.message.ClusterMessageProto.ClusterMessage;
+import com.distsc.intercluster.msg.protobuff.ClusterMessageProto.ClusterMessage;
 public class InterClusterServerrInitializer extends ChannelInitializer<SocketChannel> {
 
 

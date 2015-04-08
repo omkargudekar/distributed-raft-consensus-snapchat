@@ -10,8 +10,8 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 import com.distsc.beans.Node;
 import com.distsc.beans.Packet;
+import com.distsc.comm.msg.protobuf.NodeMessageProto.Message;
 import com.distsc.comm.msg.queues.outbound.OutboundClusterMessageQueue;
-import com.distsc.comm.protobuf.NodeMessageProto.Message;
 
 public class OutboundConnection implements Runnable
 {
@@ -41,7 +41,7 @@ public class OutboundConnection implements Runnable
 						packet=OutboundClusterMessageQueue.popMessage();
 						node=packet.getNode();
 						msg=packet.getMsg();
-						System.out.println("Message Received in Outbound Queue : "+msg.getMessageType());
+					//	System.out.println("Message Received in Outbound Queue : "+msg.getMessageType());
 						ch = b.connect(node.getNodeIP(), node.getNodePort()).sync().channel();
 						lastWriteFuture = ch.writeAndFlush(msg);
 						lastWriteFuture.channel().close().sync();	

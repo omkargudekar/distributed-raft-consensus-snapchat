@@ -1,13 +1,13 @@
 package com.distsc.raft.election.workers;
 
 import com.distsc.app.GlobalConfiguration;
+import com.distsc.comm.msg.protobuf.NodeMessageProto;
+import com.distsc.comm.msg.protobuf.NodeMessageProto.Message;
+import com.distsc.comm.msg.protobuf.NodeMessageProto.Message.MessageType;
 import com.distsc.comm.msg.queues.inbound.HeartbeatQueue;
 import com.distsc.comm.msg.queues.inbound.NominationsQueue;
 import com.distsc.comm.msg.queues.inbound.VotesQueue;
 import com.distsc.comm.outbound.OutboundMulticast;
-import com.distsc.comm.protobuf.NodeMessageProto;
-import com.distsc.comm.protobuf.NodeMessageProto.Message;
-import com.distsc.comm.protobuf.NodeMessageProto.Message.MessageType;
 import com.distsc.raft.RAFTStatus;
 
 public class DeclareCandidacyThread implements Runnable

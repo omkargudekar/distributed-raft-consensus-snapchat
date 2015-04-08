@@ -7,7 +7,7 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 
 import com.distsc.chat.msg.handler.MessageValidator;
 import com.distsc.comm.msg.decoders.ClientMessageDecoder;
-import com.distsc.comm.protobuf.ClientMessage.ClientMsg;
+import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg;
 
 
 public class ClientServerHandler extends SimpleChannelInboundHandler<ClientMsg>
@@ -33,7 +33,9 @@ public class ClientServerHandler extends SimpleChannelInboundHandler<ClientMsg>
 
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, ClientMsg msg) throws Exception 
-	{
+	{	
+				System.out.println(msg.getMessageType());
+				
 				ClientMessageDecoder.handle(ctx,msg);
 	}
 	

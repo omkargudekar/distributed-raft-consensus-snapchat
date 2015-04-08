@@ -1,6 +1,6 @@
 package com.distsc.beans;
 
-import com.distsc.comm.protobuf.NodeMessageProto.Message;
+import com.distsc.comm.msg.protobuf.NodeMessageProto.Message;
 
 public class Packet
 {

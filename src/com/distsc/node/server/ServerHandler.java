@@ -1,4 +1,4 @@
-package com.distsc.comm.server;
+package com.distsc.node.server;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;

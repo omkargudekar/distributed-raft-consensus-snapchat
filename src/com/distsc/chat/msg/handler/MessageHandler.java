@@ -7,6 +7,9 @@ import com.distsc.comm.msg.protobuf.ClientMessageProto;
 import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg;
 import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg.ErrorType;
 import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg.MessageType;
+import com.distsc.intercluster.msg.protobuff.ClusterMessageProto;
+import com.distsc.intercluster.msg.protobuff.ClusterMessageProto.ClusterMessage;
+import com.distsc.intercluster.msg.queues.outbound.OutboundInterClusterMsgQueue;
 import com.distsc.raft.RAFTStatus;
 
 public class MessageHandler implements ClientMsgHandler
@@ -15,7 +18,7 @@ public class MessageHandler implements ClientMsgHandler
 	@Override
 	public void handle(ChannelHandlerContext ctx,ClientMsg msg )
 	{
-		System.out.println("Inside Message Handler...");
+		System.out.println(msg.getMessageType()+" From "+msg.getSenderUserName() + " For "+msg.getReceiverUserName() );
 		switch (RAFTStatus.getCurrentNodeState())
 		{
 		case Leader:
@@ -42,8 +45,14 @@ public class MessageHandler implements ClientMsgHandler
 		
 		if(validator.validateMessageSize(ctx,msg)==true)
 		{
+			ClusterMessage clustMsg=ClusterMessageProto.ClusterMessage.newBuilder()
+					.setMsgText(msg.getMsgText()).build();
 			System.out.println("Writing  Message...");
+			OutboundInterClusterMsgQueue.pushMessage(clustMsg);
+			
 			ClientContext.getClientContext(msg.getReceiverUserName()).writeAndFlush(msg);
+			
+			
 		}
 		
 	}

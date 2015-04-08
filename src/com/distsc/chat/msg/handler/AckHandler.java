@@ -10,8 +10,7 @@ public class AckHandler implements ClientMsgHandler
 	@Override
 	public void handle(ChannelHandlerContext ctx,ClientMsg msg)
 	{
-		// TODO Auto-generated method stub
-		
+		System.out.println(msg.getMessageType()+" From "+msg.getSenderUserName());		
 	}
 
 }

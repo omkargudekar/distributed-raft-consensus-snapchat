@@ -1,11 +1,11 @@
-package com.distsc.comm.outbound;
+package com.distsc.intercluster.outbound;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-import com.distsc.comm.msg.protobuf.NodeMessageProto.Message;
+import com.distsc.intercluster.msg.protobuff.ClusterMessageProto.ClusterMessage;
 
-public class OutboundConnectionHandler extends SimpleChannelInboundHandler<Message> 
+public class InterClusterOutboundConnectionHandler extends SimpleChannelInboundHandler<ClusterMessage> 
 {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
@@ -14,7 +14,7 @@ public class OutboundConnectionHandler extends SimpleChannelInboundHandler<Messa
     }
     
 	@Override
-	protected void channelRead0(ChannelHandlerContext ctx, Message msg)
+	protected void channelRead0(ChannelHandlerContext ctx, ClusterMessage msg)
 			throws Exception 
 	{
 	

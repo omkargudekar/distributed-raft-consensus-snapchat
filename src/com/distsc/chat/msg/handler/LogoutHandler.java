@@ -14,6 +14,8 @@ public class LogoutHandler implements ClientMsgHandler
 	
 	public void handle(ChannelHandlerContext ctx,ClientMsg msg)
 	{
+		
+		System.out.println(msg.getMessageType()+" From "+msg.getSenderUserName());
 		switch (RAFTStatus.getCurrentNodeState())
 		{
 		case Leader:

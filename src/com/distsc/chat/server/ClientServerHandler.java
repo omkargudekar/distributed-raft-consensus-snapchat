@@ -34,7 +34,6 @@ public class ClientServerHandler extends SimpleChannelInboundHandler<ClientMsg>
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, ClientMsg msg) throws Exception 
 	{	
-				System.out.println(msg.getMessageType());
 				
 				ClientMessageDecoder.handle(ctx,msg);
 	}

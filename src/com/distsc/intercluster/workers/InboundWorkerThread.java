@@ -1,6 +1,7 @@
 package com.distsc.intercluster.workers;
 
-import com.distsc.intercluster.msg.queues.inbound.InboundClusterMsgQueue;
+import com.distsc.intercluster.msg.handlers.ClusterMsgHandler;
+import com.distsc.intercluster.msg.queues.inbound.InboundInterClusterMsgQueue;
 
 public class InboundWorkerThread implements Runnable
 {
@@ -10,9 +11,9 @@ public class InboundWorkerThread implements Runnable
 	{
 		while(true)
 		{
-			if(InboundClusterMsgQueue.getMessageCount()>0)
+			if(InboundInterClusterMsgQueue.getMessageCount()>0)
 			{
-				
+				new ClusterMsgHandler().handle(InboundInterClusterMsgQueue.popMessage());
 				
 				
 			}

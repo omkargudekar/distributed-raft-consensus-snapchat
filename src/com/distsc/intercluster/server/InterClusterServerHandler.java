@@ -6,7 +6,7 @@ import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
 import com.distsc.intercluster.msg.protobuff.ClusterMessageProto.ClusterMessage;
-import com.distsc.intercluster.msg.queues.inbound.InboundClusterMsgQueue;
+import com.distsc.intercluster.msg.queues.inbound.InboundInterClusterMsgQueue;
 
 
 public class InterClusterServerHandler extends SimpleChannelInboundHandler<ClusterMessage>
@@ -30,7 +30,7 @@ public class InterClusterServerHandler extends SimpleChannelInboundHandler<Clust
 	@Override
 	protected void channelRead0(ChannelHandlerContext arg0, ClusterMessage msg) throws Exception 
 	{
-				InboundClusterMsgQueue.pushMessage(msg);
+				InboundInterClusterMsgQueue.pushMessage(msg);
 	} 
 	
 }

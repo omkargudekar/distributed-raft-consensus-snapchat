@@ -11,7 +11,7 @@ message ClusterMessage{
 	enum MessageType
 	{
 	 	 REQUEST = 0;
-	 	 SUCCESS = 1;
+	 	SUCCESS = 1;
 
     }
     optional MessageType messageType = 7 [default = SUCCESS];

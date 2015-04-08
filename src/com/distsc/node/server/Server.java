@@ -1,4 +1,4 @@
-package com.distsc.comm.server;
+package com.distsc.node.server;
 
 import com.distsc.app.GlobalConfiguration;
 

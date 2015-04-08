@@ -5,7 +5,7 @@ import com.distsc.comm.msg.protobuf.NodeMessageProto;
 import com.distsc.comm.msg.protobuf.NodeMessageProto.Message;
 import com.distsc.comm.msg.protobuf.NodeMessageProto.Message.MessageType;
 import com.distsc.comm.msg.queues.inbound.ClientMessageQueue;
-import com.distsc.comm.outbound.OutboundMulticast;
+import com.distsc.node.outbound.OutboundMulticast;
 import com.distsc.raft.RAFTStatus;
 
 public class LeaderReplicationRequestThread implements Runnable

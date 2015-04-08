@@ -15,7 +15,14 @@ public class ClusterMsgHandler implements ClusterMsgHandlerInterface
 	public void handle(ClusterMessage msg)
 	{
 	
-				ClientMsg message = ClientMessageProto.ClientMsg.newBuilder().setMessageType(MessageType.MESSAGE)
+		System.out.println("********** Cluster Message Received....");
+	
+	}
+
+	
+	public void sendMessage(ClusterMessage msg)
+	{
+		ClientMsg message = ClientMessageProto.ClientMsg.newBuilder().setMessageType(MessageType.MESSAGE)
 				.setMsgText(msg.getMsgText())
 				.setMsgImageBits(msg.getMsgImageBits())
 				.setSenderUserName(msg.getSenderUserName())
@@ -35,7 +42,5 @@ public class ClusterMsgHandler implements ClusterMsgHandlerInterface
 				{
 					System.out.println(e);
 				}
-	
 	}
-
 }

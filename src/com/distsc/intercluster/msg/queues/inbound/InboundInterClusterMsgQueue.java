@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.distsc.intercluster.msg.protobuff.ClusterMessageProto.ClusterMessage;
 
 
-public class InboundClusterMsgQueue
+public class InboundInterClusterMsgQueue
 {
 	private static ArrayList<ClusterMessage> recMessages = new ArrayList<ClusterMessage>();
 	

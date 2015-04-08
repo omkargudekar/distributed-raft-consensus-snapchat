@@ -14,6 +14,8 @@ public class ClientServerOutboundWorker implements Runnable
 		try
 		{
 			ClientMsg msg=null;
+			while(true)
+			{
 			if(OuboundClientMessageQueue.getMessageCount()>0)
 			{
 				msg=OuboundClientMessageQueue.popMessage();
@@ -23,6 +25,7 @@ public class ClientServerOutboundWorker implements Runnable
 			else
 			{
 				pause();
+			}
 			}
 		}
 		catch(Exception e)

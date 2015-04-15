@@ -1,10 +1,10 @@
-package com.distsc.chat.server;
+package com.distsc.network;
 
 import io.netty.channel.ChannelHandlerContext;
 
 import java.util.HashMap;
 
-public class ChatContext
+public class UserContextMap
 {
 	private static HashMap<String,ChannelHandlerContext> contextMap=new HashMap<String,ChannelHandlerContext>();
 	

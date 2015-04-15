@@ -1,19 +1,15 @@
 package com.distsc.chat.msg.handler;
 
 import io.netty.channel.ChannelHandlerContext;
-
 import com.distsc.app.config.GlobalConfiguration;
-import com.distsc.chat.server.ChatContext;
-import com.distsc.comm.protobuf.ClientMessageProto;
-import com.distsc.comm.protobuf.ClientMessageProto.ClientMsg;
-import com.distsc.comm.protobuf.ClientMessageProto.ClientMsg.ErrorType;
-import com.distsc.comm.protobuf.ClientMessageProto.ClientMsg.MessageType;
+import com.distsc.comm.protobuf.MessageProto;
+import com.distsc.comm.protobuf.MessageProto.Request;
+import com.distsc.network.UserContextMap;
 import com.distsc.util.SH1Generator;
-
 public class MessageValidator
 {
 	
-	public boolean validateRequest(ChannelHandlerContext ctx,ClientMsg msg)
+	public boolean validateRequest(ChannelHandlerContext ctx,Request msg)
 	{
 		boolean valid=true;
 		
@@ -39,7 +35,7 @@ public class MessageValidator
 	}
 	
 	
-	public boolean validateMessageSize(ChannelHandlerContext ctx,ClientMsg msg)
+	public boolean validateMessageSize(ChannelHandlerContext ctx,Request msg)
 	{
 		
 		if(msg.getSerializedSize() <= GlobalConfiguration.getMessageLimit())
@@ -49,25 +45,39 @@ public class MessageValidator
 		
 		else
 		{
-			ClientMsg message = ClientMessageProto.ClientMsg.newBuilder().setMessageType(MessageType.ERROR)
-					.setErrorType(ErrorType.MESSAGE_SIZE)
-					.setMsgText("Invalid Message Size..").build();
+			
+			Request message=MessageProto.Request.newBuilder()
+					.setMessageHeader(Request.MessageHeader.ClientMessageMsg)
+					.setPayload(MessageProto.Payload.newBuilder()
+					.setClientMessage(MessageProto.ClientMessage.
+							newBuilder().setClientMessageType(MessageProto.ClientMessage.ClientMessageType.ERROR)
+					.setClientMessageErrorType(MessageProto.ClientMessage.ClientMessageErrorType.MESSAGE_SIZE)
+					.setSenderMsgText("Invalid Message Size..."))).build();
+			
+			
 				ctx.writeAndFlush(message);
 				return false;
 		}
 	}
-	public boolean validateMsgText(ChannelHandlerContext ctx,ClientMsg msg)
+	public boolean validateMsgText(ChannelHandlerContext ctx,Request request)
 	{
-		if(msg.getChecksumMsgText().equals(SH1Generator.getStringCheckSum(msg.getChecksumMsgText())))
+		
+		if(request.getPayload().getClientMessage().getSenderMsgChecksumMsgText().equals(SH1Generator.getStringCheckSum(request.getPayload().getClientMessage().getSenderMsgText())))
 		{
 
 			return true;
 		}
 		else
 		{
-			ClientMsg message = ClientMessageProto.ClientMsg.newBuilder().setMessageType(MessageType.ERROR)
-					.setErrorType(ErrorType.MESSAGE_CORRUPT)
-					.setMsgText("Message Corrupted..").build();
+			Request message=MessageProto.Request.newBuilder()
+					.setMessageHeader(Request.MessageHeader.ClientMessageMsg)
+					.setPayload(MessageProto.Payload.newBuilder()
+					.setClientMessage(MessageProto.ClientMessage.
+							newBuilder().setClientMessageType(MessageProto.ClientMessage.ClientMessageType.ERROR)
+					.setClientMessageErrorType(MessageProto.ClientMessage.ClientMessageErrorType.MESSAGE_CORRUPT)
+					.setSenderMsgText("Message Text Corrupt..."))).build();
+			
+			
 				ctx.writeAndFlush(message);
 				return false;
 		}
@@ -75,18 +85,23 @@ public class MessageValidator
 		
 		
 	}
-	public boolean validateMsgImg(ChannelHandlerContext ctx,ClientMsg msg)
+	public boolean validateMsgImg(ChannelHandlerContext ctx,Request msg)
 	{
 
-		if(msg.getChecksumImageBits().equals(SH1Generator.getByteChecksum(msg.getMsgImageBits().toByteArray())))
+		if(msg.getPayload().getClientMessage().getSenderMsgChecksumImageBytes().equals(SH1Generator.getByteChecksum(msg.getPayload().getClientMessage().getSenderMsgImageBytes().toByteArray())))
 		{
 			return true;
 		}
 		else
 		{
-			ClientMsg message = ClientMessageProto.ClientMsg.newBuilder().setMessageType(MessageType.ERROR)
-					.setErrorType(ErrorType.MESSAGE_CORRUPT)
-					.setMsgText("Message Corrupted..").build();
+			Request message=MessageProto.Request.newBuilder()
+					.setMessageHeader(Request.MessageHeader.ClientMessageMsg)
+					.setPayload(MessageProto.Payload.newBuilder()
+					.setClientMessage(MessageProto.ClientMessage.
+							newBuilder().setClientMessageType(MessageProto.ClientMessage.ClientMessageType.ERROR)
+					.setClientMessageErrorType(MessageProto.ClientMessage.ClientMessageErrorType.MESSAGE_CORRUPT)
+					.setSenderMsgText("Image Corrupt..."))).build();
+			
 				ctx.writeAndFlush(message);
 				return false;
 		}
@@ -95,17 +110,22 @@ public class MessageValidator
 		
 	}
 	
-	public boolean checkReceiver(ChannelHandlerContext ctx,ClientMsg msg)
+	public boolean checkReceiver(ChannelHandlerContext ctx,Request msg)
 	{
-		if(ChatContext.isExist(msg.getReceiverUserName()))
+		if(UserContextMap.isExist(msg.getPayload().getClientMessage().getReceiverUserName()))
 		{
 			return true;
 		}
 		else
 		{
-			ClientMsg message = ClientMessageProto.ClientMsg.newBuilder().setMessageType(MessageType.ERROR)
-					.setErrorType(ErrorType.DELIVERY_FAIL)
-					.setMsgText("Delivery Failed..").build();
+			Request message=MessageProto.Request.newBuilder()
+					.setMessageHeader(Request.MessageHeader.ClientMessageMsg)
+					.setPayload(MessageProto.Payload.newBuilder()
+					.setClientMessage(MessageProto.ClientMessage.
+							newBuilder().setClientMessageType(MessageProto.ClientMessage.ClientMessageType.ERROR)
+					.setClientMessageErrorType(MessageProto.ClientMessage.ClientMessageErrorType.DELIVERY_FAIL)
+					.setSenderMsgText("Client Offline..."))).build();
+			
 				ctx.writeAndFlush(message);
 				return false;
 		}

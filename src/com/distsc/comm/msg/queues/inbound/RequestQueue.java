@@ -1,4 +1,4 @@
-package com.distsc.server;
+package com.distsc.comm.msg.queues.inbound;
 
 import java.util.ArrayList;
 

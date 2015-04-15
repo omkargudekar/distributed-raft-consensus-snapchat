@@ -4,18 +4,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.distsc.app.config.GlobalConfiguration;
-import com.distsc.comm.protobuf.NodeMessageProto.Message;
+import com.distsc.comm.protobuf.MessageProto.Request;
 
 public class ImageWriter
 {
 
-	public void storeImage(Message message)
+	public void storeImage(Request message)
 	{
 		FileOutputStream fileOuputStream = null;
 		try
 		{
-			byte[] bFile = message.getImageBits().toByteArray();
-			fileOuputStream = new FileOutputStream(GlobalConfiguration.getClientMessageStorageDir() + message.getFileName());
+			byte[] bFile = message.getPayload().getClientMessage().getSenderMsgImageBytes().toByteArray();
+			fileOuputStream = new FileOutputStream(GlobalConfiguration.getClientMessageStorageDir() + message.getPayload().getClientMessage().getSenderMsgImageName());
 			fileOuputStream.write(bFile);
 
 		}

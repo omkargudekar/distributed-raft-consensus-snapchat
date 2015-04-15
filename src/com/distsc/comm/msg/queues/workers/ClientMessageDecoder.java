@@ -1,8 +1,12 @@
-package com.distsc.comm.msg.decoders;
+package com.distsc.comm.msg.queues.workers;
 import io.netty.channel.ChannelHandlerContext;
 
-import com.distsc.chat.msg.handler.*;
-import com.distsc.comm.protobuf.ClientMessageProto.ClientMsg;
+import com.distsc.chat.msg.handler.AckHandler;
+import com.distsc.chat.msg.handler.ErrorHandler;
+import com.distsc.chat.msg.handler.LoginHandler;
+import com.distsc.chat.msg.handler.LogoutHandler;
+import com.distsc.chat.msg.handler.MessageHandler;
+import com.distsc.comm.protobuf.MessageProto.Request;
 
 
 
@@ -10,11 +14,11 @@ public class ClientMessageDecoder
 {
 	
 	
-	public synchronized static void handle(ChannelHandlerContext ctx,ClientMsg msg)
+	public synchronized static void handle(ChannelHandlerContext ctx,Request msg)
 	{
 		
 		
-		switch (msg.getMessageType())
+		switch (msg.getPayload().getClientMessage().getClientMessageType())
 		{
 		
 		case LOGIN:
@@ -42,12 +46,6 @@ public class ClientMessageDecoder
 		}
 		
 
-		/*
-		System.out.println("************** Received Client Message **************");
-		ClientMessageBuffer.pushMessage(msg);
-		ImageWriter imgWriter=new ImageWriter();
-		imgWriter.storeImage(msg);
-*/
 		
 	}
 	

@@ -27,7 +27,7 @@ public class NodeDiscoveryThead implements Runnable
 			{		
 				for(Node node : GlobalConfiguration.getNodes())
 				{
-					if(!NetworkMap.isChannelExist(node.getNodeID()))
+					if(!NetworkContextMap.isChannelExist(node.getNodeID()))
 					{
 						ch = b.connect(node.getNodeIP(), node.getNodePort()).sync().channel();
 						lastWriteFuture = ch.writeAndFlush(getNodeDiscoveryMessage());

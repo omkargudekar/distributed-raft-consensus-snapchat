@@ -3,8 +3,8 @@ package com.distsc.raft;
 import java.util.Random;
 
 import com.distsc.beans.Node;
-import com.distsc.comm.msg.queues.inbound.NominationsQueue;
-import com.distsc.comm.msg.queues.inbound.VotesQueue;
+import com.distsc.comm.msg.queues.inbound.RequestVoteMsgQueue;
+import com.distsc.comm.msg.queues.inbound.RequestVoteResultMsgQueue;
 
 public class RAFTStatus
 {
@@ -52,8 +52,8 @@ public class RAFTStatus
 	
 	public static synchronized void afterLeaderElectinReset()
 	{
-		VotesQueue.reset();
-		NominationsQueue.reset();
+		RequestVoteMsgQueue.reset();
+		RequestVoteResultMsgQueue.reset();
 		
 	}
 	

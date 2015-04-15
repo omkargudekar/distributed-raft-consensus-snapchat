@@ -1,77 +1,44 @@
 package com.distsc.chat.msg.handler;
 
 import io.netty.channel.ChannelHandlerContext;
-
-import com.distsc.chat.server.ChatContext;
-import com.distsc.comm.protobuf.ClientMessageProto;
-import com.distsc.comm.protobuf.ClientMessageProto.ClientMsg;
-import com.distsc.comm.protobuf.ClientMessageProto.ClientMsg.ErrorType;
-import com.distsc.comm.protobuf.ClientMessageProto.ClientMsg.MessageType;
-import com.distsc.raft.RAFTStatus;
+import com.distsc.comm.protobuf.MessageProto;
+import com.distsc.comm.protobuf.MessageProto.Request;
+import com.distsc.network.UserContextMap;
 
 public class LoginHandler implements ClientMsgHandler
 {
 
 	@Override
-	public void handle(ChannelHandlerContext ctx,ClientMsg msg)
+	public void handle(ChannelHandlerContext ctx,Request request)
 	{
 		
-		System.out.println(msg.getMessageType()+" From "+msg.getSenderUserName());
-		switch (RAFTStatus.getCurrentNodeState())
+		if(UserContextMap.isExist(request.getPayload().getClientMessage().getSenderUserName()))
 		{
-		case Leader:
-			connectUser(ctx,msg);
-			break;
-
-		case Candidate:
-			sendError(ctx,msg);
-			break;
-
-		case Follower:
-			redirectToLeader(ctx,msg);
-			break;
-		default:
-			break;
-		}
-		
-	}
-	public void redirectToLeader(ChannelHandlerContext ctx,ClientMsg msg)
-	{
-		
-		ClientMsg message = ClientMessageProto.ClientMsg.newBuilder().setMessageType(MessageType.ERROR)
-				.setErrorType(ErrorType.INVALID_LEADER)
-				.setMsgText(RAFTStatus.getDeclaredLeader().getNodeIP()+"-"+RAFTStatus.getDeclaredLeader().getNodePort()).build();
-		ctx.writeAndFlush(message);
-		
-		
-	}
-	
-	public void sendError(ChannelHandlerContext ctx,ClientMsg msg)
-	{
-		
-		ClientMsg message = ClientMessageProto.ClientMsg.newBuilder().setMessageType(MessageType.ERROR)
-				.setErrorType(ErrorType.DELIVERY_FAIL)
-				.setMsgText("Please Wait...").build();
-		ctx.writeAndFlush(message);
-		
-		
-	}
-	public void connectUser(ChannelHandlerContext ctx,ClientMsg msg)
-	{
-		if(ChatContext.isExist(msg.getSenderUserName()))
-		{
-			ClientMsg message = ClientMessageProto.ClientMsg.newBuilder().setMessageType(MessageType.ERROR)
-					.setErrorType(ErrorType.INVALID_LOGIN)
-					.setMsgText("Username Already Taken...").build();
+			Request message=MessageProto.Request.newBuilder()
+					.setMessageHeader(Request.MessageHeader.ClientMessageMsg)
+					.setPayload(MessageProto.Payload.newBuilder()
+					.setClientMessage(MessageProto.ClientMessage.
+							newBuilder().setClientMessageType(MessageProto.ClientMessage.ClientMessageType.ERROR)
+					.setClientMessageErrorType(MessageProto.ClientMessage.ClientMessageErrorType.INVALID_LOGIN)
+					.setSenderMsgText("Username Already Taken..."))).build();
 			ctx.writeAndFlush(message);
 		}
 		else
 		{
-			ChatContext.addClientContext(msg.getSenderUserName(), ctx);
-			ClientMsg message = ClientMessageProto.ClientMsg.newBuilder().setMessageType(MessageType.LOGIN_SUCCESS)
-					.setMsgText("Logged In...").build();
+			UserContextMap.addClientContext(request.getPayload().getClientMessage().getSenderUserName(), ctx);
+			
+			
+			Request message=MessageProto.Request.newBuilder()
+					.setMessageHeader(Request.MessageHeader.ClientMessageMsg)
+					.setPayload(MessageProto.Payload.newBuilder()
+					.setClientMessage(MessageProto.ClientMessage.
+							newBuilder().setClientMessageType(MessageProto.ClientMessage.ClientMessageType.LOGIN_SUCCESS)
+					.setSenderMsgText("Logged In..."))).build();
 			ctx.writeAndFlush(message);
-		}
+			
+			
+		}		
 	}
+	
 
 }

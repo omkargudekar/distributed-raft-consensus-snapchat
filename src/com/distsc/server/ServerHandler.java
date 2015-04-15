@@ -6,6 +6,7 @@ import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
 import com.distsc.beans.RequestContext;
+import com.distsc.comm.msg.queues.inbound.RequestQueue;
 import com.distsc.comm.protobuf.MessageProto.Request;
 
 

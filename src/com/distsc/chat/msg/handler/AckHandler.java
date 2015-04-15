@@ -2,15 +2,24 @@ package com.distsc.chat.msg.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 
-import com.distsc.comm.protobuf.ClientMessageProto.ClientMsg;
+import com.distsc.comm.protobuf.MessageProto.Request;
+import com.distsc.network.UserContextMap;
 
 public class AckHandler implements ClientMsgHandler
 {
 
 	@Override
-	public void handle(ChannelHandlerContext ctx,ClientMsg msg)
+	public void handle(ChannelHandlerContext ctx,Request msg)
 	{
-		System.out.println(msg.getMessageType()+" From "+msg.getSenderUserName());		
+		MessageValidator validator=new MessageValidator();
+		
+		if(validator.validateMessageSize(ctx,msg)==true)
+		{
+			
+			UserContextMap.getClientContext(msg.getPayload().getClientMessage().getReceiverUserName()).writeAndFlush(msg);
+			
+			
+		}		
 	}
 
 }

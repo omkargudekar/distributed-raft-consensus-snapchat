@@ -1,9 +1,10 @@
-package com.distsc.server;
+package com.distsc.comm.msg.queues.workers;
 import com.distsc.beans.RequestContext;
 import com.distsc.comm.msg.queues.inbound.AppendEntriesQueue;
 import com.distsc.comm.msg.queues.inbound.AppendEntriesResultQueue;
 import com.distsc.comm.msg.queues.inbound.ClientMessageMsgQueue;
 import com.distsc.comm.msg.queues.inbound.NodeDiscoveryMsgQueue;
+import com.distsc.comm.msg.queues.inbound.RequestQueue;
 import com.distsc.comm.msg.queues.inbound.RequestVoteMsgQueue;
 import com.distsc.comm.msg.queues.inbound.RequestVoteResultMsgQueue;
 

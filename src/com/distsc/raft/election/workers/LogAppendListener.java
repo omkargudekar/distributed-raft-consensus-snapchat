@@ -50,7 +50,7 @@ public class LogAppendListener implements Runnable
 			for (int counter = 0; counter < AppendEntriesQueue.getCount(); counter++)
 			{
 				requestContext = AppendEntriesQueue.pop();
-				System.out.println("Leader found with Tearm : " + requestContext.getRequest().getPayload().getAppendEntries().getTerm());
+				System.out.println("Leader found with Term : " + requestContext.getRequest().getPayload().getAppendEntries().getTerm());
 				if (requestContext.getRequest().getPayload().getAppendEntries().getTerm() < RAFTStatus.getCurrentTerm())
 				{
 					System.out.println("Stale Log.Changing State from Leader to Follower.");
@@ -80,7 +80,7 @@ public class LogAppendListener implements Runnable
 			for (int counter = 0; counter < AppendEntriesQueue.getCount(); counter++)
 			{
 				requestContext = AppendEntriesQueue.pop();
-				System.out.println("Leader found with Tearm : " + requestContext.getRequest().getPayload().getAppendEntries().getTerm());
+				System.out.println("Leader found with Term : " + requestContext.getRequest().getPayload().getAppendEntries().getTerm());
 				if (requestContext.getRequest().getPayload().getAppendEntries().getTerm() < RAFTStatus.getCurrentTerm())
 				{
 					System.out.println("Stale Log.Changing State from Leader to Follower.");
@@ -107,21 +107,24 @@ public class LogAppendListener implements Runnable
 			RAFTStatus.setVoted(false);
 			RAFTStatus.setDeclaredLeader(null);
 		}
-		else if (AppendEntriesQueue.getCount() > 0)
-		{		RequestContext requestContext = AppendEntriesQueue.pop();
-				Request msg = null;
-				System.out.println("Heartbeat Received : Leader Id : " 
-								+requestContext.getRequest().getPayload().getAppendEntries().getLeaderId()
-								+" Leader Term :"
-								+ requestContext.getRequest().getPayload().getAppendEntries().getTerm());
-				msg = Request.newBuilder().setMessageHeader(Request.MessageHeader.AappendEntriesResultMsg).setPayload(MessageProto.Payload.newBuilder().setAppendEntriesresult(MessageProto.AppendEntriesResult.newBuilder().setTerm(RAFTStatus.getCurrentTerm()).setSuccess(true))).build();
-				NodeChannelContextMap.getNodeContext(requestContext.getRequest().getPayload().getAppendEntries().getLeaderId()).writeAndFlush(msg);
-				AppendEntriesQueue.reset();
-		}
-		else
+		else if (AppendEntriesQueue.getCount() > 0 && RAFTStatus.getDeclaredLeader() != null)
 		{
-			pause();
+			RequestContext requestContext=null;
+			for (int counter = 0; counter < AppendEntriesQueue.getCount(); counter++)
+			{
+				requestContext = AppendEntriesQueue.pop();
+				System.out.println("Heartbeat Received : Leader Id : " + requestContext.getRequest().getPayload().getAppendEntries().getLeaderId() + " Leader Term :" + requestContext.getRequest().getPayload().getAppendEntries().getTerm());
+				Request msg = Request.newBuilder().setMessageHeader(Request.MessageHeader.AappendEntriesResultMsg).setPayload(MessageProto.Payload.newBuilder().setAppendEntriesresult(MessageProto.AppendEntriesResult.newBuilder().setTerm(RAFTStatus.getCurrentTerm()).setSuccess(true))).build();
+				NodeChannelContextMap.getNodeContext(requestContext.getRequest().getPayload().getAppendEntries().getLeaderId()).writeAndFlush(msg);
+			}
+
 		}
+		else if(AppendEntriesQueue.getCount() > 0 && RAFTStatus.getDeclaredLeader() == null)
+		{
+			AppendEntriesQueue.reset();
+		}
+		pause();
+		
 	}
 
 	public void starRAFTTimer()

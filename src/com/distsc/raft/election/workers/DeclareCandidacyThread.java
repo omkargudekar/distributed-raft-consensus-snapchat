@@ -43,7 +43,7 @@ public class DeclareCandidacyThread implements Runnable
 
 	private void nominate()
 	{
-		waitForRAFTTimeOut();
+		RAFTTimeout();
 		if(RAFTStatus.getCurrentNodeState()==RAFTStatus.NodeState.Follower && RAFTStatus.getDeclaredLeader()==null && RAFTStatus.hasVoted()==false)
 		{
 			System.out.println("Declaring Candidacy...");
@@ -88,18 +88,7 @@ public class DeclareCandidacyThread implements Runnable
 		RAFTStatus.setVoted(false);
 
 	}
-	private void waitForRAFTTimeOut()
-	{
-		try
-		{
-			Thread.sleep(RAFTStatus.getRaftTimer());
-		}
-		catch (InterruptedException e)
-		{
-			e.printStackTrace();
-		}
 
-	}
 
 	private void RAFTTimeout()
 	{

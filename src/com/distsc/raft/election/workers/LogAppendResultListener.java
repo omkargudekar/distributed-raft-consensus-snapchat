@@ -52,9 +52,9 @@ public class LogAppendResultListener implements Runnable
 			for(int counter=0;counter<AppendEntriesQueue.getCount();counter++)
 			{
 				requestContext=AppendEntriesQueue.pop();
-				System.out.println("AppendEntriesResult Received From : "+requestContext.getRequest().getPayload().getAppendEntriesresult().getSenderNodeId()+
-									" TermId: "+requestContext.getRequest().getPayload().getAppendEntriesresult().getTerm()+
-									" Success: "+requestContext.getRequest().getPayload().getAppendEntriesresult().getSuccess());
+				System.out.println("AppendEntriesResult Received From \nNode: "+requestContext.getRequest().getPayload().getAppendEntriesresult().getSenderNodeId()+
+									" \n TermId: "+requestContext.getRequest().getPayload().getAppendEntriesresult().getTerm()+
+									" \n Success: "+requestContext.getRequest().getPayload().getAppendEntriesresult().getSuccess());
 				
 			}
 		}

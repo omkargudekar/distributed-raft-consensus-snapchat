@@ -18,24 +18,26 @@ public class NodeDiscoveryMsgQueueWorker implements Runnable
 			if (NodeDiscoveryMsgQueue.getCount() > 0)
 			{
 				System.out.println("NodeDiscovery Message Found...");
-
-				requestMessage = NodeDiscoveryMsgQueue.pop();
-				switch (requestMessage.getRequest().getPayload().getNodeDiscovery().getNodeDiscoveryMessageType())
+				for (int counter = 0; counter < NodeDiscoveryMsgQueue.getCount(); counter++)
 				{
+					requestMessage = NodeDiscoveryMsgQueue.pop();
+					switch (requestMessage.getRequest().getPayload().getNodeDiscovery().getNodeDiscoveryMessageType())
+					{
 					case REQUEST_CONNECTION:
-					ListnerConnectionRequestQueue.push(requestMessage);
-					break;
+						ListnerConnectionRequestQueue.push(requestMessage);
+						break;
 
 					case RESPONSE_CONNECTION_ACCEPTED:
-					checkAndAddNodeChannel(requestMessage);
-					break;
-					
+						checkAndAddNodeChannel(requestMessage);
+						break;
+
 					case RESPONSE_CONNECTION_REJECTED:
-					checkAndRemoveNodeChannel(requestMessage);
-					break;
+						checkAndRemoveNodeChannel(requestMessage);
+						break;
 
 					default:
-					break;
+						break;
+					}
 				}
 			}
 			else
@@ -44,29 +46,31 @@ public class NodeDiscoveryMsgQueueWorker implements Runnable
 			}
 		}
 	}
+
 	public void checkAndAddNodeChannel(RequestContext requestMessage)
 	{
-		Request request=requestMessage.getRequest();
-		if(!NodeChannelContextMap.isChannelExist(request.getPayload().getNodeDiscovery().getNODEID()))
+		Request request = requestMessage.getRequest();
+		if (!NodeChannelContextMap.isChannelExist(request.getPayload().getNodeDiscovery().getNODEID()))
 		{
-			System.out.println("Adding Channel for "+request.getPayload().getNodeDiscovery().getNODEID());
-			NodeChannelContextMap.addNodeChnnelContext(request.getPayload().getNodeDiscovery().getNODEID(),
-					requestMessage.getContext());
+			System.out.println("Adding Channel for " + request.getPayload().getNodeDiscovery().getNODEID());
+			NodeChannelContextMap.addNodeChnnelContext(request.getPayload().getNodeDiscovery().getNODEID(), requestMessage.getContext());
 		}
 	}
-	
+
 	public void checkAndRemoveNodeChannel(RequestContext requestMessage)
 	{
-		Request request=requestMessage.getRequest();
-		if(NodeChannelContextMap.isChannelExist(request.getPayload().getNodeDiscovery().getNODEID()))
+		Request request = requestMessage.getRequest();
+		if (NodeChannelContextMap.isChannelExist(request.getPayload().getNodeDiscovery().getNODEID()))
 		{
-			System.out.println("Removing Channel of "+request.getPayload().getNodeDiscovery().getNODEID());
+			System.out.println("Removing Channel of " + request.getPayload().getNodeDiscovery().getNODEID());
 
 			NodeChannelContextMap.removeNodeChannelContext(request.getPayload().getNodeDiscovery().getNODEID());
 		}
-		
+
 	}
-	public void pause(){
+
+	public void pause()
+	{
 		try
 		{
 			Thread.sleep(100);
@@ -77,8 +81,5 @@ public class NodeDiscoveryMsgQueueWorker implements Runnable
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
+
 }

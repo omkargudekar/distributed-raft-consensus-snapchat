@@ -16,6 +16,7 @@ public class UserChannelContextMap
 	
 	public static void addClientContext(String username,ChannelHandlerContext clientContext)
 	{
+		System.out.println("Channel Added for User : "+username);
 		contextMap.put(username, clientContext);
 		
 	}

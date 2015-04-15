@@ -3,7 +3,7 @@ package com.distsc.client.msg.handler;
 import io.netty.channel.ChannelHandlerContext;
 
 import com.distsc.comm.protobuf.MessageProto.Request;
-import com.distsc.network.maps.UserContextMap;
+import com.distsc.network.maps.UserChannelContextMap;
 
 public class ErrorHandler  implements ClientMsgHandlerInterface
 {
@@ -16,7 +16,7 @@ public class ErrorHandler  implements ClientMsgHandlerInterface
 		if(validator.validateMessageSize(ctx,msg)==true)
 		{
 			
-			UserContextMap.getClientContext(msg.getPayload().getClientMessage().getReceiverUserName()).writeAndFlush(msg);
+			UserChannelContextMap.getClientContext(msg.getPayload().getClientMessage().getReceiverUserName()).writeAndFlush(msg);
 			
 			
 		}		

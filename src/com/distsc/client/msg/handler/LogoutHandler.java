@@ -3,7 +3,7 @@ package com.distsc.client.msg.handler;
 import io.netty.channel.ChannelHandlerContext;
 
 import com.distsc.comm.protobuf.MessageProto.Request;
-import com.distsc.network.maps.UserContextMap;
+import com.distsc.network.maps.UserChannelContextMap;
 
 public class LogoutHandler implements ClientMsgHandlerInterface
 {
@@ -12,10 +12,10 @@ public class LogoutHandler implements ClientMsgHandlerInterface
 	{
 		
 		
-		if(UserContextMap.isExist(msg.getPayload().getClientMessage().getSenderUserName()))
+		if(UserChannelContextMap.isExist(msg.getPayload().getClientMessage().getSenderUserName()))
 		{	
 			ctx.close();
-			UserContextMap.removeClientContext(msg.getPayload().getClientMessage().getSenderUserName());
+			UserChannelContextMap.removeClientContext(msg.getPayload().getClientMessage().getSenderUserName());
 		}
 		
 		

@@ -5,7 +5,6 @@ import io.netty.channel.ChannelHandlerContext;
 import com.distsc.app.config.GlobalConfiguration;
 import com.distsc.comm.protobuf.MessageProto;
 import com.distsc.comm.protobuf.MessageProto.Request;
-import com.distsc.network.maps.UserContextMap;
 import com.distsc.util.SH1Generator;
 public class MessageValidator
 {
@@ -14,10 +13,7 @@ public class MessageValidator
 	{
 		boolean valid=true;
 		
-		if(valid==true)
-		{
-			valid=checkReceiver(ctx,msg);
-		}
+
 		if(valid==true)
 		{
 			valid=validateMessageSize(ctx,msg);
@@ -111,26 +107,5 @@ public class MessageValidator
 		
 	}
 	
-	public boolean checkReceiver(ChannelHandlerContext ctx,Request msg)
-	{
-		if(UserContextMap.isExist(msg.getPayload().getClientMessage().getReceiverUserName()))
-		{
-			return true;
-		}
-		else
-		{
-			Request message=MessageProto.Request.newBuilder()
-					.setMessageHeader(Request.MessageHeader.ClientMessageMsg)
-					.setPayload(MessageProto.Payload.newBuilder()
-					.setClientMessage(MessageProto.ClientMessage.
-							newBuilder().setClientMessageType(MessageProto.ClientMessage.ClientMessageType.ERROR)
-					.setClientMessageErrorType(MessageProto.ClientMessage.ClientMessageErrorType.DELIVERY_FAIL)
-					.setSenderMsgText("Client Offline..."))).build();
-			
-				ctx.writeAndFlush(message);
-				return false;
-		}
 	
-	}
-
 }

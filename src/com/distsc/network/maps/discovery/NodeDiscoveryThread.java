@@ -10,7 +10,7 @@ import com.distsc.app.config.GlobalConfiguration;
 import com.distsc.beans.Node;
 import com.distsc.comm.protobuf.MessageProto;
 import com.distsc.comm.protobuf.MessageProto.Request;
-import com.distsc.network.maps.NetworkContextMap;
+import com.distsc.network.maps.NodeChannelContextMap;
 public class NodeDiscoveryThread implements Runnable
 {
 	private EventLoopGroup group = null;
@@ -28,7 +28,7 @@ public class NodeDiscoveryThread implements Runnable
 			{		
 				for(Node node : GlobalConfiguration.getNodes())
 				{
-					if(!NetworkContextMap.isChannelExist(node.getNodeID()))
+					if(!NodeChannelContextMap.isChannelExist(node.getNodeID()))
 					{
 						ch = b.connect(node.getNodeIP(), node.getNodePort()).sync().channel();
 						lastWriteFuture = ch.writeAndFlush(getNodeDiscoveryMessage());

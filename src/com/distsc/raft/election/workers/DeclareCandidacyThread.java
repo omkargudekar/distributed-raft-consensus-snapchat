@@ -8,7 +8,7 @@ import com.distsc.comm.msg.queues.RequestVoteResultMsgQueue;
 import com.distsc.comm.protobuf.MessageProto;
 import com.distsc.comm.protobuf.MessageProto.Request;
 import com.distsc.raft.RAFTStatus;
-import com.distsc.server.FollowerMulticast;
+import com.distsc.server.ClusterMulticast;
 
 public class DeclareCandidacyThread implements Runnable
 {
@@ -49,7 +49,7 @@ public class DeclareCandidacyThread implements Runnable
 			System.out.println("Declaring Candidacy...");
 			RAFTStatus.setVoted(true);
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Candidate);
-			FollowerMulticast followerMulticast=new FollowerMulticast();
+			ClusterMulticast followerMulticast=new ClusterMulticast();
 			
 			Request msg=Request.newBuilder().setMessageHeader(Request.MessageHeader.RequestVoteMsg)
 												.setPayload(MessageProto.Payload.newBuilder().setRequestVote(MessageProto.RequestVote.newBuilder()

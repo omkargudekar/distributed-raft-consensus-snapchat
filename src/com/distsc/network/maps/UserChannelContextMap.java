@@ -4,7 +4,7 @@ import io.netty.channel.ChannelHandlerContext;
 
 import java.util.HashMap;
 
-public class UserContextMap
+public class UserChannelContextMap
 {
 	private static HashMap<String,ChannelHandlerContext> contextMap=new HashMap<String,ChannelHandlerContext>();
 	

@@ -4,7 +4,7 @@ import io.netty.channel.ChannelHandlerContext;
 
 import com.distsc.comm.protobuf.MessageProto;
 import com.distsc.comm.protobuf.MessageProto.Request;
-import com.distsc.network.maps.UserContextMap;
+import com.distsc.network.maps.UserChannelContextMap;
 
 public class LoginHandler implements ClientMsgHandlerInterface
 {
@@ -13,7 +13,7 @@ public class LoginHandler implements ClientMsgHandlerInterface
 	public void handle(ChannelHandlerContext ctx,Request request)
 	{
 		
-		if(UserContextMap.isExist(request.getPayload().getClientMessage().getSenderUserName()))
+		if(UserChannelContextMap.isExist(request.getPayload().getClientMessage().getSenderUserName()))
 		{
 			Request message=MessageProto.Request.newBuilder()
 					.setMessageHeader(Request.MessageHeader.ClientMessageMsg)
@@ -26,7 +26,7 @@ public class LoginHandler implements ClientMsgHandlerInterface
 		}
 		else
 		{
-			UserContextMap.addClientContext(request.getPayload().getClientMessage().getSenderUserName(), ctx);
+			UserChannelContextMap.addClientContext(request.getPayload().getClientMessage().getSenderUserName(), ctx);
 			
 			
 			Request message=MessageProto.Request.newBuilder()

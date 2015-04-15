@@ -3,7 +3,7 @@ package com.distsc.comm.msg.queues.workers;
 import com.distsc.beans.RequestContext;
 import com.distsc.comm.msg.queues.NodeDiscoveryMsgQueue;
 import com.distsc.comm.protobuf.MessageProto.Request;
-import com.distsc.network.maps.NetworkContextMap;
+import com.distsc.network.maps.NodeChannelContextMap;
 import com.distsc.server.listener.ListnerConnectionRequestQueue;
 
 public class NodeDiscoveryMsgQueueWorker implements Runnable
@@ -39,9 +39,9 @@ public class NodeDiscoveryMsgQueueWorker implements Runnable
 	public void checkAndAddNodeChannel(RequestContext requestMessage)
 	{
 		Request request=requestMessage.getRequest();
-		if(!NetworkContextMap.isChannelExist(request.getPayload().getNodeDiscovery().getNODEID()))
+		if(!NodeChannelContextMap.isChannelExist(request.getPayload().getNodeDiscovery().getNODEID()))
 		{
-			NetworkContextMap.addNodeChnnelContext(request.getPayload().getNodeDiscovery().getNODEID(),
+			NodeChannelContextMap.addNodeChnnelContext(request.getPayload().getNodeDiscovery().getNODEID(),
 					requestMessage.getContext());
 		}
 	}
@@ -49,9 +49,9 @@ public class NodeDiscoveryMsgQueueWorker implements Runnable
 	public void checkAndRemoveNodeChannel(RequestContext requestMessage)
 	{
 		Request request=requestMessage.getRequest();
-		if(NetworkContextMap.isChannelExist(request.getPayload().getNodeDiscovery().getNODEID()))
+		if(NodeChannelContextMap.isChannelExist(request.getPayload().getNodeDiscovery().getNODEID()))
 		{
-			NetworkContextMap.removeNodeChannelContext(request.getPayload().getNodeDiscovery().getNODEID());
+			NodeChannelContextMap.removeNodeChannelContext(request.getPayload().getNodeDiscovery().getNODEID());
 		}
 		
 	}

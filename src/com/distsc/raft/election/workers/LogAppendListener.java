@@ -5,7 +5,7 @@ import com.distsc.beans.RequestContext;
 import com.distsc.comm.msg.queues.AppendEntriesQueue;
 import com.distsc.comm.protobuf.MessageProto;
 import com.distsc.comm.protobuf.MessageProto.Request;
-import com.distsc.network.maps.NetworkContextMap;
+import com.distsc.network.maps.NodeChannelContextMap;
 import com.distsc.raft.RAFTStatus;
 
 public class LogAppendListener implements Runnable
@@ -108,7 +108,7 @@ public class LogAppendListener implements Runnable
 							.setSuccess(true)
 							)).build();
 
-			NetworkContextMap.getNodeContext(requestContext.getRequest().getPayload().getAppendEntries().getLeaderId()).
+			NodeChannelContextMap.getNodeContext(requestContext.getRequest().getPayload().getAppendEntries().getLeaderId()).
 			writeAndFlush(msg);
 		}
 	}

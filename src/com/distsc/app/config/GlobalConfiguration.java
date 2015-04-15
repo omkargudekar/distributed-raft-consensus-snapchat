@@ -11,9 +11,17 @@ import com.distsc.raft.RAFTStatus;
 
 public class GlobalConfiguration
 {
+	private static int totalVotes=0;
+	public static int getTotalVotes()
+	{
+		return totalVotes;
+	}
 
-	
-	
+	public static void setTotalVotes(int totalVotes)
+	{
+		GlobalConfiguration.totalVotes = totalVotes;
+	}
+
 	private static int currentTerm;
 	public static int getCurrentTerm()
 	{

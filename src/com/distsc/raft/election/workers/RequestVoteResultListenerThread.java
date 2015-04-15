@@ -1,12 +1,11 @@
 package com.distsc.raft.election.workers;
 
 import com.distsc.app.config.GlobalConfiguration;
-import com.distsc.comm.msg.queues.inbound.HeartbeatQueue;
-import com.distsc.comm.msg.queues.inbound.NominationsQueue;
-import com.distsc.comm.msg.queues.inbound.VotesQueue;
+import com.distsc.beans.RequestContext;
+import com.distsc.comm.msg.queues.inbound.RequestVoteResultMsgQueue;
 import com.distsc.raft.RAFTStatus;
 
-public class VoteListenerThread implements Runnable
+public class RequestVoteResultListenerThread implements Runnable
 {
 
 	@Override
@@ -47,15 +46,23 @@ public class VoteListenerThread implements Runnable
 	
 	public void checkVotes()
 	{
-		if (VotesQueue.getNodeVoteCount() > (GlobalConfiguration.getNetwotkSize()/2) )
+		RequestContext context=null;
+		for(int counter=0;counter<RequestVoteResultMsgQueue.getCount();counter++)
+		{
+			context=RequestVoteResultMsgQueue.pop();
+			
+			if(context.getRequest().getPayload().getRequestVoteResult().getVoteGranted()==true)
+			{
+				GlobalConfiguration.setTotalVotes(GlobalConfiguration.getTotalVotes()+1);
+			}
+			
+		}
+		if (GlobalConfiguration.getTotalVotes() > (GlobalConfiguration.getNetwotkSize()/2) )
 		{	
 			System.out.println("****  Elected As Leader ****");
-			RAFTStatus.setDeclaredLeader(GlobalConfiguration.getCurrentNode());
+			RAFTStatus.setDeclaredLeader(GlobalConfiguration.getCurrentNode().getNodeID());
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Leader);
-			VotesQueue.reset();
-			NominationsQueue.reset();
-			HeartbeatQueue.reset();
-			RAFTStatus.setVoted(false);
+			GlobalConfiguration.reset();
 		}
 	
 	}

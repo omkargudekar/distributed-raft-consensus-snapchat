@@ -1,7 +1,5 @@
-package com.distsc.raft.algorithm;
+package com.distsc.raft;
 
-import com.distsc.raft.LeaderElectionThread;
-import com.distsc.raft.RAFTStatus;
 
 
 public class RAFT implements Runnable

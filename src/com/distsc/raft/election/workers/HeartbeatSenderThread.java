@@ -1,11 +1,10 @@
 package com.distsc.raft.election.workers;
 
 import com.distsc.app.config.GlobalConfiguration;
-import com.distsc.comm.protobuf.NodeMessageProto;
-import com.distsc.comm.protobuf.NodeMessageProto.Message;
-import com.distsc.comm.protobuf.NodeMessageProto.Message.MessageType;
-import com.distsc.network.OutboundMulticast;
+import com.distsc.comm.protobuf.MessageProto;
+import com.distsc.comm.protobuf.MessageProto.Request;
 import com.distsc.raft.RAFTStatus;
+import com.distsc.server.FollowerMulticast;
 
 public class HeartbeatSenderThread implements Runnable
 {
@@ -44,10 +43,13 @@ public class HeartbeatSenderThread implements Runnable
 	
 	private void sendHeartbeat()
 	{
-
-		OutboundMulticast multicast = new OutboundMulticast();
-		Message msg = NodeMessageProto.Message.newBuilder().setMessageType(MessageType.HEARTBEAT).setNodeId(GlobalConfiguration.getCurrentNode().getNodeID()).setNodeIp(GlobalConfiguration.getCurrentNode().getNodeIP()).setNodePort(GlobalConfiguration.getCurrentNode().getNodePort()).build();
-		multicast.send(msg);
+		FollowerMulticast followerMulticast=new FollowerMulticast();
+		
+		Request msg=Request.newBuilder().setMessageHeader(Request.MessageHeader.AppendEntriesMsg)
+											.setPayload(MessageProto.Payload.newBuilder().setAppendEntries(MessageProto.AppendEntries.newBuilder()
+													.setLeaderId(GlobalConfiguration.getCurrentNode().getNodeID())
+													.setTerm(GlobalConfiguration.getCurrentTerm()))).build();
+		followerMulticast.send(msg);
 		nextHeartbeatWait();
 	}
 	

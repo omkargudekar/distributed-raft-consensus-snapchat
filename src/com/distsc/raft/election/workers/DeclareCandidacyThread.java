@@ -46,8 +46,8 @@ public class DeclareCandidacyThread implements Runnable
 		waitForRAFTTimeOut();
 		if(RAFTStatus.getCurrentNodeState()==RAFTStatus.NodeState.Follower && RAFTStatus.getDeclaredLeader()==null)
 		{
-			RAFTStatus.setVoted(true);
 			System.out.println("Declaring Candidacy...");
+			RAFTStatus.setVoted(true);
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Candidate);
 			FollowerMulticast followerMulticast=new FollowerMulticast();
 			

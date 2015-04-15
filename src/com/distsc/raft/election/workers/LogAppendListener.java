@@ -3,9 +3,6 @@ package com.distsc.raft.election.workers;
 import com.distsc.app.config.GlobalConfiguration;
 import com.distsc.beans.RequestContext;
 import com.distsc.comm.msg.queues.inbound.AppendEntriesQueue;
-import com.distsc.comm.msg.queues.inbound.AppendEntriesResultQueue;
-import com.distsc.comm.msg.queues.inbound.RequestVoteMsgQueue;
-import com.distsc.comm.msg.queues.inbound.RequestVoteResultMsgQueue;
 import com.distsc.comm.protobuf.MessageProto;
 import com.distsc.comm.protobuf.MessageProto.Request;
 import com.distsc.network.NetworkContextMap;
@@ -17,7 +14,7 @@ public class LogAppendListener implements Runnable
 	@Override
 	public void run()
 	{
-		System.out.println("HeartbeatListenerThread Thread Started");
+		System.out.println("LogAppendListener Thread Started");
 
 		while (true)
 		{
@@ -85,7 +82,8 @@ public class LogAppendListener implements Runnable
 				{
 					RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Follower);
 					RAFTStatus.setDeclaredLeader(requestContext.getRequest().getPayload().getAppendEntries().getLeaderId());
-					
+					GlobalConfiguration.reset();
+
 				}
 			}
 		

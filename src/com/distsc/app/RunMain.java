@@ -2,7 +2,7 @@ package com.distsc.app;
 import com.distsc.app.config.ClusterConfigReader;
 import com.distsc.chat.server.ChatServer;
 import com.distsc.network.OutboundConnection;
-import com.distsc.raft.algorithm.RAFT;
+import com.distsc.raft.RAFT;
 import com.distsc.server.Server;
 
 public class RunMain

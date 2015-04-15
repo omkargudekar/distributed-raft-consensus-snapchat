@@ -55,7 +55,7 @@ public class RAFTStatus
 
 
 	private static String declaredLeader=null;
-	private static int raftTimer=3600;
+	private static int raftTimer=5000;
 	private static int heartBeatFrequency=1000;
 	private static boolean voted=false;
 	

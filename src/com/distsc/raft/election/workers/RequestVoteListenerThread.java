@@ -60,7 +60,7 @@ public class RequestVoteListenerThread implements Runnable
 		{
 			RequestContext requestContext = RequestVoteMsgQueue.pop();
 			Request msg = null;
-			if (RequestVoteMsgQueue.getCount() > 0 && RAFTStatus.hasVoted() == false && RAFTStatus.getDeclaredLeader() == null)
+			if (RAFTStatus.hasVoted() == false && RAFTStatus.getDeclaredLeader() == null)
 			{
 
 				System.out.println("Voting YES to Condidate " + requestContext.getRequest().getPayload().getRequestVote().getCandidateId());
@@ -68,13 +68,17 @@ public class RequestVoteListenerThread implements Runnable
 				msg = Request.newBuilder().setMessageHeader(Request.MessageHeader.RequestVoteResultMsg).setPayload(MessageProto.Payload.newBuilder().setRequestVoteResult(MessageProto.RequestVoteResult.newBuilder().setSenderNodeId(GlobalConfiguration.getCurrentNode().getNodeID()).setVoteGranted(true).setTerm(RAFTStatus.getCurrentTerm()))).build();
 				NodeChannelContextMap.getNodeContext(requestContext.getRequest().getPayload().getRequestVote().getCandidateId()).writeAndFlush(msg);
 			}
-			else if (RequestVoteMsgQueue.getCount() > 0 && RAFTStatus.hasVoted() == true)
+			else if (RAFTStatus.hasVoted() == true)
 			{
 				System.out.println("Already Voted.Voting NO to Candidate " + requestContext.getRequest().getPayload().getRequestVote().getCandidateId());
 
 				msg = Request.newBuilder().setMessageHeader(Request.MessageHeader.RequestVoteResultMsg).setPayload(MessageProto.Payload.newBuilder().setRequestVoteResult(MessageProto.RequestVoteResult.newBuilder().setSenderNodeId(GlobalConfiguration.getCurrentNode().getNodeID()).setVoteGranted(false).setTerm(RAFTStatus.getCurrentTerm()))).build();
 				NodeChannelContextMap.getNodeContext(requestContext.getRequest().getPayload().getRequestVote().getCandidateId()).writeAndFlush(msg);
 			}
+		}
+		else
+		{
+			pause();
 		}
 	}
 

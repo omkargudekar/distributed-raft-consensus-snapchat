@@ -44,10 +44,11 @@ public class DeclareCandidacyThread implements Runnable
 	private void nominate()
 	{
 		waitForRAFTTimeOut();
-		if(RAFTStatus.getCurrentNodeState()==RAFTStatus.NodeState.Follower && RAFTStatus.getDeclaredLeader()==null)
+		if(RAFTStatus.getCurrentNodeState()==RAFTStatus.NodeState.Follower && RAFTStatus.getDeclaredLeader()==null && RAFTStatus.hasVoted()==false)
 		{
 			System.out.println("Declaring Candidacy...");
 			RAFTStatus.setVoted(true);
+			RAFTStatus.setTotalVotes(1);
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Candidate);
 			ClusterMulticast followerMulticast=new ClusterMulticast();
 			

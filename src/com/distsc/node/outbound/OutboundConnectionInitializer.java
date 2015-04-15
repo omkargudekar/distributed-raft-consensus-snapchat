@@ -7,7 +7,7 @@ import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 
-import com.distsc.comm.msg.protobuf.NodeMessageProto.Message;
+import com.distsc.comm.protobuf.NodeMessageProto.Message;
 
 public class OutboundConnectionInitializer extends ChannelInitializer<SocketChannel> {
 

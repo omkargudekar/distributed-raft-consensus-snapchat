@@ -1,7 +1,7 @@
 package com.distsc.node.server;
 
 
-import com.distsc.comm.msg.protobuf.NodeMessageProto.Message;
+import com.distsc.comm.protobuf.NodeMessageProto.Message;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;

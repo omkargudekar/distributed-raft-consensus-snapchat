@@ -1,5 +1,5 @@
 package com.distsc.comm.msg.decoders;
-import com.distsc.comm.msg.protobuf.NodeMessageProto.Message;
+import com.distsc.comm.protobuf.NodeMessageProto.Message;
 import com.distsc.raft.msg.handlers.HeartbeatHandler;
 import com.distsc.raft.msg.handlers.LogReplicationCompleteResponseHandler;
 import com.distsc.raft.msg.handlers.LogReplicationRequestHandler;

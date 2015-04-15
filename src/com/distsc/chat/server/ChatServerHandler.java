@@ -7,7 +7,7 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 
 import com.distsc.chat.msg.handler.MessageValidator;
 import com.distsc.comm.msg.decoders.ClientMessageDecoder;
-import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg;
+import com.distsc.comm.protobuf.ClientMessageProto.ClientMsg;
 
 
 public class ChatServerHandler extends SimpleChannelInboundHandler<ClientMsg>

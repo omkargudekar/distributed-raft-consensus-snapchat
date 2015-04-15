@@ -10,8 +10,8 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 import com.distsc.beans.Node;
 import com.distsc.beans.Packet;
-import com.distsc.comm.msg.protobuf.NodeMessageProto.Message;
 import com.distsc.comm.msg.queues.outbound.MgmtMsgOutboundQueue;
+import com.distsc.comm.protobuf.NodeMessageProto.Message;
 
 public class OutboundConnection implements Runnable
 {

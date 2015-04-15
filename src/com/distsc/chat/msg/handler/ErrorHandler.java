@@ -3,10 +3,10 @@ package com.distsc.chat.msg.handler;
 import io.netty.channel.ChannelHandlerContext;
 
 import com.distsc.chat.server.ChatContext;
-import com.distsc.comm.msg.protobuf.ClientMessageProto;
-import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg;
-import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg.ErrorType;
-import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg.MessageType;
+import com.distsc.comm.protobuf.ClientMessageProto;
+import com.distsc.comm.protobuf.ClientMessageProto.ClientMsg;
+import com.distsc.comm.protobuf.ClientMessageProto.ClientMsg.ErrorType;
+import com.distsc.comm.protobuf.ClientMessageProto.ClientMsg.MessageType;
 import com.distsc.raft.RAFTStatus;
 
 public class ErrorHandler  implements ClientMsgHandler

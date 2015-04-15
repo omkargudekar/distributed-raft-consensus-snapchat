@@ -3,7 +3,7 @@ package com.distsc.node.outbound;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-import com.distsc.comm.msg.protobuf.NodeMessageProto.Message;
+import com.distsc.comm.protobuf.NodeMessageProto.Message;
 
 public class OutboundConnectionHandler extends SimpleChannelInboundHandler<Message> 
 {

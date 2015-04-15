@@ -1,0 +1,101 @@
+option java_package= "com.distsc.comm.protobuf";
+option java_outer_classname = "MessageProto";
+
+enum MessageType 
+{
+	AppendEntriesMsg=1;
+	AappendEntriesResultMsg=2;
+	RequestVoteMsg=3;
+	RequestVoteResultMsg=4;
+	NodeDiscoveryMsg=5;
+	ClientMessageMsg=6;
+}
+
+message MessageDetails
+{
+	optional string senderNodeId = 1;
+	optional MessageType messageType = 2 [default = AppendEntriesMsg];
+}
+
+message AppendEntries
+{
+	optional int32 term=1;
+	optional string leaderId=2;
+	optional int32 prevLogIndex=3;
+	optional int32 prevLogTerm=4;
+	repeated string entries=5;
+	optional bool leaderCommit=6;
+}
+
+
+message AppendEntriesResult
+{
+	optional int32 term=1;
+	optional bool success=2;
+}
+
+message RequestVote
+{
+	optional int32 term=1;
+	optional string candidateId=2;
+	optional int32 lastLogIndex=3;
+	optional int32 lastLogTerm=4;
+
+}
+message RequestVoteResult
+{
+	optional int32 term=1;
+	optional bool voteGranted=2;
+}
+
+
+message ClientMessage
+{
+	required string senderUserName = 1;
+	required string receiverUserName = 2;
+	optional string senderMsgText = 3;
+	optional string senderMsgImageName = 4;
+	optional bytes 	senderMsgImageBytes = 5;
+	optional string senderMsgChecksumMsgText = 6;
+	optional string senderMsgChecksumImageBytes = 7;
+	optional string messageTimestamp=8;
+	enum ClientMessageType
+	{
+	 	LOGIN = 1;
+	 	MESSAGE = 2;
+		ACKNOWLEDGE=3;
+		ERROR=4;
+		LOGOUT=5;
+		LOGIN_SUCCESS=6;
+    }
+
+    enum ClientMessageErrorType
+    {
+    	MESSAGE_CORRUPT=1;
+    	DELIVERY_FAIL=2;
+    	MESSAGE_SIZE=3;
+    	INVALID_LOGIN=4;
+    }
+    optional ClientMessageType clientMessageType = 9 [default = LOGIN];
+    optional ClientMessageErrorType clientMessageErrorType = 10[default = INVALID_LOGIN];
+
+    
+}
+
+message NodeDiscovery
+{
+
+    enum NodeDiscoveryMessageType
+    {
+    	REQUEST_CONNECTION=1;
+    	RESPONSE_CONNECTION_ACCEPTED=2;
+    	RESPONSE_CONNECTION_REJECTED=3;
+    	REQUEST_NODE_IP=4;
+    	REQUEST_NODE_PORT=5;
+    }
+    
+
+    optional NodeDiscoveryMessageType nodeDiscoveryMessageType=1 [default = REQUEST_CONNECTION];
+}
+    
+

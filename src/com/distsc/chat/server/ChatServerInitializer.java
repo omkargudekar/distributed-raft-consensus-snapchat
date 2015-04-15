@@ -8,7 +8,7 @@ import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 
-import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg;
+import com.distsc.comm.protobuf.ClientMessageProto.ClientMsg;
 public class ChatServerInitializer extends ChannelInitializer<SocketChannel> {
 
 

@@ -2,7 +2,7 @@ package com.distsc.comm.msg.queues.inbound;
 
 import java.util.ArrayList;
 
-import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg;
+import com.distsc.comm.protobuf.ClientMessageProto.ClientMsg;
 
 public class ClientMsgInboundQueue
 {

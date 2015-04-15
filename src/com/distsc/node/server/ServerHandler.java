@@ -6,7 +6,7 @@ import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
 import com.distsc.comm.msg.decoders.ClusterMessageDecoder;
-import com.distsc.comm.msg.protobuf.NodeMessageProto.Message;
+import com.distsc.comm.protobuf.NodeMessageProto.Message;
 
 
 public class ServerHandler extends SimpleChannelInboundHandler<Message>

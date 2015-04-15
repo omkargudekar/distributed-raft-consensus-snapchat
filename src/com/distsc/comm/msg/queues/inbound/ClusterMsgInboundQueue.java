@@ -2,7 +2,7 @@ package com.distsc.comm.msg.queues.inbound;
 
 import java.util.ArrayList;
 
-import com.distsc.comm.msg.protobuf.ClusterMessageProto.ClusterMessage;
+import com.distsc.comm.protobuf.ClusterMessageProto.ClusterMessage;
 
 
 public class ClusterMsgInboundQueue

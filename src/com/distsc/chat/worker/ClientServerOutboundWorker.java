@@ -1,8 +1,8 @@
 package com.distsc.chat.worker;
 
 import com.distsc.chat.server.ChatContext;
-import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg;
 import com.distsc.comm.msg.queues.outbound.ClientMsgOutboundQueue;
+import com.distsc.comm.protobuf.ClientMessageProto.ClientMsg;
 
 public class ClientServerOutboundWorker implements Runnable
 {

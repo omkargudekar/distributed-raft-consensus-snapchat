@@ -2,7 +2,9 @@ package com.distsc.app;
 import com.distsc.app.config.ClusterConfigReader;
 import com.distsc.comm.msg.queues.workers.QueueWorkerThreads;
 import com.distsc.network.maps.discovery.NodeDiscoveryThread;
+import com.distsc.persistence.Persistor;
 import com.distsc.raft.RAFT;
+import com.distsc.raft.RAFTStatus;
 import com.distsc.server.Server;
 import com.distsc.server.listener.ListenerThread;
 
@@ -14,7 +16,12 @@ public class RunMain
 		//Read & Setup Cluster Configuration
 		ClusterConfigReader.readAndSetUp("runtime/cluster.conf");
 		
-
+		if( Persistor.isRAFTStateFileExists() ){
+			RAFTStatus.setRaftState(Persistor.readPersistedRAFTStatus());
+		}else{
+			RAFTStatus.createNewRAFTState();
+		}
+		
 		//Starting Server Thread.
 		new Thread(new Server()).start();
 		

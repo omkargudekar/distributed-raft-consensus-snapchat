@@ -1,20 +1,19 @@
 package com.distsc.persistence;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import com.distsc.raft.RAFTStatus;
-
 public class Persistor {
 	
-	public static void persistRAFTStatus(RAFTStatus raftStatus){
+	public static void persistRAFTStatus(RAFTState raftState){
 		 try{
 			 
-			FileOutputStream raft = new FileOutputStream("persistence/RAFTstatus.ser");
+			FileOutputStream raft = new FileOutputStream("persistence/RAFTState.ser");
 			ObjectOutputStream oos = new ObjectOutputStream(raft);   
-			oos.writeObject(raftStatus);
+			oos.writeObject(raftState);
 			oos.close();
 			System.out.println("Persisted RAFTStatus to disk");
 	 
@@ -23,21 +22,28 @@ public class Persistor {
 		   }
 	}
 
-	public static RAFTStatus readPersistedRAFTStatus(){
-		RAFTStatus raftStatus;
+	public static RAFTState readPersistedRAFTStatus(){
+		RAFTState raftState;
 		 try{
-			 
-			   FileInputStream raft = new FileInputStream("persistence/RAFTstatus.ser");
+			   FileInputStream raft = new FileInputStream("persistence/RAFTState.ser");
 			   ObjectInputStream ois = new ObjectInputStream(raft);
-			   raftStatus = (RAFTStatus) ois.readObject();
+			   raftState = (RAFTState) ois.readObject();
 			   ois.close();
-			   System.out.println("Reading RAFTStatus from disk");
-			   return raftStatus;
+			   System.out.println("Reading RAFTState from disk");
+			   return raftState;
 	 	   }catch(Exception ex){
 			   ex.printStackTrace();
 			   return null;
 		   } 
 		
+	}
+	
+	public static boolean isRAFTStateFileExists(){
+		File file = new File("persistence/RAFTState.ser");
+		if( file.exists() ){
+			return true;
+		}
+		return false;
 	}
 	
 }

@@ -7,6 +7,8 @@ import com.distsc.comm.msg.queues.AppendEntriesQueue;
 import com.distsc.comm.msg.queues.AppendEntriesResultQueue;
 import com.distsc.comm.msg.queues.RequestVoteMsgQueue;
 import com.distsc.comm.msg.queues.RequestVoteResultMsgQueue;
+import com.distsc.persistence.Persistor;
+import com.distsc.persistence.RAFTState;
 
 public class RAFTStatus implements Serializable
 {
@@ -15,6 +17,36 @@ public class RAFTStatus implements Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private static RAFTState raftState;
+	
+	public static void createNewRAFTState(){
+		raftState = new RAFTState();
+	}
+	
+	public static RAFTState getRaftState() {
+		return raftState;
+	}
+
+	public static void setRaftState(RAFTState raftState) {
+		RAFTStatus.raftState = raftState;
+	}
+
+	private static String votedFor;
+
+
+	public static String getVotedFor() {
+		return votedFor;
+	}
+
+	public static void setVotedFor(String votedFor) {
+		raftState.setVotedFor(votedFor);
+		Persistor.persistRAFTStatus(raftState);
+		RAFTStatus.votedFor = votedFor;
+	}
+
+
+
 
 
 
@@ -54,6 +86,8 @@ public class RAFTStatus implements Serializable
 
 	public static void setCurrentTerm(int currentTerm)
 	{
+		raftState.setCurrentTerm(currentTerm);
+		Persistor.persistRAFTStatus(raftState);
 		RAFTStatus.currentTerm = currentTerm;
 	}
 

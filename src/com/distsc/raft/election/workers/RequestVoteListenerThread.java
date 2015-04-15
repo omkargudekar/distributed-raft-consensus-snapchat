@@ -65,6 +65,7 @@ public class RequestVoteListenerThread implements Runnable
 
 				System.out.println("Voting YES to Condidate " + requestContext.getRequest().getPayload().getRequestVote().getCandidateId());
 				RAFTStatus.setVoted(true);
+				RAFTStatus.setVotedFor(requestContext.getRequest().getPayload().getRequestVote().getCandidateId());
 				msg = Request.newBuilder().setMessageHeader(Request.MessageHeader.RequestVoteResultMsg).setPayload(MessageProto.Payload.newBuilder().setRequestVoteResult(MessageProto.RequestVoteResult.newBuilder().setSenderNodeId(GlobalConfiguration.getCurrentNode().getNodeID()).setVoteGranted(true).setTerm(RAFTStatus.getCurrentTerm()))).build();
 				NodeChannelContextMap.getNodeContext(requestContext.getRequest().getPayload().getRequestVote().getCandidateId()).writeAndFlush(msg);
 			}

@@ -1,8 +1,6 @@
 package com.distsc.raft;
 
 import java.util.Random;
-
-import com.distsc.beans.Node;
 import com.distsc.comm.msg.queues.inbound.RequestVoteMsgQueue;
 import com.distsc.comm.msg.queues.inbound.RequestVoteResultMsgQueue;
 

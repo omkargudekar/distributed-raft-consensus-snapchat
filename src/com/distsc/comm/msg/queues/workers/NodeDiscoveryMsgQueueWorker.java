@@ -1,5 +1,7 @@
 package com.distsc.comm.msg.queues.workers;
 
+import io.netty.channel.ChannelHandlerContext;
+
 import com.distsc.beans.RequestContext;
 import com.distsc.comm.msg.queues.NodeDiscoveryMsgQueue;
 import com.distsc.comm.protobuf.MessageProto.Request;
@@ -52,8 +54,25 @@ public class NodeDiscoveryMsgQueueWorker implements Runnable
 			System.out.println("Adding Channel for " + request.getPayload().getNodeDiscovery().getNODEID());
 			NodeChannelContextMap.addNodeChnnelContext(request.getPayload().getNodeDiscovery().getNODEID(), requestMessage.getContext());
 		}
+		else if(NodeChannelContextMap.isChannelExist(request.getPayload().getNodeDiscovery().getNODEID()))
+		{
+			if(isChannelActive(NodeChannelContextMap.getNodeContext((request.getPayload().getNodeDiscovery().getNODEID())))==false)
+			{
+				checkAndRemoveNodeChannel(requestMessage);
+			}
+		}
+			
 	}
 
+	public boolean isChannelActive(ChannelHandlerContext ctx)
+	{
+		if(ctx.channel().isActive())
+		{
+			return true;
+		}
+		return false;
+		
+	}
 	public void checkAndRemoveNodeChannel(RequestContext requestMessage)
 	{
 		Request request = requestMessage.getRequest();

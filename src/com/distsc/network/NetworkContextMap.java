@@ -8,6 +8,16 @@ public class NetworkContextMap
 {
 	private static HashMap<String,ChannelHandlerContext> contextMap=new HashMap<String,ChannelHandlerContext>();
 	
+	
+	public static void getSize()
+	{
+		contextMap.size();
+	}
+	
+	public static HashMap<String,ChannelHandlerContext> getNetworkMap()
+	{
+		return contextMap;
+	}
 	public static ChannelHandlerContext getNodeContext(String nodeId)
 	{
 		

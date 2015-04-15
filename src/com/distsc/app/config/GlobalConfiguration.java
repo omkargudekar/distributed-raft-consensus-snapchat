@@ -3,10 +3,28 @@ package com.distsc.app.config;
 import java.util.ArrayList;
 
 import com.distsc.beans.Node;
+import com.distsc.comm.msg.queues.inbound.AppendEntriesQueue;
+import com.distsc.comm.msg.queues.inbound.AppendEntriesResultQueue;
+import com.distsc.comm.msg.queues.inbound.RequestVoteMsgQueue;
+import com.distsc.comm.msg.queues.inbound.RequestVoteResultMsgQueue;
+import com.distsc.raft.RAFTStatus;
 
 public class GlobalConfiguration
 {
+
 	
+	
+	private static int currentTerm;
+	public static int getCurrentTerm()
+	{
+		return currentTerm;
+	}
+
+	public static void setCurrentTerm(int currentTerm)
+	{
+		GlobalConfiguration.currentTerm = currentTerm;
+	}
+
 	private static int messageLimit=900000;
 	public static int getMessageLimit()
 	{
@@ -67,5 +85,14 @@ public class GlobalConfiguration
 	public static void setNodes(ArrayList<Node> nodes)
 	{
 		GlobalConfiguration.nodes = nodes;
+	}
+	
+	public static void reset()
+	{
+		RAFTStatus.setVoted(false);
+		AppendEntriesQueue.reset();
+		AppendEntriesResultQueue.reset();
+		RequestVoteMsgQueue.reset();
+		RequestVoteResultMsgQueue.reset();
 	}
 }

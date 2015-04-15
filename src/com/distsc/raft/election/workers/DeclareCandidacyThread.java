@@ -1,14 +1,14 @@
 package com.distsc.raft.election.workers;
 
 import com.distsc.app.config.GlobalConfiguration;
-import com.distsc.comm.msg.queues.inbound.HeartbeatQueue;
-import com.distsc.comm.msg.queues.inbound.NominationsQueue;
-import com.distsc.comm.msg.queues.inbound.VotesQueue;
-import com.distsc.comm.protobuf.NodeMessageProto;
-import com.distsc.comm.protobuf.NodeMessageProto.Message;
-import com.distsc.comm.protobuf.NodeMessageProto.Message.MessageType;
-import com.distsc.network.OutboundMulticast;
+import com.distsc.comm.msg.queues.inbound.AppendEntriesQueue;
+import com.distsc.comm.msg.queues.inbound.AppendEntriesResultQueue;
+import com.distsc.comm.msg.queues.inbound.RequestVoteMsgQueue;
+import com.distsc.comm.msg.queues.inbound.RequestVoteResultMsgQueue;
+import com.distsc.comm.protobuf.MessageProto;
+import com.distsc.comm.protobuf.MessageProto.Request;
 import com.distsc.raft.RAFTStatus;
+import com.distsc.server.FollowerMulticast;
 
 public class DeclareCandidacyThread implements Runnable
 {
@@ -49,10 +49,13 @@ public class DeclareCandidacyThread implements Runnable
 			RAFTStatus.setVoted(true);
 			System.out.println("Declaring Candidacy...");
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Candidate);
+			FollowerMulticast followerMulticast=new FollowerMulticast();
 			
-			OutboundMulticast multicast = new OutboundMulticast();
-			Message msg = NodeMessageProto.Message.newBuilder().setMessageType(MessageType.NOMINATION).setNodeId(GlobalConfiguration.getCurrentNode().getNodeID()).setNodeIp(GlobalConfiguration.getCurrentNode().getNodeIP()).setNodePort(GlobalConfiguration.getCurrentNode().getNodePort()).build();
-			multicast.send(msg);
+			Request msg=Request.newBuilder().setMessageHeader(Request.MessageHeader.RequestVoteMsg)
+												.setPayload(MessageProto.Payload.newBuilder().setRequestVote(MessageProto.RequestVote.newBuilder()
+														.setCandidateId(GlobalConfiguration.getCurrentNode().getNodeID())
+														.setTerm(GlobalConfiguration.getCurrentTerm()))).build();
+			followerMulticast.send(msg);
 			RAFTTimeout();
 			if(!isLeader())
 			{
@@ -77,9 +80,10 @@ public class DeclareCandidacyThread implements Runnable
 	public void reset()
 	{
 		RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Follower);
-		VotesQueue.reset();
-		NominationsQueue.reset();
-		HeartbeatQueue.reset();
+		RequestVoteMsgQueue.reset();
+		RequestVoteResultMsgQueue.reset();
+		AppendEntriesQueue.reset();
+		AppendEntriesResultQueue.reset();
 		RAFTStatus.setVoted(false);
 
 	}

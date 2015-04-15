@@ -16,14 +16,14 @@ public class RAFTStatus
 	private static NodeState currentNodeState = NodeState.Follower;
 	
 
-	private static Node declaredLeader=null;
+	private static String declaredLeader=null;
 	private static int raftTimer=3600;
 	private static int heartBeatFrequency=1000;
 	private static boolean voted=false;
 	
 
 
-	public static synchronized boolean isVoted()
+	public static synchronized boolean hasVoted()
 	{
 		return voted;
 	}
@@ -67,14 +67,14 @@ public class RAFTStatus
 	
 	
 
-	public static synchronized Node getDeclaredLeader()
+	public static synchronized String getDeclaredLeader()
 	{
-		return declaredLeader;
+		return RAFTStatus.declaredLeader;
 	}
 
-	public static synchronized void setDeclaredLeader(Node declaredLeader)
+	public static synchronized void setDeclaredLeader(String nodeId)
 	{
-		RAFTStatus.declaredLeader = declaredLeader;
+		RAFTStatus.declaredLeader = nodeId;
 	}
 	
 

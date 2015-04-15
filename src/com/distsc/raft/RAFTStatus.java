@@ -1,5 +1,6 @@
 package com.distsc.raft;
 
+import java.io.Serializable;
 import java.util.Random;
 
 import com.distsc.comm.msg.queues.AppendEntriesQueue;
@@ -7,9 +8,16 @@ import com.distsc.comm.msg.queues.AppendEntriesResultQueue;
 import com.distsc.comm.msg.queues.RequestVoteMsgQueue;
 import com.distsc.comm.msg.queues.RequestVoteResultMsgQueue;
 
-public class RAFTStatus
+public class RAFTStatus implements Serializable
 {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+
 	public static enum NodeState 
 	{
 	    Follower, Candidate, Leader

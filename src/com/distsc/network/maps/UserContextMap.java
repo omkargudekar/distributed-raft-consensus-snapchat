@@ -1,4 +1,4 @@
-package com.distsc.network;
+package com.distsc.network.maps;
 
 import io.netty.channel.ChannelHandlerContext;
 

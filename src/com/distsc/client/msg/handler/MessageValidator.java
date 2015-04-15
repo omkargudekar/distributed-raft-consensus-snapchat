@@ -1,10 +1,11 @@
 package com.distsc.client.msg.handler;
 
 import io.netty.channel.ChannelHandlerContext;
+
 import com.distsc.app.config.GlobalConfiguration;
 import com.distsc.comm.protobuf.MessageProto;
 import com.distsc.comm.protobuf.MessageProto.Request;
-import com.distsc.network.UserContextMap;
+import com.distsc.network.maps.UserContextMap;
 import com.distsc.util.SH1Generator;
 public class MessageValidator
 {

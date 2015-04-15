@@ -1,13 +1,14 @@
-package com.distsc.network;
+package com.distsc.server.listener;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
+import com.distsc.beans.RequestContext;
+import com.distsc.comm.msg.queues.RequestQueue;
 import com.distsc.comm.protobuf.MessageProto.Request;
 
-public class NodeDiscoveryHandler extends SimpleChannelInboundHandler<Request> 
+public class ListenerHandler extends SimpleChannelInboundHandler<Request> 
 {
-	NodeDiscoveryWorker nodeMessageDecoder=new NodeDiscoveryWorker();
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();
@@ -17,8 +18,7 @@ public class NodeDiscoveryHandler extends SimpleChannelInboundHandler<Request>
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, Request msg)
 			throws Exception 
-	{
-		
-		NetworkDiscoveryQueue.push(msg);
+	{	
+		RequestQueue.push(new RequestContext(ctx,msg));
 	}
 }

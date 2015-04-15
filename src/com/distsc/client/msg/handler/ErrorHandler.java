@@ -2,11 +2,10 @@ package com.distsc.client.msg.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 
-
 import com.distsc.comm.protobuf.MessageProto.Request;
-import com.distsc.network.UserContextMap;
+import com.distsc.network.maps.UserContextMap;
 
-public class ErrorHandler  implements ClientMsgHandler
+public class ErrorHandler  implements ClientMsgHandlerInterface
 {
 
 	@Override

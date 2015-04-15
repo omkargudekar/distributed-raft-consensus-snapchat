@@ -1,5 +1,6 @@
-package com.distsc.network;
+package com.distsc.comm.msg.queues.workers;
 
+import com.distsc.comm.msg.queues.NodeDiscoveryQueue;
 import com.distsc.comm.protobuf.MessageProto.Request;
 
 public class NodeDiscoveryWorker implements Runnable
@@ -10,9 +11,9 @@ public class NodeDiscoveryWorker implements Runnable
 		Request requestMessage = null;
 		while (true)
 		{
-			if (NetworkDiscoveryQueue.getCount() > 0)
+			if (NodeDiscoveryQueue.getCount() > 0)
 			{
-				requestMessage = NetworkDiscoveryQueue.pop();
+				requestMessage = NodeDiscoveryQueue.pop();
 				switch (requestMessage.getPayload().getNodeDiscovery().getNodeDiscoveryMessageType())
 				{
 				case RESPONSE_CONNECTION_ACCEPTED:

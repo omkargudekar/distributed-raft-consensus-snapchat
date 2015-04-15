@@ -1,4 +1,4 @@
-package com.distsc.network;
+package com.distsc.network.maps.discovery;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -10,7 +10,8 @@ import com.distsc.app.config.GlobalConfiguration;
 import com.distsc.beans.Node;
 import com.distsc.comm.protobuf.MessageProto;
 import com.distsc.comm.protobuf.MessageProto.Request;
-public class NodeDiscoveryThead implements Runnable
+import com.distsc.network.maps.NetworkContextMap;
+public class NodeDiscoveryThread implements Runnable
 {
 	private EventLoopGroup group = null;
 	private ChannelFuture lastWriteFuture = null;

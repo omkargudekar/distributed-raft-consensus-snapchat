@@ -1,5 +1,6 @@
 package com.distsc.comm.msg.queues.workers;
 import com.distsc.beans.RequestContext;
+import com.distsc.client.msg.handler.ClientMessageDecoder;
 import com.distsc.comm.msg.queues.AppendEntriesQueue;
 
 public class ClientMessageMsgQueueWorker implements Runnable

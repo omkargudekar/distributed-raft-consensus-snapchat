@@ -3,8 +3,9 @@ package com.distsc.server;
 import io.netty.channel.ChannelHandlerContext;
 
 import java.util.HashMap;
+
 import com.distsc.comm.protobuf.MessageProto.Request;
-import com.distsc.network.NetworkContextMap;
+import com.distsc.network.maps.NetworkContextMap;
 public class FollowerMulticast
 {
 

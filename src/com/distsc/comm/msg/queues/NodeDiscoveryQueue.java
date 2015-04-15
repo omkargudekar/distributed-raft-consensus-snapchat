@@ -1,9 +1,9 @@
-package com.distsc.network;
+package com.distsc.comm.msg.queues;
 
 import java.util.ArrayList;
 import com.distsc.comm.protobuf.MessageProto.Request;
 
-public class NetworkDiscoveryQueue
+public class NodeDiscoveryQueue
 {
 	private static ArrayList<Request> queue = new ArrayList<Request>();
 	

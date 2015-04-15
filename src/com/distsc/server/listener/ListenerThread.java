@@ -12,7 +12,7 @@ import com.distsc.beans.RequestContext;
 import com.distsc.comm.protobuf.MessageProto;
 import com.distsc.comm.protobuf.MessageProto.Request;
 
-public class ListenerConnectionWorker implements Runnable
+public class ListenerThread implements Runnable
 {
 	private EventLoopGroup group = null;
 	private ChannelFuture lastWriteFuture = null;
@@ -37,7 +37,6 @@ public class ListenerConnectionWorker implements Runnable
 
 						ch = b.connect(request.getPayload().getNodeDiscovery().getNODEIP(),request.getPayload().getNodeDiscovery().getNODEPORT()).sync().channel();
 						lastWriteFuture = ch.writeAndFlush(getAcceptConnectionMsg());
-						lastWriteFuture.channel().close().sync();
 
 					}
 					catch (Exception e)
@@ -56,6 +55,7 @@ public class ListenerConnectionWorker implements Runnable
 		{
 			try
 			{
+				lastWriteFuture.channel().close().sync();
 				group.shutdownGracefully();
 			}
 			catch (Exception e)

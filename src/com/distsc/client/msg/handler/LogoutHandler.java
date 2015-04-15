@@ -3,9 +3,9 @@ package com.distsc.client.msg.handler;
 import io.netty.channel.ChannelHandlerContext;
 
 import com.distsc.comm.protobuf.MessageProto.Request;
-import com.distsc.network.UserContextMap;
+import com.distsc.network.maps.UserContextMap;
 
-public class LogoutHandler implements ClientMsgHandler
+public class LogoutHandler implements ClientMsgHandlerInterface
 {
 	
 	public void handle(ChannelHandlerContext ctx,Request msg)

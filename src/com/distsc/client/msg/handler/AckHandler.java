@@ -3,9 +3,9 @@ package com.distsc.client.msg.handler;
 import io.netty.channel.ChannelHandlerContext;
 
 import com.distsc.comm.protobuf.MessageProto.Request;
-import com.distsc.network.UserContextMap;
+import com.distsc.network.maps.UserContextMap;
 
-public class AckHandler implements ClientMsgHandler
+public class AckHandler implements ClientMsgHandlerInterface
 {
 
 	@Override

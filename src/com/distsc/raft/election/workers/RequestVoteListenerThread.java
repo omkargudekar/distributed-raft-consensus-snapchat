@@ -6,7 +6,7 @@ import com.distsc.comm.msg.queues.AppendEntriesQueue;
 import com.distsc.comm.msg.queues.RequestVoteMsgQueue;
 import com.distsc.comm.protobuf.MessageProto;
 import com.distsc.comm.protobuf.MessageProto.Request;
-import com.distsc.network.NetworkContextMap;
+import com.distsc.network.maps.NetworkContextMap;
 import com.distsc.raft.RAFTStatus;
 
 public class RequestVoteListenerThread implements Runnable

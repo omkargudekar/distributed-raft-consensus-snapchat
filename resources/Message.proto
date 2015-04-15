@@ -65,8 +65,8 @@ message RequestVoteResult
 
 message ClientMessage
 {
-	required string senderUserName = 1;
-	required string receiverUserName = 2;
+	optional string senderUserName = 1;
+	optional string receiverUserName = 2;
 	optional string senderMsgText = 3;
 	optional string senderMsgImageName = 4;
 	optional bytes 	senderMsgImageBytes = 5;

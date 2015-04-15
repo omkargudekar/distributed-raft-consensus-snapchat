@@ -66,11 +66,19 @@ public class NodeDiscoveryMsgQueueWorker implements Runnable
 
 	public boolean isChannelActive(ChannelHandlerContext ctx)
 	{
-		if(ctx.channel().isActive())
+		boolean writable=false;
+		try
 		{
-			return true;
+			ctx.write("Test");
+			writable=true;
 		}
-		return false;
+		catch(Exception e)
+		{
+			writable=false;
+
+		}
+		
+		return writable;
 		
 	}
 	public void checkAndRemoveNodeChannel(RequestContext requestMessage)

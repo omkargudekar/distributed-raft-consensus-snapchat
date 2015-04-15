@@ -99,12 +99,12 @@ public class LogAppendListener implements Runnable
 	public void checkHeartbeat()
 	{
 		starRAFTTimer();
-		if (AppendEntriesQueue.getCount() == 0)
+		if (AppendEntriesQueue.getCount() == 0 && RAFTStatus.getDeclaredLeader()!=null)
 		{
 			System.out.println("Heartbeat Missed.");
 			RAFTStatus.setDeclaredLeader(null);
 		}
-		else
+		else if(AppendEntriesQueue.getCount() > 0 )
 		{
 			
 			RequestContext requestContext=AppendEntriesQueue.pop();

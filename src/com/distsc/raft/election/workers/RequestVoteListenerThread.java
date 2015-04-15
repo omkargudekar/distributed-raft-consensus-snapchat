@@ -72,7 +72,7 @@ public class RequestVoteListenerThread implements Runnable
 							.setTerm(RAFTStatus.getCurrentTerm()))).build();
 
 		}
-		else
+		else if(RequestVoteMsgQueue.getCount() > 0 &&  RAFTStatus.hasVoted()==true)
 		{
 			System.out.println("Already Voted.Voting NO to Candidate "+requestContext.getRequest().getPayload().getRequestVote().getCandidateId());
 

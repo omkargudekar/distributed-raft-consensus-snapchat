@@ -13,7 +13,10 @@ public class MessageValidator
 	{
 		boolean valid=true;
 		
-
+		if(valid==true)
+		{
+			
+		}
 		if(valid==true)
 		{
 			valid=validateMessageSize(ctx,msg);
@@ -51,7 +54,7 @@ public class MessageValidator
 					.setClientMessageErrorType(MessageProto.ClientMessage.ClientMessageErrorType.MESSAGE_SIZE)
 					.setSenderMsgText("Invalid Message Size..."))).build();
 			
-			
+				
 				ctx.writeAndFlush(message);
 				return false;
 		}
@@ -102,10 +105,8 @@ public class MessageValidator
 				ctx.writeAndFlush(message);
 				return false;
 		}
-	
-		
-		
 	}
+	
 	
 	
 }

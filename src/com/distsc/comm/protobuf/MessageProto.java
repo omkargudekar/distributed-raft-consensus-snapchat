@@ -5240,11 +5240,11 @@ public final class MessageProto {
     com.distsc.comm.protobuf.MessageProto.ClientMessage.ClientMessageType getClientMessageType();
 
     /**
-     * <code>optional .ClientMessage.ClientMessageErrorType clientMessageErrorType = 10 [default = INVALID_LOGIN];</code>
+     * <code>optional .ClientMessage.ClientMessageErrorType clientMessageErrorType = 10 [default = INVALID_LEADER];</code>
      */
     boolean hasClientMessageErrorType();
     /**
-     * <code>optional .ClientMessage.ClientMessageErrorType clientMessageErrorType = 10 [default = INVALID_LOGIN];</code>
+     * <code>optional .ClientMessage.ClientMessageErrorType clientMessageErrorType = 10 [default = INVALID_LEADER];</code>
      */
     com.distsc.comm.protobuf.MessageProto.ClientMessage.ClientMessageErrorType getClientMessageErrorType();
   }
@@ -5532,23 +5532,31 @@ public final class MessageProto {
     public enum ClientMessageErrorType
         implements com.google.protobuf.ProtocolMessageEnum {
       /**
+       * <code>INVALID_LEADER = 0;</code>
+       */
+      INVALID_LEADER(0, 0),
+      /**
        * <code>MESSAGE_CORRUPT = 1;</code>
        */
-      MESSAGE_CORRUPT(0, 1),
+      MESSAGE_CORRUPT(1, 1),
       /**
        * <code>DELIVERY_FAIL = 2;</code>
        */
-      DELIVERY_FAIL(1, 2),
+      DELIVERY_FAIL(2, 2),
       /**
        * <code>MESSAGE_SIZE = 3;</code>
        */
-      MESSAGE_SIZE(2, 3),
+      MESSAGE_SIZE(3, 3),
       /**
        * <code>INVALID_LOGIN = 4;</code>
        */
-      INVALID_LOGIN(3, 4),
+      INVALID_LOGIN(4, 4),
       ;
 
+      /**
+       * <code>INVALID_LEADER = 0;</code>
+       */
+      public static final int INVALID_LEADER_VALUE = 0;
       /**
        * <code>MESSAGE_CORRUPT = 1;</code>
        */
@@ -5571,6 +5579,7 @@ public final class MessageProto {
 
       public static ClientMessageErrorType valueOf(int value) {
         switch (value) {
+          case 0: return INVALID_LEADER;
           case 1: return MESSAGE_CORRUPT;
           case 2: return DELIVERY_FAIL;
           case 3: return MESSAGE_SIZE;
@@ -5954,13 +5963,13 @@ public final class MessageProto {
     public static final int CLIENTMESSAGEERRORTYPE_FIELD_NUMBER = 10;
     private com.distsc.comm.protobuf.MessageProto.ClientMessage.ClientMessageErrorType clientMessageErrorType_;
     /**
-     * <code>optional .ClientMessage.ClientMessageErrorType clientMessageErrorType = 10 [default = INVALID_LOGIN];</code>
+     * <code>optional .ClientMessage.ClientMessageErrorType clientMessageErrorType = 10 [default = INVALID_LEADER];</code>
      */
     public boolean hasClientMessageErrorType() {
       return ((bitField0_ & 0x00000200) == 0x00000200);
     }
     /**
-     * <code>optional .ClientMessage.ClientMessageErrorType clientMessageErrorType = 10 [default = INVALID_LOGIN];</code>
+     * <code>optional .ClientMessage.ClientMessageErrorType clientMessageErrorType = 10 [default = INVALID_LEADER];</code>
      */
     public com.distsc.comm.protobuf.MessageProto.ClientMessage.ClientMessageErrorType getClientMessageErrorType() {
       return clientMessageErrorType_;
@@ -5976,7 +5985,7 @@ public final class MessageProto {
       senderMsgChecksumImageBytes_ = "";
       messageTimestamp_ = "";
       clientMessageType_ = com.distsc.comm.protobuf.MessageProto.ClientMessage.ClientMessageType.LOGIN;
-      clientMessageErrorType_ = com.distsc.comm.protobuf.MessageProto.ClientMessage.ClientMessageErrorType.INVALID_LOGIN;
+      clientMessageErrorType_ = com.distsc.comm.protobuf.MessageProto.ClientMessage.ClientMessageErrorType.INVALID_LEADER;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -6205,7 +6214,7 @@ public final class MessageProto {
         bitField0_ = (bitField0_ & ~0x00000080);
         clientMessageType_ = com.distsc.comm.protobuf.MessageProto.ClientMessage.ClientMessageType.LOGIN;
         bitField0_ = (bitField0_ & ~0x00000100);
-        clientMessageErrorType_ = com.distsc.comm.protobuf.MessageProto.ClientMessage.ClientMessageErrorType.INVALID_LOGIN;
+        clientMessageErrorType_ = com.distsc.comm.protobuf.MessageProto.ClientMessage.ClientMessageErrorType.INVALID_LEADER;
         bitField0_ = (bitField0_ & ~0x00000200);
         return this;
       }
@@ -6964,21 +6973,21 @@ public final class MessageProto {
         return this;
       }
 
-      private com.distsc.comm.protobuf.MessageProto.ClientMessage.ClientMessageErrorType clientMessageErrorType_ = com.distsc.comm.protobuf.MessageProto.ClientMessage.ClientMessageErrorType.INVALID_LOGIN;
+      private com.distsc.comm.protobuf.MessageProto.ClientMessage.ClientMessageErrorType clientMessageErrorType_ = com.distsc.comm.protobuf.MessageProto.ClientMessage.ClientMessageErrorType.INVALID_LEADER;
       /**
-       * <code>optional .ClientMessage.ClientMessageErrorType clientMessageErrorType = 10 [default = INVALID_LOGIN];</code>
+       * <code>optional .ClientMessage.ClientMessageErrorType clientMessageErrorType = 10 [default = INVALID_LEADER];</code>
        */
       public boolean hasClientMessageErrorType() {
         return ((bitField0_ & 0x00000200) == 0x00000200);
       }
       /**
-       * <code>optional .ClientMessage.ClientMessageErrorType clientMessageErrorType = 10 [default = INVALID_LOGIN];</code>
+       * <code>optional .ClientMessage.ClientMessageErrorType clientMessageErrorType = 10 [default = INVALID_LEADER];</code>
        */
       public com.distsc.comm.protobuf.MessageProto.ClientMessage.ClientMessageErrorType getClientMessageErrorType() {
         return clientMessageErrorType_;
       }
       /**
-       * <code>optional .ClientMessage.ClientMessageErrorType clientMessageErrorType = 10 [default = INVALID_LOGIN];</code>
+       * <code>optional .ClientMessage.ClientMessageErrorType clientMessageErrorType = 10 [default = INVALID_LEADER];</code>
        */
       public Builder setClientMessageErrorType(com.distsc.comm.protobuf.MessageProto.ClientMessage.ClientMessageErrorType value) {
         if (value == null) {
@@ -6990,11 +6999,11 @@ public final class MessageProto {
         return this;
       }
       /**
-       * <code>optional .ClientMessage.ClientMessageErrorType clientMessageErrorType = 10 [default = INVALID_LOGIN];</code>
+       * <code>optional .ClientMessage.ClientMessageErrorType clientMessageErrorType = 10 [default = INVALID_LEADER];</code>
        */
       public Builder clearClientMessageErrorType() {
         bitField0_ = (bitField0_ & ~0x00000200);
-        clientMessageErrorType_ = com.distsc.comm.protobuf.MessageProto.ClientMessage.ClientMessageErrorType.INVALID_LOGIN;
+        clientMessageErrorType_ = com.distsc.comm.protobuf.MessageProto.ClientMessage.ClientMessageErrorType.INVALID_LEADER;
         onChanged();
         return this;
       }
@@ -7971,30 +7980,30 @@ public final class MessageProto {
       "\n\014lastLogIndex\030\003 \001(\005\022\023\n\013lastLogTerm\030\004 \001(" +
       "\005\"L\n\021RequestVoteResult\022\014\n\004term\030\001 \001(\005\022\023\n\013" +
       "voteGranted\030\002 \001(\010\022\024\n\014senderNodeId\030\003 \001(\t\"" +
-      "\333\004\n\rClientMessage\022\026\n\016senderUserName\030\001 \001(" +
+      "\360\004\n\rClientMessage\022\026\n\016senderUserName\030\001 \001(" +
       "\t\022\030\n\020receiverUserName\030\002 \001(\t\022\025\n\rsenderMsg" +
       "Text\030\003 \001(\t\022\032\n\022senderMsgImageName\030\004 \001(\t\022\033" +
       "\n\023senderMsgImageBytes\030\005 \001(\014\022 \n\030senderMsg" +
       "ChecksumMsgText\030\006 \001(\t\022#\n\033senderMsgChecks" +
       "umImageBytes\030\007 \001(\t\022\030\n\020messageTimestamp\030\010" +
       " \001(\t\022B\n\021clientMessageType\030\t \001(\0162 .Client",
-      "Message.ClientMessageType:\005LOGIN\022T\n\026clie" +
+      "Message.ClientMessageType:\005LOGIN\022U\n\026clie" +
       "ntMessageErrorType\030\n \001(\0162%.ClientMessage" +
-      ".ClientMessageErrorType:\rINVALID_LOGIN\"f" +
-      "\n\021ClientMessageType\022\t\n\005LOGIN\020\001\022\013\n\007MESSAG" +
-      "E\020\002\022\017\n\013ACKNOWLEDGE\020\003\022\t\n\005ERROR\020\004\022\n\n\006LOGOU" +
-      "T\020\005\022\021\n\rLOGIN_SUCCESS\020\006\"e\n\026ClientMessageE" +
-      "rrorType\022\023\n\017MESSAGE_CORRUPT\020\001\022\021\n\rDELIVER" +
-      "Y_FAIL\020\002\022\020\n\014MESSAGE_SIZE\020\003\022\021\n\rINVALID_LO" +
-      "GIN\020\004\"\233\002\n\rNodeDiscovery\022\017\n\007NODE_ID\030\001 \001(\t" +
-      "\022\017\n\007NODE_IP\030\002 \001(\t\022\021\n\tNODE_PORT\030\003 \001(\005\022]\n\030",
-      "nodeDiscoveryMessageType\030\004 \001(\0162\'.NodeDis" +
-      "covery.NodeDiscoveryMessageType:\022REQUEST" +
-      "_CONNECTION\"v\n\030NodeDiscoveryMessageType\022" +
-      "\026\n\022REQUEST_CONNECTION\020\001\022 \n\034RESPONSE_CONN" +
-      "ECTION_ACCEPTED\020\002\022 \n\034RESPONSE_CONNECTION" +
-      "_REJECTED\020\003B(\n\030com.distsc.comm.protobufB" +
-      "\014MessageProto"
+      ".ClientMessageErrorType:\016INVALID_LEADER\"" +
+      "f\n\021ClientMessageType\022\t\n\005LOGIN\020\001\022\013\n\007MESSA" +
+      "GE\020\002\022\017\n\013ACKNOWLEDGE\020\003\022\t\n\005ERROR\020\004\022\n\n\006LOGO" +
+      "UT\020\005\022\021\n\rLOGIN_SUCCESS\020\006\"y\n\026ClientMessage" +
+      "ErrorType\022\022\n\016INVALID_LEADER\020\000\022\023\n\017MESSAGE" +
+      "_CORRUPT\020\001\022\021\n\rDELIVERY_FAIL\020\002\022\020\n\014MESSAGE" +
+      "_SIZE\020\003\022\021\n\rINVALID_LOGIN\020\004\"\233\002\n\rNodeDisco" +
+      "very\022\017\n\007NODE_ID\030\001 \001(\t\022\017\n\007NODE_IP\030\002 \001(\t\022\021",
+      "\n\tNODE_PORT\030\003 \001(\005\022]\n\030nodeDiscoveryMessag" +
+      "eType\030\004 \001(\0162\'.NodeDiscovery.NodeDiscover" +
+      "yMessageType:\022REQUEST_CONNECTION\"v\n\030Node" +
+      "DiscoveryMessageType\022\026\n\022REQUEST_CONNECTI" +
+      "ON\020\001\022 \n\034RESPONSE_CONNECTION_ACCEPTED\020\002\022 " +
+      "\n\034RESPONSE_CONNECTION_REJECTED\020\003B(\n\030com." +
+      "distsc.comm.protobufB\014MessageProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

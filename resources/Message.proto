@@ -85,13 +85,14 @@ message ClientMessage
 
     enum ClientMessageErrorType
     {
+    	INVALID_LEADER=0;
     	MESSAGE_CORRUPT=1;
     	DELIVERY_FAIL=2;
     	MESSAGE_SIZE=3;
     	INVALID_LOGIN=4;
     }
     optional ClientMessageType clientMessageType = 9 [default = LOGIN];
-    optional ClientMessageErrorType clientMessageErrorType = 10[default = INVALID_LOGIN];
+    optional ClientMessageErrorType clientMessageErrorType = 10[default = INVALID_LEADER];
 
     
 }

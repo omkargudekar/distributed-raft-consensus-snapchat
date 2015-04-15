@@ -11,7 +11,7 @@ enum MessageHeader
 	ClientMessageMsg=6;
 }
 
-message MessageDetails
+message Request
 {
 	optional MessageHeader messageHeader = 1 [default = AppendEntriesMsg];
 	optional Payload payload=2;

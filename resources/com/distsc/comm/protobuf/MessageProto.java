@@ -126,8 +126,8 @@ public final class MessageProto {
     // @@protoc_insertion_point(enum_scope:MessageHeader)
   }
 
-  public interface MessageDetailsOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:MessageDetails)
+  public interface RequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Request)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -153,25 +153,25 @@ public final class MessageProto {
     com.distsc.comm.protobuf.MessageProto.PayloadOrBuilder getPayloadOrBuilder();
   }
   /**
-   * Protobuf type {@code MessageDetails}
+   * Protobuf type {@code Request}
    */
-  public static final class MessageDetails extends
+  public static final class Request extends
       com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:MessageDetails)
-      MessageDetailsOrBuilder {
-    // Use MessageDetails.newBuilder() to construct.
-    private MessageDetails(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      // @@protoc_insertion_point(message_implements:Request)
+      RequestOrBuilder {
+    // Use Request.newBuilder() to construct.
+    private Request(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
       this.unknownFields = builder.getUnknownFields();
     }
-    private MessageDetails(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+    private Request(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
-    private static final MessageDetails defaultInstance;
-    public static MessageDetails getDefaultInstance() {
+    private static final Request defaultInstance;
+    public static Request getDefaultInstance() {
       return defaultInstance;
     }
 
-    public MessageDetails getDefaultInstanceForType() {
+    public Request getDefaultInstanceForType() {
       return defaultInstance;
     }
 
@@ -181,7 +181,7 @@ public final class MessageProto {
         getUnknownFields() {
       return this.unknownFields;
     }
-    private MessageDetails(
+    private Request(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -242,28 +242,28 @@ public final class MessageProto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.distsc.comm.protobuf.MessageProto.internal_static_MessageDetails_descriptor;
+      return com.distsc.comm.protobuf.MessageProto.internal_static_Request_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.distsc.comm.protobuf.MessageProto.internal_static_MessageDetails_fieldAccessorTable
+      return com.distsc.comm.protobuf.MessageProto.internal_static_Request_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.distsc.comm.protobuf.MessageProto.MessageDetails.class, com.distsc.comm.protobuf.MessageProto.MessageDetails.Builder.class);
+              com.distsc.comm.protobuf.MessageProto.Request.class, com.distsc.comm.protobuf.MessageProto.Request.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<MessageDetails> PARSER =
-        new com.google.protobuf.AbstractParser<MessageDetails>() {
-      public MessageDetails parsePartialFrom(
+    public static com.google.protobuf.Parser<Request> PARSER =
+        new com.google.protobuf.AbstractParser<Request>() {
+      public Request parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MessageDetails(input, extensionRegistry);
+        return new Request(input, extensionRegistry);
       }
     };
 
     @java.lang.Override
-    public com.google.protobuf.Parser<MessageDetails> getParserForType() {
+    public com.google.protobuf.Parser<Request> getParserForType() {
       return PARSER;
     }
 
@@ -362,53 +362,53 @@ public final class MessageProto {
       return super.writeReplace();
     }
 
-    public static com.distsc.comm.protobuf.MessageProto.MessageDetails parseFrom(
+    public static com.distsc.comm.protobuf.MessageProto.Request parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.distsc.comm.protobuf.MessageProto.MessageDetails parseFrom(
+    public static com.distsc.comm.protobuf.MessageProto.Request parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.distsc.comm.protobuf.MessageProto.MessageDetails parseFrom(byte[] data)
+    public static com.distsc.comm.protobuf.MessageProto.Request parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.distsc.comm.protobuf.MessageProto.MessageDetails parseFrom(
+    public static com.distsc.comm.protobuf.MessageProto.Request parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.distsc.comm.protobuf.MessageProto.MessageDetails parseFrom(java.io.InputStream input)
+    public static com.distsc.comm.protobuf.MessageProto.Request parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static com.distsc.comm.protobuf.MessageProto.MessageDetails parseFrom(
+    public static com.distsc.comm.protobuf.MessageProto.Request parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static com.distsc.comm.protobuf.MessageProto.MessageDetails parseDelimitedFrom(java.io.InputStream input)
+    public static com.distsc.comm.protobuf.MessageProto.Request parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static com.distsc.comm.protobuf.MessageProto.MessageDetails parseDelimitedFrom(
+    public static com.distsc.comm.protobuf.MessageProto.Request parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static com.distsc.comm.protobuf.MessageProto.MessageDetails parseFrom(
+    public static com.distsc.comm.protobuf.MessageProto.Request parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static com.distsc.comm.protobuf.MessageProto.MessageDetails parseFrom(
+    public static com.distsc.comm.protobuf.MessageProto.Request parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -417,7 +417,7 @@ public final class MessageProto {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.distsc.comm.protobuf.MessageProto.MessageDetails prototype) {
+    public static Builder newBuilder(com.distsc.comm.protobuf.MessageProto.Request prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -429,25 +429,25 @@ public final class MessageProto {
       return builder;
     }
     /**
-     * Protobuf type {@code MessageDetails}
+     * Protobuf type {@code Request}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:MessageDetails)
-        com.distsc.comm.protobuf.MessageProto.MessageDetailsOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Request)
+        com.distsc.comm.protobuf.MessageProto.RequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.distsc.comm.protobuf.MessageProto.internal_static_MessageDetails_descriptor;
+        return com.distsc.comm.protobuf.MessageProto.internal_static_Request_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.distsc.comm.protobuf.MessageProto.internal_static_MessageDetails_fieldAccessorTable
+        return com.distsc.comm.protobuf.MessageProto.internal_static_Request_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.distsc.comm.protobuf.MessageProto.MessageDetails.class, com.distsc.comm.protobuf.MessageProto.MessageDetails.Builder.class);
+                com.distsc.comm.protobuf.MessageProto.Request.class, com.distsc.comm.protobuf.MessageProto.Request.Builder.class);
       }
 
-      // Construct using com.distsc.comm.protobuf.MessageProto.MessageDetails.newBuilder()
+      // Construct using com.distsc.comm.protobuf.MessageProto.Request.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -485,23 +485,23 @@ public final class MessageProto {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.distsc.comm.protobuf.MessageProto.internal_static_MessageDetails_descriptor;
+        return com.distsc.comm.protobuf.MessageProto.internal_static_Request_descriptor;
       }
 
-      public com.distsc.comm.protobuf.MessageProto.MessageDetails getDefaultInstanceForType() {
-        return com.distsc.comm.protobuf.MessageProto.MessageDetails.getDefaultInstance();
+      public com.distsc.comm.protobuf.MessageProto.Request getDefaultInstanceForType() {
+        return com.distsc.comm.protobuf.MessageProto.Request.getDefaultInstance();
       }
 
-      public com.distsc.comm.protobuf.MessageProto.MessageDetails build() {
-        com.distsc.comm.protobuf.MessageProto.MessageDetails result = buildPartial();
+      public com.distsc.comm.protobuf.MessageProto.Request build() {
+        com.distsc.comm.protobuf.MessageProto.Request result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.distsc.comm.protobuf.MessageProto.MessageDetails buildPartial() {
-        com.distsc.comm.protobuf.MessageProto.MessageDetails result = new com.distsc.comm.protobuf.MessageProto.MessageDetails(this);
+      public com.distsc.comm.protobuf.MessageProto.Request buildPartial() {
+        com.distsc.comm.protobuf.MessageProto.Request result = new com.distsc.comm.protobuf.MessageProto.Request(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -522,16 +522,16 @@ public final class MessageProto {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.distsc.comm.protobuf.MessageProto.MessageDetails) {
-          return mergeFrom((com.distsc.comm.protobuf.MessageProto.MessageDetails)other);
+        if (other instanceof com.distsc.comm.protobuf.MessageProto.Request) {
+          return mergeFrom((com.distsc.comm.protobuf.MessageProto.Request)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.distsc.comm.protobuf.MessageProto.MessageDetails other) {
-        if (other == com.distsc.comm.protobuf.MessageProto.MessageDetails.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.distsc.comm.protobuf.MessageProto.Request other) {
+        if (other == com.distsc.comm.protobuf.MessageProto.Request.getDefaultInstance()) return this;
         if (other.hasMessageHeader()) {
           setMessageHeader(other.getMessageHeader());
         }
@@ -556,11 +556,11 @@ public final class MessageProto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.distsc.comm.protobuf.MessageProto.MessageDetails parsedMessage = null;
+        com.distsc.comm.protobuf.MessageProto.Request parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.distsc.comm.protobuf.MessageProto.MessageDetails) e.getUnfinishedMessage();
+          parsedMessage = (com.distsc.comm.protobuf.MessageProto.Request) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -722,15 +722,15 @@ public final class MessageProto {
         return payloadBuilder_;
       }
 
-      // @@protoc_insertion_point(builder_scope:MessageDetails)
+      // @@protoc_insertion_point(builder_scope:Request)
     }
 
     static {
-      defaultInstance = new MessageDetails(true);
+      defaultInstance = new Request(true);
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:MessageDetails)
+    // @@protoc_insertion_point(class_scope:Request)
   }
 
   public interface PayloadOrBuilder extends
@@ -7575,10 +7575,10 @@ public final class MessageProto {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_MessageDetails_descriptor;
+    internal_static_Request_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_MessageDetails_fieldAccessorTable;
+      internal_static_Request_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Payload_descriptor;
   private static
@@ -7623,52 +7623,52 @@ public final class MessageProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rMessage.proto\"d\n\016MessageDetails\0227\n\rmes" +
-      "sageHeader\030\001 \001(\0162\016.MessageHeader:\020Append" +
-      "EntriesMsg\022\031\n\007payload\030\002 \001(\0132\010.Payload\"\203\002" +
-      "\n\007Payload\022%\n\rappendEntries\030\001 \001(\0132\016.Appen" +
-      "dEntries\0221\n\023appendEntriesresult\030\002 \001(\0132\024." +
-      "AppendEntriesResult\022!\n\013requestVote\030\003 \001(\013" +
-      "2\014.RequestVote\022-\n\021requestVoteResult\030\004 \001(" +
-      "\0132\022.RequestVoteResult\022%\n\rclientMessage\030\005" +
-      " \001(\0132\016.ClientMessage\022%\n\rnodeDiscovery\030\006 " +
-      "\001(\0132\016.NodeDiscovery\"\201\001\n\rAppendEntries\022\014\n",
-      "\004term\030\001 \001(\005\022\020\n\010leaderId\030\002 \001(\t\022\024\n\014prevLog" +
-      "Index\030\003 \001(\005\022\023\n\013prevLogTerm\030\004 \001(\005\022\017\n\007entr" +
-      "ies\030\005 \003(\t\022\024\n\014leaderCommit\030\006 \001(\010\"J\n\023Appen" +
-      "dEntriesResult\022\014\n\004term\030\001 \001(\005\022\017\n\007success\030" +
-      "\002 \001(\010\022\024\n\014senderNodeId\030\003 \001(\t\"[\n\013RequestVo" +
-      "te\022\014\n\004term\030\001 \001(\005\022\023\n\013candidateId\030\002 \001(\t\022\024\n" +
-      "\014lastLogIndex\030\003 \001(\005\022\023\n\013lastLogTerm\030\004 \001(\005" +
-      "\"L\n\021RequestVoteResult\022\014\n\004term\030\001 \001(\005\022\023\n\013v" +
-      "oteGranted\030\002 \001(\010\022\024\n\014senderNodeId\030\003 \001(\t\"\333" +
-      "\004\n\rClientMessage\022\026\n\016senderUserName\030\001 \002(\t",
-      "\022\030\n\020receiverUserName\030\002 \002(\t\022\025\n\rsenderMsgT" +
-      "ext\030\003 \001(\t\022\032\n\022senderMsgImageName\030\004 \001(\t\022\033\n" +
-      "\023senderMsgImageBytes\030\005 \001(\014\022 \n\030senderMsgC" +
-      "hecksumMsgText\030\006 \001(\t\022#\n\033senderMsgChecksu" +
-      "mImageBytes\030\007 \001(\t\022\030\n\020messageTimestamp\030\010 " +
-      "\001(\t\022B\n\021clientMessageType\030\t \001(\0162 .ClientM" +
-      "essage.ClientMessageType:\005LOGIN\022T\n\026clien" +
-      "tMessageErrorType\030\n \001(\0162%.ClientMessage." +
-      "ClientMessageErrorType:\rINVALID_LOGIN\"f\n" +
-      "\021ClientMessageType\022\t\n\005LOGIN\020\001\022\013\n\007MESSAGE",
-      "\020\002\022\017\n\013ACKNOWLEDGE\020\003\022\t\n\005ERROR\020\004\022\n\n\006LOGOUT" +
-      "\020\005\022\021\n\rLOGIN_SUCCESS\020\006\"e\n\026ClientMessageEr" +
-      "rorType\022\023\n\017MESSAGE_CORRUPT\020\001\022\021\n\rDELIVERY" +
-      "_FAIL\020\002\022\020\n\014MESSAGE_SIZE\020\003\022\021\n\rINVALID_LOG" +
-      "IN\020\004\"\220\002\n\rNodeDiscovery\022]\n\030nodeDiscoveryM" +
-      "essageType\030\001 \001(\0162\'.NodeDiscovery.NodeDis" +
-      "coveryMessageType:\022REQUEST_CONNECTION\"\237\001" +
-      "\n\030NodeDiscoveryMessageType\022\026\n\022REQUEST_CO" +
-      "NNECTION\020\001\022 \n\034RESPONSE_CONNECTION_ACCEPT" +
-      "ED\020\002\022 \n\034RESPONSE_CONNECTION_REJECTED\020\003\022\013",
-      "\n\007NODE_ID\020\004\022\013\n\007NODE_IP\020\005\022\r\n\tNODE_PORT\020\006*" +
-      "\234\001\n\rMessageHeader\022\024\n\020AppendEntriesMsg\020\001\022" +
-      "\033\n\027AappendEntriesResultMsg\020\002\022\022\n\016RequestV" +
-      "oteMsg\020\003\022\030\n\024RequestVoteResultMsg\020\004\022\024\n\020No" +
-      "deDiscoveryMsg\020\005\022\024\n\020ClientMessageMsg\020\006B(" +
-      "\n\030com.distsc.comm.protobufB\014MessageProto"
+      "\n\rMessage.proto\"]\n\007Request\0227\n\rmessageHea" +
+      "der\030\001 \001(\0162\016.MessageHeader:\020AppendEntries" +
+      "Msg\022\031\n\007payload\030\002 \001(\0132\010.Payload\"\203\002\n\007Paylo" +
+      "ad\022%\n\rappendEntries\030\001 \001(\0132\016.AppendEntrie" +
+      "s\0221\n\023appendEntriesresult\030\002 \001(\0132\024.AppendE" +
+      "ntriesResult\022!\n\013requestVote\030\003 \001(\0132\014.Requ" +
+      "estVote\022-\n\021requestVoteResult\030\004 \001(\0132\022.Req" +
+      "uestVoteResult\022%\n\rclientMessage\030\005 \001(\0132\016." +
+      "ClientMessage\022%\n\rnodeDiscovery\030\006 \001(\0132\016.N" +
+      "odeDiscovery\"\201\001\n\rAppendEntries\022\014\n\004term\030\001",
+      " \001(\005\022\020\n\010leaderId\030\002 \001(\t\022\024\n\014prevLogIndex\030\003" +
+      " \001(\005\022\023\n\013prevLogTerm\030\004 \001(\005\022\017\n\007entries\030\005 \003" +
+      "(\t\022\024\n\014leaderCommit\030\006 \001(\010\"J\n\023AppendEntrie" +
+      "sResult\022\014\n\004term\030\001 \001(\005\022\017\n\007success\030\002 \001(\010\022\024" +
+      "\n\014senderNodeId\030\003 \001(\t\"[\n\013RequestVote\022\014\n\004t" +
+      "erm\030\001 \001(\005\022\023\n\013candidateId\030\002 \001(\t\022\024\n\014lastLo" +
+      "gIndex\030\003 \001(\005\022\023\n\013lastLogTerm\030\004 \001(\005\"L\n\021Req" +
+      "uestVoteResult\022\014\n\004term\030\001 \001(\005\022\023\n\013voteGran" +
+      "ted\030\002 \001(\010\022\024\n\014senderNodeId\030\003 \001(\t\"\333\004\n\rClie" +
+      "ntMessage\022\026\n\016senderUserName\030\001 \002(\t\022\030\n\020rec",
+      "eiverUserName\030\002 \002(\t\022\025\n\rsenderMsgText\030\003 \001" +
+      "(\t\022\032\n\022senderMsgImageName\030\004 \001(\t\022\033\n\023sender" +
+      "MsgImageBytes\030\005 \001(\014\022 \n\030senderMsgChecksum" +
+      "MsgText\030\006 \001(\t\022#\n\033senderMsgChecksumImageB" +
+      "ytes\030\007 \001(\t\022\030\n\020messageTimestamp\030\010 \001(\t\022B\n\021" +
+      "clientMessageType\030\t \001(\0162 .ClientMessage." +
+      "ClientMessageType:\005LOGIN\022T\n\026clientMessag" +
+      "eErrorType\030\n \001(\0162%.ClientMessage.ClientM" +
+      "essageErrorType:\rINVALID_LOGIN\"f\n\021Client" +
+      "MessageType\022\t\n\005LOGIN\020\001\022\013\n\007MESSAGE\020\002\022\017\n\013A",
+      "CKNOWLEDGE\020\003\022\t\n\005ERROR\020\004\022\n\n\006LOGOUT\020\005\022\021\n\rL" +
+      "OGIN_SUCCESS\020\006\"e\n\026ClientMessageErrorType" +
+      "\022\023\n\017MESSAGE_CORRUPT\020\001\022\021\n\rDELIVERY_FAIL\020\002" +
+      "\022\020\n\014MESSAGE_SIZE\020\003\022\021\n\rINVALID_LOGIN\020\004\"\220\002" +
+      "\n\rNodeDiscovery\022]\n\030nodeDiscoveryMessageT" +
+      "ype\030\001 \001(\0162\'.NodeDiscovery.NodeDiscoveryM" +
+      "essageType:\022REQUEST_CONNECTION\"\237\001\n\030NodeD" +
+      "iscoveryMessageType\022\026\n\022REQUEST_CONNECTIO" +
+      "N\020\001\022 \n\034RESPONSE_CONNECTION_ACCEPTED\020\002\022 \n" +
+      "\034RESPONSE_CONNECTION_REJECTED\020\003\022\013\n\007NODE_",
+      "ID\020\004\022\013\n\007NODE_IP\020\005\022\r\n\tNODE_PORT\020\006*\234\001\n\rMes" +
+      "sageHeader\022\024\n\020AppendEntriesMsg\020\001\022\033\n\027Aapp" +
+      "endEntriesResultMsg\020\002\022\022\n\016RequestVoteMsg\020" +
+      "\003\022\030\n\024RequestVoteResultMsg\020\004\022\024\n\020NodeDisco" +
+      "veryMsg\020\005\022\024\n\020ClientMessageMsg\020\006B(\n\030com.d" +
+      "istsc.comm.protobufB\014MessageProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -7682,11 +7682,11 @@ public final class MessageProto {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_MessageDetails_descriptor =
+    internal_static_Request_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_MessageDetails_fieldAccessorTable = new
+    internal_static_Request_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_MessageDetails_descriptor,
+        internal_static_Request_descriptor,
         new java.lang.String[] { "MessageHeader", "Payload", });
     internal_static_Payload_descriptor =
       getDescriptor().getMessageTypes().get(1);

@@ -21,7 +21,7 @@ public class NodeDiscoveryInitializer extends ChannelInitializer<SocketChannel> 
 
   
         pipeline.addLast ("frameDecoder", new ProtobufVarint32FrameDecoder ());
-        pipeline.addLast ("protobufDecoder", new ProtobufDecoder(MessageProto.getDefaultInstance()));
+        pipeline.addLast ("protobufDecoder", new ProtobufDecoder(MessageProto.));
 
         pipeline.addLast ("frameEncoder", new ProtobufVarint32LengthFieldPrepender ());
         pipeline.addLast ("protobufEncoder", new ProtobufEncoder ());

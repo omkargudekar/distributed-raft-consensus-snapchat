@@ -15,7 +15,7 @@ public class LeaderElectionThread implements Runnable
 	{
 		System.out.println("Starting leader election threads...");
 		
-//		new Thread(new DeclareCandidacyThread()).start();
+		new Thread(new DeclareCandidacyThread()).start();
 	    new Thread(new RequestVoteResultListenerThread()).start();
 		new Thread(new RequestVoteListenerThread()).start();
 		new Thread(new LogAppendListener()).start();

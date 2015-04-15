@@ -67,7 +67,6 @@ public class NodeDiscoveryMsgQueueWorker implements Runnable
 	public boolean isChannelActive(ChannelHandlerContext ctx)
 	{
 		
-		System.out.println("$$$$$ Check if channelActive");
 		boolean writable=false;
 		try
 		{
@@ -80,8 +79,7 @@ public class NodeDiscoveryMsgQueueWorker implements Runnable
 
 		}
 		
-		System.out.println("ChannelActive"+writable);
-
+	
 		return writable;
 		
 	}

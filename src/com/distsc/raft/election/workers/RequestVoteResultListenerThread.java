@@ -11,7 +11,7 @@ public class RequestVoteResultListenerThread implements Runnable
 	@Override
 	public void run()
 	{
-		System.out.println("VoteListenerThread started...");
+		System.out.println("RequestVoteResultListenerThread started...");
 		while (true)
 		{
 			while (true)
@@ -70,6 +70,7 @@ public class RequestVoteResultListenerThread implements Runnable
 			System.out.println("****************************");
 			RAFTStatus.setDeclaredLeader(GlobalConfiguration.getCurrentNode().getNodeID());
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Leader);
+			RAFTStatus.setCurrentTerm(RAFTStatus.getCurrentTerm()+1);
 			RAFTStatus.reset();
 		}
 	

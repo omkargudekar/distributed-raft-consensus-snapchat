@@ -1,13 +1,7 @@
 package com.distsc.app.config;
 
 import java.util.ArrayList;
-
 import com.distsc.beans.Node;
-import com.distsc.comm.msg.queues.AppendEntriesQueue;
-import com.distsc.comm.msg.queues.AppendEntriesResultQueue;
-import com.distsc.comm.msg.queues.RequestVoteMsgQueue;
-import com.distsc.comm.msg.queues.RequestVoteResultMsgQueue;
-import com.distsc.raft.RAFTStatus;
 
 public class GlobalConfiguration
 {	

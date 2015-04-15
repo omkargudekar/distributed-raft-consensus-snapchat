@@ -104,6 +104,7 @@ public class LogAppendListener implements Runnable
 		if (AppendEntriesQueue.getCount() == 0 && RAFTStatus.getDeclaredLeader() != null)
 		{
 			System.out.println("Heartbeat Missed.");
+			RAFTStatus.setVoted(false);
 			RAFTStatus.setDeclaredLeader(null);
 		}
 		else if (AppendEntriesQueue.getCount() > 0)

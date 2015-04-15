@@ -32,6 +32,8 @@ public class ServerHandler extends SimpleChannelInboundHandler<Request>
 	protected void channelRead0(ChannelHandlerContext ctx, Request msg)
 			throws Exception 
 	{
+		
+			System.out.println("[RAW] Request Message Recived "+msg.getMessageHeader());
 			RequestQueue.push(new RequestContext(ctx,msg));
 	}
 	

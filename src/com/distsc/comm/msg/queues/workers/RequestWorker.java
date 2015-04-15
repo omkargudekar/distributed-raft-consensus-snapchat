@@ -18,8 +18,8 @@ public class RequestWorker implements Runnable
 			
 			if (RequestQueue.getCount() > 0)
 			{
-				System.out.println("Received Message : "+requestMessage.getRequest().getMessageHeader());
 				requestMessage = RequestQueue.pop();
+				System.out.println("Received Message : "+requestMessage.getRequest().getMessageHeader());
 				switch (requestMessage.getRequest().getMessageHeader())
 				{
 				case AppendEntriesMsg:
@@ -58,6 +58,22 @@ public class RequestWorker implements Runnable
 
 				}
 			}
+			else
+			{
+				pause();
+			}
+		}
+	}
+	public void pause()
+	{
+		try
+		{
+			Thread.sleep(500);
+		}
+		catch (InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

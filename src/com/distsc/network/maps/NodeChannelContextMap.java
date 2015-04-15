@@ -26,6 +26,7 @@ public class NodeChannelContextMap
 	
 	public static void addNodeChnnelContext(String nodeId,ChannelHandlerContext nodeChannelContext)
 	{
+		System.out.println("Channel Added for : "+nodeId);
 		contextMap.put(nodeId, nodeChannelContext);
 		
 	}

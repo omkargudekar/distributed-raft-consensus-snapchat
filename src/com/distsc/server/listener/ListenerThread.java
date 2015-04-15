@@ -44,6 +44,10 @@ public class ListenerThread implements Runnable
 						System.out.println(e);
 					}
 				}
+				else
+				{
+					pause();
+				}
 			}
 
 		}
@@ -65,10 +69,23 @@ public class ListenerThread implements Runnable
 		}
 
 	}
+	
+	public void pause()
+	{
+		try
+		{
+			Thread.sleep(500);
+		}
+		catch (InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public Request getAcceptConnectionMsg()
 	{
-
+		
 		return MessageProto.Request.newBuilder().setMessageHeader(Request.MessageHeader.NodeDiscoveryMsg)
 				.setPayload(MessageProto.Payload.newBuilder().setNodeDiscovery(MessageProto.NodeDiscovery.newBuilder().setNodeDiscoveryMessageType(MessageProto.NodeDiscovery.NodeDiscoveryMessageType.RESPONSE_CONNECTION_ACCEPTED).setNODEID(GlobalConfiguration.getCurrentNode().getNodeID()).setNODEIP(GlobalConfiguration.getCurrentNode().getNodeIP()).setNODEPORT(GlobalConfiguration.getCurrentNode().getNodePort()))).build();
 	}

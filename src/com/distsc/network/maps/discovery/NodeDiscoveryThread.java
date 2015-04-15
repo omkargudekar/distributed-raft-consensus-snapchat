@@ -1,4 +1,5 @@
 package com.distsc.network.maps.discovery;
+
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -11,11 +12,13 @@ import com.distsc.beans.Node;
 import com.distsc.comm.protobuf.MessageProto;
 import com.distsc.comm.protobuf.MessageProto.Request;
 import com.distsc.network.maps.NodeChannelContextMap;
+
 public class NodeDiscoveryThread implements Runnable
 {
 	private EventLoopGroup group = null;
 	private ChannelFuture lastWriteFuture = null;
-	private Channel ch=null;
+	private Channel ch = null;
+
 	public void run()
 	{
 		System.out.println("NodeDiscoveryThread Started...");
@@ -24,27 +27,27 @@ public class NodeDiscoveryThread implements Runnable
 			group = new NioEventLoopGroup(1);
 			Bootstrap b = new Bootstrap();
 			b.group(group).channel(NioSocketChannel.class).handler(new NodeDiscoveryInitializer());
-			while(true)
+			while (true)
 			{
-			try
-			{		
-				for(Node node : GlobalConfiguration.getNodes())
+				try
 				{
-					if(!NodeChannelContextMap.isChannelExist(node.getNodeID()))
+					for (Node node : GlobalConfiguration.getNodes())
 					{
-						ch = b.connect(node.getNodeIP(), node.getNodePort()).sync().channel();
-						lastWriteFuture = ch.writeAndFlush(getNodeDiscoveryMessage());
-						lastWriteFuture.channel().close().sync();	
+						if (!NodeChannelContextMap.isChannelExist(node.getNodeID()))
+						{
+							ch = b.connect(node.getNodeIP(), node.getNodePort()).sync().channel();
+							lastWriteFuture = ch.writeAndFlush(getNodeDiscoveryMessage());
+							System.out.println("Sending Message to "+node.getNodeIP()+node.getNodePort());
+						}
 					}
-				}
-				pause();
+					pause();
 
-			}
-			catch(Exception e)
-			{
-						System.out.println(e);
-			}
-			
+				}
+				catch (Exception e)
+				{
+					System.out.println(e);
+				}
+
 			}
 
 		}
@@ -56,21 +59,22 @@ public class NodeDiscoveryThread implements Runnable
 		{
 			try
 			{
+				lastWriteFuture.channel().close().sync();
 				group.shutdownGracefully();
 			}
-			catch(Exception e)
+			catch (Exception e)
 			{
-				
+
 			}
 		}
 
 	}
-	
+
 	public void pause()
 	{
 		try
 		{
-			Thread.sleep(100);
+			Thread.sleep(1000);
 		}
 		catch (InterruptedException e)
 		{
@@ -78,22 +82,12 @@ public class NodeDiscoveryThread implements Runnable
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Request getNodeDiscoveryMessage()
 	{
-		
-			 return MessageProto.Request.newBuilder()
-											.setMessageHeader(Request.MessageHeader.NodeDiscoveryMsg)
-											.setPayload(MessageProto.Payload.newBuilder()
-													           .setNodeDiscovery(
-													           MessageProto.NodeDiscovery.newBuilder().
-												setNodeDiscoveryMessageType(MessageProto.NodeDiscovery.NodeDiscoveryMessageType.REQUEST_CONNECTION)
-												.setNODEID(GlobalConfiguration.getCurrentNode().getNodeID())
-												.setNODEIP(GlobalConfiguration.getCurrentNode().getNodeIP())
-												.setNODEPORT(GlobalConfiguration.getCurrentNode().getNodePort())
-												)).build();
+
+		return MessageProto.Request.newBuilder().setMessageHeader(Request.MessageHeader.NodeDiscoveryMsg)
+				.setPayload(MessageProto.Payload.newBuilder().setNodeDiscovery(MessageProto.NodeDiscovery.newBuilder().setNodeDiscoveryMessageType(MessageProto.NodeDiscovery.NodeDiscoveryMessageType.REQUEST_CONNECTION).setNODEID(GlobalConfiguration.getCurrentNode().getNodeID()).setNODEIP(GlobalConfiguration.getCurrentNode().getNodeIP()).setNODEPORT(GlobalConfiguration.getCurrentNode().getNodePort()))).build();
 	}
-	
-		
-	
+
 }

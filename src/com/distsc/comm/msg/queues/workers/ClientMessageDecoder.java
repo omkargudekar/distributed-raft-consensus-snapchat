@@ -1,11 +1,11 @@
 package com.distsc.comm.msg.queues.workers;
 import io.netty.channel.ChannelHandlerContext;
 
-import com.distsc.chat.msg.handler.AckHandler;
-import com.distsc.chat.msg.handler.ErrorHandler;
-import com.distsc.chat.msg.handler.LoginHandler;
-import com.distsc.chat.msg.handler.LogoutHandler;
-import com.distsc.chat.msg.handler.MessageHandler;
+import com.distsc.client.msg.handler.AckHandler;
+import com.distsc.client.msg.handler.ErrorHandler;
+import com.distsc.client.msg.handler.LoginHandler;
+import com.distsc.client.msg.handler.LogoutHandler;
+import com.distsc.client.msg.handler.MessageHandler;
 import com.distsc.comm.protobuf.MessageProto.Request;
 
 

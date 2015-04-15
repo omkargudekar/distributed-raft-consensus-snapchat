@@ -1,4 +1,4 @@
-package com.distsc.chat.msg.handler;
+package com.distsc.client.msg.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 

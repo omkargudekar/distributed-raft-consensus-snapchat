@@ -1,12 +1,12 @@
 package com.distsc.comm.msg.queues.workers;
 import com.distsc.beans.RequestContext;
-import com.distsc.comm.msg.queues.inbound.AppendEntriesQueue;
-import com.distsc.comm.msg.queues.inbound.AppendEntriesResultQueue;
-import com.distsc.comm.msg.queues.inbound.ClientMessageMsgQueue;
-import com.distsc.comm.msg.queues.inbound.NodeDiscoveryMsgQueue;
-import com.distsc.comm.msg.queues.inbound.RequestQueue;
-import com.distsc.comm.msg.queues.inbound.RequestVoteMsgQueue;
-import com.distsc.comm.msg.queues.inbound.RequestVoteResultMsgQueue;
+import com.distsc.comm.msg.queues.AppendEntriesQueue;
+import com.distsc.comm.msg.queues.AppendEntriesResultQueue;
+import com.distsc.comm.msg.queues.ClientMessageMsgQueue;
+import com.distsc.comm.msg.queues.NodeDiscoveryMsgQueue;
+import com.distsc.comm.msg.queues.RequestQueue;
+import com.distsc.comm.msg.queues.RequestVoteMsgQueue;
+import com.distsc.comm.msg.queues.RequestVoteResultMsgQueue;
 
 public class RequestWorker implements Runnable
 {

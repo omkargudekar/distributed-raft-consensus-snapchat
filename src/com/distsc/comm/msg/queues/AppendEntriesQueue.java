@@ -1,10 +1,10 @@
-package com.distsc.comm.msg.queues.inbound;
+package com.distsc.comm.msg.queues;
 
 import java.util.ArrayList;
 
 import com.distsc.beans.RequestContext;
 
-public class RequestQueue
+public class AppendEntriesQueue
 {
 	private static ArrayList<RequestContext> queue = new ArrayList<RequestContext>();
 	

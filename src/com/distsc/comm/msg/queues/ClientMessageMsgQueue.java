@@ -1,10 +1,10 @@
-package com.distsc.comm.msg.queues.inbound;
+package com.distsc.comm.msg.queues;
 
 import java.util.ArrayList;
 
 import com.distsc.beans.RequestContext;
 
-public class NodeDiscoveryMsgQueue
+public class ClientMessageMsgQueue
 {
 	private static ArrayList<RequestContext> queue = new ArrayList<RequestContext>();
 	

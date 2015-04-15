@@ -2,7 +2,7 @@ package com.distsc.raft.election.workers;
 
 import com.distsc.app.config.GlobalConfiguration;
 import com.distsc.beans.RequestContext;
-import com.distsc.comm.msg.queues.inbound.RequestVoteResultMsgQueue;
+import com.distsc.comm.msg.queues.RequestVoteResultMsgQueue;
 import com.distsc.raft.RAFTStatus;
 
 public class RequestVoteResultListenerThread implements Runnable

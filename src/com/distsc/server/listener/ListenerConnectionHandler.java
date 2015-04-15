@@ -4,7 +4,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 import com.distsc.beans.RequestContext;
-import com.distsc.comm.msg.queues.inbound.RequestQueue;
+import com.distsc.comm.msg.queues.RequestQueue;
 import com.distsc.comm.protobuf.MessageProto.Request;
 
 public class ListenerConnectionHandler extends SimpleChannelInboundHandler<Request> 

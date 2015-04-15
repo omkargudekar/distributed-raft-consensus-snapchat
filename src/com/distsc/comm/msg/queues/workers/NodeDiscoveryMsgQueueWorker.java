@@ -1,7 +1,7 @@
 package com.distsc.comm.msg.queues.workers;
 
 import com.distsc.beans.RequestContext;
-import com.distsc.comm.msg.queues.inbound.NodeDiscoveryMsgQueue;
+import com.distsc.comm.msg.queues.NodeDiscoveryMsgQueue;
 import com.distsc.comm.protobuf.MessageProto.Request;
 import com.distsc.network.NetworkContextMap;
 

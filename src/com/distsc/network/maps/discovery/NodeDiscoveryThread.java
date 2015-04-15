@@ -24,7 +24,8 @@ public class NodeDiscoveryThread implements Runnable
 			group = new NioEventLoopGroup(1);
 			Bootstrap b = new Bootstrap();
 			b.group(group).channel(NioSocketChannel.class).handler(new NodeDiscoveryInitializer());
-			
+			while(true)
+			{
 			try
 			{		
 				for(Node node : GlobalConfiguration.getNodes())
@@ -36,6 +37,7 @@ public class NodeDiscoveryThread implements Runnable
 						lastWriteFuture.channel().close().sync();	
 					}
 				}
+				pause();
 
 			}
 			catch(Exception e)
@@ -43,7 +45,7 @@ public class NodeDiscoveryThread implements Runnable
 						System.out.println(e);
 			}
 			
-		
+			}
 
 		}
 		catch (Exception e)
@@ -62,6 +64,19 @@ public class NodeDiscoveryThread implements Runnable
 			}
 		}
 
+	}
+	
+	public void pause()
+	{
+		try
+		{
+			Thread.sleep(100);
+		}
+		catch (InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public Request getNodeDiscoveryMessage()

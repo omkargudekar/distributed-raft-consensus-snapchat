@@ -6,6 +6,10 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
+import com.distsc.app.config.GlobalConfiguration;
+import com.distsc.beans.Node;
+import com.distsc.comm.protobuf.MessageProto;
+import com.distsc.comm.protobuf.MessageProto.Request;
 public class NodeDiscoveryWorker implements Runnable
 {
 	private EventLoopGroup group = null;
@@ -23,10 +27,12 @@ public class NodeDiscoveryWorker implements Runnable
 			{		
 				for(Node node : GlobalConfiguration.getNodes())
 				{
-					if(NetowrkMap.)
-					ch = b.connect(node.getNodeIP(), node.getNodePort()).sync().channel();
-					lastWriteFuture = ch.writeAndFlush(msg);
-					lastWriteFuture.channel().close().sync();	
+					if(!NetworkMap.isChannelExist(node.getNodeID()))
+					{
+						ch = b.connect(node.getNodeIP(), node.getNodePort()).sync().channel();
+						lastWriteFuture = ch.writeAndFlush(msg);
+						lastWriteFuture.channel().close().sync();	
+					}
 				}
 
 			}
@@ -56,10 +62,10 @@ public class NodeDiscoveryWorker implements Runnable
 
 	}
 	
-	public void init()
+	public Request getNodeDiscoveryMessage()
 	{
 		
-		
+		MessageProto.Request.newBuilder()
 	}
 	
 		

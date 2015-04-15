@@ -1,18 +1,19 @@
 option java_package= "com.distsc.comm.protobuf";
 option java_outer_classname = "MessageProto";
 
-enum MessageHeader
-{
-	AppendEntriesMsg=1;
-	AappendEntriesResultMsg=2;
-	RequestVoteMsg=3;
-	RequestVoteResultMsg=4;
-	NodeDiscoveryMsg=5;
-	ClientMessageMsg=6;
-}
+
 
 message Request
 {
+	enum MessageHeader
+	{
+		AppendEntriesMsg=1;
+		AappendEntriesResultMsg=2;
+		RequestVoteMsg=3;
+		RequestVoteResultMsg=4;
+		NodeDiscoveryMsg=5;
+		ClientMessageMsg=6;
+	}
 	optional MessageHeader messageHeader = 1 [default = AppendEntriesMsg];
 	optional Payload payload=2;
 }

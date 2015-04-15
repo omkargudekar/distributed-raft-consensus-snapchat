@@ -6,8 +6,7 @@ import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
-
-import com.distsc.comm.protobuf.MessageProto;
+import com.distsc.comm.protobuf.MessageProto.Request;
 
 public class NodeDiscoveryInitializer extends ChannelInitializer<SocketChannel> {
 
@@ -21,7 +20,7 @@ public class NodeDiscoveryInitializer extends ChannelInitializer<SocketChannel> 
 
   
         pipeline.addLast ("frameDecoder", new ProtobufVarint32FrameDecoder ());
-        pipeline.addLast ("protobufDecoder", new ProtobufDecoder(MessageProto.));
+        pipeline.addLast ("protobufDecoder", new ProtobufDecoder(Request.getDefaultInstance()));
 
         pipeline.addLast ("frameEncoder", new ProtobufVarint32LengthFieldPrepender ());
         pipeline.addLast ("protobufEncoder", new ProtobufEncoder ());

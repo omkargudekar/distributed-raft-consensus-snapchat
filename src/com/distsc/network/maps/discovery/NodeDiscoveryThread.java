@@ -3,6 +3,7 @@ package com.distsc.network.maps.discovery;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -39,6 +40,13 @@ public class NodeDiscoveryThread implements Runnable
 							lastWriteFuture = ch.writeAndFlush(getNodeDiscoveryMessage());
 							System.out.println("Sending Message to "+node.getNodeIP()+node.getNodePort());
 						}
+						else if(NodeChannelContextMap.isChannelExist(node.getNodeID()) && isChannelActive(NodeChannelContextMap.getNodeContext(node.getNodeID()))==false )
+						{
+							ch = b.connect(node.getNodeIP(), node.getNodePort()).sync().channel();
+							lastWriteFuture = ch.writeAndFlush(getNodeDiscoveryMessage());
+							System.out.println("Sending Message to "+node.getNodeIP()+node.getNodePort());
+						
+						}
 					}
 					pause();
 
@@ -70,6 +78,27 @@ public class NodeDiscoveryThread implements Runnable
 
 	}
 
+	public boolean isChannelActive(ChannelHandlerContext ctx)
+	{
+		
+		System.out.println("$$$$$ Check if channelActive");
+		boolean writable=false;
+		try
+		{
+			ctx.write("Test");
+			writable=true;
+		}
+		catch(Exception e)
+		{
+			writable=false;
+
+		}
+		
+		System.out.println("ChannelActive"+writable);
+
+		return writable;
+		
+	}
 	public void pause()
 	{
 		try

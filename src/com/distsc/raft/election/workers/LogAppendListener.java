@@ -101,6 +101,7 @@ public class LogAppendListener implements Runnable
 	public void checkHeartbeat()
 	{
 		starRAFTTimer();
+		System.out.println("AppendEntriesQueue Count:"+AppendEntriesQueue.getCount()+" , Leader : "+RAFTStatus.getDeclaredLeader());
 		if (AppendEntriesQueue.getCount() == 0 && RAFTStatus.getDeclaredLeader() != null)
 		{
 			System.out.println("Heartbeat Missed.");
@@ -109,19 +110,20 @@ public class LogAppendListener implements Runnable
 		}
 		else if (AppendEntriesQueue.getCount() > 0 && RAFTStatus.getDeclaredLeader() != null)
 		{
-			RequestContext requestContext=null;
-			for (int counter = 0; counter < AppendEntriesQueue.getCount(); counter++)
-			{
-				requestContext = AppendEntriesQueue.pop();
+				RequestContext requestContext = AppendEntriesQueue.pop();
 				System.out.println("Heartbeat Received : Leader Id : " + requestContext.getRequest().getPayload().getAppendEntries().getLeaderId() + " Leader Term :" + requestContext.getRequest().getPayload().getAppendEntries().getTerm());
 				Request msg = Request.newBuilder().setMessageHeader(Request.MessageHeader.AappendEntriesResultMsg).setPayload(MessageProto.Payload.newBuilder().setAppendEntriesresult(MessageProto.AppendEntriesResult.newBuilder().setTerm(RAFTStatus.getCurrentTerm()).setSuccess(true))).build();
 				NodeChannelContextMap.getNodeContext(requestContext.getRequest().getPayload().getAppendEntries().getLeaderId()).writeAndFlush(msg);
-			}
-
+		
 		}
 		else if(AppendEntriesQueue.getCount() > 0 && RAFTStatus.getDeclaredLeader() == null)
 		{
-			AppendEntriesQueue.reset();
+			RequestContext requestContext = AppendEntriesQueue.pop();
+			RAFTStatus.setDeclaredLeader(requestContext.getRequest().getPayload().getAppendEntries().getLeaderId());
+			System.out.println("Heartbeat Received : Leader Id : " + requestContext.getRequest().getPayload().getAppendEntries().getLeaderId() + " Leader Term :" + requestContext.getRequest().getPayload().getAppendEntries().getTerm());
+			Request msg = Request.newBuilder().setMessageHeader(Request.MessageHeader.AappendEntriesResultMsg).setPayload(MessageProto.Payload.newBuilder().setAppendEntriesresult(MessageProto.AppendEntriesResult.newBuilder().setTerm(RAFTStatus.getCurrentTerm()).setSuccess(true))).build();
+			NodeChannelContextMap.getNodeContext(requestContext.getRequest().getPayload().getAppendEntries().getLeaderId()).writeAndFlush(msg);
+	
 		}
 		pause();
 		

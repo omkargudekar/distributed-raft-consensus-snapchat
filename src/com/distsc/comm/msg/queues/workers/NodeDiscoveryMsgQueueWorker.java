@@ -17,9 +17,6 @@ public class NodeDiscoveryMsgQueueWorker implements Runnable
 		{
 			if (NodeDiscoveryMsgQueue.getCount() > 0)
 			{
-				System.out.println("NodeDiscovery Message Found...");
-				for (int counter = 0; counter < NodeDiscoveryMsgQueue.getCount(); counter++)
-				{
 					requestMessage = NodeDiscoveryMsgQueue.pop();
 					switch (requestMessage.getRequest().getPayload().getNodeDiscovery().getNodeDiscoveryMessageType())
 					{
@@ -38,7 +35,7 @@ public class NodeDiscoveryMsgQueueWorker implements Runnable
 					default:
 						break;
 					}
-				}
+				
 			}
 			else
 			{
@@ -73,7 +70,7 @@ public class NodeDiscoveryMsgQueueWorker implements Runnable
 	{
 		try
 		{
-			Thread.sleep(100);
+			Thread.sleep(1000);
 		}
 		catch (InterruptedException e)
 		{

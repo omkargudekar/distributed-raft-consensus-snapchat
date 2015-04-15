@@ -19,7 +19,6 @@ public class RequestWorker implements Runnable
 			if (RequestQueue.getCount() > 0)
 			{
 				requestMessage = RequestQueue.pop();
-				System.out.println("Received Message : "+requestMessage.getRequest().getMessageHeader());
 				switch (requestMessage.getRequest().getMessageHeader())
 				{
 				case AppendEntriesMsg:
@@ -43,7 +42,6 @@ public class RequestWorker implements Runnable
 				break;
 
 				case NodeDiscoveryMsg:
-				System.out.println("Message pushed to NodeDiscoveryMsgQueue");
 				NodeDiscoveryMsgQueue.push(requestMessage);
 				break;
 

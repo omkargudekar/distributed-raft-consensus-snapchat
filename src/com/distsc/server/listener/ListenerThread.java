@@ -11,6 +11,7 @@ import com.distsc.app.config.GlobalConfiguration;
 import com.distsc.beans.RequestContext;
 import com.distsc.comm.protobuf.MessageProto;
 import com.distsc.comm.protobuf.MessageProto.Request;
+import com.distsc.network.maps.NodeChannelContextMap;
 
 public class ListenerThread implements Runnable
 {
@@ -34,7 +35,6 @@ public class ListenerThread implements Runnable
 					request=requestContext.getRequest();
 					try
 					{
-
 						ch = b.connect(request.getPayload().getNodeDiscovery().getNODEIP(),request.getPayload().getNodeDiscovery().getNODEPORT()).sync().channel();
 						lastWriteFuture = ch.writeAndFlush(getAcceptConnectionMsg());
 

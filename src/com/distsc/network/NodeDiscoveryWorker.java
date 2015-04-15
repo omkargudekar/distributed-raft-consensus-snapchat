@@ -65,7 +65,13 @@ public class NodeDiscoveryWorker implements Runnable
 	public Request getNodeDiscoveryMessage()
 	{
 		
-		MessageProto.Request.newBuilder()
+						MessageProto.Request.newBuilder()
+											.setMessageHeader(Request.MessageHeader.NodeDiscoveryMsg)
+														  .setPayload(MessageProto.Payload.newBuilder()
+													           .setNodeDiscovery(
+													           MessageProto.NodeDiscovery.newBuilder().
+													           setNodeDiscoveryMessageType(MessageProto.NodeDiscovery.NodeDiscoveryMessageType.REQUEST_CONNECTION)
+												));
 	}
 	
 		

@@ -8,136 +8,18 @@ public final class MessageProto {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  /**
-   * Protobuf enum {@code MessageHeader}
-   */
-  public enum MessageHeader
-      implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <code>AppendEntriesMsg = 1;</code>
-     */
-    AppendEntriesMsg(0, 1),
-    /**
-     * <code>AappendEntriesResultMsg = 2;</code>
-     */
-    AappendEntriesResultMsg(1, 2),
-    /**
-     * <code>RequestVoteMsg = 3;</code>
-     */
-    RequestVoteMsg(2, 3),
-    /**
-     * <code>RequestVoteResultMsg = 4;</code>
-     */
-    RequestVoteResultMsg(3, 4),
-    /**
-     * <code>NodeDiscoveryMsg = 5;</code>
-     */
-    NodeDiscoveryMsg(4, 5),
-    /**
-     * <code>ClientMessageMsg = 6;</code>
-     */
-    ClientMessageMsg(5, 6),
-    ;
-
-    /**
-     * <code>AppendEntriesMsg = 1;</code>
-     */
-    public static final int AppendEntriesMsg_VALUE = 1;
-    /**
-     * <code>AappendEntriesResultMsg = 2;</code>
-     */
-    public static final int AappendEntriesResultMsg_VALUE = 2;
-    /**
-     * <code>RequestVoteMsg = 3;</code>
-     */
-    public static final int RequestVoteMsg_VALUE = 3;
-    /**
-     * <code>RequestVoteResultMsg = 4;</code>
-     */
-    public static final int RequestVoteResultMsg_VALUE = 4;
-    /**
-     * <code>NodeDiscoveryMsg = 5;</code>
-     */
-    public static final int NodeDiscoveryMsg_VALUE = 5;
-    /**
-     * <code>ClientMessageMsg = 6;</code>
-     */
-    public static final int ClientMessageMsg_VALUE = 6;
-
-
-    public final int getNumber() { return value; }
-
-    public static MessageHeader valueOf(int value) {
-      switch (value) {
-        case 1: return AppendEntriesMsg;
-        case 2: return AappendEntriesResultMsg;
-        case 3: return RequestVoteMsg;
-        case 4: return RequestVoteResultMsg;
-        case 5: return NodeDiscoveryMsg;
-        case 6: return ClientMessageMsg;
-        default: return null;
-      }
-    }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<MessageHeader>
-        internalGetValueMap() {
-      return internalValueMap;
-    }
-    private static com.google.protobuf.Internal.EnumLiteMap<MessageHeader>
-        internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<MessageHeader>() {
-            public MessageHeader findValueByNumber(int number) {
-              return MessageHeader.valueOf(number);
-            }
-          };
-
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
-      return getDescriptor().getValues().get(index);
-    }
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
-      return getDescriptor();
-    }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
-      return com.distsc.comm.protobuf.MessageProto.getDescriptor().getEnumTypes().get(0);
-    }
-
-    private static final MessageHeader[] VALUES = values();
-
-    public static MessageHeader valueOf(
-        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-      if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
-      }
-      return VALUES[desc.getIndex()];
-    }
-
-    private final int index;
-    private final int value;
-
-    private MessageHeader(int index, int value) {
-      this.index = index;
-      this.value = value;
-    }
-
-    // @@protoc_insertion_point(enum_scope:MessageHeader)
-  }
-
   public interface RequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Request)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional .MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
+     * <code>optional .Request.MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
      */
     boolean hasMessageHeader();
     /**
-     * <code>optional .MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
+     * <code>optional .Request.MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
      */
-    com.distsc.comm.protobuf.MessageProto.MessageHeader getMessageHeader();
+    com.distsc.comm.protobuf.MessageProto.Request.MessageHeader getMessageHeader();
 
     /**
      * <code>optional .Payload payload = 2;</code>
@@ -206,7 +88,7 @@ public final class MessageProto {
             }
             case 8: {
               int rawValue = input.readEnum();
-              com.distsc.comm.protobuf.MessageProto.MessageHeader value = com.distsc.comm.protobuf.MessageProto.MessageHeader.valueOf(rawValue);
+              com.distsc.comm.protobuf.MessageProto.Request.MessageHeader value = com.distsc.comm.protobuf.MessageProto.Request.MessageHeader.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(1, rawValue);
               } else {
@@ -267,19 +149,137 @@ public final class MessageProto {
       return PARSER;
     }
 
+    /**
+     * Protobuf enum {@code Request.MessageHeader}
+     */
+    public enum MessageHeader
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>AppendEntriesMsg = 1;</code>
+       */
+      AppendEntriesMsg(0, 1),
+      /**
+       * <code>AappendEntriesResultMsg = 2;</code>
+       */
+      AappendEntriesResultMsg(1, 2),
+      /**
+       * <code>RequestVoteMsg = 3;</code>
+       */
+      RequestVoteMsg(2, 3),
+      /**
+       * <code>RequestVoteResultMsg = 4;</code>
+       */
+      RequestVoteResultMsg(3, 4),
+      /**
+       * <code>NodeDiscoveryMsg = 5;</code>
+       */
+      NodeDiscoveryMsg(4, 5),
+      /**
+       * <code>ClientMessageMsg = 6;</code>
+       */
+      ClientMessageMsg(5, 6),
+      ;
+
+      /**
+       * <code>AppendEntriesMsg = 1;</code>
+       */
+      public static final int AppendEntriesMsg_VALUE = 1;
+      /**
+       * <code>AappendEntriesResultMsg = 2;</code>
+       */
+      public static final int AappendEntriesResultMsg_VALUE = 2;
+      /**
+       * <code>RequestVoteMsg = 3;</code>
+       */
+      public static final int RequestVoteMsg_VALUE = 3;
+      /**
+       * <code>RequestVoteResultMsg = 4;</code>
+       */
+      public static final int RequestVoteResultMsg_VALUE = 4;
+      /**
+       * <code>NodeDiscoveryMsg = 5;</code>
+       */
+      public static final int NodeDiscoveryMsg_VALUE = 5;
+      /**
+       * <code>ClientMessageMsg = 6;</code>
+       */
+      public static final int ClientMessageMsg_VALUE = 6;
+
+
+      public final int getNumber() { return value; }
+
+      public static MessageHeader valueOf(int value) {
+        switch (value) {
+          case 1: return AppendEntriesMsg;
+          case 2: return AappendEntriesResultMsg;
+          case 3: return RequestVoteMsg;
+          case 4: return RequestVoteResultMsg;
+          case 5: return NodeDiscoveryMsg;
+          case 6: return ClientMessageMsg;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<MessageHeader>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<MessageHeader>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<MessageHeader>() {
+              public MessageHeader findValueByNumber(int number) {
+                return MessageHeader.valueOf(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.distsc.comm.protobuf.MessageProto.Request.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final MessageHeader[] VALUES = values();
+
+      public static MessageHeader valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int index;
+      private final int value;
+
+      private MessageHeader(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:Request.MessageHeader)
+    }
+
     private int bitField0_;
     public static final int MESSAGEHEADER_FIELD_NUMBER = 1;
-    private com.distsc.comm.protobuf.MessageProto.MessageHeader messageHeader_;
+    private com.distsc.comm.protobuf.MessageProto.Request.MessageHeader messageHeader_;
     /**
-     * <code>optional .MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
+     * <code>optional .Request.MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
      */
     public boolean hasMessageHeader() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>optional .MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
+     * <code>optional .Request.MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
      */
-    public com.distsc.comm.protobuf.MessageProto.MessageHeader getMessageHeader() {
+    public com.distsc.comm.protobuf.MessageProto.Request.MessageHeader getMessageHeader() {
       return messageHeader_;
     }
 
@@ -305,7 +305,7 @@ public final class MessageProto {
     }
 
     private void initFields() {
-      messageHeader_ = com.distsc.comm.protobuf.MessageProto.MessageHeader.AppendEntriesMsg;
+      messageHeader_ = com.distsc.comm.protobuf.MessageProto.Request.MessageHeader.AppendEntriesMsg;
       payload_ = com.distsc.comm.protobuf.MessageProto.Payload.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
@@ -468,7 +468,7 @@ public final class MessageProto {
 
       public Builder clear() {
         super.clear();
-        messageHeader_ = com.distsc.comm.protobuf.MessageProto.MessageHeader.AppendEntriesMsg;
+        messageHeader_ = com.distsc.comm.protobuf.MessageProto.Request.MessageHeader.AppendEntriesMsg;
         bitField0_ = (bitField0_ & ~0x00000001);
         if (payloadBuilder_ == null) {
           payload_ = com.distsc.comm.protobuf.MessageProto.Payload.getDefaultInstance();
@@ -571,23 +571,23 @@ public final class MessageProto {
       }
       private int bitField0_;
 
-      private com.distsc.comm.protobuf.MessageProto.MessageHeader messageHeader_ = com.distsc.comm.protobuf.MessageProto.MessageHeader.AppendEntriesMsg;
+      private com.distsc.comm.protobuf.MessageProto.Request.MessageHeader messageHeader_ = com.distsc.comm.protobuf.MessageProto.Request.MessageHeader.AppendEntriesMsg;
       /**
-       * <code>optional .MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
+       * <code>optional .Request.MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
        */
       public boolean hasMessageHeader() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>optional .MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
+       * <code>optional .Request.MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
        */
-      public com.distsc.comm.protobuf.MessageProto.MessageHeader getMessageHeader() {
+      public com.distsc.comm.protobuf.MessageProto.Request.MessageHeader getMessageHeader() {
         return messageHeader_;
       }
       /**
-       * <code>optional .MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
+       * <code>optional .Request.MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
        */
-      public Builder setMessageHeader(com.distsc.comm.protobuf.MessageProto.MessageHeader value) {
+      public Builder setMessageHeader(com.distsc.comm.protobuf.MessageProto.Request.MessageHeader value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -597,11 +597,11 @@ public final class MessageProto {
         return this;
       }
       /**
-       * <code>optional .MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
+       * <code>optional .Request.MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
        */
       public Builder clearMessageHeader() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        messageHeader_ = com.distsc.comm.protobuf.MessageProto.MessageHeader.AppendEntriesMsg;
+        messageHeader_ = com.distsc.comm.protobuf.MessageProto.Request.MessageHeader.AppendEntriesMsg;
         onChanged();
         return this;
       }
@@ -7623,52 +7623,53 @@ public final class MessageProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rMessage.proto\"]\n\007Request\0227\n\rmessageHea" +
-      "der\030\001 \001(\0162\016.MessageHeader:\020AppendEntries" +
-      "Msg\022\031\n\007payload\030\002 \001(\0132\010.Payload\"\203\002\n\007Paylo" +
-      "ad\022%\n\rappendEntries\030\001 \001(\0132\016.AppendEntrie" +
-      "s\0221\n\023appendEntriesresult\030\002 \001(\0132\024.AppendE" +
-      "ntriesResult\022!\n\013requestVote\030\003 \001(\0132\014.Requ" +
-      "estVote\022-\n\021requestVoteResult\030\004 \001(\0132\022.Req" +
-      "uestVoteResult\022%\n\rclientMessage\030\005 \001(\0132\016." +
-      "ClientMessage\022%\n\rnodeDiscovery\030\006 \001(\0132\016.N" +
-      "odeDiscovery\"\201\001\n\rAppendEntries\022\014\n\004term\030\001",
-      " \001(\005\022\020\n\010leaderId\030\002 \001(\t\022\024\n\014prevLogIndex\030\003" +
-      " \001(\005\022\023\n\013prevLogTerm\030\004 \001(\005\022\017\n\007entries\030\005 \003" +
-      "(\t\022\024\n\014leaderCommit\030\006 \001(\010\"J\n\023AppendEntrie" +
-      "sResult\022\014\n\004term\030\001 \001(\005\022\017\n\007success\030\002 \001(\010\022\024" +
-      "\n\014senderNodeId\030\003 \001(\t\"[\n\013RequestVote\022\014\n\004t" +
-      "erm\030\001 \001(\005\022\023\n\013candidateId\030\002 \001(\t\022\024\n\014lastLo" +
-      "gIndex\030\003 \001(\005\022\023\n\013lastLogTerm\030\004 \001(\005\"L\n\021Req" +
-      "uestVoteResult\022\014\n\004term\030\001 \001(\005\022\023\n\013voteGran" +
-      "ted\030\002 \001(\010\022\024\n\014senderNodeId\030\003 \001(\t\"\333\004\n\rClie" +
-      "ntMessage\022\026\n\016senderUserName\030\001 \002(\t\022\030\n\020rec",
-      "eiverUserName\030\002 \002(\t\022\025\n\rsenderMsgText\030\003 \001" +
-      "(\t\022\032\n\022senderMsgImageName\030\004 \001(\t\022\033\n\023sender" +
-      "MsgImageBytes\030\005 \001(\014\022 \n\030senderMsgChecksum" +
-      "MsgText\030\006 \001(\t\022#\n\033senderMsgChecksumImageB" +
-      "ytes\030\007 \001(\t\022\030\n\020messageTimestamp\030\010 \001(\t\022B\n\021" +
-      "clientMessageType\030\t \001(\0162 .ClientMessage." +
-      "ClientMessageType:\005LOGIN\022T\n\026clientMessag" +
-      "eErrorType\030\n \001(\0162%.ClientMessage.ClientM" +
-      "essageErrorType:\rINVALID_LOGIN\"f\n\021Client" +
-      "MessageType\022\t\n\005LOGIN\020\001\022\013\n\007MESSAGE\020\002\022\017\n\013A",
-      "CKNOWLEDGE\020\003\022\t\n\005ERROR\020\004\022\n\n\006LOGOUT\020\005\022\021\n\rL" +
-      "OGIN_SUCCESS\020\006\"e\n\026ClientMessageErrorType" +
-      "\022\023\n\017MESSAGE_CORRUPT\020\001\022\021\n\rDELIVERY_FAIL\020\002" +
-      "\022\020\n\014MESSAGE_SIZE\020\003\022\021\n\rINVALID_LOGIN\020\004\"\220\002" +
-      "\n\rNodeDiscovery\022]\n\030nodeDiscoveryMessageT" +
-      "ype\030\001 \001(\0162\'.NodeDiscovery.NodeDiscoveryM" +
-      "essageType:\022REQUEST_CONNECTION\"\237\001\n\030NodeD" +
-      "iscoveryMessageType\022\026\n\022REQUEST_CONNECTIO" +
-      "N\020\001\022 \n\034RESPONSE_CONNECTION_ACCEPTED\020\002\022 \n" +
-      "\034RESPONSE_CONNECTION_REJECTED\020\003\022\013\n\007NODE_",
-      "ID\020\004\022\013\n\007NODE_IP\020\005\022\r\n\tNODE_PORT\020\006*\234\001\n\rMes" +
-      "sageHeader\022\024\n\020AppendEntriesMsg\020\001\022\033\n\027Aapp" +
-      "endEntriesResultMsg\020\002\022\022\n\016RequestVoteMsg\020" +
-      "\003\022\030\n\024RequestVoteResultMsg\020\004\022\024\n\020NodeDisco" +
-      "veryMsg\020\005\022\024\n\020ClientMessageMsg\020\006B(\n\030com.d" +
-      "istsc.comm.protobufB\014MessageProto"
+      "\n\rMessage.proto\"\204\002\n\007Request\022?\n\rmessageHe" +
+      "ader\030\001 \001(\0162\026.Request.MessageHeader:\020Appe" +
+      "ndEntriesMsg\022\031\n\007payload\030\002 \001(\0132\010.Payload\"" +
+      "\234\001\n\rMessageHeader\022\024\n\020AppendEntriesMsg\020\001\022" +
+      "\033\n\027AappendEntriesResultMsg\020\002\022\022\n\016RequestV" +
+      "oteMsg\020\003\022\030\n\024RequestVoteResultMsg\020\004\022\024\n\020No" +
+      "deDiscoveryMsg\020\005\022\024\n\020ClientMessageMsg\020\006\"\203" +
+      "\002\n\007Payload\022%\n\rappendEntries\030\001 \001(\0132\016.Appe" +
+      "ndEntries\0221\n\023appendEntriesresult\030\002 \001(\0132\024" +
+      ".AppendEntriesResult\022!\n\013requestVote\030\003 \001(",
+      "\0132\014.RequestVote\022-\n\021requestVoteResult\030\004 \001" +
+      "(\0132\022.RequestVoteResult\022%\n\rclientMessage\030" +
+      "\005 \001(\0132\016.ClientMessage\022%\n\rnodeDiscovery\030\006" +
+      " \001(\0132\016.NodeDiscovery\"\201\001\n\rAppendEntries\022\014" +
+      "\n\004term\030\001 \001(\005\022\020\n\010leaderId\030\002 \001(\t\022\024\n\014prevLo" +
+      "gIndex\030\003 \001(\005\022\023\n\013prevLogTerm\030\004 \001(\005\022\017\n\007ent" +
+      "ries\030\005 \003(\t\022\024\n\014leaderCommit\030\006 \001(\010\"J\n\023Appe" +
+      "ndEntriesResult\022\014\n\004term\030\001 \001(\005\022\017\n\007success" +
+      "\030\002 \001(\010\022\024\n\014senderNodeId\030\003 \001(\t\"[\n\013RequestV" +
+      "ote\022\014\n\004term\030\001 \001(\005\022\023\n\013candidateId\030\002 \001(\t\022\024",
+      "\n\014lastLogIndex\030\003 \001(\005\022\023\n\013lastLogTerm\030\004 \001(" +
+      "\005\"L\n\021RequestVoteResult\022\014\n\004term\030\001 \001(\005\022\023\n\013" +
+      "voteGranted\030\002 \001(\010\022\024\n\014senderNodeId\030\003 \001(\t\"" +
+      "\333\004\n\rClientMessage\022\026\n\016senderUserName\030\001 \002(" +
+      "\t\022\030\n\020receiverUserName\030\002 \002(\t\022\025\n\rsenderMsg" +
+      "Text\030\003 \001(\t\022\032\n\022senderMsgImageName\030\004 \001(\t\022\033" +
+      "\n\023senderMsgImageBytes\030\005 \001(\014\022 \n\030senderMsg" +
+      "ChecksumMsgText\030\006 \001(\t\022#\n\033senderMsgChecks" +
+      "umImageBytes\030\007 \001(\t\022\030\n\020messageTimestamp\030\010" +
+      " \001(\t\022B\n\021clientMessageType\030\t \001(\0162 .Client",
+      "Message.ClientMessageType:\005LOGIN\022T\n\026clie" +
+      "ntMessageErrorType\030\n \001(\0162%.ClientMessage" +
+      ".ClientMessageErrorType:\rINVALID_LOGIN\"f" +
+      "\n\021ClientMessageType\022\t\n\005LOGIN\020\001\022\013\n\007MESSAG" +
+      "E\020\002\022\017\n\013ACKNOWLEDGE\020\003\022\t\n\005ERROR\020\004\022\n\n\006LOGOU" +
+      "T\020\005\022\021\n\rLOGIN_SUCCESS\020\006\"e\n\026ClientMessageE" +
+      "rrorType\022\023\n\017MESSAGE_CORRUPT\020\001\022\021\n\rDELIVER" +
+      "Y_FAIL\020\002\022\020\n\014MESSAGE_SIZE\020\003\022\021\n\rINVALID_LO" +
+      "GIN\020\004\"\220\002\n\rNodeDiscovery\022]\n\030nodeDiscovery" +
+      "MessageType\030\001 \001(\0162\'.NodeDiscovery.NodeDi",
+      "scoveryMessageType:\022REQUEST_CONNECTION\"\237" +
+      "\001\n\030NodeDiscoveryMessageType\022\026\n\022REQUEST_C" +
+      "ONNECTION\020\001\022 \n\034RESPONSE_CONNECTION_ACCEP" +
+      "TED\020\002\022 \n\034RESPONSE_CONNECTION_REJECTED\020\003\022" +
+      "\013\n\007NODE_ID\020\004\022\013\n\007NODE_IP\020\005\022\r\n\tNODE_PORT\020\006" +
+      "B(\n\030com.distsc.comm.protobufB\014MessagePro" +
+      "to"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

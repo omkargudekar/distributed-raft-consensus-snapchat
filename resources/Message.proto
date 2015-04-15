@@ -104,12 +104,14 @@ message NodeDiscovery
     	REQUEST_CONNECTION=1;
     	RESPONSE_CONNECTION_ACCEPTED=2;
     	RESPONSE_CONNECTION_REJECTED=3;
-    	NODE_ID=4;
-    	NODE_IP=5;
-    	NODE_PORT=6;
+
     }
 
-    optional NodeDiscoveryMessageType nodeDiscoveryMessageType=1 [default = REQUEST_CONNECTION];
+    optional string NODE_ID=1;
+    optional string NODE_IP=2;
+   	optional int32 NODE_PORT=3;
+
+    optional NodeDiscoveryMessageType nodeDiscoveryMessageType=4 [default = REQUEST_CONNECTION];
 }
     
 

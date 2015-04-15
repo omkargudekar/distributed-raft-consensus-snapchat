@@ -7055,11 +7055,48 @@ public final class MessageProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 1 [default = REQUEST_CONNECTION];</code>
+     * <code>optional string NODE_ID = 1;</code>
+     */
+    boolean hasNODEID();
+    /**
+     * <code>optional string NODE_ID = 1;</code>
+     */
+    java.lang.String getNODEID();
+    /**
+     * <code>optional string NODE_ID = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getNODEIDBytes();
+
+    /**
+     * <code>optional string NODE_IP = 2;</code>
+     */
+    boolean hasNODEIP();
+    /**
+     * <code>optional string NODE_IP = 2;</code>
+     */
+    java.lang.String getNODEIP();
+    /**
+     * <code>optional string NODE_IP = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getNODEIPBytes();
+
+    /**
+     * <code>optional int32 NODE_PORT = 3;</code>
+     */
+    boolean hasNODEPORT();
+    /**
+     * <code>optional int32 NODE_PORT = 3;</code>
+     */
+    int getNODEPORT();
+
+    /**
+     * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 4 [default = REQUEST_CONNECTION];</code>
      */
     boolean hasNodeDiscoveryMessageType();
     /**
-     * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 1 [default = REQUEST_CONNECTION];</code>
+     * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 4 [default = REQUEST_CONNECTION];</code>
      */
     com.distsc.comm.protobuf.MessageProto.NodeDiscovery.NodeDiscoveryMessageType getNodeDiscoveryMessageType();
   }
@@ -7115,13 +7152,30 @@ public final class MessageProto {
               }
               break;
             }
-            case 8: {
+            case 10: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000001;
+              nODEID_ = bs;
+              break;
+            }
+            case 18: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000002;
+              nODEIP_ = bs;
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              nODEPORT_ = input.readInt32();
+              break;
+            }
+            case 32: {
               int rawValue = input.readEnum();
               com.distsc.comm.protobuf.MessageProto.NodeDiscovery.NodeDiscoveryMessageType value = com.distsc.comm.protobuf.MessageProto.NodeDiscovery.NodeDiscoveryMessageType.valueOf(rawValue);
               if (value == null) {
-                unknownFields.mergeVarintField(1, rawValue);
+                unknownFields.mergeVarintField(4, rawValue);
               } else {
-                bitField0_ |= 0x00000001;
+                bitField0_ |= 0x00000008;
                 nodeDiscoveryMessageType_ = value;
               }
               break;
@@ -7182,18 +7236,6 @@ public final class MessageProto {
        * <code>RESPONSE_CONNECTION_REJECTED = 3;</code>
        */
       RESPONSE_CONNECTION_REJECTED(2, 3),
-      /**
-       * <code>NODE_ID = 4;</code>
-       */
-      NODE_ID(3, 4),
-      /**
-       * <code>NODE_IP = 5;</code>
-       */
-      NODE_IP(4, 5),
-      /**
-       * <code>NODE_PORT = 6;</code>
-       */
-      NODE_PORT(5, 6),
       ;
 
       /**
@@ -7208,18 +7250,6 @@ public final class MessageProto {
        * <code>RESPONSE_CONNECTION_REJECTED = 3;</code>
        */
       public static final int RESPONSE_CONNECTION_REJECTED_VALUE = 3;
-      /**
-       * <code>NODE_ID = 4;</code>
-       */
-      public static final int NODE_ID_VALUE = 4;
-      /**
-       * <code>NODE_IP = 5;</code>
-       */
-      public static final int NODE_IP_VALUE = 5;
-      /**
-       * <code>NODE_PORT = 6;</code>
-       */
-      public static final int NODE_PORT_VALUE = 6;
 
 
       public final int getNumber() { return value; }
@@ -7229,9 +7259,6 @@ public final class MessageProto {
           case 1: return REQUEST_CONNECTION;
           case 2: return RESPONSE_CONNECTION_ACCEPTED;
           case 3: return RESPONSE_CONNECTION_REJECTED;
-          case 4: return NODE_ID;
-          case 5: return NODE_IP;
-          case 6: return NODE_PORT;
           default: return null;
         }
       }
@@ -7284,22 +7311,124 @@ public final class MessageProto {
     }
 
     private int bitField0_;
-    public static final int NODEDISCOVERYMESSAGETYPE_FIELD_NUMBER = 1;
-    private com.distsc.comm.protobuf.MessageProto.NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType_;
+    public static final int NODE_ID_FIELD_NUMBER = 1;
+    private java.lang.Object nODEID_;
     /**
-     * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 1 [default = REQUEST_CONNECTION];</code>
+     * <code>optional string NODE_ID = 1;</code>
      */
-    public boolean hasNodeDiscoveryMessageType() {
+    public boolean hasNODEID() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 1 [default = REQUEST_CONNECTION];</code>
+     * <code>optional string NODE_ID = 1;</code>
+     */
+    public java.lang.String getNODEID() {
+      java.lang.Object ref = nODEID_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          nODEID_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string NODE_ID = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNODEIDBytes() {
+      java.lang.Object ref = nODEID_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        nODEID_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int NODE_IP_FIELD_NUMBER = 2;
+    private java.lang.Object nODEIP_;
+    /**
+     * <code>optional string NODE_IP = 2;</code>
+     */
+    public boolean hasNODEIP() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional string NODE_IP = 2;</code>
+     */
+    public java.lang.String getNODEIP() {
+      java.lang.Object ref = nODEIP_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          nODEIP_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string NODE_IP = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNODEIPBytes() {
+      java.lang.Object ref = nODEIP_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        nODEIP_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int NODE_PORT_FIELD_NUMBER = 3;
+    private int nODEPORT_;
+    /**
+     * <code>optional int32 NODE_PORT = 3;</code>
+     */
+    public boolean hasNODEPORT() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional int32 NODE_PORT = 3;</code>
+     */
+    public int getNODEPORT() {
+      return nODEPORT_;
+    }
+
+    public static final int NODEDISCOVERYMESSAGETYPE_FIELD_NUMBER = 4;
+    private com.distsc.comm.protobuf.MessageProto.NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType_;
+    /**
+     * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 4 [default = REQUEST_CONNECTION];</code>
+     */
+    public boolean hasNodeDiscoveryMessageType() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 4 [default = REQUEST_CONNECTION];</code>
      */
     public com.distsc.comm.protobuf.MessageProto.NodeDiscovery.NodeDiscoveryMessageType getNodeDiscoveryMessageType() {
       return nodeDiscoveryMessageType_;
     }
 
     private void initFields() {
+      nODEID_ = "";
+      nODEIP_ = "";
+      nODEPORT_ = 0;
       nodeDiscoveryMessageType_ = com.distsc.comm.protobuf.MessageProto.NodeDiscovery.NodeDiscoveryMessageType.REQUEST_CONNECTION;
     }
     private byte memoizedIsInitialized = -1;
@@ -7316,7 +7445,16 @@ public final class MessageProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeEnum(1, nodeDiscoveryMessageType_.getNumber());
+        output.writeBytes(1, getNODEIDBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getNODEIPBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt32(3, nODEPORT_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeEnum(4, nodeDiscoveryMessageType_.getNumber());
       }
       getUnknownFields().writeTo(output);
     }
@@ -7329,7 +7467,19 @@ public final class MessageProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, nodeDiscoveryMessageType_.getNumber());
+          .computeBytesSize(1, getNODEIDBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getNODEIPBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, nODEPORT_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(4, nodeDiscoveryMessageType_.getNumber());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -7448,8 +7598,14 @@ public final class MessageProto {
 
       public Builder clear() {
         super.clear();
-        nodeDiscoveryMessageType_ = com.distsc.comm.protobuf.MessageProto.NodeDiscovery.NodeDiscoveryMessageType.REQUEST_CONNECTION;
+        nODEID_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
+        nODEIP_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        nODEPORT_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        nodeDiscoveryMessageType_ = com.distsc.comm.protobuf.MessageProto.NodeDiscovery.NodeDiscoveryMessageType.REQUEST_CONNECTION;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -7481,6 +7637,18 @@ public final class MessageProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
+        result.nODEID_ = nODEID_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.nODEIP_ = nODEIP_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.nODEPORT_ = nODEPORT_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
         result.nodeDiscoveryMessageType_ = nodeDiscoveryMessageType_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -7498,6 +7666,19 @@ public final class MessageProto {
 
       public Builder mergeFrom(com.distsc.comm.protobuf.MessageProto.NodeDiscovery other) {
         if (other == com.distsc.comm.protobuf.MessageProto.NodeDiscovery.getDefaultInstance()) return this;
+        if (other.hasNODEID()) {
+          bitField0_ |= 0x00000001;
+          nODEID_ = other.nODEID_;
+          onChanged();
+        }
+        if (other.hasNODEIP()) {
+          bitField0_ |= 0x00000002;
+          nODEIP_ = other.nODEIP_;
+          onChanged();
+        }
+        if (other.hasNODEPORT()) {
+          setNODEPORT(other.getNODEPORT());
+        }
         if (other.hasNodeDiscoveryMessageType()) {
           setNodeDiscoveryMessageType(other.getNodeDiscoveryMessageType());
         }
@@ -7528,36 +7709,220 @@ public final class MessageProto {
       }
       private int bitField0_;
 
-      private com.distsc.comm.protobuf.MessageProto.NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType_ = com.distsc.comm.protobuf.MessageProto.NodeDiscovery.NodeDiscoveryMessageType.REQUEST_CONNECTION;
+      private java.lang.Object nODEID_ = "";
       /**
-       * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 1 [default = REQUEST_CONNECTION];</code>
+       * <code>optional string NODE_ID = 1;</code>
        */
-      public boolean hasNodeDiscoveryMessageType() {
+      public boolean hasNODEID() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 1 [default = REQUEST_CONNECTION];</code>
+       * <code>optional string NODE_ID = 1;</code>
+       */
+      public java.lang.String getNODEID() {
+        java.lang.Object ref = nODEID_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            nODEID_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string NODE_ID = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNODEIDBytes() {
+        java.lang.Object ref = nODEID_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          nODEID_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string NODE_ID = 1;</code>
+       */
+      public Builder setNODEID(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        nODEID_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string NODE_ID = 1;</code>
+       */
+      public Builder clearNODEID() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        nODEID_ = getDefaultInstance().getNODEID();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string NODE_ID = 1;</code>
+       */
+      public Builder setNODEIDBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        nODEID_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object nODEIP_ = "";
+      /**
+       * <code>optional string NODE_IP = 2;</code>
+       */
+      public boolean hasNODEIP() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional string NODE_IP = 2;</code>
+       */
+      public java.lang.String getNODEIP() {
+        java.lang.Object ref = nODEIP_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            nODEIP_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string NODE_IP = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNODEIPBytes() {
+        java.lang.Object ref = nODEIP_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          nODEIP_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string NODE_IP = 2;</code>
+       */
+      public Builder setNODEIP(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        nODEIP_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string NODE_IP = 2;</code>
+       */
+      public Builder clearNODEIP() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        nODEIP_ = getDefaultInstance().getNODEIP();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string NODE_IP = 2;</code>
+       */
+      public Builder setNODEIPBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        nODEIP_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int nODEPORT_ ;
+      /**
+       * <code>optional int32 NODE_PORT = 3;</code>
+       */
+      public boolean hasNODEPORT() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional int32 NODE_PORT = 3;</code>
+       */
+      public int getNODEPORT() {
+        return nODEPORT_;
+      }
+      /**
+       * <code>optional int32 NODE_PORT = 3;</code>
+       */
+      public Builder setNODEPORT(int value) {
+        bitField0_ |= 0x00000004;
+        nODEPORT_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 NODE_PORT = 3;</code>
+       */
+      public Builder clearNODEPORT() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        nODEPORT_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private com.distsc.comm.protobuf.MessageProto.NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType_ = com.distsc.comm.protobuf.MessageProto.NodeDiscovery.NodeDiscoveryMessageType.REQUEST_CONNECTION;
+      /**
+       * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 4 [default = REQUEST_CONNECTION];</code>
+       */
+      public boolean hasNodeDiscoveryMessageType() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 4 [default = REQUEST_CONNECTION];</code>
        */
       public com.distsc.comm.protobuf.MessageProto.NodeDiscovery.NodeDiscoveryMessageType getNodeDiscoveryMessageType() {
         return nodeDiscoveryMessageType_;
       }
       /**
-       * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 1 [default = REQUEST_CONNECTION];</code>
+       * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 4 [default = REQUEST_CONNECTION];</code>
        */
       public Builder setNodeDiscoveryMessageType(com.distsc.comm.protobuf.MessageProto.NodeDiscovery.NodeDiscoveryMessageType value) {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000008;
         nodeDiscoveryMessageType_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 1 [default = REQUEST_CONNECTION];</code>
+       * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 4 [default = REQUEST_CONNECTION];</code>
        */
       public Builder clearNodeDiscoveryMessageType() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000008);
         nodeDiscoveryMessageType_ = com.distsc.comm.protobuf.MessageProto.NodeDiscovery.NodeDiscoveryMessageType.REQUEST_CONNECTION;
         onChanged();
         return this;
@@ -7661,15 +8026,15 @@ public final class MessageProto {
       "T\020\005\022\021\n\rLOGIN_SUCCESS\020\006\"e\n\026ClientMessageE" +
       "rrorType\022\023\n\017MESSAGE_CORRUPT\020\001\022\021\n\rDELIVER" +
       "Y_FAIL\020\002\022\020\n\014MESSAGE_SIZE\020\003\022\021\n\rINVALID_LO" +
-      "GIN\020\004\"\220\002\n\rNodeDiscovery\022]\n\030nodeDiscovery" +
-      "MessageType\030\001 \001(\0162\'.NodeDiscovery.NodeDi",
-      "scoveryMessageType:\022REQUEST_CONNECTION\"\237" +
-      "\001\n\030NodeDiscoveryMessageType\022\026\n\022REQUEST_C" +
-      "ONNECTION\020\001\022 \n\034RESPONSE_CONNECTION_ACCEP" +
-      "TED\020\002\022 \n\034RESPONSE_CONNECTION_REJECTED\020\003\022" +
-      "\013\n\007NODE_ID\020\004\022\013\n\007NODE_IP\020\005\022\r\n\tNODE_PORT\020\006" +
-      "B(\n\030com.distsc.comm.protobufB\014MessagePro" +
-      "to"
+      "GIN\020\004\"\233\002\n\rNodeDiscovery\022\017\n\007NODE_ID\030\001 \001(\t" +
+      "\022\017\n\007NODE_IP\030\002 \001(\t\022\021\n\tNODE_PORT\030\003 \001(\005\022]\n\030",
+      "nodeDiscoveryMessageType\030\004 \001(\0162\'.NodeDis" +
+      "covery.NodeDiscoveryMessageType:\022REQUEST" +
+      "_CONNECTION\"v\n\030NodeDiscoveryMessageType\022" +
+      "\026\n\022REQUEST_CONNECTION\020\001\022 \n\034RESPONSE_CONN" +
+      "ECTION_ACCEPTED\020\002\022 \n\034RESPONSE_CONNECTION" +
+      "_REJECTED\020\003B(\n\030com.distsc.comm.protobufB" +
+      "\014MessageProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -7730,7 +8095,7 @@ public final class MessageProto {
     internal_static_NodeDiscovery_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_NodeDiscovery_descriptor,
-        new java.lang.String[] { "NodeDiscoveryMessageType", });
+        new java.lang.String[] { "NODEID", "NODEIP", "NODEPORT", "NodeDiscoveryMessageType", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

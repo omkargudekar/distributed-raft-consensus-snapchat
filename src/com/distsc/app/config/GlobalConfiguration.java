@@ -10,28 +10,7 @@ import com.distsc.comm.msg.queues.RequestVoteResultMsgQueue;
 import com.distsc.raft.RAFTStatus;
 
 public class GlobalConfiguration
-{
-	private static int totalVotes=0;
-	public static int getTotalVotes()
-	{
-		return totalVotes;
-	}
-
-	public static void setTotalVotes(int totalVotes)
-	{
-		GlobalConfiguration.totalVotes = totalVotes;
-	}
-
-	private static int currentTerm;
-	public static int getCurrentTerm()
-	{
-		return currentTerm;
-	}
-
-	public static void setCurrentTerm(int currentTerm)
-	{
-		GlobalConfiguration.currentTerm = currentTerm;
-	}
+{	
 
 	private static int messageLimit=900000;
 	public static int getMessageLimit()
@@ -95,12 +74,7 @@ public class GlobalConfiguration
 		GlobalConfiguration.nodes = nodes;
 	}
 	
-	public static void reset()
-	{
-		RAFTStatus.setVoted(false);
-		AppendEntriesQueue.reset();
-		AppendEntriesResultQueue.reset();
-		RequestVoteMsgQueue.reset();
-		RequestVoteResultMsgQueue.reset();
-	}
+
+	
+
 }

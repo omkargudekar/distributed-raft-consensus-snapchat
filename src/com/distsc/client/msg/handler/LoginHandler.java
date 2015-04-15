@@ -13,6 +13,8 @@ public class LoginHandler implements ClientMsgHandlerInterface
 	public void handle(ChannelHandlerContext ctx,Request request)
 	{
 		
+		System.out.println("Login From "+request.getPayload().getClientMessage().getSenderUserName());
+		
 		if(UserChannelContextMap.isExist(request.getPayload().getClientMessage().getSenderUserName()))
 		{
 			Request message=MessageProto.Request.newBuilder()
@@ -23,6 +25,7 @@ public class LoginHandler implements ClientMsgHandlerInterface
 					.setClientMessageErrorType(MessageProto.ClientMessage.ClientMessageErrorType.INVALID_LOGIN)
 					.setSenderMsgText("Username Already Taken..."))).build();
 			ctx.writeAndFlush(message);
+			System.out.println("Login failed "+request.getPayload().getClientMessage().getSenderUserName());
 		}
 		else
 		{
@@ -35,6 +38,8 @@ public class LoginHandler implements ClientMsgHandlerInterface
 					.setClientMessage(MessageProto.ClientMessage.
 							newBuilder().setClientMessageType(MessageProto.ClientMessage.ClientMessageType.LOGIN_SUCCESS)
 					.setSenderMsgText("Logged In..."))).build();
+			System.out.println("Login Successful "+request.getPayload().getClientMessage().getSenderUserName());
+
 			ctx.writeAndFlush(message);
 			
 			

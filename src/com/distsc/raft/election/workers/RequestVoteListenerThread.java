@@ -15,7 +15,7 @@ public class RequestVoteListenerThread implements Runnable
 	@Override
 	public void run()
 	{
-		System.out.println("NominationListernerThread  Started");
+		System.out.println("RequestVoteListenerThread  Started");
 		while (true)
 		{
 
@@ -63,22 +63,26 @@ public class RequestVoteListenerThread implements Runnable
 		if (RequestVoteMsgQueue.getCount() > 0 &&  RAFTStatus.hasVoted()==false && RAFTStatus.getDeclaredLeader()==null)
 		{
 
+			System.out.println("Voting YES to Condidate "+requestContext.getRequest().getPayload().getRequestVote().getCandidateId());
+			RAFTStatus.setVoted(true);
 				msg=Request.newBuilder().setMessageHeader(Request.MessageHeader.RequestVoteResultMsg)
 					.setPayload(MessageProto.Payload.newBuilder().setRequestVoteResult(MessageProto.RequestVoteResult.newBuilder()
 							.setSenderNodeId(GlobalConfiguration.getCurrentNode().getNodeID())
 							.setVoteGranted(true)
-							.setTerm(GlobalConfiguration.getCurrentTerm()))).build();
+							.setTerm(RAFTStatus.getCurrentTerm()))).build();
 
 		}
 		else
 		{
+			System.out.println("Already Voted.Voting NO to Candidate "+requestContext.getRequest().getPayload().getRequestVote().getCandidateId());
+
 			msg=Request.newBuilder().setMessageHeader(Request.MessageHeader.RequestVoteResultMsg)
 					.setPayload(MessageProto.Payload.newBuilder().setRequestVoteResult(MessageProto.RequestVoteResult.newBuilder()
 							.setSenderNodeId(GlobalConfiguration.getCurrentNode().getNodeID())
 							.setVoteGranted(false)
-							.setTerm(GlobalConfiguration.getCurrentTerm()))).build();
+							.setTerm(RAFTStatus.getCurrentTerm()))).build();
 		}
-		NodeChannelContextMap.getNodeContext(requestContext.getRequest().getPayload().getAppendEntries().getLeaderId()).
+		NodeChannelContextMap.getNodeContext(requestContext.getRequest().getPayload().getRequestVote().getCandidateId()).
 		writeAndFlush(msg);
 
 	}

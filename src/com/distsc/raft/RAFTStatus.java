@@ -2,6 +2,8 @@ package com.distsc.raft;
 
 import java.util.Random;
 
+import com.distsc.comm.msg.queues.AppendEntriesQueue;
+import com.distsc.comm.msg.queues.AppendEntriesResultQueue;
 import com.distsc.comm.msg.queues.RequestVoteMsgQueue;
 import com.distsc.comm.msg.queues.RequestVoteResultMsgQueue;
 
@@ -13,7 +15,44 @@ public class RAFTStatus
 	    Follower, Candidate, Leader
 	}
 	private static NodeState currentNodeState = NodeState.Follower;
+	private static int totalVotes;
+	public static int getTotalVotes()
+	{
+		return totalVotes;
+	}
+
+	public static void setTotalVotes(int totalVotes)
+	{
+		RAFTStatus.totalVotes = totalVotes;
+	}
+
+
+
+
+
+
+	private static int currentTerm;
 	
+	
+
+	
+
+
+
+	public static int getCurrentTerm()
+	{
+		return currentTerm;
+	}
+
+	public static void setCurrentTerm(int currentTerm)
+	{
+		RAFTStatus.currentTerm = currentTerm;
+	}
+
+
+
+
+
 
 	private static String declaredLeader=null;
 	private static int raftTimer=3600;
@@ -114,7 +153,14 @@ public class RAFTStatus
 		RAFTStatus.raftTimer = raftTimer;
 	}
 
-
+	public static void reset()
+	{
+		RAFTStatus.setVoted(false);
+		AppendEntriesQueue.reset();
+		AppendEntriesResultQueue.reset();
+		RequestVoteMsgQueue.reset();
+		RequestVoteResultMsgQueue.reset();
+	}
 
 
 

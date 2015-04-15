@@ -11,6 +11,12 @@ public class ErrorHandler  implements ClientMsgHandlerInterface
 	@Override
 	public void handle(ChannelHandlerContext ctx,Request msg)
 	{
+		
+		
+		System.out.println("Sending "+msg.getPayload().getClientMessage().getClientMessageType()
+							+" From "+msg.getPayload().getClientMessage().getSenderUserName()
+							+" To "+msg.getPayload().getClientMessage().getReceiverUserName());
+		
 		MessageValidator validator=new MessageValidator();
 		
 		if(validator.validateMessageSize(ctx,msg)==true)

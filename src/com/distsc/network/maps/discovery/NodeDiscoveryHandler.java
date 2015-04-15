@@ -4,12 +4,10 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 import com.distsc.comm.msg.queues.NodeDiscoveryQueue;
-import com.distsc.comm.msg.queues.workers.NodeDiscoveryWorker;
 import com.distsc.comm.protobuf.MessageProto.Request;
 
 public class NodeDiscoveryHandler extends SimpleChannelInboundHandler<Request> 
 {
-	NodeDiscoveryWorker nodeMessageDecoder=new NodeDiscoveryWorker();
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();

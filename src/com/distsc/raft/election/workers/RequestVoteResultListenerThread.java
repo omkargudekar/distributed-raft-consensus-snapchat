@@ -53,16 +53,24 @@ public class RequestVoteResultListenerThread implements Runnable
 			
 			if(context.getRequest().getPayload().getRequestVoteResult().getVoteGranted()==true)
 			{
-				GlobalConfiguration.setTotalVotes(GlobalConfiguration.getTotalVotes()+1);
+				System.out.println("Received YES vote from :"+context.getRequest().getPayload().getRequestVoteResult().getSenderNodeId());
+
+				RAFTStatus.setTotalVotes(RAFTStatus.getTotalVotes()+1);
 			}
-			
+			else
+			{
+				System.out.println("Received NO vote from :"+context.getRequest().getPayload().getRequestVoteResult().getSenderNodeId());
+
+			}
 		}
-		if (GlobalConfiguration.getTotalVotes() > (GlobalConfiguration.getNetwotkSize()/2) )
+		if (RAFTStatus.getTotalVotes() > (GlobalConfiguration.getNetwotkSize()/2) )
 		{	
-			System.out.println("****  Elected As Leader ****");
+			System.out.println("****************************");
+			System.out.println("*     Elected As Leader    *");
+			System.out.println("****************************");
 			RAFTStatus.setDeclaredLeader(GlobalConfiguration.getCurrentNode().getNodeID());
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Leader);
-			GlobalConfiguration.reset();
+			RAFTStatus.reset();
 		}
 	
 	}

@@ -10,6 +10,7 @@ public class LogoutHandler implements ClientMsgHandlerInterface
 	
 	public void handle(ChannelHandlerContext ctx,Request msg)
 	{
+		System.out.println("Logout From "+msg.getPayload().getClientMessage().getSenderUserName());
 		
 		
 		if(UserChannelContextMap.isExist(msg.getPayload().getClientMessage().getSenderUserName()))

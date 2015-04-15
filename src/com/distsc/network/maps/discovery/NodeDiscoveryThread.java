@@ -18,6 +18,7 @@ public class NodeDiscoveryThread implements Runnable
 	private Channel ch=null;
 	public void run()
 	{
+		System.out.println("NodeDiscoveryThread Started...");
 		try
 		{
 			group = new NioEventLoopGroup(1);

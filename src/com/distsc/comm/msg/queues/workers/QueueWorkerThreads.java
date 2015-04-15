@@ -10,7 +10,6 @@ public class QueueWorkerThreads implements Runnable
 		new Thread(new ClientMessageMsgQueueWorker()).start();
 		new Thread(new NodeDiscoveryMsgQueueWorker()).start();
 		new Thread(new RequestWorker()).start();
-		new Thread(new NodeDiscoveryWorker()).start();
 	}
 
 }

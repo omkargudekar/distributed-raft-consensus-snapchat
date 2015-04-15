@@ -12,7 +12,7 @@ public class RunMain
 	public static void main(String args[])
 	{
 		//Read & Setup Cluster Configuration
-		ClusterConfigReader.readAndSetUp("config/cluster.conf");
+		ClusterConfigReader.readAndSetUp("runtime/cluster.conf");
 		
 
 		//Starting Server Thread.

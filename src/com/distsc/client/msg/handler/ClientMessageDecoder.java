@@ -12,6 +12,8 @@ public class ClientMessageDecoder
 	public synchronized static void handle(ChannelHandlerContext ctx,Request msg)
 	{
 		
+		System.out.println("Received "+msg.getPayload().getClientMessage().getClientMessageType()
+							+" From "+msg.getPayload().getClientMessage().getSenderUserName());
 		
 		switch (msg.getPayload().getClientMessage().getClientMessageType())
 		{

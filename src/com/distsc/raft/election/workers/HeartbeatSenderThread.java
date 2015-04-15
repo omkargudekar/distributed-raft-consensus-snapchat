@@ -12,7 +12,7 @@ public class HeartbeatSenderThread implements Runnable
 	@Override
 	public void run()
 	{
-		System.out.println("heartbeatSenderThread Started");
+		System.out.println("HeartbeatSenderThread Started");
 
 		while (true)
 		{
@@ -48,7 +48,7 @@ public class HeartbeatSenderThread implements Runnable
 		Request msg=Request.newBuilder().setMessageHeader(Request.MessageHeader.AppendEntriesMsg)
 											.setPayload(MessageProto.Payload.newBuilder().setAppendEntries(MessageProto.AppendEntries.newBuilder()
 													.setLeaderId(GlobalConfiguration.getCurrentNode().getNodeID())
-													.setTerm(GlobalConfiguration.getCurrentTerm()))).build();
+													.setTerm(RAFTStatus.getCurrentTerm()))).build();
 		followerMulticast.send(msg);
 		nextHeartbeatWait();
 	}

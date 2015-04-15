@@ -15,32 +15,40 @@ public class RequestWorker implements Runnable
 		RequestContext requestMessage = null;
 		while (true)
 		{
+			
 			if (RequestQueue.getCount() > 0)
 			{
+				System.out.println("Received Message : "+requestMessage.getRequest().getMessageHeader());
 				requestMessage = RequestQueue.pop();
 				switch (requestMessage.getRequest().getMessageHeader())
 				{
 				case AppendEntriesMsg:
+				System.out.println("Message pushed to AppendEntriesQueue");
 				AppendEntriesQueue.push(requestMessage);
 				break;
 
 				case AappendEntriesResultMsg:
+				System.out.println("Message pushed to AppendEntriesResultQueue");
 				AppendEntriesResultQueue.push(requestMessage);
 				break;
 
 				case RequestVoteMsg:
+				System.out.println("Message pushed to RequestVoteMsgQueue");
 				RequestVoteMsgQueue.push(requestMessage);
 				break;
 
 				case RequestVoteResultMsg:
+				System.out.println("Message pushed to RequestVoteResultMsgQueue");
 				RequestVoteResultMsgQueue.push(requestMessage);
 				break;
 
 				case NodeDiscoveryMsg:
+				System.out.println("Message pushed to NodeDiscoveryMsgQueue");
 				NodeDiscoveryMsgQueue.push(requestMessage);
 				break;
 
 				case ClientMessageMsg:
+				System.out.println("Message pushed to ClientMessageMsgQueue");
 				ClientMessageMsgQueue.push(requestMessage);
 				break;
 					

@@ -16,7 +16,7 @@ public class DeclareCandidacyThread implements Runnable
 	@Override
 	public void run()
 	{
-		System.out.println("ElectionLeaderParticipationThread Started");
+		System.out.println("DeclareCandidacyThread Started");
 		while (true)
 		{
 
@@ -54,7 +54,7 @@ public class DeclareCandidacyThread implements Runnable
 			Request msg=Request.newBuilder().setMessageHeader(Request.MessageHeader.RequestVoteMsg)
 												.setPayload(MessageProto.Payload.newBuilder().setRequestVote(MessageProto.RequestVote.newBuilder()
 														.setCandidateId(GlobalConfiguration.getCurrentNode().getNodeID())
-														.setTerm(GlobalConfiguration.getCurrentTerm()))).build();
+														.setTerm(RAFTStatus.getCurrentTerm()))).build();
 			followerMulticast.send(msg);
 			RAFTTimeout();
 			if(!isLeader())

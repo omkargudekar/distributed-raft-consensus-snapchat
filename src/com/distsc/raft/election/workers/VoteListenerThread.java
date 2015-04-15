@@ -1,6 +1,6 @@
 package com.distsc.raft.election.workers;
 
-import com.distsc.app.GlobalConfiguration;
+import com.distsc.app.config.GlobalConfiguration;
 import com.distsc.comm.msg.queues.inbound.HeartbeatQueue;
 import com.distsc.comm.msg.queues.inbound.NominationsQueue;
 import com.distsc.comm.msg.queues.inbound.VotesQueue;

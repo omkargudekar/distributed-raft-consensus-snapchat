@@ -1,4 +1,4 @@
-package com.distsc.app;
+package com.distsc.app.config;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ import com.distsc.beans.Node;
 public class GlobalConfiguration
 {
 	
-	private static int messageLimit=20000000;
+	private static int messageLimit=900000;
 	public static int getMessageLimit()
 	{
 		return messageLimit;

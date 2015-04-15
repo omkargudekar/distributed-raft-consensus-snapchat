@@ -5,7 +5,7 @@ import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
-import com.distsc.comm.msg.decoders.ServerMessageDecoder;
+import com.distsc.comm.msg.decoders.ClusterMessageDecoder;
 import com.distsc.comm.msg.protobuf.NodeMessageProto.Message;
 
 
@@ -31,8 +31,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<Message>
 	protected void channelRead0(ChannelHandlerContext arg0, Message msg)
 			throws Exception 
 	{
-			ServerMessageDecoder.handle(msg);
-			//arg0.close();
+			ClusterMessageDecoder.handle(msg);
 	}
 	
 	

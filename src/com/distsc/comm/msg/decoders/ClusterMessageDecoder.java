@@ -8,7 +8,7 @@ import com.distsc.raft.msg.handlers.VoteHandler;
 
 
 
-public class ServerMessageDecoder
+public class ClusterMessageDecoder
 {
 	
 	

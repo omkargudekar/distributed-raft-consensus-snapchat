@@ -1,11 +1,11 @@
-package com.distsc.intercluster.msg.queues.outbound;
+package com.distsc.comm.msg.queues.outbound;
 
 import java.util.ArrayList;
 
-import com.distsc.intercluster.msg.protobuff.ClusterMessageProto.ClusterMessage;
+import com.distsc.comm.msg.protobuf.ClusterMessageProto.ClusterMessage;
 
 
-public class OutboundInterClusterMsgQueue
+public class ClusterMsgOutboundQueue
 {
 	private static ArrayList<ClusterMessage> recMessages = new ArrayList<ClusterMessage>();
 	

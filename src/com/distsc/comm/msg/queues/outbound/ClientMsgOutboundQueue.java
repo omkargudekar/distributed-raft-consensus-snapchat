@@ -2,24 +2,22 @@ package com.distsc.comm.msg.queues.outbound;
 
 import java.util.ArrayList;
 
-import com.distsc.beans.Packet;
+import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg;
 
-
-public class OutboundClusterMessageQueue
+public class ClientMsgOutboundQueue 
 {
-
-	private static ArrayList<Packet> outgoingMessages = new ArrayList<Packet>();
+private static ArrayList<ClientMsg> outgoingMessages = new ArrayList<ClientMsg>();
 	
 	
 	public static int getMessageCount()
 	{
 		return outgoingMessages.size();
 	}
-	public static Packet popMessage()
+	public static ClientMsg popMessage()
 	{
 		if(getMessageCount()>0)
 		{
-			Packet packet=outgoingMessages.get(0);
+			ClientMsg packet=outgoingMessages.get(0);
 			outgoingMessages.remove(0);
 			return packet;
 		}
@@ -28,7 +26,7 @@ public class OutboundClusterMessageQueue
 		
 	}
 	
-	public static ArrayList<Packet> popMessages()
+	public static ArrayList<ClientMsg> popMessages()
 	{
 		if(getMessageCount()>0)
 		{
@@ -40,7 +38,7 @@ public class OutboundClusterMessageQueue
 		
 	}
 	
-	public static void pushMessage(Packet packet)
+	public static void pushMessage(ClientMsg packet)
 	{
 		outgoingMessages.add(packet);
 		
@@ -48,9 +46,10 @@ public class OutboundClusterMessageQueue
 	
 	public static void reset()
 	{
-		outgoingMessages = new ArrayList<Packet>();
+		outgoingMessages = new ArrayList<ClientMsg>();
 		
 	}
 	
 	
+
 }

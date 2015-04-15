@@ -1,6 +1,6 @@
 package com.distsc.raft.election.workers;
 
-import com.distsc.app.GlobalConfiguration;
+import com.distsc.app.config.GlobalConfiguration;
 import com.distsc.comm.msg.protobuf.NodeMessageProto;
 import com.distsc.comm.msg.protobuf.NodeMessageProto.Message;
 import com.distsc.comm.msg.protobuf.NodeMessageProto.Message.MessageType;

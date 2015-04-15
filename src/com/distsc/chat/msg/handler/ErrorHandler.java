@@ -2,7 +2,7 @@ package com.distsc.chat.msg.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 
-import com.distsc.chat.server.ClientContext;
+import com.distsc.chat.server.ChatContext;
 import com.distsc.comm.msg.protobuf.ClientMessageProto;
 import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg;
 import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg.ErrorType;
@@ -36,13 +36,13 @@ public class ErrorHandler  implements ClientMsgHandler
 	}
 	public void sendMessage(ChannelHandlerContext ctx,ClientMsg msg)
 	{
-		if(ClientContext.isExist(msg.getReceiverUserName()))
+		if(ChatContext.isExist(msg.getReceiverUserName()))
 		{
-			ClientContext.getClientContext(msg.getReceiverUserName()).writeAndFlush(msg);
+			ChatContext.getClientContext(msg.getReceiverUserName()).writeAndFlush(msg);
 		}
 		else
 		{
-			ClientContext.addClientContext(msg.getSenderUserName(), ctx);
+			ChatContext.addClientContext(msg.getSenderUserName(), ctx);
 			ClientMsg message = ClientMessageProto.ClientMsg.newBuilder().setMessageType(MessageType.ERROR)
 					.setErrorType(ErrorType.DELIVERY_FAIL)
 					.setMsgText("Delivery failed..").build();

@@ -1,4 +1,4 @@
-package com.distsc.app;
+package com.distsc.app.config;
 
 import java.util.ArrayList;
 

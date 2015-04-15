@@ -1,6 +1,6 @@
-package com.distsc.intercluster.server;
+package com.distsc.chat.server;
 
-import com.distsc.app.GlobalConfiguration;
+import com.distsc.app.config.GlobalConfiguration;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.EventLoopGroup;
@@ -13,24 +13,24 @@ import io.netty.handler.logging.LoggingHandler;
 /**
  * Simple SSL chat server modified from {@link TelnetServer}.
  */
-public final class InterClusterServer implements Runnable
+public final class ChatServer implements Runnable
 {
     public void run()
     {
-    	System.out.println("Receiver Thread Started...");
+    	System.out.println("ChatServer Thread Started...");
     	EventLoopGroup bossGroup=null;
     	EventLoopGroup workerGroup=null;
         try {
-        	 System.out.println("Starting Server on : "+GlobalConfiguration.getCurrentNode().getNodePort());
+          
             bossGroup = new NioEventLoopGroup(1);
             workerGroup = new NioEventLoopGroup();
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
              .channel(NioServerSocketChannel.class)
              .handler(new LoggingHandler(LogLevel.INFO))
-             .childHandler(new InterClusterServerrInitializer());
-            b.bind(8282).sync().channel().closeFuture().sync();
-           
+             .childHandler(new ChatServerInitializer());
+
+            b.bind(GlobalConfiguration.getClinetListenerPort()).sync().channel().closeFuture().sync();
         } 
         catch(Exception e)
         {

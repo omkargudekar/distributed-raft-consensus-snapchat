@@ -2,7 +2,7 @@ package com.distsc.chat.msg.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 
-import com.distsc.chat.server.ClientContext;
+import com.distsc.chat.server.ChatContext;
 import com.distsc.comm.msg.protobuf.ClientMessageProto;
 import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg;
 import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg.ErrorType;
@@ -57,10 +57,10 @@ public class LogoutHandler implements ClientMsgHandler
 	}
 	public void disconnectUser(ChannelHandlerContext ctx,ClientMsg msg)
 	{
-		if(ClientContext.isExist(msg.getSenderUserName()))
+		if(ChatContext.isExist(msg.getSenderUserName()))
 		{	
 			ctx.close();
-			ClientContext.removeClientContext(msg.getSenderUserName());
+			ChatContext.removeClientContext(msg.getSenderUserName());
 		}
 		
 	}

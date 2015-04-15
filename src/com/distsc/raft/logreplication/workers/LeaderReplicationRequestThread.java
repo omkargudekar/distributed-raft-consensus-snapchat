@@ -1,10 +1,9 @@
 package com.distsc.raft.logreplication.workers;
 
-import com.distsc.app.GlobalConfiguration;
+import com.distsc.app.config.GlobalConfiguration;
 import com.distsc.comm.msg.protobuf.NodeMessageProto;
 import com.distsc.comm.msg.protobuf.NodeMessageProto.Message;
 import com.distsc.comm.msg.protobuf.NodeMessageProto.Message.MessageType;
-import com.distsc.comm.msg.queues.inbound.ClientMessageQueue;
 import com.distsc.node.outbound.OutboundMulticast;
 import com.distsc.raft.RAFTStatus;
 
@@ -36,24 +35,24 @@ public class LeaderReplicationRequestThread implements Runnable
 	
 	public void checkClientMessageBuffer()
 	{
-		if(ClientMessageQueue.getMessageCount()>0)
-		{
-			while(ClientMessageQueue.getMessageCount()>0)
-			{
-				Message clientMessage=ClientMessageQueue.popMessage();
-				OutboundMulticast multicast = new OutboundMulticast();
-				Message msg = NodeMessageProto.Message.newBuilder().setImageBits(clientMessage.getImageBits())
-						.setFileName(clientMessage.getFileName())
-						.setMessageType(MessageType.LOG_REPLICATION_REQUEST).
-						setNodeId(GlobalConfiguration.getCurrentNode().getNodeID()).
-						setNodeIp(GlobalConfiguration.getCurrentNode().getNodeIP()).
-						setNodePort(GlobalConfiguration.getCurrentNode().getNodePort()).build();
-				multicast.send(msg);
-
-				
-			}
-			
-		}
+//		if(ClientMessageQueue.getMessageCount()>0)
+//		{
+//			while(ClientMessageQueue.getMessageCount()>0)
+//			{
+//				Message clientMessage=ClientMessageQueue.popMessage();
+//				OutboundMulticast multicast = new OutboundMulticast();
+//				Message msg = NodeMessageProto.Message.newBuilder().setImageBits(clientMessage.getImageBits())
+//						.setFileName(clientMessage.getFileName())
+//						.setMessageType(MessageType.LOG_REPLICATION_REQUEST).
+//						setNodeId(GlobalConfiguration.getCurrentNode().getNodeID()).
+//						setNodeIp(GlobalConfiguration.getCurrentNode().getNodeIP()).
+//						setNodePort(GlobalConfiguration.getCurrentNode().getNodePort()).build();
+//				multicast.send(msg);
+//
+//				
+//			}
+//			
+//		}
 	}
 
 	

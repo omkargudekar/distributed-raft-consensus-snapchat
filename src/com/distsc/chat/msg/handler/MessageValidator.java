@@ -2,8 +2,8 @@ package com.distsc.chat.msg.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 
-import com.distsc.app.GlobalConfiguration;
-import com.distsc.chat.server.ClientContext;
+import com.distsc.app.config.GlobalConfiguration;
+import com.distsc.chat.server.ChatContext;
 import com.distsc.comm.msg.protobuf.ClientMessageProto;
 import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg;
 import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg.ErrorType;
@@ -97,7 +97,7 @@ public class MessageValidator
 	
 	public boolean checkReceiver(ChannelHandlerContext ctx,ClientMsg msg)
 	{
-		if(ClientContext.isExist(msg.getReceiverUserName()))
+		if(ChatContext.isExist(msg.getReceiverUserName()))
 		{
 			return true;
 		}

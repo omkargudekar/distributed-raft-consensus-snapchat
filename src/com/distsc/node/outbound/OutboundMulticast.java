@@ -2,11 +2,11 @@ package com.distsc.node.outbound;
 
 
 
-import com.distsc.app.GlobalConfiguration;
+import com.distsc.app.config.GlobalConfiguration;
 import com.distsc.beans.Node;
 import com.distsc.beans.Packet;
 import com.distsc.comm.msg.protobuf.NodeMessageProto.Message;
-import com.distsc.comm.msg.queues.outbound.OutboundClusterMessageQueue;
+import com.distsc.comm.msg.queues.outbound.MgmtMsgOutboundQueue;
 
 public class OutboundMulticast
 {
@@ -22,7 +22,7 @@ public class OutboundMulticast
 			packet=new Packet();
 			packet.setNode(node);
 			packet.setMsg(msg);
-			OutboundClusterMessageQueue.pushMessage(packet);
+			MgmtMsgOutboundQueue.pushMessage(packet);
 			
 		}
 		

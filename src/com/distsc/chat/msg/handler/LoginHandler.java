@@ -2,7 +2,7 @@ package com.distsc.chat.msg.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 
-import com.distsc.chat.server.ClientContext;
+import com.distsc.chat.server.ChatContext;
 import com.distsc.comm.msg.protobuf.ClientMessageProto;
 import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg;
 import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg.ErrorType;
@@ -58,7 +58,7 @@ public class LoginHandler implements ClientMsgHandler
 	}
 	public void connectUser(ChannelHandlerContext ctx,ClientMsg msg)
 	{
-		if(ClientContext.isExist(msg.getSenderUserName()))
+		if(ChatContext.isExist(msg.getSenderUserName()))
 		{
 			ClientMsg message = ClientMessageProto.ClientMsg.newBuilder().setMessageType(MessageType.ERROR)
 					.setErrorType(ErrorType.INVALID_LOGIN)
@@ -67,7 +67,7 @@ public class LoginHandler implements ClientMsgHandler
 		}
 		else
 		{
-			ClientContext.addClientContext(msg.getSenderUserName(), ctx);
+			ChatContext.addClientContext(msg.getSenderUserName(), ctx);
 			ClientMsg message = ClientMessageProto.ClientMsg.newBuilder().setMessageType(MessageType.LOGIN_SUCCESS)
 					.setMsgText("Logged In...").build();
 			ctx.writeAndFlush(message);

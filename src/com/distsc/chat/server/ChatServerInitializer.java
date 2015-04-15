@@ -9,10 +9,10 @@ import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 
 import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg;
-public class ClientServerInitializer extends ChannelInitializer<SocketChannel> {
+public class ChatServerInitializer extends ChannelInitializer<SocketChannel> {
 
 
-    public ClientServerInitializer() {
+    public ChatServerInitializer() {
     }
 
     @Override
@@ -22,6 +22,6 @@ public class ClientServerInitializer extends ChannelInitializer<SocketChannel> {
         pipeline.addLast ("protobufDecoder", new ProtobufDecoder(ClientMsg.getDefaultInstance()));
         pipeline.addLast ("frameEncoder", new ProtobufVarint32LengthFieldPrepender ());
         pipeline.addLast ("protobufEncoder", new ProtobufEncoder ());
-        pipeline.addLast(new ClientServerHandler());
+        pipeline.addLast(new ChatServerHandler());
     }
 }

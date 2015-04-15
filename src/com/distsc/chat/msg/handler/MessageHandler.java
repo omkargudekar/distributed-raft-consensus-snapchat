@@ -2,14 +2,14 @@ package com.distsc.chat.msg.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 
-import com.distsc.chat.server.ClientContext;
+import com.distsc.chat.server.ChatContext;
 import com.distsc.comm.msg.protobuf.ClientMessageProto;
+import com.distsc.comm.msg.protobuf.ClusterMessageProto;
 import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg;
 import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg.ErrorType;
 import com.distsc.comm.msg.protobuf.ClientMessageProto.ClientMsg.MessageType;
-import com.distsc.intercluster.msg.protobuff.ClusterMessageProto;
-import com.distsc.intercluster.msg.protobuff.ClusterMessageProto.ClusterMessage;
-import com.distsc.intercluster.msg.queues.outbound.OutboundInterClusterMsgQueue;
+import com.distsc.comm.msg.protobuf.ClusterMessageProto.ClusterMessage;
+import com.distsc.comm.msg.queues.outbound.ClusterMsgOutboundQueue;
 import com.distsc.raft.RAFTStatus;
 
 public class MessageHandler implements ClientMsgHandler
@@ -46,11 +46,14 @@ public class MessageHandler implements ClientMsgHandler
 		if(validator.validateMessageSize(ctx,msg)==true)
 		{
 			ClusterMessage clustMsg=ClusterMessageProto.ClusterMessage.newBuilder()
+					.setMsgImageBits(msg.getMsgImageBits())
+					.setMsgImageName(msg.getMsgImageName())
 					.setMsgText(msg.getMsgText()).build();
 			System.out.println("Writing  Message...");
-			OutboundInterClusterMsgQueue.pushMessage(clustMsg);
 			
-			ClientContext.getClientContext(msg.getReceiverUserName()).writeAndFlush(msg);
+			ClusterMsgOutboundQueue.pushMessage(clustMsg);
+			
+			ChatContext.getClientContext(msg.getReceiverUserName()).writeAndFlush(msg);
 			
 			
 		}

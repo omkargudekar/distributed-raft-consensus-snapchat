@@ -43,7 +43,6 @@ public class LogAppendListener implements Runnable
 
 	public void checkIfLeaderExist()
 	{
-		starRAFTTimer();
 		if (AppendEntriesQueue.getCount() > 0)
 		{
 			System.out.println("Leader Conflict. Checking Logs");
@@ -64,6 +63,10 @@ public class LogAppendListener implements Runnable
 				}
 			}
 
+		}
+		else
+		{
+			pause();
 		}
 
 	}
@@ -89,6 +92,10 @@ public class LogAppendListener implements Runnable
 			}
 
 		}
+		else
+		{
+			pause();
+		}
 	}
 
 	public void checkHeartbeat()
@@ -100,10 +107,7 @@ public class LogAppendListener implements Runnable
 			RAFTStatus.setDeclaredLeader(null);
 		}
 		else if (AppendEntriesQueue.getCount() > 0)
-		{
-			for (int counter = 0; counter < AppendEntriesQueue.getCount(); counter++)
-			{
-				RequestContext requestContext = AppendEntriesQueue.pop();
+		{		RequestContext requestContext = AppendEntriesQueue.pop();
 				Request msg = null;
 				System.out.println("Heartbeat Received : Leader Id : " 
 								+requestContext.getRequest().getPayload().getAppendEntries().getLeaderId()
@@ -111,7 +115,11 @@ public class LogAppendListener implements Runnable
 								+ requestContext.getRequest().getPayload().getAppendEntries().getTerm());
 				msg = Request.newBuilder().setMessageHeader(Request.MessageHeader.AappendEntriesResultMsg).setPayload(MessageProto.Payload.newBuilder().setAppendEntriesresult(MessageProto.AppendEntriesResult.newBuilder().setTerm(RAFTStatus.getCurrentTerm()).setSuccess(true))).build();
 				NodeChannelContextMap.getNodeContext(requestContext.getRequest().getPayload().getAppendEntries().getLeaderId()).writeAndFlush(msg);
-			}
+				AppendEntriesQueue.reset();
+		}
+		else
+		{
+			pause();
 		}
 	}
 

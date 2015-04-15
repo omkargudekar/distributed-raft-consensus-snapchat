@@ -43,6 +43,15 @@ public class ClusterConfigReader
 			GlobalConfiguration.setNodes(peers);
 			
 			
+			nodes = (JSONObject) jsonObject.get("currentNode");
+			nodes = (JSONObject) jsonObject.get("currentNode");
+			node=new Node();
+			node.setNodeID(nodes.get("id").toString());
+			node.setNodeIP(nodes.get("host").toString());
+			node.setNodePort(Integer.parseInt(nodes.get("port").toString()));
+			GlobalConfiguration.setCurrentNode(node);
+			
+			
 		}
 		catch(Exception e)
 		{	

@@ -1,7 +1,7 @@
 option java_package= "com.distsc.comm.protobuf";
 option java_outer_classname = "MessageProto";
 
-enum MessageType 
+enum MessageHeader
 {
 	AppendEntriesMsg=1;
 	AappendEntriesResultMsg=2;
@@ -13,10 +13,20 @@ enum MessageType
 
 message MessageDetails
 {
-	optional string senderNodeId = 1;
-	optional MessageType messageType = 2 [default = AppendEntriesMsg];
+	optional MessageHeader messageHeader = 1 [default = AppendEntriesMsg];
+	optional Payload payload=2;
 }
 
+
+message Payload
+{
+	optional AppendEntries appendEntries=1;
+	optional AppendEntriesResult appendEntriesresult=2;
+	optional RequestVote requestVote=3;
+	optional RequestVoteResult requestVoteResult=4;
+	optional ClientMessage clientMessage=5;
+	optional NodeDiscovery nodeDiscovery=6;
+}
 message AppendEntries
 {
 	optional int32 term=1;
@@ -30,8 +40,10 @@ message AppendEntries
 
 message AppendEntriesResult
 {
+	
 	optional int32 term=1;
 	optional bool success=2;
+	optional string senderNodeId = 3;
 }
 
 message RequestVote
@@ -46,6 +58,7 @@ message RequestVoteResult
 {
 	optional int32 term=1;
 	optional bool voteGranted=2;
+	optional string senderNodeId = 3;
 }
 
 
@@ -90,10 +103,10 @@ message NodeDiscovery
     	REQUEST_CONNECTION=1;
     	RESPONSE_CONNECTION_ACCEPTED=2;
     	RESPONSE_CONNECTION_REJECTED=3;
-    	REQUEST_NODE_IP=4;
-    	REQUEST_NODE_PORT=5;
+    	NODE_ID=4;
+    	NODE_IP=5;
+    	NODE_PORT=6;
     }
-    
 
     optional NodeDiscoveryMessageType nodeDiscoveryMessageType=1 [default = REQUEST_CONNECTION];
 }

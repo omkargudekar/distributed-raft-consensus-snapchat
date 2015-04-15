@@ -1,8 +1,7 @@
 package com.distsc.app;
 import com.distsc.app.config.ClusterConfigReader;
-import com.distsc.app.config.CurrentNodeConfigReader;
 import com.distsc.chat.server.ChatServer;
-import com.distsc.node.outbound.OutboundConnection;
+import com.distsc.network.OutboundConnection;
 import com.distsc.node.server.Server;
 import com.distsc.raft.algorithm.RAFT;
 
@@ -14,9 +13,6 @@ public class RunMain
 		//Read & Setup Cluster Configuration
 		ClusterConfigReader.readAndSetUp("config/cluster.conf");
 		
-		//Read & Setup Current Node Configuration.
-		CurrentNodeConfigReader.readAndSetUp("config/current_node.conf");
-	
 		
 		
 		//Starting Server Thread.

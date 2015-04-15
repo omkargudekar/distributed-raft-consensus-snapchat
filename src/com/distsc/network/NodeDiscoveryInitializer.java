@@ -1,4 +1,4 @@
-package com.distsc.node.outbound;
+package com.distsc.network;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
@@ -7,12 +7,12 @@ import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 
-import com.distsc.comm.protobuf.NodeMessageProto.Message;
+import com.distsc.comm.protobuf.MessageProto;
 
-public class OutboundConnectionInitializer extends ChannelInitializer<SocketChannel> {
+public class NodeDiscoveryInitializer extends ChannelInitializer<SocketChannel> {
 
  
-    public OutboundConnectionInitializer() {
+    public NodeDiscoveryInitializer() {
     }
 
     @Override
@@ -21,11 +21,11 @@ public class OutboundConnectionInitializer extends ChannelInitializer<SocketChan
 
   
         pipeline.addLast ("frameDecoder", new ProtobufVarint32FrameDecoder ());
-        pipeline.addLast ("protobufDecoder", new ProtobufDecoder(Message.getDefaultInstance()));
+        pipeline.addLast ("protobufDecoder", new ProtobufDecoder(MessageProto.getDefaultInstance()));
 
         pipeline.addLast ("frameEncoder", new ProtobufVarint32LengthFieldPrepender ());
         pipeline.addLast ("protobufEncoder", new ProtobufEncoder ());
 
-        pipeline.addLast(new OutboundConnectionHandler());
+        pipeline.addLast(new NodeDiscoveryHandler());
     }
 }

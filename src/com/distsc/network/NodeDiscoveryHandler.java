@@ -1,11 +1,11 @@
-package com.distsc.node.outbound;
+package com.distsc.network;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 import com.distsc.comm.protobuf.NodeMessageProto.Message;
 
-public class OutboundConnectionHandler extends SimpleChannelInboundHandler<Message> 
+public class NodeDiscoveryHandler extends SimpleChannelInboundHandler<Message> 
 {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {

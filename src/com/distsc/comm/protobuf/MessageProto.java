@@ -9,9 +9,9 @@ public final class MessageProto {
       com.google.protobuf.ExtensionRegistry registry) {
   }
   /**
-   * Protobuf enum {@code MessageHeader}
+   * Protobuf enum {@code MessageType}
    */
-  public enum MessageHeader
+  public enum MessageType
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <code>AppendEntriesMsg = 1;</code>
@@ -67,7 +67,7 @@ public final class MessageProto {
 
     public final int getNumber() { return value; }
 
-    public static MessageHeader valueOf(int value) {
+    public static MessageType valueOf(int value) {
       switch (value) {
         case 1: return AppendEntriesMsg;
         case 2: return AappendEntriesResultMsg;
@@ -79,15 +79,15 @@ public final class MessageProto {
       }
     }
 
-    public static com.google.protobuf.Internal.EnumLiteMap<MessageHeader>
+    public static com.google.protobuf.Internal.EnumLiteMap<MessageType>
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<MessageHeader>
+    private static com.google.protobuf.Internal.EnumLiteMap<MessageType>
         internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<MessageHeader>() {
-            public MessageHeader findValueByNumber(int number) {
-              return MessageHeader.valueOf(number);
+          new com.google.protobuf.Internal.EnumLiteMap<MessageType>() {
+            public MessageType findValueByNumber(int number) {
+              return MessageType.valueOf(number);
             }
           };
 
@@ -104,9 +104,9 @@ public final class MessageProto {
       return com.distsc.comm.protobuf.MessageProto.getDescriptor().getEnumTypes().get(0);
     }
 
-    private static final MessageHeader[] VALUES = values();
+    private static final MessageType[] VALUES = values();
 
-    public static MessageHeader valueOf(
+    public static MessageType valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
@@ -118,12 +118,12 @@ public final class MessageProto {
     private final int index;
     private final int value;
 
-    private MessageHeader(int index, int value) {
+    private MessageType(int index, int value) {
       this.index = index;
       this.value = value;
     }
 
-    // @@protoc_insertion_point(enum_scope:MessageHeader)
+    // @@protoc_insertion_point(enum_scope:MessageType)
   }
 
   public interface MessageDetailsOrBuilder extends
@@ -131,26 +131,27 @@ public final class MessageProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional .MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
+     * <code>optional string senderNodeId = 1;</code>
      */
-    boolean hasMessageHeader();
+    boolean hasSenderNodeId();
     /**
-     * <code>optional .MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
+     * <code>optional string senderNodeId = 1;</code>
      */
-    com.distsc.comm.protobuf.MessageProto.MessageHeader getMessageHeader();
+    java.lang.String getSenderNodeId();
+    /**
+     * <code>optional string senderNodeId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getSenderNodeIdBytes();
 
     /**
-     * <code>optional .Payload payload = 2;</code>
+     * <code>optional .MessageType messageType = 2 [default = AppendEntriesMsg];</code>
      */
-    boolean hasPayload();
+    boolean hasMessageType();
     /**
-     * <code>optional .Payload payload = 2;</code>
+     * <code>optional .MessageType messageType = 2 [default = AppendEntriesMsg];</code>
      */
-    com.distsc.comm.protobuf.MessageProto.Payload getPayload();
-    /**
-     * <code>optional .Payload payload = 2;</code>
-     */
-    com.distsc.comm.protobuf.MessageProto.PayloadOrBuilder getPayloadOrBuilder();
+    com.distsc.comm.protobuf.MessageProto.MessageType getMessageType();
   }
   /**
    * Protobuf type {@code MessageDetails}
@@ -204,28 +205,21 @@ public final class MessageProto {
               }
               break;
             }
-            case 8: {
-              int rawValue = input.readEnum();
-              com.distsc.comm.protobuf.MessageProto.MessageHeader value = com.distsc.comm.protobuf.MessageProto.MessageHeader.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(1, rawValue);
-              } else {
-                bitField0_ |= 0x00000001;
-                messageHeader_ = value;
-              }
+            case 10: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000001;
+              senderNodeId_ = bs;
               break;
             }
-            case 18: {
-              com.distsc.comm.protobuf.MessageProto.Payload.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000002) == 0x00000002)) {
-                subBuilder = payload_.toBuilder();
+            case 16: {
+              int rawValue = input.readEnum();
+              com.distsc.comm.protobuf.MessageProto.MessageType value = com.distsc.comm.protobuf.MessageProto.MessageType.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(2, rawValue);
+              } else {
+                bitField0_ |= 0x00000002;
+                messageType_ = value;
               }
-              payload_ = input.readMessage(com.distsc.comm.protobuf.MessageProto.Payload.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(payload_);
-                payload_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000002;
               break;
             }
           }
@@ -268,45 +262,66 @@ public final class MessageProto {
     }
 
     private int bitField0_;
-    public static final int MESSAGEHEADER_FIELD_NUMBER = 1;
-    private com.distsc.comm.protobuf.MessageProto.MessageHeader messageHeader_;
+    public static final int SENDERNODEID_FIELD_NUMBER = 1;
+    private java.lang.Object senderNodeId_;
     /**
-     * <code>optional .MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
+     * <code>optional string senderNodeId = 1;</code>
      */
-    public boolean hasMessageHeader() {
+    public boolean hasSenderNodeId() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>optional .MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
+     * <code>optional string senderNodeId = 1;</code>
      */
-    public com.distsc.comm.protobuf.MessageProto.MessageHeader getMessageHeader() {
-      return messageHeader_;
+    public java.lang.String getSenderNodeId() {
+      java.lang.Object ref = senderNodeId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          senderNodeId_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string senderNodeId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSenderNodeIdBytes() {
+      java.lang.Object ref = senderNodeId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        senderNodeId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
-    public static final int PAYLOAD_FIELD_NUMBER = 2;
-    private com.distsc.comm.protobuf.MessageProto.Payload payload_;
+    public static final int MESSAGETYPE_FIELD_NUMBER = 2;
+    private com.distsc.comm.protobuf.MessageProto.MessageType messageType_;
     /**
-     * <code>optional .Payload payload = 2;</code>
+     * <code>optional .MessageType messageType = 2 [default = AppendEntriesMsg];</code>
      */
-    public boolean hasPayload() {
+    public boolean hasMessageType() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>optional .Payload payload = 2;</code>
+     * <code>optional .MessageType messageType = 2 [default = AppendEntriesMsg];</code>
      */
-    public com.distsc.comm.protobuf.MessageProto.Payload getPayload() {
-      return payload_;
-    }
-    /**
-     * <code>optional .Payload payload = 2;</code>
-     */
-    public com.distsc.comm.protobuf.MessageProto.PayloadOrBuilder getPayloadOrBuilder() {
-      return payload_;
+    public com.distsc.comm.protobuf.MessageProto.MessageType getMessageType() {
+      return messageType_;
     }
 
     private void initFields() {
-      messageHeader_ = com.distsc.comm.protobuf.MessageProto.MessageHeader.AppendEntriesMsg;
-      payload_ = com.distsc.comm.protobuf.MessageProto.Payload.getDefaultInstance();
+      senderNodeId_ = "";
+      messageType_ = com.distsc.comm.protobuf.MessageProto.MessageType.AppendEntriesMsg;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -314,12 +329,6 @@ public final class MessageProto {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (hasPayload()) {
-        if (!getPayload().isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -328,10 +337,10 @@ public final class MessageProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeEnum(1, messageHeader_.getNumber());
+        output.writeBytes(1, getSenderNodeIdBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeMessage(2, payload_);
+        output.writeEnum(2, messageType_.getNumber());
       }
       getUnknownFields().writeTo(output);
     }
@@ -344,11 +353,11 @@ public final class MessageProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, messageHeader_.getNumber());
+          .computeBytesSize(1, getSenderNodeIdBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, payload_);
+          .computeEnumSize(2, messageType_.getNumber());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -459,7 +468,6 @@ public final class MessageProto {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getPayloadFieldBuilder();
         }
       }
       private static Builder create() {
@@ -468,13 +476,9 @@ public final class MessageProto {
 
       public Builder clear() {
         super.clear();
-        messageHeader_ = com.distsc.comm.protobuf.MessageProto.MessageHeader.AppendEntriesMsg;
+        senderNodeId_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        if (payloadBuilder_ == null) {
-          payload_ = com.distsc.comm.protobuf.MessageProto.Payload.getDefaultInstance();
-        } else {
-          payloadBuilder_.clear();
-        }
+        messageType_ = com.distsc.comm.protobuf.MessageProto.MessageType.AppendEntriesMsg;
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
@@ -507,15 +511,11 @@ public final class MessageProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.messageHeader_ = messageHeader_;
+        result.senderNodeId_ = senderNodeId_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        if (payloadBuilder_ == null) {
-          result.payload_ = payload_;
-        } else {
-          result.payload_ = payloadBuilder_.build();
-        }
+        result.messageType_ = messageType_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -532,23 +532,19 @@ public final class MessageProto {
 
       public Builder mergeFrom(com.distsc.comm.protobuf.MessageProto.MessageDetails other) {
         if (other == com.distsc.comm.protobuf.MessageProto.MessageDetails.getDefaultInstance()) return this;
-        if (other.hasMessageHeader()) {
-          setMessageHeader(other.getMessageHeader());
+        if (other.hasSenderNodeId()) {
+          bitField0_ |= 0x00000001;
+          senderNodeId_ = other.senderNodeId_;
+          onChanged();
         }
-        if (other.hasPayload()) {
-          mergePayload(other.getPayload());
+        if (other.hasMessageType()) {
+          setMessageType(other.getMessageType());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
       public final boolean isInitialized() {
-        if (hasPayload()) {
-          if (!getPayload().isInitialized()) {
-            
-            return false;
-          }
-        }
         return true;
       }
 
@@ -571,155 +567,115 @@ public final class MessageProto {
       }
       private int bitField0_;
 
-      private com.distsc.comm.protobuf.MessageProto.MessageHeader messageHeader_ = com.distsc.comm.protobuf.MessageProto.MessageHeader.AppendEntriesMsg;
+      private java.lang.Object senderNodeId_ = "";
       /**
-       * <code>optional .MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
+       * <code>optional string senderNodeId = 1;</code>
        */
-      public boolean hasMessageHeader() {
+      public boolean hasSenderNodeId() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>optional .MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
+       * <code>optional string senderNodeId = 1;</code>
        */
-      public com.distsc.comm.protobuf.MessageProto.MessageHeader getMessageHeader() {
-        return messageHeader_;
+      public java.lang.String getSenderNodeId() {
+        java.lang.Object ref = senderNodeId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            senderNodeId_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>optional .MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
+       * <code>optional string senderNodeId = 1;</code>
        */
-      public Builder setMessageHeader(com.distsc.comm.protobuf.MessageProto.MessageHeader value) {
-        if (value == null) {
-          throw new NullPointerException();
+      public com.google.protobuf.ByteString
+          getSenderNodeIdBytes() {
+        java.lang.Object ref = senderNodeId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          senderNodeId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
         }
-        bitField0_ |= 0x00000001;
-        messageHeader_ = value;
+      }
+      /**
+       * <code>optional string senderNodeId = 1;</code>
+       */
+      public Builder setSenderNodeId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        senderNodeId_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .MessageHeader messageHeader = 1 [default = AppendEntriesMsg];</code>
+       * <code>optional string senderNodeId = 1;</code>
        */
-      public Builder clearMessageHeader() {
+      public Builder clearSenderNodeId() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        messageHeader_ = com.distsc.comm.protobuf.MessageProto.MessageHeader.AppendEntriesMsg;
+        senderNodeId_ = getDefaultInstance().getSenderNodeId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string senderNodeId = 1;</code>
+       */
+      public Builder setSenderNodeIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        senderNodeId_ = value;
         onChanged();
         return this;
       }
 
-      private com.distsc.comm.protobuf.MessageProto.Payload payload_ = com.distsc.comm.protobuf.MessageProto.Payload.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          com.distsc.comm.protobuf.MessageProto.Payload, com.distsc.comm.protobuf.MessageProto.Payload.Builder, com.distsc.comm.protobuf.MessageProto.PayloadOrBuilder> payloadBuilder_;
+      private com.distsc.comm.protobuf.MessageProto.MessageType messageType_ = com.distsc.comm.protobuf.MessageProto.MessageType.AppendEntriesMsg;
       /**
-       * <code>optional .Payload payload = 2;</code>
+       * <code>optional .MessageType messageType = 2 [default = AppendEntriesMsg];</code>
        */
-      public boolean hasPayload() {
+      public boolean hasMessageType() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional .Payload payload = 2;</code>
+       * <code>optional .MessageType messageType = 2 [default = AppendEntriesMsg];</code>
        */
-      public com.distsc.comm.protobuf.MessageProto.Payload getPayload() {
-        if (payloadBuilder_ == null) {
-          return payload_;
-        } else {
-          return payloadBuilder_.getMessage();
-        }
+      public com.distsc.comm.protobuf.MessageProto.MessageType getMessageType() {
+        return messageType_;
       }
       /**
-       * <code>optional .Payload payload = 2;</code>
+       * <code>optional .MessageType messageType = 2 [default = AppendEntriesMsg];</code>
        */
-      public Builder setPayload(com.distsc.comm.protobuf.MessageProto.Payload value) {
-        if (payloadBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          payload_ = value;
-          onChanged();
-        } else {
-          payloadBuilder_.setMessage(value);
+      public Builder setMessageType(com.distsc.comm.protobuf.MessageProto.MessageType value) {
+        if (value == null) {
+          throw new NullPointerException();
         }
         bitField0_ |= 0x00000002;
-        return this;
-      }
-      /**
-       * <code>optional .Payload payload = 2;</code>
-       */
-      public Builder setPayload(
-          com.distsc.comm.protobuf.MessageProto.Payload.Builder builderForValue) {
-        if (payloadBuilder_ == null) {
-          payload_ = builderForValue.build();
-          onChanged();
-        } else {
-          payloadBuilder_.setMessage(builderForValue.build());
-        }
-        bitField0_ |= 0x00000002;
-        return this;
-      }
-      /**
-       * <code>optional .Payload payload = 2;</code>
-       */
-      public Builder mergePayload(com.distsc.comm.protobuf.MessageProto.Payload value) {
-        if (payloadBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002) &&
-              payload_ != com.distsc.comm.protobuf.MessageProto.Payload.getDefaultInstance()) {
-            payload_ =
-              com.distsc.comm.protobuf.MessageProto.Payload.newBuilder(payload_).mergeFrom(value).buildPartial();
-          } else {
-            payload_ = value;
-          }
-          onChanged();
-        } else {
-          payloadBuilder_.mergeFrom(value);
-        }
-        bitField0_ |= 0x00000002;
-        return this;
-      }
-      /**
-       * <code>optional .Payload payload = 2;</code>
-       */
-      public Builder clearPayload() {
-        if (payloadBuilder_ == null) {
-          payload_ = com.distsc.comm.protobuf.MessageProto.Payload.getDefaultInstance();
-          onChanged();
-        } else {
-          payloadBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000002);
-        return this;
-      }
-      /**
-       * <code>optional .Payload payload = 2;</code>
-       */
-      public com.distsc.comm.protobuf.MessageProto.Payload.Builder getPayloadBuilder() {
-        bitField0_ |= 0x00000002;
+        messageType_ = value;
         onChanged();
-        return getPayloadFieldBuilder().getBuilder();
+        return this;
       }
       /**
-       * <code>optional .Payload payload = 2;</code>
+       * <code>optional .MessageType messageType = 2 [default = AppendEntriesMsg];</code>
        */
-      public com.distsc.comm.protobuf.MessageProto.PayloadOrBuilder getPayloadOrBuilder() {
-        if (payloadBuilder_ != null) {
-          return payloadBuilder_.getMessageOrBuilder();
-        } else {
-          return payload_;
-        }
-      }
-      /**
-       * <code>optional .Payload payload = 2;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilder<
-          com.distsc.comm.protobuf.MessageProto.Payload, com.distsc.comm.protobuf.MessageProto.Payload.Builder, com.distsc.comm.protobuf.MessageProto.PayloadOrBuilder> 
-          getPayloadFieldBuilder() {
-        if (payloadBuilder_ == null) {
-          payloadBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              com.distsc.comm.protobuf.MessageProto.Payload, com.distsc.comm.protobuf.MessageProto.Payload.Builder, com.distsc.comm.protobuf.MessageProto.PayloadOrBuilder>(
-                  getPayload(),
-                  getParentForChildren(),
-                  isClean());
-          payload_ = null;
-        }
-        return payloadBuilder_;
+      public Builder clearMessageType() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        messageType_ = com.distsc.comm.protobuf.MessageProto.MessageType.AppendEntriesMsg;
+        onChanged();
+        return this;
       }
 
       // @@protoc_insertion_point(builder_scope:MessageDetails)
@@ -731,1471 +687,6 @@ public final class MessageProto {
     }
 
     // @@protoc_insertion_point(class_scope:MessageDetails)
-  }
-
-  public interface PayloadOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Payload)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional .AppendEntries appendEntries = 1;</code>
-     */
-    boolean hasAppendEntries();
-    /**
-     * <code>optional .AppendEntries appendEntries = 1;</code>
-     */
-    com.distsc.comm.protobuf.MessageProto.AppendEntries getAppendEntries();
-    /**
-     * <code>optional .AppendEntries appendEntries = 1;</code>
-     */
-    com.distsc.comm.protobuf.MessageProto.AppendEntriesOrBuilder getAppendEntriesOrBuilder();
-
-    /**
-     * <code>optional .AppendEntriesResult appendEntriesresult = 2;</code>
-     */
-    boolean hasAppendEntriesresult();
-    /**
-     * <code>optional .AppendEntriesResult appendEntriesresult = 2;</code>
-     */
-    com.distsc.comm.protobuf.MessageProto.AppendEntriesResult getAppendEntriesresult();
-    /**
-     * <code>optional .AppendEntriesResult appendEntriesresult = 2;</code>
-     */
-    com.distsc.comm.protobuf.MessageProto.AppendEntriesResultOrBuilder getAppendEntriesresultOrBuilder();
-
-    /**
-     * <code>optional .RequestVote requestVote = 3;</code>
-     */
-    boolean hasRequestVote();
-    /**
-     * <code>optional .RequestVote requestVote = 3;</code>
-     */
-    com.distsc.comm.protobuf.MessageProto.RequestVote getRequestVote();
-    /**
-     * <code>optional .RequestVote requestVote = 3;</code>
-     */
-    com.distsc.comm.protobuf.MessageProto.RequestVoteOrBuilder getRequestVoteOrBuilder();
-
-    /**
-     * <code>optional .RequestVoteResult requestVoteResult = 4;</code>
-     */
-    boolean hasRequestVoteResult();
-    /**
-     * <code>optional .RequestVoteResult requestVoteResult = 4;</code>
-     */
-    com.distsc.comm.protobuf.MessageProto.RequestVoteResult getRequestVoteResult();
-    /**
-     * <code>optional .RequestVoteResult requestVoteResult = 4;</code>
-     */
-    com.distsc.comm.protobuf.MessageProto.RequestVoteResultOrBuilder getRequestVoteResultOrBuilder();
-
-    /**
-     * <code>optional .ClientMessage clientMessage = 5;</code>
-     */
-    boolean hasClientMessage();
-    /**
-     * <code>optional .ClientMessage clientMessage = 5;</code>
-     */
-    com.distsc.comm.protobuf.MessageProto.ClientMessage getClientMessage();
-    /**
-     * <code>optional .ClientMessage clientMessage = 5;</code>
-     */
-    com.distsc.comm.protobuf.MessageProto.ClientMessageOrBuilder getClientMessageOrBuilder();
-
-    /**
-     * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-     */
-    boolean hasNodeDiscovery();
-    /**
-     * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-     */
-    com.distsc.comm.protobuf.MessageProto.NodeDiscovery getNodeDiscovery();
-    /**
-     * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-     */
-    com.distsc.comm.protobuf.MessageProto.NodeDiscoveryOrBuilder getNodeDiscoveryOrBuilder();
-  }
-  /**
-   * Protobuf type {@code Payload}
-   */
-  public static final class Payload extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:Payload)
-      PayloadOrBuilder {
-    // Use Payload.newBuilder() to construct.
-    private Payload(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
-    }
-    private Payload(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final Payload defaultInstance;
-    public static Payload getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public Payload getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Payload(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              com.distsc.comm.protobuf.MessageProto.AppendEntries.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000001) == 0x00000001)) {
-                subBuilder = appendEntries_.toBuilder();
-              }
-              appendEntries_ = input.readMessage(com.distsc.comm.protobuf.MessageProto.AppendEntries.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(appendEntries_);
-                appendEntries_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000001;
-              break;
-            }
-            case 18: {
-              com.distsc.comm.protobuf.MessageProto.AppendEntriesResult.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000002) == 0x00000002)) {
-                subBuilder = appendEntriesresult_.toBuilder();
-              }
-              appendEntriesresult_ = input.readMessage(com.distsc.comm.protobuf.MessageProto.AppendEntriesResult.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(appendEntriesresult_);
-                appendEntriesresult_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000002;
-              break;
-            }
-            case 26: {
-              com.distsc.comm.protobuf.MessageProto.RequestVote.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000004) == 0x00000004)) {
-                subBuilder = requestVote_.toBuilder();
-              }
-              requestVote_ = input.readMessage(com.distsc.comm.protobuf.MessageProto.RequestVote.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(requestVote_);
-                requestVote_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000004;
-              break;
-            }
-            case 34: {
-              com.distsc.comm.protobuf.MessageProto.RequestVoteResult.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000008) == 0x00000008)) {
-                subBuilder = requestVoteResult_.toBuilder();
-              }
-              requestVoteResult_ = input.readMessage(com.distsc.comm.protobuf.MessageProto.RequestVoteResult.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(requestVoteResult_);
-                requestVoteResult_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000008;
-              break;
-            }
-            case 42: {
-              com.distsc.comm.protobuf.MessageProto.ClientMessage.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000010) == 0x00000010)) {
-                subBuilder = clientMessage_.toBuilder();
-              }
-              clientMessage_ = input.readMessage(com.distsc.comm.protobuf.MessageProto.ClientMessage.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(clientMessage_);
-                clientMessage_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000010;
-              break;
-            }
-            case 50: {
-              com.distsc.comm.protobuf.MessageProto.NodeDiscovery.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000020) == 0x00000020)) {
-                subBuilder = nodeDiscovery_.toBuilder();
-              }
-              nodeDiscovery_ = input.readMessage(com.distsc.comm.protobuf.MessageProto.NodeDiscovery.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(nodeDiscovery_);
-                nodeDiscovery_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000020;
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.distsc.comm.protobuf.MessageProto.internal_static_Payload_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.distsc.comm.protobuf.MessageProto.internal_static_Payload_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.distsc.comm.protobuf.MessageProto.Payload.class, com.distsc.comm.protobuf.MessageProto.Payload.Builder.class);
-    }
-
-    public static com.google.protobuf.Parser<Payload> PARSER =
-        new com.google.protobuf.AbstractParser<Payload>() {
-      public Payload parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Payload(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Payload> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
-    public static final int APPENDENTRIES_FIELD_NUMBER = 1;
-    private com.distsc.comm.protobuf.MessageProto.AppendEntries appendEntries_;
-    /**
-     * <code>optional .AppendEntries appendEntries = 1;</code>
-     */
-    public boolean hasAppendEntries() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>optional .AppendEntries appendEntries = 1;</code>
-     */
-    public com.distsc.comm.protobuf.MessageProto.AppendEntries getAppendEntries() {
-      return appendEntries_;
-    }
-    /**
-     * <code>optional .AppendEntries appendEntries = 1;</code>
-     */
-    public com.distsc.comm.protobuf.MessageProto.AppendEntriesOrBuilder getAppendEntriesOrBuilder() {
-      return appendEntries_;
-    }
-
-    public static final int APPENDENTRIESRESULT_FIELD_NUMBER = 2;
-    private com.distsc.comm.protobuf.MessageProto.AppendEntriesResult appendEntriesresult_;
-    /**
-     * <code>optional .AppendEntriesResult appendEntriesresult = 2;</code>
-     */
-    public boolean hasAppendEntriesresult() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>optional .AppendEntriesResult appendEntriesresult = 2;</code>
-     */
-    public com.distsc.comm.protobuf.MessageProto.AppendEntriesResult getAppendEntriesresult() {
-      return appendEntriesresult_;
-    }
-    /**
-     * <code>optional .AppendEntriesResult appendEntriesresult = 2;</code>
-     */
-    public com.distsc.comm.protobuf.MessageProto.AppendEntriesResultOrBuilder getAppendEntriesresultOrBuilder() {
-      return appendEntriesresult_;
-    }
-
-    public static final int REQUESTVOTE_FIELD_NUMBER = 3;
-    private com.distsc.comm.protobuf.MessageProto.RequestVote requestVote_;
-    /**
-     * <code>optional .RequestVote requestVote = 3;</code>
-     */
-    public boolean hasRequestVote() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional .RequestVote requestVote = 3;</code>
-     */
-    public com.distsc.comm.protobuf.MessageProto.RequestVote getRequestVote() {
-      return requestVote_;
-    }
-    /**
-     * <code>optional .RequestVote requestVote = 3;</code>
-     */
-    public com.distsc.comm.protobuf.MessageProto.RequestVoteOrBuilder getRequestVoteOrBuilder() {
-      return requestVote_;
-    }
-
-    public static final int REQUESTVOTERESULT_FIELD_NUMBER = 4;
-    private com.distsc.comm.protobuf.MessageProto.RequestVoteResult requestVoteResult_;
-    /**
-     * <code>optional .RequestVoteResult requestVoteResult = 4;</code>
-     */
-    public boolean hasRequestVoteResult() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>optional .RequestVoteResult requestVoteResult = 4;</code>
-     */
-    public com.distsc.comm.protobuf.MessageProto.RequestVoteResult getRequestVoteResult() {
-      return requestVoteResult_;
-    }
-    /**
-     * <code>optional .RequestVoteResult requestVoteResult = 4;</code>
-     */
-    public com.distsc.comm.protobuf.MessageProto.RequestVoteResultOrBuilder getRequestVoteResultOrBuilder() {
-      return requestVoteResult_;
-    }
-
-    public static final int CLIENTMESSAGE_FIELD_NUMBER = 5;
-    private com.distsc.comm.protobuf.MessageProto.ClientMessage clientMessage_;
-    /**
-     * <code>optional .ClientMessage clientMessage = 5;</code>
-     */
-    public boolean hasClientMessage() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
-    }
-    /**
-     * <code>optional .ClientMessage clientMessage = 5;</code>
-     */
-    public com.distsc.comm.protobuf.MessageProto.ClientMessage getClientMessage() {
-      return clientMessage_;
-    }
-    /**
-     * <code>optional .ClientMessage clientMessage = 5;</code>
-     */
-    public com.distsc.comm.protobuf.MessageProto.ClientMessageOrBuilder getClientMessageOrBuilder() {
-      return clientMessage_;
-    }
-
-    public static final int NODEDISCOVERY_FIELD_NUMBER = 6;
-    private com.distsc.comm.protobuf.MessageProto.NodeDiscovery nodeDiscovery_;
-    /**
-     * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-     */
-    public boolean hasNodeDiscovery() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
-    }
-    /**
-     * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-     */
-    public com.distsc.comm.protobuf.MessageProto.NodeDiscovery getNodeDiscovery() {
-      return nodeDiscovery_;
-    }
-    /**
-     * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-     */
-    public com.distsc.comm.protobuf.MessageProto.NodeDiscoveryOrBuilder getNodeDiscoveryOrBuilder() {
-      return nodeDiscovery_;
-    }
-
-    private void initFields() {
-      appendEntries_ = com.distsc.comm.protobuf.MessageProto.AppendEntries.getDefaultInstance();
-      appendEntriesresult_ = com.distsc.comm.protobuf.MessageProto.AppendEntriesResult.getDefaultInstance();
-      requestVote_ = com.distsc.comm.protobuf.MessageProto.RequestVote.getDefaultInstance();
-      requestVoteResult_ = com.distsc.comm.protobuf.MessageProto.RequestVoteResult.getDefaultInstance();
-      clientMessage_ = com.distsc.comm.protobuf.MessageProto.ClientMessage.getDefaultInstance();
-      nodeDiscovery_ = com.distsc.comm.protobuf.MessageProto.NodeDiscovery.getDefaultInstance();
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (hasClientMessage()) {
-        if (!getClientMessage().isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-      }
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeMessage(1, appendEntries_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeMessage(2, appendEntriesresult_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeMessage(3, requestVote_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeMessage(4, requestVoteResult_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeMessage(5, clientMessage_);
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeMessage(6, nodeDiscovery_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, appendEntries_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, appendEntriesresult_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, requestVote_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, requestVoteResult_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, clientMessage_);
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, nodeDiscovery_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
-    public static com.distsc.comm.protobuf.MessageProto.Payload parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.distsc.comm.protobuf.MessageProto.Payload parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.distsc.comm.protobuf.MessageProto.Payload parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.distsc.comm.protobuf.MessageProto.Payload parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.distsc.comm.protobuf.MessageProto.Payload parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static com.distsc.comm.protobuf.MessageProto.Payload parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-    public static com.distsc.comm.protobuf.MessageProto.Payload parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
-    }
-    public static com.distsc.comm.protobuf.MessageProto.Payload parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
-    }
-    public static com.distsc.comm.protobuf.MessageProto.Payload parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static com.distsc.comm.protobuf.MessageProto.Payload parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.distsc.comm.protobuf.MessageProto.Payload prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code Payload}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Payload)
-        com.distsc.comm.protobuf.MessageProto.PayloadOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.distsc.comm.protobuf.MessageProto.internal_static_Payload_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.distsc.comm.protobuf.MessageProto.internal_static_Payload_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.distsc.comm.protobuf.MessageProto.Payload.class, com.distsc.comm.protobuf.MessageProto.Payload.Builder.class);
-      }
-
-      // Construct using com.distsc.comm.protobuf.MessageProto.Payload.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getAppendEntriesFieldBuilder();
-          getAppendEntriesresultFieldBuilder();
-          getRequestVoteFieldBuilder();
-          getRequestVoteResultFieldBuilder();
-          getClientMessageFieldBuilder();
-          getNodeDiscoveryFieldBuilder();
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-
-      public Builder clear() {
-        super.clear();
-        if (appendEntriesBuilder_ == null) {
-          appendEntries_ = com.distsc.comm.protobuf.MessageProto.AppendEntries.getDefaultInstance();
-        } else {
-          appendEntriesBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000001);
-        if (appendEntriesresultBuilder_ == null) {
-          appendEntriesresult_ = com.distsc.comm.protobuf.MessageProto.AppendEntriesResult.getDefaultInstance();
-        } else {
-          appendEntriesresultBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000002);
-        if (requestVoteBuilder_ == null) {
-          requestVote_ = com.distsc.comm.protobuf.MessageProto.RequestVote.getDefaultInstance();
-        } else {
-          requestVoteBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000004);
-        if (requestVoteResultBuilder_ == null) {
-          requestVoteResult_ = com.distsc.comm.protobuf.MessageProto.RequestVoteResult.getDefaultInstance();
-        } else {
-          requestVoteResultBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000008);
-        if (clientMessageBuilder_ == null) {
-          clientMessage_ = com.distsc.comm.protobuf.MessageProto.ClientMessage.getDefaultInstance();
-        } else {
-          clientMessageBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000010);
-        if (nodeDiscoveryBuilder_ == null) {
-          nodeDiscovery_ = com.distsc.comm.protobuf.MessageProto.NodeDiscovery.getDefaultInstance();
-        } else {
-          nodeDiscoveryBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000020);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.distsc.comm.protobuf.MessageProto.internal_static_Payload_descriptor;
-      }
-
-      public com.distsc.comm.protobuf.MessageProto.Payload getDefaultInstanceForType() {
-        return com.distsc.comm.protobuf.MessageProto.Payload.getDefaultInstance();
-      }
-
-      public com.distsc.comm.protobuf.MessageProto.Payload build() {
-        com.distsc.comm.protobuf.MessageProto.Payload result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.distsc.comm.protobuf.MessageProto.Payload buildPartial() {
-        com.distsc.comm.protobuf.MessageProto.Payload result = new com.distsc.comm.protobuf.MessageProto.Payload(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        if (appendEntriesBuilder_ == null) {
-          result.appendEntries_ = appendEntries_;
-        } else {
-          result.appendEntries_ = appendEntriesBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        if (appendEntriesresultBuilder_ == null) {
-          result.appendEntriesresult_ = appendEntriesresult_;
-        } else {
-          result.appendEntriesresult_ = appendEntriesresultBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        if (requestVoteBuilder_ == null) {
-          result.requestVote_ = requestVote_;
-        } else {
-          result.requestVote_ = requestVoteBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        if (requestVoteResultBuilder_ == null) {
-          result.requestVoteResult_ = requestVoteResult_;
-        } else {
-          result.requestVoteResult_ = requestVoteResultBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        if (clientMessageBuilder_ == null) {
-          result.clientMessage_ = clientMessage_;
-        } else {
-          result.clientMessage_ = clientMessageBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        if (nodeDiscoveryBuilder_ == null) {
-          result.nodeDiscovery_ = nodeDiscovery_;
-        } else {
-          result.nodeDiscovery_ = nodeDiscoveryBuilder_.build();
-        }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.distsc.comm.protobuf.MessageProto.Payload) {
-          return mergeFrom((com.distsc.comm.protobuf.MessageProto.Payload)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.distsc.comm.protobuf.MessageProto.Payload other) {
-        if (other == com.distsc.comm.protobuf.MessageProto.Payload.getDefaultInstance()) return this;
-        if (other.hasAppendEntries()) {
-          mergeAppendEntries(other.getAppendEntries());
-        }
-        if (other.hasAppendEntriesresult()) {
-          mergeAppendEntriesresult(other.getAppendEntriesresult());
-        }
-        if (other.hasRequestVote()) {
-          mergeRequestVote(other.getRequestVote());
-        }
-        if (other.hasRequestVoteResult()) {
-          mergeRequestVoteResult(other.getRequestVoteResult());
-        }
-        if (other.hasClientMessage()) {
-          mergeClientMessage(other.getClientMessage());
-        }
-        if (other.hasNodeDiscovery()) {
-          mergeNodeDiscovery(other.getNodeDiscovery());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (hasClientMessage()) {
-          if (!getClientMessage().isInitialized()) {
-            
-            return false;
-          }
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.distsc.comm.protobuf.MessageProto.Payload parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.distsc.comm.protobuf.MessageProto.Payload) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private com.distsc.comm.protobuf.MessageProto.AppendEntries appendEntries_ = com.distsc.comm.protobuf.MessageProto.AppendEntries.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          com.distsc.comm.protobuf.MessageProto.AppendEntries, com.distsc.comm.protobuf.MessageProto.AppendEntries.Builder, com.distsc.comm.protobuf.MessageProto.AppendEntriesOrBuilder> appendEntriesBuilder_;
-      /**
-       * <code>optional .AppendEntries appendEntries = 1;</code>
-       */
-      public boolean hasAppendEntries() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>optional .AppendEntries appendEntries = 1;</code>
-       */
-      public com.distsc.comm.protobuf.MessageProto.AppendEntries getAppendEntries() {
-        if (appendEntriesBuilder_ == null) {
-          return appendEntries_;
-        } else {
-          return appendEntriesBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .AppendEntries appendEntries = 1;</code>
-       */
-      public Builder setAppendEntries(com.distsc.comm.protobuf.MessageProto.AppendEntries value) {
-        if (appendEntriesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          appendEntries_ = value;
-          onChanged();
-        } else {
-          appendEntriesBuilder_.setMessage(value);
-        }
-        bitField0_ |= 0x00000001;
-        return this;
-      }
-      /**
-       * <code>optional .AppendEntries appendEntries = 1;</code>
-       */
-      public Builder setAppendEntries(
-          com.distsc.comm.protobuf.MessageProto.AppendEntries.Builder builderForValue) {
-        if (appendEntriesBuilder_ == null) {
-          appendEntries_ = builderForValue.build();
-          onChanged();
-        } else {
-          appendEntriesBuilder_.setMessage(builderForValue.build());
-        }
-        bitField0_ |= 0x00000001;
-        return this;
-      }
-      /**
-       * <code>optional .AppendEntries appendEntries = 1;</code>
-       */
-      public Builder mergeAppendEntries(com.distsc.comm.protobuf.MessageProto.AppendEntries value) {
-        if (appendEntriesBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001) &&
-              appendEntries_ != com.distsc.comm.protobuf.MessageProto.AppendEntries.getDefaultInstance()) {
-            appendEntries_ =
-              com.distsc.comm.protobuf.MessageProto.AppendEntries.newBuilder(appendEntries_).mergeFrom(value).buildPartial();
-          } else {
-            appendEntries_ = value;
-          }
-          onChanged();
-        } else {
-          appendEntriesBuilder_.mergeFrom(value);
-        }
-        bitField0_ |= 0x00000001;
-        return this;
-      }
-      /**
-       * <code>optional .AppendEntries appendEntries = 1;</code>
-       */
-      public Builder clearAppendEntries() {
-        if (appendEntriesBuilder_ == null) {
-          appendEntries_ = com.distsc.comm.protobuf.MessageProto.AppendEntries.getDefaultInstance();
-          onChanged();
-        } else {
-          appendEntriesBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000001);
-        return this;
-      }
-      /**
-       * <code>optional .AppendEntries appendEntries = 1;</code>
-       */
-      public com.distsc.comm.protobuf.MessageProto.AppendEntries.Builder getAppendEntriesBuilder() {
-        bitField0_ |= 0x00000001;
-        onChanged();
-        return getAppendEntriesFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .AppendEntries appendEntries = 1;</code>
-       */
-      public com.distsc.comm.protobuf.MessageProto.AppendEntriesOrBuilder getAppendEntriesOrBuilder() {
-        if (appendEntriesBuilder_ != null) {
-          return appendEntriesBuilder_.getMessageOrBuilder();
-        } else {
-          return appendEntries_;
-        }
-      }
-      /**
-       * <code>optional .AppendEntries appendEntries = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilder<
-          com.distsc.comm.protobuf.MessageProto.AppendEntries, com.distsc.comm.protobuf.MessageProto.AppendEntries.Builder, com.distsc.comm.protobuf.MessageProto.AppendEntriesOrBuilder> 
-          getAppendEntriesFieldBuilder() {
-        if (appendEntriesBuilder_ == null) {
-          appendEntriesBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              com.distsc.comm.protobuf.MessageProto.AppendEntries, com.distsc.comm.protobuf.MessageProto.AppendEntries.Builder, com.distsc.comm.protobuf.MessageProto.AppendEntriesOrBuilder>(
-                  getAppendEntries(),
-                  getParentForChildren(),
-                  isClean());
-          appendEntries_ = null;
-        }
-        return appendEntriesBuilder_;
-      }
-
-      private com.distsc.comm.protobuf.MessageProto.AppendEntriesResult appendEntriesresult_ = com.distsc.comm.protobuf.MessageProto.AppendEntriesResult.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          com.distsc.comm.protobuf.MessageProto.AppendEntriesResult, com.distsc.comm.protobuf.MessageProto.AppendEntriesResult.Builder, com.distsc.comm.protobuf.MessageProto.AppendEntriesResultOrBuilder> appendEntriesresultBuilder_;
-      /**
-       * <code>optional .AppendEntriesResult appendEntriesresult = 2;</code>
-       */
-      public boolean hasAppendEntriesresult() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>optional .AppendEntriesResult appendEntriesresult = 2;</code>
-       */
-      public com.distsc.comm.protobuf.MessageProto.AppendEntriesResult getAppendEntriesresult() {
-        if (appendEntriesresultBuilder_ == null) {
-          return appendEntriesresult_;
-        } else {
-          return appendEntriesresultBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .AppendEntriesResult appendEntriesresult = 2;</code>
-       */
-      public Builder setAppendEntriesresult(com.distsc.comm.protobuf.MessageProto.AppendEntriesResult value) {
-        if (appendEntriesresultBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          appendEntriesresult_ = value;
-          onChanged();
-        } else {
-          appendEntriesresultBuilder_.setMessage(value);
-        }
-        bitField0_ |= 0x00000002;
-        return this;
-      }
-      /**
-       * <code>optional .AppendEntriesResult appendEntriesresult = 2;</code>
-       */
-      public Builder setAppendEntriesresult(
-          com.distsc.comm.protobuf.MessageProto.AppendEntriesResult.Builder builderForValue) {
-        if (appendEntriesresultBuilder_ == null) {
-          appendEntriesresult_ = builderForValue.build();
-          onChanged();
-        } else {
-          appendEntriesresultBuilder_.setMessage(builderForValue.build());
-        }
-        bitField0_ |= 0x00000002;
-        return this;
-      }
-      /**
-       * <code>optional .AppendEntriesResult appendEntriesresult = 2;</code>
-       */
-      public Builder mergeAppendEntriesresult(com.distsc.comm.protobuf.MessageProto.AppendEntriesResult value) {
-        if (appendEntriesresultBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002) &&
-              appendEntriesresult_ != com.distsc.comm.protobuf.MessageProto.AppendEntriesResult.getDefaultInstance()) {
-            appendEntriesresult_ =
-              com.distsc.comm.protobuf.MessageProto.AppendEntriesResult.newBuilder(appendEntriesresult_).mergeFrom(value).buildPartial();
-          } else {
-            appendEntriesresult_ = value;
-          }
-          onChanged();
-        } else {
-          appendEntriesresultBuilder_.mergeFrom(value);
-        }
-        bitField0_ |= 0x00000002;
-        return this;
-      }
-      /**
-       * <code>optional .AppendEntriesResult appendEntriesresult = 2;</code>
-       */
-      public Builder clearAppendEntriesresult() {
-        if (appendEntriesresultBuilder_ == null) {
-          appendEntriesresult_ = com.distsc.comm.protobuf.MessageProto.AppendEntriesResult.getDefaultInstance();
-          onChanged();
-        } else {
-          appendEntriesresultBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000002);
-        return this;
-      }
-      /**
-       * <code>optional .AppendEntriesResult appendEntriesresult = 2;</code>
-       */
-      public com.distsc.comm.protobuf.MessageProto.AppendEntriesResult.Builder getAppendEntriesresultBuilder() {
-        bitField0_ |= 0x00000002;
-        onChanged();
-        return getAppendEntriesresultFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .AppendEntriesResult appendEntriesresult = 2;</code>
-       */
-      public com.distsc.comm.protobuf.MessageProto.AppendEntriesResultOrBuilder getAppendEntriesresultOrBuilder() {
-        if (appendEntriesresultBuilder_ != null) {
-          return appendEntriesresultBuilder_.getMessageOrBuilder();
-        } else {
-          return appendEntriesresult_;
-        }
-      }
-      /**
-       * <code>optional .AppendEntriesResult appendEntriesresult = 2;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilder<
-          com.distsc.comm.protobuf.MessageProto.AppendEntriesResult, com.distsc.comm.protobuf.MessageProto.AppendEntriesResult.Builder, com.distsc.comm.protobuf.MessageProto.AppendEntriesResultOrBuilder> 
-          getAppendEntriesresultFieldBuilder() {
-        if (appendEntriesresultBuilder_ == null) {
-          appendEntriesresultBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              com.distsc.comm.protobuf.MessageProto.AppendEntriesResult, com.distsc.comm.protobuf.MessageProto.AppendEntriesResult.Builder, com.distsc.comm.protobuf.MessageProto.AppendEntriesResultOrBuilder>(
-                  getAppendEntriesresult(),
-                  getParentForChildren(),
-                  isClean());
-          appendEntriesresult_ = null;
-        }
-        return appendEntriesresultBuilder_;
-      }
-
-      private com.distsc.comm.protobuf.MessageProto.RequestVote requestVote_ = com.distsc.comm.protobuf.MessageProto.RequestVote.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          com.distsc.comm.protobuf.MessageProto.RequestVote, com.distsc.comm.protobuf.MessageProto.RequestVote.Builder, com.distsc.comm.protobuf.MessageProto.RequestVoteOrBuilder> requestVoteBuilder_;
-      /**
-       * <code>optional .RequestVote requestVote = 3;</code>
-       */
-      public boolean hasRequestVote() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>optional .RequestVote requestVote = 3;</code>
-       */
-      public com.distsc.comm.protobuf.MessageProto.RequestVote getRequestVote() {
-        if (requestVoteBuilder_ == null) {
-          return requestVote_;
-        } else {
-          return requestVoteBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .RequestVote requestVote = 3;</code>
-       */
-      public Builder setRequestVote(com.distsc.comm.protobuf.MessageProto.RequestVote value) {
-        if (requestVoteBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          requestVote_ = value;
-          onChanged();
-        } else {
-          requestVoteBuilder_.setMessage(value);
-        }
-        bitField0_ |= 0x00000004;
-        return this;
-      }
-      /**
-       * <code>optional .RequestVote requestVote = 3;</code>
-       */
-      public Builder setRequestVote(
-          com.distsc.comm.protobuf.MessageProto.RequestVote.Builder builderForValue) {
-        if (requestVoteBuilder_ == null) {
-          requestVote_ = builderForValue.build();
-          onChanged();
-        } else {
-          requestVoteBuilder_.setMessage(builderForValue.build());
-        }
-        bitField0_ |= 0x00000004;
-        return this;
-      }
-      /**
-       * <code>optional .RequestVote requestVote = 3;</code>
-       */
-      public Builder mergeRequestVote(com.distsc.comm.protobuf.MessageProto.RequestVote value) {
-        if (requestVoteBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) == 0x00000004) &&
-              requestVote_ != com.distsc.comm.protobuf.MessageProto.RequestVote.getDefaultInstance()) {
-            requestVote_ =
-              com.distsc.comm.protobuf.MessageProto.RequestVote.newBuilder(requestVote_).mergeFrom(value).buildPartial();
-          } else {
-            requestVote_ = value;
-          }
-          onChanged();
-        } else {
-          requestVoteBuilder_.mergeFrom(value);
-        }
-        bitField0_ |= 0x00000004;
-        return this;
-      }
-      /**
-       * <code>optional .RequestVote requestVote = 3;</code>
-       */
-      public Builder clearRequestVote() {
-        if (requestVoteBuilder_ == null) {
-          requestVote_ = com.distsc.comm.protobuf.MessageProto.RequestVote.getDefaultInstance();
-          onChanged();
-        } else {
-          requestVoteBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000004);
-        return this;
-      }
-      /**
-       * <code>optional .RequestVote requestVote = 3;</code>
-       */
-      public com.distsc.comm.protobuf.MessageProto.RequestVote.Builder getRequestVoteBuilder() {
-        bitField0_ |= 0x00000004;
-        onChanged();
-        return getRequestVoteFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .RequestVote requestVote = 3;</code>
-       */
-      public com.distsc.comm.protobuf.MessageProto.RequestVoteOrBuilder getRequestVoteOrBuilder() {
-        if (requestVoteBuilder_ != null) {
-          return requestVoteBuilder_.getMessageOrBuilder();
-        } else {
-          return requestVote_;
-        }
-      }
-      /**
-       * <code>optional .RequestVote requestVote = 3;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilder<
-          com.distsc.comm.protobuf.MessageProto.RequestVote, com.distsc.comm.protobuf.MessageProto.RequestVote.Builder, com.distsc.comm.protobuf.MessageProto.RequestVoteOrBuilder> 
-          getRequestVoteFieldBuilder() {
-        if (requestVoteBuilder_ == null) {
-          requestVoteBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              com.distsc.comm.protobuf.MessageProto.RequestVote, com.distsc.comm.protobuf.MessageProto.RequestVote.Builder, com.distsc.comm.protobuf.MessageProto.RequestVoteOrBuilder>(
-                  getRequestVote(),
-                  getParentForChildren(),
-                  isClean());
-          requestVote_ = null;
-        }
-        return requestVoteBuilder_;
-      }
-
-      private com.distsc.comm.protobuf.MessageProto.RequestVoteResult requestVoteResult_ = com.distsc.comm.protobuf.MessageProto.RequestVoteResult.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          com.distsc.comm.protobuf.MessageProto.RequestVoteResult, com.distsc.comm.protobuf.MessageProto.RequestVoteResult.Builder, com.distsc.comm.protobuf.MessageProto.RequestVoteResultOrBuilder> requestVoteResultBuilder_;
-      /**
-       * <code>optional .RequestVoteResult requestVoteResult = 4;</code>
-       */
-      public boolean hasRequestVoteResult() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      /**
-       * <code>optional .RequestVoteResult requestVoteResult = 4;</code>
-       */
-      public com.distsc.comm.protobuf.MessageProto.RequestVoteResult getRequestVoteResult() {
-        if (requestVoteResultBuilder_ == null) {
-          return requestVoteResult_;
-        } else {
-          return requestVoteResultBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .RequestVoteResult requestVoteResult = 4;</code>
-       */
-      public Builder setRequestVoteResult(com.distsc.comm.protobuf.MessageProto.RequestVoteResult value) {
-        if (requestVoteResultBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          requestVoteResult_ = value;
-          onChanged();
-        } else {
-          requestVoteResultBuilder_.setMessage(value);
-        }
-        bitField0_ |= 0x00000008;
-        return this;
-      }
-      /**
-       * <code>optional .RequestVoteResult requestVoteResult = 4;</code>
-       */
-      public Builder setRequestVoteResult(
-          com.distsc.comm.protobuf.MessageProto.RequestVoteResult.Builder builderForValue) {
-        if (requestVoteResultBuilder_ == null) {
-          requestVoteResult_ = builderForValue.build();
-          onChanged();
-        } else {
-          requestVoteResultBuilder_.setMessage(builderForValue.build());
-        }
-        bitField0_ |= 0x00000008;
-        return this;
-      }
-      /**
-       * <code>optional .RequestVoteResult requestVoteResult = 4;</code>
-       */
-      public Builder mergeRequestVoteResult(com.distsc.comm.protobuf.MessageProto.RequestVoteResult value) {
-        if (requestVoteResultBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) == 0x00000008) &&
-              requestVoteResult_ != com.distsc.comm.protobuf.MessageProto.RequestVoteResult.getDefaultInstance()) {
-            requestVoteResult_ =
-              com.distsc.comm.protobuf.MessageProto.RequestVoteResult.newBuilder(requestVoteResult_).mergeFrom(value).buildPartial();
-          } else {
-            requestVoteResult_ = value;
-          }
-          onChanged();
-        } else {
-          requestVoteResultBuilder_.mergeFrom(value);
-        }
-        bitField0_ |= 0x00000008;
-        return this;
-      }
-      /**
-       * <code>optional .RequestVoteResult requestVoteResult = 4;</code>
-       */
-      public Builder clearRequestVoteResult() {
-        if (requestVoteResultBuilder_ == null) {
-          requestVoteResult_ = com.distsc.comm.protobuf.MessageProto.RequestVoteResult.getDefaultInstance();
-          onChanged();
-        } else {
-          requestVoteResultBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000008);
-        return this;
-      }
-      /**
-       * <code>optional .RequestVoteResult requestVoteResult = 4;</code>
-       */
-      public com.distsc.comm.protobuf.MessageProto.RequestVoteResult.Builder getRequestVoteResultBuilder() {
-        bitField0_ |= 0x00000008;
-        onChanged();
-        return getRequestVoteResultFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .RequestVoteResult requestVoteResult = 4;</code>
-       */
-      public com.distsc.comm.protobuf.MessageProto.RequestVoteResultOrBuilder getRequestVoteResultOrBuilder() {
-        if (requestVoteResultBuilder_ != null) {
-          return requestVoteResultBuilder_.getMessageOrBuilder();
-        } else {
-          return requestVoteResult_;
-        }
-      }
-      /**
-       * <code>optional .RequestVoteResult requestVoteResult = 4;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilder<
-          com.distsc.comm.protobuf.MessageProto.RequestVoteResult, com.distsc.comm.protobuf.MessageProto.RequestVoteResult.Builder, com.distsc.comm.protobuf.MessageProto.RequestVoteResultOrBuilder> 
-          getRequestVoteResultFieldBuilder() {
-        if (requestVoteResultBuilder_ == null) {
-          requestVoteResultBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              com.distsc.comm.protobuf.MessageProto.RequestVoteResult, com.distsc.comm.protobuf.MessageProto.RequestVoteResult.Builder, com.distsc.comm.protobuf.MessageProto.RequestVoteResultOrBuilder>(
-                  getRequestVoteResult(),
-                  getParentForChildren(),
-                  isClean());
-          requestVoteResult_ = null;
-        }
-        return requestVoteResultBuilder_;
-      }
-
-      private com.distsc.comm.protobuf.MessageProto.ClientMessage clientMessage_ = com.distsc.comm.protobuf.MessageProto.ClientMessage.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          com.distsc.comm.protobuf.MessageProto.ClientMessage, com.distsc.comm.protobuf.MessageProto.ClientMessage.Builder, com.distsc.comm.protobuf.MessageProto.ClientMessageOrBuilder> clientMessageBuilder_;
-      /**
-       * <code>optional .ClientMessage clientMessage = 5;</code>
-       */
-      public boolean hasClientMessage() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
-      }
-      /**
-       * <code>optional .ClientMessage clientMessage = 5;</code>
-       */
-      public com.distsc.comm.protobuf.MessageProto.ClientMessage getClientMessage() {
-        if (clientMessageBuilder_ == null) {
-          return clientMessage_;
-        } else {
-          return clientMessageBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .ClientMessage clientMessage = 5;</code>
-       */
-      public Builder setClientMessage(com.distsc.comm.protobuf.MessageProto.ClientMessage value) {
-        if (clientMessageBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          clientMessage_ = value;
-          onChanged();
-        } else {
-          clientMessageBuilder_.setMessage(value);
-        }
-        bitField0_ |= 0x00000010;
-        return this;
-      }
-      /**
-       * <code>optional .ClientMessage clientMessage = 5;</code>
-       */
-      public Builder setClientMessage(
-          com.distsc.comm.protobuf.MessageProto.ClientMessage.Builder builderForValue) {
-        if (clientMessageBuilder_ == null) {
-          clientMessage_ = builderForValue.build();
-          onChanged();
-        } else {
-          clientMessageBuilder_.setMessage(builderForValue.build());
-        }
-        bitField0_ |= 0x00000010;
-        return this;
-      }
-      /**
-       * <code>optional .ClientMessage clientMessage = 5;</code>
-       */
-      public Builder mergeClientMessage(com.distsc.comm.protobuf.MessageProto.ClientMessage value) {
-        if (clientMessageBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) == 0x00000010) &&
-              clientMessage_ != com.distsc.comm.protobuf.MessageProto.ClientMessage.getDefaultInstance()) {
-            clientMessage_ =
-              com.distsc.comm.protobuf.MessageProto.ClientMessage.newBuilder(clientMessage_).mergeFrom(value).buildPartial();
-          } else {
-            clientMessage_ = value;
-          }
-          onChanged();
-        } else {
-          clientMessageBuilder_.mergeFrom(value);
-        }
-        bitField0_ |= 0x00000010;
-        return this;
-      }
-      /**
-       * <code>optional .ClientMessage clientMessage = 5;</code>
-       */
-      public Builder clearClientMessage() {
-        if (clientMessageBuilder_ == null) {
-          clientMessage_ = com.distsc.comm.protobuf.MessageProto.ClientMessage.getDefaultInstance();
-          onChanged();
-        } else {
-          clientMessageBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000010);
-        return this;
-      }
-      /**
-       * <code>optional .ClientMessage clientMessage = 5;</code>
-       */
-      public com.distsc.comm.protobuf.MessageProto.ClientMessage.Builder getClientMessageBuilder() {
-        bitField0_ |= 0x00000010;
-        onChanged();
-        return getClientMessageFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .ClientMessage clientMessage = 5;</code>
-       */
-      public com.distsc.comm.protobuf.MessageProto.ClientMessageOrBuilder getClientMessageOrBuilder() {
-        if (clientMessageBuilder_ != null) {
-          return clientMessageBuilder_.getMessageOrBuilder();
-        } else {
-          return clientMessage_;
-        }
-      }
-      /**
-       * <code>optional .ClientMessage clientMessage = 5;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilder<
-          com.distsc.comm.protobuf.MessageProto.ClientMessage, com.distsc.comm.protobuf.MessageProto.ClientMessage.Builder, com.distsc.comm.protobuf.MessageProto.ClientMessageOrBuilder> 
-          getClientMessageFieldBuilder() {
-        if (clientMessageBuilder_ == null) {
-          clientMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              com.distsc.comm.protobuf.MessageProto.ClientMessage, com.distsc.comm.protobuf.MessageProto.ClientMessage.Builder, com.distsc.comm.protobuf.MessageProto.ClientMessageOrBuilder>(
-                  getClientMessage(),
-                  getParentForChildren(),
-                  isClean());
-          clientMessage_ = null;
-        }
-        return clientMessageBuilder_;
-      }
-
-      private com.distsc.comm.protobuf.MessageProto.NodeDiscovery nodeDiscovery_ = com.distsc.comm.protobuf.MessageProto.NodeDiscovery.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          com.distsc.comm.protobuf.MessageProto.NodeDiscovery, com.distsc.comm.protobuf.MessageProto.NodeDiscovery.Builder, com.distsc.comm.protobuf.MessageProto.NodeDiscoveryOrBuilder> nodeDiscoveryBuilder_;
-      /**
-       * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-       */
-      public boolean hasNodeDiscovery() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
-      }
-      /**
-       * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-       */
-      public com.distsc.comm.protobuf.MessageProto.NodeDiscovery getNodeDiscovery() {
-        if (nodeDiscoveryBuilder_ == null) {
-          return nodeDiscovery_;
-        } else {
-          return nodeDiscoveryBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-       */
-      public Builder setNodeDiscovery(com.distsc.comm.protobuf.MessageProto.NodeDiscovery value) {
-        if (nodeDiscoveryBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          nodeDiscovery_ = value;
-          onChanged();
-        } else {
-          nodeDiscoveryBuilder_.setMessage(value);
-        }
-        bitField0_ |= 0x00000020;
-        return this;
-      }
-      /**
-       * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-       */
-      public Builder setNodeDiscovery(
-          com.distsc.comm.protobuf.MessageProto.NodeDiscovery.Builder builderForValue) {
-        if (nodeDiscoveryBuilder_ == null) {
-          nodeDiscovery_ = builderForValue.build();
-          onChanged();
-        } else {
-          nodeDiscoveryBuilder_.setMessage(builderForValue.build());
-        }
-        bitField0_ |= 0x00000020;
-        return this;
-      }
-      /**
-       * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-       */
-      public Builder mergeNodeDiscovery(com.distsc.comm.protobuf.MessageProto.NodeDiscovery value) {
-        if (nodeDiscoveryBuilder_ == null) {
-          if (((bitField0_ & 0x00000020) == 0x00000020) &&
-              nodeDiscovery_ != com.distsc.comm.protobuf.MessageProto.NodeDiscovery.getDefaultInstance()) {
-            nodeDiscovery_ =
-              com.distsc.comm.protobuf.MessageProto.NodeDiscovery.newBuilder(nodeDiscovery_).mergeFrom(value).buildPartial();
-          } else {
-            nodeDiscovery_ = value;
-          }
-          onChanged();
-        } else {
-          nodeDiscoveryBuilder_.mergeFrom(value);
-        }
-        bitField0_ |= 0x00000020;
-        return this;
-      }
-      /**
-       * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-       */
-      public Builder clearNodeDiscovery() {
-        if (nodeDiscoveryBuilder_ == null) {
-          nodeDiscovery_ = com.distsc.comm.protobuf.MessageProto.NodeDiscovery.getDefaultInstance();
-          onChanged();
-        } else {
-          nodeDiscoveryBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000020);
-        return this;
-      }
-      /**
-       * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-       */
-      public com.distsc.comm.protobuf.MessageProto.NodeDiscovery.Builder getNodeDiscoveryBuilder() {
-        bitField0_ |= 0x00000020;
-        onChanged();
-        return getNodeDiscoveryFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-       */
-      public com.distsc.comm.protobuf.MessageProto.NodeDiscoveryOrBuilder getNodeDiscoveryOrBuilder() {
-        if (nodeDiscoveryBuilder_ != null) {
-          return nodeDiscoveryBuilder_.getMessageOrBuilder();
-        } else {
-          return nodeDiscovery_;
-        }
-      }
-      /**
-       * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilder<
-          com.distsc.comm.protobuf.MessageProto.NodeDiscovery, com.distsc.comm.protobuf.MessageProto.NodeDiscovery.Builder, com.distsc.comm.protobuf.MessageProto.NodeDiscoveryOrBuilder> 
-          getNodeDiscoveryFieldBuilder() {
-        if (nodeDiscoveryBuilder_ == null) {
-          nodeDiscoveryBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              com.distsc.comm.protobuf.MessageProto.NodeDiscovery, com.distsc.comm.protobuf.MessageProto.NodeDiscovery.Builder, com.distsc.comm.protobuf.MessageProto.NodeDiscoveryOrBuilder>(
-                  getNodeDiscovery(),
-                  getParentForChildren(),
-                  isClean());
-          nodeDiscovery_ = null;
-        }
-        return nodeDiscoveryBuilder_;
-      }
-
-      // @@protoc_insertion_point(builder_scope:Payload)
-    }
-
-    static {
-      defaultInstance = new Payload(true);
-      defaultInstance.initFields();
-    }
-
-    // @@protoc_insertion_point(class_scope:Payload)
   }
 
   public interface AppendEntriesOrBuilder extends
@@ -3190,20 +1681,6 @@ public final class MessageProto {
      * <code>optional bool success = 2;</code>
      */
     boolean getSuccess();
-
-    /**
-     * <code>optional string senderNodeId = 3;</code>
-     */
-    boolean hasSenderNodeId();
-    /**
-     * <code>optional string senderNodeId = 3;</code>
-     */
-    java.lang.String getSenderNodeId();
-    /**
-     * <code>optional string senderNodeId = 3;</code>
-     */
-    com.google.protobuf.ByteString
-        getSenderNodeIdBytes();
   }
   /**
    * Protobuf type {@code AppendEntriesResult}
@@ -3265,12 +1742,6 @@ public final class MessageProto {
             case 16: {
               bitField0_ |= 0x00000002;
               success_ = input.readBool();
-              break;
-            }
-            case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
-              senderNodeId_ = bs;
               break;
             }
           }
@@ -3343,52 +1814,9 @@ public final class MessageProto {
       return success_;
     }
 
-    public static final int SENDERNODEID_FIELD_NUMBER = 3;
-    private java.lang.Object senderNodeId_;
-    /**
-     * <code>optional string senderNodeId = 3;</code>
-     */
-    public boolean hasSenderNodeId() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional string senderNodeId = 3;</code>
-     */
-    public java.lang.String getSenderNodeId() {
-      java.lang.Object ref = senderNodeId_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          senderNodeId_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>optional string senderNodeId = 3;</code>
-     */
-    public com.google.protobuf.ByteString
-        getSenderNodeIdBytes() {
-      java.lang.Object ref = senderNodeId_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        senderNodeId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
     private void initFields() {
       term_ = 0;
       success_ = false;
-      senderNodeId_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -3409,9 +1837,6 @@ public final class MessageProto {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBool(2, success_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getSenderNodeIdBytes());
-      }
       getUnknownFields().writeTo(output);
     }
 
@@ -3428,10 +1853,6 @@ public final class MessageProto {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(2, success_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getSenderNodeIdBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -3554,8 +1975,6 @@ public final class MessageProto {
         bitField0_ = (bitField0_ & ~0x00000001);
         success_ = false;
         bitField0_ = (bitField0_ & ~0x00000002);
-        senderNodeId_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -3592,10 +2011,6 @@ public final class MessageProto {
           to_bitField0_ |= 0x00000002;
         }
         result.success_ = success_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.senderNodeId_ = senderNodeId_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -3617,11 +2032,6 @@ public final class MessageProto {
         }
         if (other.hasSuccess()) {
           setSuccess(other.getSuccess());
-        }
-        if (other.hasSenderNodeId()) {
-          bitField0_ |= 0x00000004;
-          senderNodeId_ = other.senderNodeId_;
-          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -3710,82 +2120,6 @@ public final class MessageProto {
       public Builder clearSuccess() {
         bitField0_ = (bitField0_ & ~0x00000002);
         success_ = false;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object senderNodeId_ = "";
-      /**
-       * <code>optional string senderNodeId = 3;</code>
-       */
-      public boolean hasSenderNodeId() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>optional string senderNodeId = 3;</code>
-       */
-      public java.lang.String getSenderNodeId() {
-        java.lang.Object ref = senderNodeId_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            senderNodeId_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string senderNodeId = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getSenderNodeIdBytes() {
-        java.lang.Object ref = senderNodeId_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          senderNodeId_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string senderNodeId = 3;</code>
-       */
-      public Builder setSenderNodeId(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        senderNodeId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string senderNodeId = 3;</code>
-       */
-      public Builder clearSenderNodeId() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        senderNodeId_ = getDefaultInstance().getSenderNodeId();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string senderNodeId = 3;</code>
-       */
-      public Builder setSenderNodeIdBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        senderNodeId_ = value;
         onChanged();
         return this;
       }
@@ -4532,20 +2866,6 @@ public final class MessageProto {
      * <code>optional bool voteGranted = 2;</code>
      */
     boolean getVoteGranted();
-
-    /**
-     * <code>optional string senderNodeId = 3;</code>
-     */
-    boolean hasSenderNodeId();
-    /**
-     * <code>optional string senderNodeId = 3;</code>
-     */
-    java.lang.String getSenderNodeId();
-    /**
-     * <code>optional string senderNodeId = 3;</code>
-     */
-    com.google.protobuf.ByteString
-        getSenderNodeIdBytes();
   }
   /**
    * Protobuf type {@code RequestVoteResult}
@@ -4607,12 +2927,6 @@ public final class MessageProto {
             case 16: {
               bitField0_ |= 0x00000002;
               voteGranted_ = input.readBool();
-              break;
-            }
-            case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
-              senderNodeId_ = bs;
               break;
             }
           }
@@ -4685,52 +2999,9 @@ public final class MessageProto {
       return voteGranted_;
     }
 
-    public static final int SENDERNODEID_FIELD_NUMBER = 3;
-    private java.lang.Object senderNodeId_;
-    /**
-     * <code>optional string senderNodeId = 3;</code>
-     */
-    public boolean hasSenderNodeId() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional string senderNodeId = 3;</code>
-     */
-    public java.lang.String getSenderNodeId() {
-      java.lang.Object ref = senderNodeId_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          senderNodeId_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>optional string senderNodeId = 3;</code>
-     */
-    public com.google.protobuf.ByteString
-        getSenderNodeIdBytes() {
-      java.lang.Object ref = senderNodeId_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        senderNodeId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
     private void initFields() {
       term_ = 0;
       voteGranted_ = false;
-      senderNodeId_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -4751,9 +3022,6 @@ public final class MessageProto {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBool(2, voteGranted_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getSenderNodeIdBytes());
-      }
       getUnknownFields().writeTo(output);
     }
 
@@ -4770,10 +3038,6 @@ public final class MessageProto {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(2, voteGranted_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getSenderNodeIdBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -4896,8 +3160,6 @@ public final class MessageProto {
         bitField0_ = (bitField0_ & ~0x00000001);
         voteGranted_ = false;
         bitField0_ = (bitField0_ & ~0x00000002);
-        senderNodeId_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -4934,10 +3196,6 @@ public final class MessageProto {
           to_bitField0_ |= 0x00000002;
         }
         result.voteGranted_ = voteGranted_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.senderNodeId_ = senderNodeId_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -4959,11 +3217,6 @@ public final class MessageProto {
         }
         if (other.hasVoteGranted()) {
           setVoteGranted(other.getVoteGranted());
-        }
-        if (other.hasSenderNodeId()) {
-          bitField0_ |= 0x00000004;
-          senderNodeId_ = other.senderNodeId_;
-          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -5052,82 +3305,6 @@ public final class MessageProto {
       public Builder clearVoteGranted() {
         bitField0_ = (bitField0_ & ~0x00000002);
         voteGranted_ = false;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object senderNodeId_ = "";
-      /**
-       * <code>optional string senderNodeId = 3;</code>
-       */
-      public boolean hasSenderNodeId() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>optional string senderNodeId = 3;</code>
-       */
-      public java.lang.String getSenderNodeId() {
-        java.lang.Object ref = senderNodeId_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            senderNodeId_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string senderNodeId = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getSenderNodeIdBytes() {
-        java.lang.Object ref = senderNodeId_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          senderNodeId_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string senderNodeId = 3;</code>
-       */
-      public Builder setSenderNodeId(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        senderNodeId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string senderNodeId = 3;</code>
-       */
-      public Builder clearSenderNodeId() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        senderNodeId_ = getDefaultInstance().getSenderNodeId();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string senderNodeId = 3;</code>
-       */
-      public Builder setSenderNodeIdBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        senderNodeId_ = value;
         onChanged();
         return this;
       }
@@ -7183,17 +5360,13 @@ public final class MessageProto {
        */
       RESPONSE_CONNECTION_REJECTED(2, 3),
       /**
-       * <code>NODE_ID = 4;</code>
+       * <code>REQUEST_NODE_IP = 4;</code>
        */
-      NODE_ID(3, 4),
+      REQUEST_NODE_IP(3, 4),
       /**
-       * <code>NODE_IP = 5;</code>
+       * <code>REQUEST_NODE_PORT = 5;</code>
        */
-      NODE_IP(4, 5),
-      /**
-       * <code>NODE_PORT = 6;</code>
-       */
-      NODE_PORT(5, 6),
+      REQUEST_NODE_PORT(4, 5),
       ;
 
       /**
@@ -7209,17 +5382,13 @@ public final class MessageProto {
        */
       public static final int RESPONSE_CONNECTION_REJECTED_VALUE = 3;
       /**
-       * <code>NODE_ID = 4;</code>
+       * <code>REQUEST_NODE_IP = 4;</code>
        */
-      public static final int NODE_ID_VALUE = 4;
+      public static final int REQUEST_NODE_IP_VALUE = 4;
       /**
-       * <code>NODE_IP = 5;</code>
+       * <code>REQUEST_NODE_PORT = 5;</code>
        */
-      public static final int NODE_IP_VALUE = 5;
-      /**
-       * <code>NODE_PORT = 6;</code>
-       */
-      public static final int NODE_PORT_VALUE = 6;
+      public static final int REQUEST_NODE_PORT_VALUE = 5;
 
 
       public final int getNumber() { return value; }
@@ -7229,9 +5398,8 @@ public final class MessageProto {
           case 1: return REQUEST_CONNECTION;
           case 2: return RESPONSE_CONNECTION_ACCEPTED;
           case 3: return RESPONSE_CONNECTION_REJECTED;
-          case 4: return NODE_ID;
-          case 5: return NODE_IP;
-          case 6: return NODE_PORT;
+          case 4: return REQUEST_NODE_IP;
+          case 5: return REQUEST_NODE_PORT;
           default: return null;
         }
       }
@@ -7580,11 +5748,6 @@ public final class MessageProto {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_MessageDetails_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Payload_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_Payload_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_AppendEntries_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -7623,52 +5786,45 @@ public final class MessageProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rMessage.proto\"d\n\016MessageDetails\0227\n\rmes" +
-      "sageHeader\030\001 \001(\0162\016.MessageHeader:\020Append" +
-      "EntriesMsg\022\031\n\007payload\030\002 \001(\0132\010.Payload\"\203\002" +
-      "\n\007Payload\022%\n\rappendEntries\030\001 \001(\0132\016.Appen" +
-      "dEntries\0221\n\023appendEntriesresult\030\002 \001(\0132\024." +
-      "AppendEntriesResult\022!\n\013requestVote\030\003 \001(\013" +
-      "2\014.RequestVote\022-\n\021requestVoteResult\030\004 \001(" +
-      "\0132\022.RequestVoteResult\022%\n\rclientMessage\030\005" +
-      " \001(\0132\016.ClientMessage\022%\n\rnodeDiscovery\030\006 " +
-      "\001(\0132\016.NodeDiscovery\"\201\001\n\rAppendEntries\022\014\n",
-      "\004term\030\001 \001(\005\022\020\n\010leaderId\030\002 \001(\t\022\024\n\014prevLog" +
-      "Index\030\003 \001(\005\022\023\n\013prevLogTerm\030\004 \001(\005\022\017\n\007entr" +
-      "ies\030\005 \003(\t\022\024\n\014leaderCommit\030\006 \001(\010\"J\n\023Appen" +
-      "dEntriesResult\022\014\n\004term\030\001 \001(\005\022\017\n\007success\030" +
-      "\002 \001(\010\022\024\n\014senderNodeId\030\003 \001(\t\"[\n\013RequestVo" +
-      "te\022\014\n\004term\030\001 \001(\005\022\023\n\013candidateId\030\002 \001(\t\022\024\n" +
-      "\014lastLogIndex\030\003 \001(\005\022\023\n\013lastLogTerm\030\004 \001(\005" +
-      "\"L\n\021RequestVoteResult\022\014\n\004term\030\001 \001(\005\022\023\n\013v" +
-      "oteGranted\030\002 \001(\010\022\024\n\014senderNodeId\030\003 \001(\t\"\333" +
-      "\004\n\rClientMessage\022\026\n\016senderUserName\030\001 \002(\t",
-      "\022\030\n\020receiverUserName\030\002 \002(\t\022\025\n\rsenderMsgT" +
-      "ext\030\003 \001(\t\022\032\n\022senderMsgImageName\030\004 \001(\t\022\033\n" +
-      "\023senderMsgImageBytes\030\005 \001(\014\022 \n\030senderMsgC" +
-      "hecksumMsgText\030\006 \001(\t\022#\n\033senderMsgChecksu" +
-      "mImageBytes\030\007 \001(\t\022\030\n\020messageTimestamp\030\010 " +
-      "\001(\t\022B\n\021clientMessageType\030\t \001(\0162 .ClientM" +
-      "essage.ClientMessageType:\005LOGIN\022T\n\026clien" +
-      "tMessageErrorType\030\n \001(\0162%.ClientMessage." +
-      "ClientMessageErrorType:\rINVALID_LOGIN\"f\n" +
-      "\021ClientMessageType\022\t\n\005LOGIN\020\001\022\013\n\007MESSAGE",
-      "\020\002\022\017\n\013ACKNOWLEDGE\020\003\022\t\n\005ERROR\020\004\022\n\n\006LOGOUT" +
-      "\020\005\022\021\n\rLOGIN_SUCCESS\020\006\"e\n\026ClientMessageEr" +
-      "rorType\022\023\n\017MESSAGE_CORRUPT\020\001\022\021\n\rDELIVERY" +
-      "_FAIL\020\002\022\020\n\014MESSAGE_SIZE\020\003\022\021\n\rINVALID_LOG" +
-      "IN\020\004\"\220\002\n\rNodeDiscovery\022]\n\030nodeDiscoveryM" +
-      "essageType\030\001 \001(\0162\'.NodeDiscovery.NodeDis" +
-      "coveryMessageType:\022REQUEST_CONNECTION\"\237\001" +
-      "\n\030NodeDiscoveryMessageType\022\026\n\022REQUEST_CO" +
-      "NNECTION\020\001\022 \n\034RESPONSE_CONNECTION_ACCEPT" +
-      "ED\020\002\022 \n\034RESPONSE_CONNECTION_REJECTED\020\003\022\013",
-      "\n\007NODE_ID\020\004\022\013\n\007NODE_IP\020\005\022\r\n\tNODE_PORT\020\006*" +
-      "\234\001\n\rMessageHeader\022\024\n\020AppendEntriesMsg\020\001\022" +
-      "\033\n\027AappendEntriesResultMsg\020\002\022\022\n\016RequestV" +
-      "oteMsg\020\003\022\030\n\024RequestVoteResultMsg\020\004\022\024\n\020No" +
-      "deDiscoveryMsg\020\005\022\024\n\020ClientMessageMsg\020\006B(" +
-      "\n\030com.distsc.comm.protobufB\014MessageProto"
+      "\n\rMessage.proto\"[\n\016MessageDetails\022\024\n\014sen" +
+      "derNodeId\030\001 \001(\t\0223\n\013messageType\030\002 \001(\0162\014.M" +
+      "essageType:\020AppendEntriesMsg\"\201\001\n\rAppendE" +
+      "ntries\022\014\n\004term\030\001 \001(\005\022\020\n\010leaderId\030\002 \001(\t\022\024" +
+      "\n\014prevLogIndex\030\003 \001(\005\022\023\n\013prevLogTerm\030\004 \001(" +
+      "\005\022\017\n\007entries\030\005 \003(\t\022\024\n\014leaderCommit\030\006 \001(\010" +
+      "\"4\n\023AppendEntriesResult\022\014\n\004term\030\001 \001(\005\022\017\n" +
+      "\007success\030\002 \001(\010\"[\n\013RequestVote\022\014\n\004term\030\001 " +
+      "\001(\005\022\023\n\013candidateId\030\002 \001(\t\022\024\n\014lastLogIndex" +
+      "\030\003 \001(\005\022\023\n\013lastLogTerm\030\004 \001(\005\"6\n\021RequestVo",
+      "teResult\022\014\n\004term\030\001 \001(\005\022\023\n\013voteGranted\030\002 " +
+      "\001(\010\"\333\004\n\rClientMessage\022\026\n\016senderUserName\030" +
+      "\001 \002(\t\022\030\n\020receiverUserName\030\002 \002(\t\022\025\n\rsende" +
+      "rMsgText\030\003 \001(\t\022\032\n\022senderMsgImageName\030\004 \001" +
+      "(\t\022\033\n\023senderMsgImageBytes\030\005 \001(\014\022 \n\030sende" +
+      "rMsgChecksumMsgText\030\006 \001(\t\022#\n\033senderMsgCh" +
+      "ecksumImageBytes\030\007 \001(\t\022\030\n\020messageTimesta" +
+      "mp\030\010 \001(\t\022B\n\021clientMessageType\030\t \001(\0162 .Cl" +
+      "ientMessage.ClientMessageType:\005LOGIN\022T\n\026" +
+      "clientMessageErrorType\030\n \001(\0162%.ClientMes",
+      "sage.ClientMessageErrorType:\rINVALID_LOG" +
+      "IN\"f\n\021ClientMessageType\022\t\n\005LOGIN\020\001\022\013\n\007ME" +
+      "SSAGE\020\002\022\017\n\013ACKNOWLEDGE\020\003\022\t\n\005ERROR\020\004\022\n\n\006L" +
+      "OGOUT\020\005\022\021\n\rLOGIN_SUCCESS\020\006\"e\n\026ClientMess" +
+      "ageErrorType\022\023\n\017MESSAGE_CORRUPT\020\001\022\021\n\rDEL" +
+      "IVERY_FAIL\020\002\022\020\n\014MESSAGE_SIZE\020\003\022\021\n\rINVALI" +
+      "D_LOGIN\020\004\"\223\002\n\rNodeDiscovery\022]\n\030nodeDisco" +
+      "veryMessageType\030\001 \001(\0162\'.NodeDiscovery.No" +
+      "deDiscoveryMessageType:\022REQUEST_CONNECTI" +
+      "ON\"\242\001\n\030NodeDiscoveryMessageType\022\026\n\022REQUE",
+      "ST_CONNECTION\020\001\022 \n\034RESPONSE_CONNECTION_A" +
+      "CCEPTED\020\002\022 \n\034RESPONSE_CONNECTION_REJECTE" +
+      "D\020\003\022\023\n\017REQUEST_NODE_IP\020\004\022\025\n\021REQUEST_NODE" +
+      "_PORT\020\005*\232\001\n\013MessageType\022\024\n\020AppendEntries" +
+      "Msg\020\001\022\033\n\027AappendEntriesResultMsg\020\002\022\022\n\016Re" +
+      "questVoteMsg\020\003\022\030\n\024RequestVoteResultMsg\020\004" +
+      "\022\024\n\020NodeDiscoveryMsg\020\005\022\024\n\020ClientMessageM" +
+      "sg\020\006B(\n\030com.distsc.comm.protobufB\014Messag" +
+      "eProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -7687,45 +5843,39 @@ public final class MessageProto {
     internal_static_MessageDetails_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_MessageDetails_descriptor,
-        new java.lang.String[] { "MessageHeader", "Payload", });
-    internal_static_Payload_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_Payload_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_Payload_descriptor,
-        new java.lang.String[] { "AppendEntries", "AppendEntriesresult", "RequestVote", "RequestVoteResult", "ClientMessage", "NodeDiscovery", });
+        new java.lang.String[] { "SenderNodeId", "MessageType", });
     internal_static_AppendEntries_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(1);
     internal_static_AppendEntries_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_AppendEntries_descriptor,
         new java.lang.String[] { "Term", "LeaderId", "PrevLogIndex", "PrevLogTerm", "Entries", "LeaderCommit", });
     internal_static_AppendEntriesResult_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_AppendEntriesResult_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_AppendEntriesResult_descriptor,
-        new java.lang.String[] { "Term", "Success", "SenderNodeId", });
+        new java.lang.String[] { "Term", "Success", });
     internal_static_RequestVote_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_RequestVote_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_RequestVote_descriptor,
         new java.lang.String[] { "Term", "CandidateId", "LastLogIndex", "LastLogTerm", });
     internal_static_RequestVoteResult_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_RequestVoteResult_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_RequestVoteResult_descriptor,
-        new java.lang.String[] { "Term", "VoteGranted", "SenderNodeId", });
+        new java.lang.String[] { "Term", "VoteGranted", });
     internal_static_ClientMessage_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_ClientMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ClientMessage_descriptor,
         new java.lang.String[] { "SenderUserName", "ReceiverUserName", "SenderMsgText", "SenderMsgImageName", "SenderMsgImageBytes", "SenderMsgChecksumMsgText", "SenderMsgChecksumImageBytes", "MessageTimestamp", "ClientMessageType", "ClientMessageErrorType", });
     internal_static_NodeDiscovery_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_NodeDiscovery_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_NodeDiscovery_descriptor,

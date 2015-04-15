@@ -67,11 +67,13 @@ public class RequestVoteResultListenerThread implements Runnable
 		{	
 			System.out.println("****************************");
 			System.out.println("*     Elected As Leader    *");
-			System.out.println("****************************");
+			
 			RAFTStatus.setDeclaredLeader(GlobalConfiguration.getCurrentNode().getNodeID());
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Leader);
 			RAFTStatus.setCurrentTerm(RAFTStatus.getCurrentTerm()+1);
+			System.out.println("TERM : "+RAFTStatus.getCurrentTerm());
 			RAFTStatus.reset();
+			System.out.println("****************************");
 		}
 	
 	}

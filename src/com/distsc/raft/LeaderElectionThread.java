@@ -19,7 +19,7 @@ public class LeaderElectionThread implements Runnable
 	    new Thread(new RequestVoteResultListenerThread()).start();
 		new Thread(new RequestVoteListenerThread()).start();
 		new Thread(new LogAppendListener()).start();
-		new Thread(new LogAppendResultListener()).start();
+	//	new Thread(new LogAppendResultListener()).start();
 		new Thread(new HeartbeatSenderThread()).start();
 		
 	}

@@ -47,22 +47,18 @@ public class LogAppendListener implements Runnable
 		{
 			System.out.println("Leader Conflict. Checking Logs");
 			RequestContext requestContext;
-			for (int counter = 0; counter < AppendEntriesQueue.getCount(); counter++)
-			{
 				requestContext = AppendEntriesQueue.pop();
 				System.out.println("Leader found with Term : " + requestContext.getRequest().getPayload().getAppendEntries().getTerm());
-				if (requestContext.getRequest().getPayload().getAppendEntries().getTerm() < RAFTStatus.getCurrentTerm())
+				if (requestContext.getRequest().getPayload().getAppendEntries().getTerm() > RAFTStatus.getCurrentTerm())
 				{
 					System.out.println("Stale Log.Changing State from Leader to Follower.");
 
 					RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Follower);
 					RAFTStatus.setDeclaredLeader(requestContext.getRequest().getPayload().getAppendEntries().getLeaderId());
 					RAFTStatus.reset();
-					break;
 
 				}
-			}
-
+			
 		}
 		else
 		{
@@ -77,20 +73,17 @@ public class LogAppendListener implements Runnable
 		{
 			System.out.println("Leader Conflict. Checking Logs");
 			RequestContext requestContext;
-			for (int counter = 0; counter < AppendEntriesQueue.getCount(); counter++)
-			{
 				requestContext = AppendEntriesQueue.pop();
 				System.out.println("Leader found with Term : " + requestContext.getRequest().getPayload().getAppendEntries().getTerm());
-				if (requestContext.getRequest().getPayload().getAppendEntries().getTerm() < RAFTStatus.getCurrentTerm())
+				if (requestContext.getRequest().getPayload().getAppendEntries().getTerm() > RAFTStatus.getCurrentTerm())
 				{
 					System.out.println("Stale Log.Changing State from Leader to Follower.");
 					RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Follower);
 					RAFTStatus.setDeclaredLeader(requestContext.getRequest().getPayload().getAppendEntries().getLeaderId());
 					RAFTStatus.reset();
-					break;
+					
 				}
-			}
-
+			
 		}
 		else
 		{
@@ -114,6 +107,7 @@ public class LogAppendListener implements Runnable
 				System.out.println("Heartbeat Received : Leader Id : " + requestContext.getRequest().getPayload().getAppendEntries().getLeaderId() + " Leader Term :" + requestContext.getRequest().getPayload().getAppendEntries().getTerm());
 				Request msg = Request.newBuilder().setMessageHeader(Request.MessageHeader.AappendEntriesResultMsg).setPayload(MessageProto.Payload.newBuilder().setAppendEntriesresult(MessageProto.AppendEntriesResult.newBuilder().setTerm(RAFTStatus.getCurrentTerm()).setSuccess(true))).build();
 				NodeChannelContextMap.getNodeContext(requestContext.getRequest().getPayload().getAppendEntries().getLeaderId()).writeAndFlush(msg);
+				RAFTStatus.setCurrentTerm(requestContext.getRequest().getPayload().getAppendEntries().getTerm());
 				AppendEntriesQueue.reset();
 		}
 		else if(AppendEntriesQueue.getCount() > 0 && RAFTStatus.getDeclaredLeader() == null)
@@ -123,7 +117,7 @@ public class LogAppendListener implements Runnable
 			System.out.println("Heartbeat Received : Leader Id : " + requestContext.getRequest().getPayload().getAppendEntries().getLeaderId() + " Leader Term :" + requestContext.getRequest().getPayload().getAppendEntries().getTerm());
 			Request msg = Request.newBuilder().setMessageHeader(Request.MessageHeader.AappendEntriesResultMsg).setPayload(MessageProto.Payload.newBuilder().setAppendEntriesresult(MessageProto.AppendEntriesResult.newBuilder().setTerm(RAFTStatus.getCurrentTerm()).setSuccess(true))).build();
 			NodeChannelContextMap.getNodeContext(requestContext.getRequest().getPayload().getAppendEntries().getLeaderId()).writeAndFlush(msg);
-	
+			RAFTStatus.setCurrentTerm(requestContext.getRequest().getPayload().getAppendEntries().getTerm());
 		}
 		pause();
 		

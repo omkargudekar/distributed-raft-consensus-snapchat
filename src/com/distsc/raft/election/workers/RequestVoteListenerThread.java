@@ -70,7 +70,8 @@ public class RequestVoteListenerThread implements Runnable
 							.setSenderNodeId(GlobalConfiguration.getCurrentNode().getNodeID())
 							.setVoteGranted(true)
 							.setTerm(RAFTStatus.getCurrentTerm()))).build();
-
+				NodeChannelContextMap.getNodeContext(requestContext.getRequest().getPayload().getRequestVote().getCandidateId()).
+				writeAndFlush(msg);
 		}
 		else if(RequestVoteMsgQueue.getCount() > 0 &&  RAFTStatus.hasVoted()==true)
 		{
@@ -81,10 +82,10 @@ public class RequestVoteListenerThread implements Runnable
 							.setSenderNodeId(GlobalConfiguration.getCurrentNode().getNodeID())
 							.setVoteGranted(false)
 							.setTerm(RAFTStatus.getCurrentTerm()))).build();
+			NodeChannelContextMap.getNodeContext(requestContext.getRequest().getPayload().getRequestVote().getCandidateId()).
+			writeAndFlush(msg);
 		}
-		NodeChannelContextMap.getNodeContext(requestContext.getRequest().getPayload().getRequestVote().getCandidateId()).
-		writeAndFlush(msg);
-
+	
 	}
 	
 	

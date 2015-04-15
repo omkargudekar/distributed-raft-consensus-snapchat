@@ -1,15 +1,15 @@
-package com.distsc.node.server;
+package com.distsc.server;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
-import com.distsc.comm.msg.decoders.ClusterMessageDecoder;
-import com.distsc.comm.protobuf.NodeMessageProto.Message;
+import com.distsc.beans.RequestContext;
+import com.distsc.comm.protobuf.MessageProto.Request;
 
 
-public class ServerHandler extends SimpleChannelInboundHandler<Message>
+public class ServerHandler extends SimpleChannelInboundHandler<Request>
 {
 
 	static final ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
@@ -28,10 +28,10 @@ public class ServerHandler extends SimpleChannelInboundHandler<Message>
 	}
 
 	@Override
-	protected void channelRead0(ChannelHandlerContext arg0, Message msg)
+	protected void channelRead0(ChannelHandlerContext ctx, Request msg)
 			throws Exception 
 	{
-			ClusterMessageDecoder.handle(msg);
+			RequestQueue.push(new RequestContext(ctx,msg));
 	}
 	
 	

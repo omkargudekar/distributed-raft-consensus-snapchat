@@ -3,10 +3,11 @@ package com.distsc.network;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-import com.distsc.comm.protobuf.NodeMessageProto.Message;
+import com.distsc.comm.protobuf.MessageProto.Request;
 
-public class NodeDiscoveryHandler extends SimpleChannelInboundHandler<Message> 
+public class NodeDiscoveryHandler extends SimpleChannelInboundHandler<Request> 
 {
+	NodeDiscoveryWorker nodeMessageDecoder=new NodeDiscoveryWorker();
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();
@@ -14,10 +15,10 @@ public class NodeDiscoveryHandler extends SimpleChannelInboundHandler<Message>
     }
     
 	@Override
-	protected void channelRead0(ChannelHandlerContext ctx, Message msg)
+	protected void channelRead0(ChannelHandlerContext ctx, Request msg)
 			throws Exception 
 	{
-	
-			
+		
+		NetworkDiscoveryQueue.push(msg);
 	}
 }

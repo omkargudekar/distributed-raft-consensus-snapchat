@@ -1,79 +1,35 @@
 package com.distsc.network;
-import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.EventLoopGroup;
-import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.nio.NioSocketChannel;
 
-import com.distsc.app.config.GlobalConfiguration;
-import com.distsc.beans.Node;
-import com.distsc.comm.protobuf.MessageProto;
 import com.distsc.comm.protobuf.MessageProto.Request;
+
 public class NodeDiscoveryWorker implements Runnable
 {
-	private EventLoopGroup group = null;
-	private ChannelFuture lastWriteFuture = null;
-	private Channel ch=null;
+
 	public void run()
 	{
-		try
+		Request requestMessage = null;
+		while (true)
 		{
-			group = new NioEventLoopGroup(1);
-			Bootstrap b = new Bootstrap();
-			b.group(group).channel(NioSocketChannel.class).handler(new NodeDiscoveryInitializer());
-			
-			try
-			{		
-				for(Node node : GlobalConfiguration.getNodes())
+			if (NetworkDiscoveryQueue.getCount() > 0)
+			{
+				requestMessage = NetworkDiscoveryQueue.pop();
+				switch (requestMessage.getPayload().getNodeDiscovery().getNodeDiscoveryMessageType())
 				{
-					if(!NetworkMap.isChannelExist(node.getNodeID()))
-					{
-						ch = b.connect(node.getNodeIP(), node.getNodePort()).sync().channel();
-						lastWriteFuture = ch.writeAndFlush(msg);
-						lastWriteFuture.channel().close().sync();	
-					}
+				case RESPONSE_CONNECTION_ACCEPTED:
+					System.out.println("Connection Accpted By : " + requestMessage.getPayload().getNodeDiscovery().getNODEID());
+					break;
+
+				case RESPONSE_CONNECTION_REJECTED:
+					System.out.println("Connection Rejected By : " + requestMessage.getPayload().getNodeDiscovery().getNODEID());
+					break;
+
+				default:
+					System.out.println("Unknown Node Discovery Message Rejected");
+					break;
+
 				}
-
-			}
-			catch(Exception e)
-			{
-						System.out.println(e);
-			}
-			
-		
-
-		}
-		catch (Exception e)
-		{
-			System.out.println(e);
-		}
-		finally
-		{
-			try
-			{
-				group.shutdownGracefully();
-			}
-			catch(Exception e)
-			{
-				
 			}
 		}
-
 	}
-	
-	public Request getNodeDiscoveryMessage()
-	{
-		
-						MessageProto.Request.newBuilder()
-											.setMessageHeader(Request.MessageHeader.NodeDiscoveryMsg)
-														  .setPayload(MessageProto.Payload.newBuilder()
-													           .setNodeDiscovery(
-													           MessageProto.NodeDiscovery.newBuilder().
-													           setNodeDiscoveryMessageType(MessageProto.NodeDiscovery.NodeDiscoveryMessageType.REQUEST_CONNECTION)
-												));
-	}
-	
-		
-	
+
 }

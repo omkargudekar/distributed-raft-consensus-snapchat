@@ -1,4 +1,4 @@
-package com.distsc.node.server;
+package com.distsc.server;
 
 import com.distsc.app.config.GlobalConfiguration;
 
@@ -14,7 +14,7 @@ public final class Server implements Runnable
 {
     public void run()
     {
-    	System.out.println("Receiver Thread Started...");
+    	System.out.println("Server Thread Started...");
     	EventLoopGroup bossGroup=null;
     	EventLoopGroup workerGroup=null;
         try 

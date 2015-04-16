@@ -1,0 +1,43 @@
+package com.distc.cluster.server;
+
+import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
+
+
+public final class ClusterServer implements Runnable
+{
+    public void run()
+    {
+    	System.out.println("Server Thread Started...");
+    	EventLoopGroup bossGroup=null;
+    	EventLoopGroup workerGroup=null;
+        try 
+        {
+        	System.out.println("Starting Server on : "+9760);
+            bossGroup = new NioEventLoopGroup(1);
+            workerGroup = new NioEventLoopGroup();
+            ServerBootstrap b = new ServerBootstrap();
+            b.group(bossGroup, workerGroup)
+             .channel(NioServerSocketChannel.class)
+             .handler(new LoggingHandler(LogLevel.INFO))
+             .childHandler(new ClusterServerrInitializer());
+            b.bind(9760).sync().channel().closeFuture().sync();
+           
+            
+        } 
+        catch(Exception e)
+        {
+        	System.out.println(e);
+        }
+        finally 
+        {
+        	
+            bossGroup.shutdownGracefully();
+            workerGroup.shutdownGracefully();
+        }
+    }
+}

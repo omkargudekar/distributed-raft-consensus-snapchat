@@ -25,7 +25,7 @@ public class ClusterListenerHandler extends SimpleChannelInboundHandler<Request>
 		}
 		else
 		{
-			System.out.println();
+			System.out.println("Received Clinet Message  : "+msg.getBody().getClientMessage().getMsgText());
 		}
 		
 		

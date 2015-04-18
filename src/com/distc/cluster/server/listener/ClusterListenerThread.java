@@ -11,6 +11,7 @@ import com.distc.cluster.config.ClusterConfiguration;
 import com.distc.cluster.msg.queue.ClusterRequestContext;
 import com.distc.cluster.proto.App;
 import com.distc.cluster.proto.App.Request;
+import com.distsc.app.config.GlobalConfiguration;
 
 public class ClusterListenerThread implements Runnable
 {
@@ -84,7 +85,7 @@ public class ClusterListenerThread implements Runnable
 	public Request getAcceptConnectionMsg()
 	{
 		
-		return App.Request.newBuilder().setBody(App.Payload.newBuilder().setNodeDiscovery(App.NodeDiscovery.newBuilder().setNodeDiscoveryMessageType(App.NodeDiscovery.NodeDiscoveryMessageType.RESPONSE_CONNECTION_ACCEPTED).setNODEID(ClusterConfiguration.getClusterNode().getClusterID()).setNODEIP(ClusterConfiguration.getClusterNode().getNodeIP()).setNODEPORT(ClusterConfiguration.getClusterNode().getNodePort()))).build();
+		return App.Request.newBuilder().setJoinMessage(App.JoinMessage.newBuilder().setFromClusterId(Integer.parseInt(ClusterConfiguration.getClusterNode().getClusterID())).setFromNodeId(Integer.parseInt(GlobalConfiguration.getCurrentNode().getNodeID()).build();
 	}
 
 	public Request getRejectConnectionMessage()

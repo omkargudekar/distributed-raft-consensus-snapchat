@@ -243,23 +243,6 @@ message JoinMessage {
 
 }
 
-message NodeDiscovery
-{
-
-    enum NodeDiscoveryMessageType
-    {
-      REQUEST_CONNECTION=1;
-      RESPONSE_CONNECTION_ACCEPTED=2;
-      RESPONSE_CONNECTION_REJECTED=3;
-
-    }
-
-    optional string NODE_ID=1;
-    optional string NODE_IP=2;
-    optional int32 NODE_PORT=3;
-
-    optional NodeDiscoveryMessageType nodeDiscoveryMessageType=4 [default = REQUEST_CONNECTION];
-}
     
 
 message ClientMessage{

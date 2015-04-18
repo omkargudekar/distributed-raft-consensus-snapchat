@@ -2,21 +2,34 @@ package com.distc.cluster.config;
 
 import java.util.ArrayList;
 
-import com.distc.cluster.server.listener.ClusterNode;
+import com.distc.cluster.server.ClusterNode;
+
 
 public class ClusterConfiguration
 {
 	private static ArrayList<ClusterNode> nodes=new ArrayList<ClusterNode>();
-	private static ClusterNode clusterNode;
+	private static ClusterNode currentClusterNode;
 
-	public static ClusterNode getClusterNode()
+	private static int clusterServerPort;
+
+	public static int getClusterServerPort()
 	{
-		return clusterNode;
+		return clusterServerPort;
 	}
 
-	public static void setClusterNode(ClusterNode clusterNode)
+	public static void setClusterServerPort(int clusterServerPort)
 	{
-		ClusterConfiguration.clusterNode = clusterNode;
+		ClusterConfiguration.clusterServerPort = clusterServerPort;
+	}
+
+	public static ClusterNode getCurrentClusterNode()
+	{
+		return currentClusterNode;
+	}
+
+	public static void setCurrentClusterNode(ClusterNode currentClusterNode)
+	{
+		ClusterConfiguration.currentClusterNode = currentClusterNode;
 	}
 
 	public static ArrayList<ClusterNode> getNodes()

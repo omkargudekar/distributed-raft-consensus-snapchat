@@ -14320,44 +14320,31 @@ public final class App {
 
     /**
      * <code>optional .ClientMessage client_message = 5;</code>
+     *
+     * <pre>
+     * TBD
+     * reports
+     * </pre>
      */
     boolean hasClientMessage();
     /**
      * <code>optional .ClientMessage client_message = 5;</code>
+     *
+     * <pre>
+     * TBD
+     * reports
+     * </pre>
      */
     com.distc.cluster.proto.App.ClientMessage getClientMessage();
     /**
      * <code>optional .ClientMessage client_message = 5;</code>
+     *
+     * <pre>
+     * TBD
+     * reports
+     * </pre>
      */
     com.distc.cluster.proto.App.ClientMessageOrBuilder getClientMessageOrBuilder();
-
-    /**
-     * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-     *
-     * <pre>
-     * TBD
-     * reports
-     * </pre>
-     */
-    boolean hasNodeDiscovery();
-    /**
-     * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-     *
-     * <pre>
-     * TBD
-     * reports
-     * </pre>
-     */
-    com.distc.cluster.proto.App.NodeDiscovery getNodeDiscovery();
-    /**
-     * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-     *
-     * <pre>
-     * TBD
-     * reports
-     * </pre>
-     */
-    com.distc.cluster.proto.App.NodeDiscoveryOrBuilder getNodeDiscoveryOrBuilder();
   }
   /**
    * Protobuf type {@code Payload}
@@ -14479,19 +14466,6 @@ public final class App {
                 clientMessage_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000040;
-              break;
-            }
-            case 50: {
-              com.distc.cluster.proto.App.NodeDiscovery.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000080) == 0x00000080)) {
-                subBuilder = nodeDiscovery_.toBuilder();
-              }
-              nodeDiscovery_ = input.readMessage(com.distc.cluster.proto.App.NodeDiscovery.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(nodeDiscovery_);
-                nodeDiscovery_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000080;
               break;
             }
             case 98: {
@@ -14726,57 +14700,36 @@ public final class App {
     private com.distc.cluster.proto.App.ClientMessage clientMessage_;
     /**
      * <code>optional .ClientMessage client_message = 5;</code>
+     *
+     * <pre>
+     * TBD
+     * reports
+     * </pre>
      */
     public boolean hasClientMessage() {
       return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     /**
      * <code>optional .ClientMessage client_message = 5;</code>
+     *
+     * <pre>
+     * TBD
+     * reports
+     * </pre>
      */
     public com.distc.cluster.proto.App.ClientMessage getClientMessage() {
       return clientMessage_;
     }
     /**
      * <code>optional .ClientMessage client_message = 5;</code>
+     *
+     * <pre>
+     * TBD
+     * reports
+     * </pre>
      */
     public com.distc.cluster.proto.App.ClientMessageOrBuilder getClientMessageOrBuilder() {
       return clientMessage_;
-    }
-
-    public static final int NODEDISCOVERY_FIELD_NUMBER = 6;
-    private com.distc.cluster.proto.App.NodeDiscovery nodeDiscovery_;
-    /**
-     * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-     *
-     * <pre>
-     * TBD
-     * reports
-     * </pre>
-     */
-    public boolean hasNodeDiscovery() {
-      return ((bitField0_ & 0x00000080) == 0x00000080);
-    }
-    /**
-     * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-     *
-     * <pre>
-     * TBD
-     * reports
-     * </pre>
-     */
-    public com.distc.cluster.proto.App.NodeDiscovery getNodeDiscovery() {
-      return nodeDiscovery_;
-    }
-    /**
-     * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-     *
-     * <pre>
-     * TBD
-     * reports
-     * </pre>
-     */
-    public com.distc.cluster.proto.App.NodeDiscoveryOrBuilder getNodeDiscoveryOrBuilder() {
-      return nodeDiscovery_;
     }
 
     private void initFields() {
@@ -14787,7 +14740,6 @@ public final class App {
       spaceStatus_ = com.distc.cluster.proto.App.NameSpaceStatus.getDefaultInstance();
       clusterMessage_ = com.distc.cluster.proto.App.ClusterMessage.getDefaultInstance();
       clientMessage_ = com.distc.cluster.proto.App.ClientMessage.getDefaultInstance();
-      nodeDiscovery_ = com.distc.cluster.proto.App.NodeDiscovery.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -14847,9 +14799,6 @@ public final class App {
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         output.writeMessage(5, clientMessage_);
       }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeMessage(6, nodeDiscovery_);
-      }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeMessage(12, spaceStatus_);
       }
@@ -14884,10 +14833,6 @@ public final class App {
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, clientMessage_);
-      }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, nodeDiscovery_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
@@ -15018,7 +14963,6 @@ public final class App {
           getSpaceStatusFieldBuilder();
           getClusterMessageFieldBuilder();
           getClientMessageFieldBuilder();
-          getNodeDiscoveryFieldBuilder();
         }
       }
       private static Builder create() {
@@ -15069,12 +15013,6 @@ public final class App {
           clientMessageBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000040);
-        if (nodeDiscoveryBuilder_ == null) {
-          nodeDiscovery_ = com.distc.cluster.proto.App.NodeDiscovery.getDefaultInstance();
-        } else {
-          nodeDiscoveryBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000080);
         return this;
       }
 
@@ -15159,14 +15097,6 @@ public final class App {
         } else {
           result.clientMessage_ = clientMessageBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
-          to_bitField0_ |= 0x00000080;
-        }
-        if (nodeDiscoveryBuilder_ == null) {
-          result.nodeDiscovery_ = nodeDiscovery_;
-        } else {
-          result.nodeDiscovery_ = nodeDiscoveryBuilder_.build();
-        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -15203,9 +15133,6 @@ public final class App {
         }
         if (other.hasClientMessage()) {
           mergeClientMessage(other.getClientMessage());
-        }
-        if (other.hasNodeDiscovery()) {
-          mergeNodeDiscovery(other.getNodeDiscovery());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -16073,12 +16000,22 @@ public final class App {
           com.distc.cluster.proto.App.ClientMessage, com.distc.cluster.proto.App.ClientMessage.Builder, com.distc.cluster.proto.App.ClientMessageOrBuilder> clientMessageBuilder_;
       /**
        * <code>optional .ClientMessage client_message = 5;</code>
+       *
+       * <pre>
+       * TBD
+       * reports
+       * </pre>
        */
       public boolean hasClientMessage() {
         return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       /**
        * <code>optional .ClientMessage client_message = 5;</code>
+       *
+       * <pre>
+       * TBD
+       * reports
+       * </pre>
        */
       public com.distc.cluster.proto.App.ClientMessage getClientMessage() {
         if (clientMessageBuilder_ == null) {
@@ -16089,6 +16026,11 @@ public final class App {
       }
       /**
        * <code>optional .ClientMessage client_message = 5;</code>
+       *
+       * <pre>
+       * TBD
+       * reports
+       * </pre>
        */
       public Builder setClientMessage(com.distc.cluster.proto.App.ClientMessage value) {
         if (clientMessageBuilder_ == null) {
@@ -16105,6 +16047,11 @@ public final class App {
       }
       /**
        * <code>optional .ClientMessage client_message = 5;</code>
+       *
+       * <pre>
+       * TBD
+       * reports
+       * </pre>
        */
       public Builder setClientMessage(
           com.distc.cluster.proto.App.ClientMessage.Builder builderForValue) {
@@ -16119,6 +16066,11 @@ public final class App {
       }
       /**
        * <code>optional .ClientMessage client_message = 5;</code>
+       *
+       * <pre>
+       * TBD
+       * reports
+       * </pre>
        */
       public Builder mergeClientMessage(com.distc.cluster.proto.App.ClientMessage value) {
         if (clientMessageBuilder_ == null) {
@@ -16138,6 +16090,11 @@ public final class App {
       }
       /**
        * <code>optional .ClientMessage client_message = 5;</code>
+       *
+       * <pre>
+       * TBD
+       * reports
+       * </pre>
        */
       public Builder clearClientMessage() {
         if (clientMessageBuilder_ == null) {
@@ -16151,6 +16108,11 @@ public final class App {
       }
       /**
        * <code>optional .ClientMessage client_message = 5;</code>
+       *
+       * <pre>
+       * TBD
+       * reports
+       * </pre>
        */
       public com.distc.cluster.proto.App.ClientMessage.Builder getClientMessageBuilder() {
         bitField0_ |= 0x00000040;
@@ -16159,6 +16121,11 @@ public final class App {
       }
       /**
        * <code>optional .ClientMessage client_message = 5;</code>
+       *
+       * <pre>
+       * TBD
+       * reports
+       * </pre>
        */
       public com.distc.cluster.proto.App.ClientMessageOrBuilder getClientMessageOrBuilder() {
         if (clientMessageBuilder_ != null) {
@@ -16169,6 +16136,11 @@ public final class App {
       }
       /**
        * <code>optional .ClientMessage client_message = 5;</code>
+       *
+       * <pre>
+       * TBD
+       * reports
+       * </pre>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.distc.cluster.proto.App.ClientMessage, com.distc.cluster.proto.App.ClientMessage.Builder, com.distc.cluster.proto.App.ClientMessageOrBuilder> 
@@ -16182,167 +16154,6 @@ public final class App {
           clientMessage_ = null;
         }
         return clientMessageBuilder_;
-      }
-
-      private com.distc.cluster.proto.App.NodeDiscovery nodeDiscovery_ = com.distc.cluster.proto.App.NodeDiscovery.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          com.distc.cluster.proto.App.NodeDiscovery, com.distc.cluster.proto.App.NodeDiscovery.Builder, com.distc.cluster.proto.App.NodeDiscoveryOrBuilder> nodeDiscoveryBuilder_;
-      /**
-       * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-       *
-       * <pre>
-       * TBD
-       * reports
-       * </pre>
-       */
-      public boolean hasNodeDiscovery() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
-      }
-      /**
-       * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-       *
-       * <pre>
-       * TBD
-       * reports
-       * </pre>
-       */
-      public com.distc.cluster.proto.App.NodeDiscovery getNodeDiscovery() {
-        if (nodeDiscoveryBuilder_ == null) {
-          return nodeDiscovery_;
-        } else {
-          return nodeDiscoveryBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-       *
-       * <pre>
-       * TBD
-       * reports
-       * </pre>
-       */
-      public Builder setNodeDiscovery(com.distc.cluster.proto.App.NodeDiscovery value) {
-        if (nodeDiscoveryBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          nodeDiscovery_ = value;
-          onChanged();
-        } else {
-          nodeDiscoveryBuilder_.setMessage(value);
-        }
-        bitField0_ |= 0x00000080;
-        return this;
-      }
-      /**
-       * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-       *
-       * <pre>
-       * TBD
-       * reports
-       * </pre>
-       */
-      public Builder setNodeDiscovery(
-          com.distc.cluster.proto.App.NodeDiscovery.Builder builderForValue) {
-        if (nodeDiscoveryBuilder_ == null) {
-          nodeDiscovery_ = builderForValue.build();
-          onChanged();
-        } else {
-          nodeDiscoveryBuilder_.setMessage(builderForValue.build());
-        }
-        bitField0_ |= 0x00000080;
-        return this;
-      }
-      /**
-       * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-       *
-       * <pre>
-       * TBD
-       * reports
-       * </pre>
-       */
-      public Builder mergeNodeDiscovery(com.distc.cluster.proto.App.NodeDiscovery value) {
-        if (nodeDiscoveryBuilder_ == null) {
-          if (((bitField0_ & 0x00000080) == 0x00000080) &&
-              nodeDiscovery_ != com.distc.cluster.proto.App.NodeDiscovery.getDefaultInstance()) {
-            nodeDiscovery_ =
-              com.distc.cluster.proto.App.NodeDiscovery.newBuilder(nodeDiscovery_).mergeFrom(value).buildPartial();
-          } else {
-            nodeDiscovery_ = value;
-          }
-          onChanged();
-        } else {
-          nodeDiscoveryBuilder_.mergeFrom(value);
-        }
-        bitField0_ |= 0x00000080;
-        return this;
-      }
-      /**
-       * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-       *
-       * <pre>
-       * TBD
-       * reports
-       * </pre>
-       */
-      public Builder clearNodeDiscovery() {
-        if (nodeDiscoveryBuilder_ == null) {
-          nodeDiscovery_ = com.distc.cluster.proto.App.NodeDiscovery.getDefaultInstance();
-          onChanged();
-        } else {
-          nodeDiscoveryBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000080);
-        return this;
-      }
-      /**
-       * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-       *
-       * <pre>
-       * TBD
-       * reports
-       * </pre>
-       */
-      public com.distc.cluster.proto.App.NodeDiscovery.Builder getNodeDiscoveryBuilder() {
-        bitField0_ |= 0x00000080;
-        onChanged();
-        return getNodeDiscoveryFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-       *
-       * <pre>
-       * TBD
-       * reports
-       * </pre>
-       */
-      public com.distc.cluster.proto.App.NodeDiscoveryOrBuilder getNodeDiscoveryOrBuilder() {
-        if (nodeDiscoveryBuilder_ != null) {
-          return nodeDiscoveryBuilder_.getMessageOrBuilder();
-        } else {
-          return nodeDiscovery_;
-        }
-      }
-      /**
-       * <code>optional .NodeDiscovery nodeDiscovery = 6;</code>
-       *
-       * <pre>
-       * TBD
-       * reports
-       * </pre>
-       */
-      private com.google.protobuf.SingleFieldBuilder<
-          com.distc.cluster.proto.App.NodeDiscovery, com.distc.cluster.proto.App.NodeDiscovery.Builder, com.distc.cluster.proto.App.NodeDiscoveryOrBuilder> 
-          getNodeDiscoveryFieldBuilder() {
-        if (nodeDiscoveryBuilder_ == null) {
-          nodeDiscoveryBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              com.distc.cluster.proto.App.NodeDiscovery, com.distc.cluster.proto.App.NodeDiscovery.Builder, com.distc.cluster.proto.App.NodeDiscoveryOrBuilder>(
-                  getNodeDiscovery(),
-                  getParentForChildren(),
-                  isClean());
-          nodeDiscovery_ = null;
-        }
-        return nodeDiscoveryBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:Payload)
@@ -17895,895 +17706,6 @@ public final class App {
     }
 
     // @@protoc_insertion_point(class_scope:JoinMessage)
-  }
-
-  public interface NodeDiscoveryOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:NodeDiscovery)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional string NODE_ID = 1;</code>
-     */
-    boolean hasNODEID();
-    /**
-     * <code>optional string NODE_ID = 1;</code>
-     */
-    java.lang.String getNODEID();
-    /**
-     * <code>optional string NODE_ID = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getNODEIDBytes();
-
-    /**
-     * <code>optional string NODE_IP = 2;</code>
-     */
-    boolean hasNODEIP();
-    /**
-     * <code>optional string NODE_IP = 2;</code>
-     */
-    java.lang.String getNODEIP();
-    /**
-     * <code>optional string NODE_IP = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getNODEIPBytes();
-
-    /**
-     * <code>optional int32 NODE_PORT = 3;</code>
-     */
-    boolean hasNODEPORT();
-    /**
-     * <code>optional int32 NODE_PORT = 3;</code>
-     */
-    int getNODEPORT();
-
-    /**
-     * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 4 [default = REQUEST_CONNECTION];</code>
-     */
-    boolean hasNodeDiscoveryMessageType();
-    /**
-     * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 4 [default = REQUEST_CONNECTION];</code>
-     */
-    com.distc.cluster.proto.App.NodeDiscovery.NodeDiscoveryMessageType getNodeDiscoveryMessageType();
-  }
-  /**
-   * Protobuf type {@code NodeDiscovery}
-   */
-  public static final class NodeDiscovery extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:NodeDiscovery)
-      NodeDiscoveryOrBuilder {
-    // Use NodeDiscovery.newBuilder() to construct.
-    private NodeDiscovery(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
-    }
-    private NodeDiscovery(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final NodeDiscovery defaultInstance;
-    public static NodeDiscovery getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public NodeDiscovery getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
-    }
-    private NodeDiscovery(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              nODEID_ = bs;
-              break;
-            }
-            case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
-              nODEIP_ = bs;
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
-              nODEPORT_ = input.readInt32();
-              break;
-            }
-            case 32: {
-              int rawValue = input.readEnum();
-              com.distc.cluster.proto.App.NodeDiscovery.NodeDiscoveryMessageType value = com.distc.cluster.proto.App.NodeDiscovery.NodeDiscoveryMessageType.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(4, rawValue);
-              } else {
-                bitField0_ |= 0x00000008;
-                nodeDiscoveryMessageType_ = value;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.distc.cluster.proto.App.internal_static_NodeDiscovery_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.distc.cluster.proto.App.internal_static_NodeDiscovery_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.distc.cluster.proto.App.NodeDiscovery.class, com.distc.cluster.proto.App.NodeDiscovery.Builder.class);
-    }
-
-    public static com.google.protobuf.Parser<NodeDiscovery> PARSER =
-        new com.google.protobuf.AbstractParser<NodeDiscovery>() {
-      public NodeDiscovery parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new NodeDiscovery(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<NodeDiscovery> getParserForType() {
-      return PARSER;
-    }
-
-    /**
-     * Protobuf enum {@code NodeDiscovery.NodeDiscoveryMessageType}
-     */
-    public enum NodeDiscoveryMessageType
-        implements com.google.protobuf.ProtocolMessageEnum {
-      /**
-       * <code>REQUEST_CONNECTION = 1;</code>
-       */
-      REQUEST_CONNECTION(0, 1),
-      /**
-       * <code>RESPONSE_CONNECTION_ACCEPTED = 2;</code>
-       */
-      RESPONSE_CONNECTION_ACCEPTED(1, 2),
-      /**
-       * <code>RESPONSE_CONNECTION_REJECTED = 3;</code>
-       */
-      RESPONSE_CONNECTION_REJECTED(2, 3),
-      ;
-
-      /**
-       * <code>REQUEST_CONNECTION = 1;</code>
-       */
-      public static final int REQUEST_CONNECTION_VALUE = 1;
-      /**
-       * <code>RESPONSE_CONNECTION_ACCEPTED = 2;</code>
-       */
-      public static final int RESPONSE_CONNECTION_ACCEPTED_VALUE = 2;
-      /**
-       * <code>RESPONSE_CONNECTION_REJECTED = 3;</code>
-       */
-      public static final int RESPONSE_CONNECTION_REJECTED_VALUE = 3;
-
-
-      public final int getNumber() { return value; }
-
-      public static NodeDiscoveryMessageType valueOf(int value) {
-        switch (value) {
-          case 1: return REQUEST_CONNECTION;
-          case 2: return RESPONSE_CONNECTION_ACCEPTED;
-          case 3: return RESPONSE_CONNECTION_REJECTED;
-          default: return null;
-        }
-      }
-
-      public static com.google.protobuf.Internal.EnumLiteMap<NodeDiscoveryMessageType>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static com.google.protobuf.Internal.EnumLiteMap<NodeDiscoveryMessageType>
-          internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<NodeDiscoveryMessageType>() {
-              public NodeDiscoveryMessageType findValueByNumber(int number) {
-                return NodeDiscoveryMessageType.valueOf(number);
-              }
-            };
-
-      public final com.google.protobuf.Descriptors.EnumValueDescriptor
-          getValueDescriptor() {
-        return getDescriptor().getValues().get(index);
-      }
-      public final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptorForType() {
-        return getDescriptor();
-      }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptor() {
-        return com.distc.cluster.proto.App.NodeDiscovery.getDescriptor().getEnumTypes().get(0);
-      }
-
-      private static final NodeDiscoveryMessageType[] VALUES = values();
-
-      public static NodeDiscoveryMessageType valueOf(
-          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-        if (desc.getType() != getDescriptor()) {
-          throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
-        }
-        return VALUES[desc.getIndex()];
-      }
-
-      private final int index;
-      private final int value;
-
-      private NodeDiscoveryMessageType(int index, int value) {
-        this.index = index;
-        this.value = value;
-      }
-
-      // @@protoc_insertion_point(enum_scope:NodeDiscovery.NodeDiscoveryMessageType)
-    }
-
-    private int bitField0_;
-    public static final int NODE_ID_FIELD_NUMBER = 1;
-    private java.lang.Object nODEID_;
-    /**
-     * <code>optional string NODE_ID = 1;</code>
-     */
-    public boolean hasNODEID() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>optional string NODE_ID = 1;</code>
-     */
-    public java.lang.String getNODEID() {
-      java.lang.Object ref = nODEID_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          nODEID_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>optional string NODE_ID = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getNODEIDBytes() {
-      java.lang.Object ref = nODEID_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        nODEID_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int NODE_IP_FIELD_NUMBER = 2;
-    private java.lang.Object nODEIP_;
-    /**
-     * <code>optional string NODE_IP = 2;</code>
-     */
-    public boolean hasNODEIP() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>optional string NODE_IP = 2;</code>
-     */
-    public java.lang.String getNODEIP() {
-      java.lang.Object ref = nODEIP_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          nODEIP_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>optional string NODE_IP = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getNODEIPBytes() {
-      java.lang.Object ref = nODEIP_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        nODEIP_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int NODE_PORT_FIELD_NUMBER = 3;
-    private int nODEPORT_;
-    /**
-     * <code>optional int32 NODE_PORT = 3;</code>
-     */
-    public boolean hasNODEPORT() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional int32 NODE_PORT = 3;</code>
-     */
-    public int getNODEPORT() {
-      return nODEPORT_;
-    }
-
-    public static final int NODEDISCOVERYMESSAGETYPE_FIELD_NUMBER = 4;
-    private com.distc.cluster.proto.App.NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType_;
-    /**
-     * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 4 [default = REQUEST_CONNECTION];</code>
-     */
-    public boolean hasNodeDiscoveryMessageType() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 4 [default = REQUEST_CONNECTION];</code>
-     */
-    public com.distc.cluster.proto.App.NodeDiscovery.NodeDiscoveryMessageType getNodeDiscoveryMessageType() {
-      return nodeDiscoveryMessageType_;
-    }
-
-    private void initFields() {
-      nODEID_ = "";
-      nODEIP_ = "";
-      nODEPORT_ = 0;
-      nodeDiscoveryMessageType_ = com.distc.cluster.proto.App.NodeDiscovery.NodeDiscoveryMessageType.REQUEST_CONNECTION;
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getNODEIDBytes());
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getNODEIPBytes());
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(3, nODEPORT_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeEnum(4, nodeDiscoveryMessageType_.getNumber());
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getNODEIDBytes());
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getNODEIPBytes());
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, nODEPORT_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(4, nodeDiscoveryMessageType_.getNumber());
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
-    public static com.distc.cluster.proto.App.NodeDiscovery parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.distc.cluster.proto.App.NodeDiscovery parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.distc.cluster.proto.App.NodeDiscovery parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.distc.cluster.proto.App.NodeDiscovery parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.distc.cluster.proto.App.NodeDiscovery parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static com.distc.cluster.proto.App.NodeDiscovery parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-    public static com.distc.cluster.proto.App.NodeDiscovery parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
-    }
-    public static com.distc.cluster.proto.App.NodeDiscovery parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
-    }
-    public static com.distc.cluster.proto.App.NodeDiscovery parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static com.distc.cluster.proto.App.NodeDiscovery parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.distc.cluster.proto.App.NodeDiscovery prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code NodeDiscovery}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:NodeDiscovery)
-        com.distc.cluster.proto.App.NodeDiscoveryOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.distc.cluster.proto.App.internal_static_NodeDiscovery_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.distc.cluster.proto.App.internal_static_NodeDiscovery_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.distc.cluster.proto.App.NodeDiscovery.class, com.distc.cluster.proto.App.NodeDiscovery.Builder.class);
-      }
-
-      // Construct using com.distc.cluster.proto.App.NodeDiscovery.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-
-      public Builder clear() {
-        super.clear();
-        nODEID_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
-        nODEIP_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
-        nODEPORT_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        nodeDiscoveryMessageType_ = com.distc.cluster.proto.App.NodeDiscovery.NodeDiscoveryMessageType.REQUEST_CONNECTION;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.distc.cluster.proto.App.internal_static_NodeDiscovery_descriptor;
-      }
-
-      public com.distc.cluster.proto.App.NodeDiscovery getDefaultInstanceForType() {
-        return com.distc.cluster.proto.App.NodeDiscovery.getDefaultInstance();
-      }
-
-      public com.distc.cluster.proto.App.NodeDiscovery build() {
-        com.distc.cluster.proto.App.NodeDiscovery result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.distc.cluster.proto.App.NodeDiscovery buildPartial() {
-        com.distc.cluster.proto.App.NodeDiscovery result = new com.distc.cluster.proto.App.NodeDiscovery(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.nODEID_ = nODEID_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.nODEIP_ = nODEIP_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.nODEPORT_ = nODEPORT_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.nodeDiscoveryMessageType_ = nodeDiscoveryMessageType_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.distc.cluster.proto.App.NodeDiscovery) {
-          return mergeFrom((com.distc.cluster.proto.App.NodeDiscovery)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.distc.cluster.proto.App.NodeDiscovery other) {
-        if (other == com.distc.cluster.proto.App.NodeDiscovery.getDefaultInstance()) return this;
-        if (other.hasNODEID()) {
-          bitField0_ |= 0x00000001;
-          nODEID_ = other.nODEID_;
-          onChanged();
-        }
-        if (other.hasNODEIP()) {
-          bitField0_ |= 0x00000002;
-          nODEIP_ = other.nODEIP_;
-          onChanged();
-        }
-        if (other.hasNODEPORT()) {
-          setNODEPORT(other.getNODEPORT());
-        }
-        if (other.hasNodeDiscoveryMessageType()) {
-          setNodeDiscoveryMessageType(other.getNodeDiscoveryMessageType());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.distc.cluster.proto.App.NodeDiscovery parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.distc.cluster.proto.App.NodeDiscovery) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private java.lang.Object nODEID_ = "";
-      /**
-       * <code>optional string NODE_ID = 1;</code>
-       */
-      public boolean hasNODEID() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>optional string NODE_ID = 1;</code>
-       */
-      public java.lang.String getNODEID() {
-        java.lang.Object ref = nODEID_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            nODEID_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string NODE_ID = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getNODEIDBytes() {
-        java.lang.Object ref = nODEID_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          nODEID_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string NODE_ID = 1;</code>
-       */
-      public Builder setNODEID(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        nODEID_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string NODE_ID = 1;</code>
-       */
-      public Builder clearNODEID() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        nODEID_ = getDefaultInstance().getNODEID();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string NODE_ID = 1;</code>
-       */
-      public Builder setNODEIDBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        nODEID_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object nODEIP_ = "";
-      /**
-       * <code>optional string NODE_IP = 2;</code>
-       */
-      public boolean hasNODEIP() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>optional string NODE_IP = 2;</code>
-       */
-      public java.lang.String getNODEIP() {
-        java.lang.Object ref = nODEIP_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            nODEIP_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string NODE_IP = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getNODEIPBytes() {
-        java.lang.Object ref = nODEIP_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          nODEIP_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string NODE_IP = 2;</code>
-       */
-      public Builder setNODEIP(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        nODEIP_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string NODE_IP = 2;</code>
-       */
-      public Builder clearNODEIP() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        nODEIP_ = getDefaultInstance().getNODEIP();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string NODE_IP = 2;</code>
-       */
-      public Builder setNODEIPBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        nODEIP_ = value;
-        onChanged();
-        return this;
-      }
-
-      private int nODEPORT_ ;
-      /**
-       * <code>optional int32 NODE_PORT = 3;</code>
-       */
-      public boolean hasNODEPORT() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>optional int32 NODE_PORT = 3;</code>
-       */
-      public int getNODEPORT() {
-        return nODEPORT_;
-      }
-      /**
-       * <code>optional int32 NODE_PORT = 3;</code>
-       */
-      public Builder setNODEPORT(int value) {
-        bitField0_ |= 0x00000004;
-        nODEPORT_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional int32 NODE_PORT = 3;</code>
-       */
-      public Builder clearNODEPORT() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        nODEPORT_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private com.distc.cluster.proto.App.NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType_ = com.distc.cluster.proto.App.NodeDiscovery.NodeDiscoveryMessageType.REQUEST_CONNECTION;
-      /**
-       * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 4 [default = REQUEST_CONNECTION];</code>
-       */
-      public boolean hasNodeDiscoveryMessageType() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      /**
-       * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 4 [default = REQUEST_CONNECTION];</code>
-       */
-      public com.distc.cluster.proto.App.NodeDiscovery.NodeDiscoveryMessageType getNodeDiscoveryMessageType() {
-        return nodeDiscoveryMessageType_;
-      }
-      /**
-       * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 4 [default = REQUEST_CONNECTION];</code>
-       */
-      public Builder setNodeDiscoveryMessageType(com.distc.cluster.proto.App.NodeDiscovery.NodeDiscoveryMessageType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bitField0_ |= 0x00000008;
-        nodeDiscoveryMessageType_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional .NodeDiscovery.NodeDiscoveryMessageType nodeDiscoveryMessageType = 4 [default = REQUEST_CONNECTION];</code>
-       */
-      public Builder clearNodeDiscoveryMessageType() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        nodeDiscoveryMessageType_ = com.distc.cluster.proto.App.NodeDiscovery.NodeDiscoveryMessageType.REQUEST_CONNECTION;
-        onChanged();
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:NodeDiscovery)
-    }
-
-    static {
-      defaultInstance = new NodeDiscovery(true);
-      defaultInstance.initFields();
-    }
-
-    // @@protoc_insertion_point(class_scope:NodeDiscovery)
   }
 
   public interface ClientMessageOrBuilder extends
@@ -20800,11 +19722,6 @@ public final class App {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_JoinMessage_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_NodeDiscovery_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_NodeDiscovery_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_ClientMessage_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -20869,41 +19786,33 @@ public final class App {
       "\030\007 \003(\0132\014.RoutingPath\022\016\n\006toNode\030\010 \001(\005\022\036\n\007" +
       "options\030\t \003(\0132\r.NameValueSet\"T\n\007Routing\022" +
       "\010\n\004PING\020\002\022\016\n\nNAMESPACES\020\003\022\010\n\004JOBS\020\004\022\013\n\007R" +
-      "EPORTS\020\n\022\n\n\006MANAGE\020d\022\014\n\010REGISTER\020\005\"\245\002\n\007P" +
+      "EPORTS\020\n\022\n\n\006MANAGE\020d\022\014\n\010REGISTER\020\005\"\376\001\n\007P" +
       "ayload\022\023\n\004ping\030\001 \001(\0132\005.Ping\022%\n\010space_op\030" +
       "\002 \001(\0132\023.NameSpaceOperation\022\035\n\006job_op\030\003 \001" +
       "(\0132\r.JobOperation\022\036\n\njob_status\030\r \001(\0132\n.",
       "JobStatus\022&\n\014space_status\030\014 \001(\0132\020.NameSp" +
       "aceStatus\022(\n\017cluster_message\030\004 \001(\0132\017.Clu" +
       "sterMessage\022&\n\016client_message\030\005 \001(\0132\016.Cl" +
-      "ientMessage\022%\n\rnodeDiscovery\030\006 \001(\0132\016.Nod" +
-      "eDiscovery\"^\n\007Request\022\027\n\006header\030\001 \001(\0132\007." +
-      "Header\022\026\n\004body\030\002 \001(\0132\010.Payload\022\"\n\014join_m" +
-      "essage\030\003 \001(\0132\014.JoinMessage\"g\n\013JoinMessag" +
-      "e\022\024\n\014from_node_id\030\001 \001(\005\022\022\n\nto_node_id\030\002 " +
-      "\001(\005\022\027\n\017from_cluster_id\030\003 \001(\005\022\025\n\rto_clust" +
-      "er_id\030\004 \001(\005\"\233\002\n\rNodeDiscovery\022\017\n\007NODE_ID",
-      "\030\001 \001(\t\022\017\n\007NODE_IP\030\002 \001(\t\022\021\n\tNODE_PORT\030\003 \001" +
-      "(\005\022]\n\030nodeDiscoveryMessageType\030\004 \001(\0162\'.N" +
-      "odeDiscovery.NodeDiscoveryMessageType:\022R" +
-      "EQUEST_CONNECTION\"v\n\030NodeDiscoveryMessag" +
-      "eType\022\026\n\022REQUEST_CONNECTION\020\001\022 \n\034RESPONS" +
-      "E_CONNECTION_ACCEPTED\020\002\022 \n\034RESPONSE_CONN" +
-      "ECTION_REJECTED\020\003\"\253\002\n\rClientMessage\022\r\n\005m" +
-      "sgId\030\001 \001(\t\022\026\n\016senderUserName\030\002 \001(\005\022\030\n\020re" +
-      "ceiverUserName\030\003 \001(\005\022\017\n\007msgText\030\004 \001(\t\022\024\n" +
-      "\014msgImageName\030\005 \001(\t\022\024\n\014msgImageBits\030\006 \001(",
-      "\014\0228\n\013messageType\030\007 \001(\0162\032.ClientMessage.M" +
-      "essageType:\007SUCCESS\022\027\n\010isClient\030\010 \001(\010:\005f" +
-      "alse\022 \n\021broadcastInternal\030\t \001(\010:\005false\"\'" +
-      "\n\013MessageType\022\013\n\007REQUEST\020\000\022\013\n\007SUCCESS\020\001\"" +
-      "L\n\016ClusterMessage\022&\n\016client_message\030\001 \001(" +
-      "\0132\016.ClientMessage\022\022\n\ncluster_id\030\002 \001(\005*\221\001" +
-      "\n\nPokeStatus\022\n\n\006UKNOWN\020\001\022\013\n\007SUCCESS\020\002\022\013\n" +
-      "\007NOFOUND\020d\022\020\n\014NOINCOMPLETE\020e\022\n\n\006NOAUTH\020f" +
-      "\022\020\n\014NOCONNECTION\020g\022\017\n\013NOREACHABLE\020h\022\016\n\nN" +
-      "ORESOURCE\020i\022\014\n\007FAILURE\020\307\001B\033\n\027com.distc.c",
-      "luster.protoH\001"
+      "ientMessage\"^\n\007Request\022\027\n\006header\030\001 \001(\0132\007" +
+      ".Header\022\026\n\004body\030\002 \001(\0132\010.Payload\022\"\n\014join_" +
+      "message\030\003 \001(\0132\014.JoinMessage\"g\n\013JoinMessa" +
+      "ge\022\024\n\014from_node_id\030\001 \001(\005\022\022\n\nto_node_id\030\002" +
+      " \001(\005\022\027\n\017from_cluster_id\030\003 \001(\005\022\025\n\rto_clus" +
+      "ter_id\030\004 \001(\005\"\253\002\n\rClientMessage\022\r\n\005msgId\030" +
+      "\001 \001(\t\022\026\n\016senderUserName\030\002 \001(\005\022\030\n\020receive",
+      "rUserName\030\003 \001(\005\022\017\n\007msgText\030\004 \001(\t\022\024\n\014msgI" +
+      "mageName\030\005 \001(\t\022\024\n\014msgImageBits\030\006 \001(\014\0228\n\013" +
+      "messageType\030\007 \001(\0162\032.ClientMessage.Messag" +
+      "eType:\007SUCCESS\022\027\n\010isClient\030\010 \001(\010:\005false\022" +
+      " \n\021broadcastInternal\030\t \001(\010:\005false\"\'\n\013Mes" +
+      "sageType\022\013\n\007REQUEST\020\000\022\013\n\007SUCCESS\020\001\"L\n\016Cl" +
+      "usterMessage\022&\n\016client_message\030\001 \001(\0132\016.C" +
+      "lientMessage\022\022\n\ncluster_id\030\002 \001(\005*\221\001\n\nPok" +
+      "eStatus\022\n\n\006UKNOWN\020\001\022\013\n\007SUCCESS\020\002\022\013\n\007NOFO" +
+      "UND\020d\022\020\n\014NOINCOMPLETE\020e\022\n\n\006NOAUTH\020f\022\020\n\014N",
+      "OCONNECTION\020g\022\017\n\013NOREACHABLE\020h\022\016\n\nNORESO" +
+      "URCE\020i\022\014\n\007FAILURE\020\307\001B\033\n\027com.distc.cluste" +
+      "r.protoH\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -20994,7 +19903,7 @@ public final class App {
     internal_static_Payload_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_Payload_descriptor,
-        new java.lang.String[] { "Ping", "SpaceOp", "JobOp", "JobStatus", "SpaceStatus", "ClusterMessage", "ClientMessage", "NodeDiscovery", });
+        new java.lang.String[] { "Ping", "SpaceOp", "JobOp", "JobStatus", "SpaceStatus", "ClusterMessage", "ClientMessage", });
     internal_static_Request_descriptor =
       getDescriptor().getMessageTypes().get(13);
     internal_static_Request_fieldAccessorTable = new
@@ -21007,20 +19916,14 @@ public final class App {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_JoinMessage_descriptor,
         new java.lang.String[] { "FromNodeId", "ToNodeId", "FromClusterId", "ToClusterId", });
-    internal_static_NodeDiscovery_descriptor =
-      getDescriptor().getMessageTypes().get(15);
-    internal_static_NodeDiscovery_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_NodeDiscovery_descriptor,
-        new java.lang.String[] { "NODEID", "NODEIP", "NODEPORT", "NodeDiscoveryMessageType", });
     internal_static_ClientMessage_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_ClientMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ClientMessage_descriptor,
         new java.lang.String[] { "MsgId", "SenderUserName", "ReceiverUserName", "MsgText", "MsgImageName", "MsgImageBits", "MessageType", "IsClient", "BroadcastInternal", });
     internal_static_ClusterMessage_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_ClusterMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ClusterMessage_descriptor,

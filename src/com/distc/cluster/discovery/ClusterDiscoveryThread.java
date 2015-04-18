@@ -9,10 +9,11 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
 import com.distc.cluster.config.ClusterConfiguration;
-import com.distc.cluster.map.ClusterContextMap;
+import com.distc.cluster.map.InboundClusterContextMap;
 import com.distc.cluster.proto.App;
 import com.distc.cluster.proto.App.Request;
-import com.distc.cluster.server.listener.ClusterNode;
+import com.distc.cluster.server.ClusterNode;
+import com.distsc.app.config.GlobalConfiguration;
 
 
 public class ClusterDiscoveryThread implements Runnable
@@ -20,7 +21,7 @@ public class ClusterDiscoveryThread implements Runnable
 	private EventLoopGroup group = null;
 	private ChannelFuture lastWriteFuture = null;
 	private Channel ch = null;
-
+    private ClusterDiscoveryHandler clusterDisc=null;
 	public void run()
 	{
 		System.out.println("ClusterDiscoveryThread Started...");
@@ -35,11 +36,14 @@ public class ClusterDiscoveryThread implements Runnable
 				{
 					for (ClusterNode node : ClusterConfiguration.getNodes())
 					{
-						if (!ClusterContextMap.isChannelExist(node.getClusterID()))
+						if (!InboundClusterContextMap.isChannelExist(node.getClusterID()))
 						{
+							System.out.println("Trying to connect...."+node.getNodeIP());
 							ch = b.connect(node.getNodeIP(), node.getNodePort()).sync().channel();
-							lastWriteFuture = ch.writeAndFlush(getNodeDiscoveryMessage());
+							System.out.println("Connected....");
+							lastWriteFuture = ch.writeAndFlush(sendJoinMessage());
 							System.out.println("Sending Message to "+node.getNodeIP()+node.getNodePort());
+							InboundClusterContextMap.addClusterContextChnnelContext(node.getClusterID(),ch);
 						}
 						
 					}
@@ -67,7 +71,7 @@ public class ClusterDiscoveryThread implements Runnable
 			}
 			catch (Exception e)
 			{
-
+					System.out.println(e);
 			}
 		}
 
@@ -79,7 +83,6 @@ public class ClusterDiscoveryThread implements Runnable
 		boolean writable=false;
 		try
 		{
-			ctx.write("Test");
 			writable=true;
 		}
 		catch(Exception e)
@@ -104,11 +107,28 @@ public class ClusterDiscoveryThread implements Runnable
 		}
 	}
 
-	public Request getNodeDiscoveryMessage()
-	{
 
-		return App.Request.newBuilder().setBody(App.Payload.newBuilder().setNodeDiscovery(App.NodeDiscovery.newBuilder().setNodeDiscoveryMessageType(App.NodeDiscovery.NodeDiscoveryMessageType.REQUEST_CONNECTION).setNODEID(ClusterConfiguration.getClusterNode().getClusterID()).setNODEIP(ClusterConfiguration.getClusterNode().getNodeIP()).setNODEPORT(ClusterConfiguration.getClusterNode().getNodePort()))).build();
+	public Request sendJoinMessage()
+	{
 		
+		Request req=null;
+		try
+		{
+		req= App.Request.newBuilder()
+						  .setJoinMessage(
+								  App.JoinMessage
+								  .newBuilder()
+								  .setFromClusterId(Integer.parseInt(ClusterConfiguration.getCurrentClusterNode().getClusterID()))
+								  .setFromNodeId(Integer.parseInt(GlobalConfiguration.getCurrentNode().getNodeID())))
+						  .build();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return req;
 	}
+
 
 }

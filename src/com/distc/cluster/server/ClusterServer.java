@@ -1,5 +1,7 @@
 package com.distc.cluster.server;
 
+import com.distc.cluster.config.ClusterConfiguration;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -12,12 +14,12 @@ public final class ClusterServer implements Runnable
 {
     public void run()
     {
-    	System.out.println("Server Thread Started...");
+    	System.out.println("ClusterServer  Started...");
     	EventLoopGroup bossGroup=null;
     	EventLoopGroup workerGroup=null;
         try 
         {
-        	System.out.println("Starting Server on : "+9760);
+        	System.out.println("Starting Server on : "+ClusterConfiguration.getClusterServerPort());
             bossGroup = new NioEventLoopGroup(1);
             workerGroup = new NioEventLoopGroup();
             ServerBootstrap b = new ServerBootstrap();
@@ -25,7 +27,7 @@ public final class ClusterServer implements Runnable
              .channel(NioServerSocketChannel.class)
              .handler(new LoggingHandler(LogLevel.INFO))
              .childHandler(new ClusterServerrInitializer());
-            b.bind(9760).sync().channel().closeFuture().sync();
+            b.bind(ClusterConfiguration.getClusterServerPort()).sync().channel().closeFuture().sync();
            
             
         } 

@@ -33,7 +33,8 @@ public class ClusterServerHandler extends SimpleChannelInboundHandler<Request>
 			throws Exception 
 	{
 		
-		ClusterRequestQueue.push(new ClusterRequestContext(ctx,msg));
+		System.out.println("****************************Cluster Message Received");
+		//ClusterRequestQueue.push(new ClusterRequestContext(ctx,msg));
 	}
 	
 	

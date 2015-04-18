@@ -4,22 +4,21 @@ import java.util.ArrayList;
 
 import com.distc.cluster.config.ClusterConfiguration;
 import com.distc.cluster.discovery.ClusterDiscoveryThread;
+import com.distc.cluster.server.ClusterNode;
 import com.distc.cluster.server.ClusterServer;
-import com.distc.cluster.server.listener.ClusterListenerThread;
-import com.distc.cluster.server.listener.ClusterNode;
-
 public class InterClusterThreads implements Runnable
 {
 
 	@Override
 	public void run()
 	{
+		ClusterConfiguration.setClusterServerPort(9760);
 		ArrayList<ClusterNode> clusterNode=new ArrayList<ClusterNode>();
-		clusterNode.add(new ClusterNode("1","192.168.0.,14",9760));
+		clusterNode.add(new ClusterNode("1","192.168.0.39",5570));
 		ClusterConfiguration.setNodes(clusterNode);
-		new Thread(new ClusterDiscoveryThread()).start();
+		ClusterConfiguration.setCurrentClusterNode(new ClusterNode("2","192.168.0.20",9760));
 		new Thread(new ClusterServer()).start();
-		new Thread(new ClusterListenerThread()).start();
+		new Thread(new ClusterDiscoveryThread()).start();
 
 		
 	}

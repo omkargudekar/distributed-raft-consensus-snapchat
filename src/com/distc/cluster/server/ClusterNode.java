@@ -1,4 +1,5 @@
-package com.distc.cluster.server.listener;
+package com.distc.cluster.server;
+
 
 public class ClusterNode
 {

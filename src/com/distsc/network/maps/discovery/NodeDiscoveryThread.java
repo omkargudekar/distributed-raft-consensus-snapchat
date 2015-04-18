@@ -41,15 +41,6 @@ public class NodeDiscoveryThread implements Runnable
 							System.out.println("Sending Message to "+node.getNodeIP()+node.getNodePort());
 						}
 						
-//						else if(NodeChannelContextMap.isChannelExist(node.getNodeID()) && isChannelActive(NodeChannelContextMap.getNodeContext(node.getNodeID()))==false )
-//						{
-//							NodeChannelContextMap.removeNodeChannelContext(node.getNodeID());
-//							ch = b.connect(node.getNodeIP(), node.getNodePort()).sync().channel();
-//							lastWriteFuture = ch.writeAndFlush(getNodeDiscoveryMessage());
-//							System.out.println("Sending Message to "+node.getNodeIP()+node.getNodePort());
-//						
-//						}
-//		
 					}
 					pause();
 

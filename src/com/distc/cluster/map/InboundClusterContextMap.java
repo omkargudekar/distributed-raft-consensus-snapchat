@@ -1,12 +1,12 @@
 package com.distc.cluster.map;
 
-import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.Channel;
 
 import java.util.HashMap;
 
-public class ClusterContextMap
+public class InboundClusterContextMap
 {
-	private static HashMap<String,ChannelHandlerContext> contextMap=new HashMap<String,ChannelHandlerContext>();
+	private static HashMap<String,Channel> contextMap=new HashMap<String,Channel>();
 	
 	
 	public static void getSize()
@@ -14,17 +14,17 @@ public class ClusterContextMap
 		contextMap.size();
 	}
 	
-	public static HashMap<String,ChannelHandlerContext> getClusterNetworkMap()
+	public static HashMap<String,Channel> getClusterNetworkMap()
 	{
 		return contextMap;
 	}
-	public static ChannelHandlerContext getNodeContext(String nodeId)
+	public static Channel getNodeContext(String nodeId)
 	{
 		
 		return contextMap.get(nodeId); 
 	}
 	
-	public static void addClusterContextChnnelContext(String nodeId,ChannelHandlerContext nodeChannelContext)
+	public static void addClusterContextChnnelContext(String nodeId,Channel nodeChannelContext)
 	{
 		System.out.println("Channel Added for : "+nodeId);
 		contextMap.put(nodeId, nodeChannelContext);

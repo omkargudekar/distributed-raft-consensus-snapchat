@@ -11,7 +11,6 @@ import com.distsc.app.config.GlobalConfiguration;
 import com.distsc.beans.RequestContext;
 import com.distsc.comm.protobuf.MessageProto;
 import com.distsc.comm.protobuf.MessageProto.Request;
-import com.distsc.network.maps.NodeChannelContextMap;
 
 public class ListenerThread implements Runnable
 {
@@ -78,7 +77,6 @@ public class ListenerThread implements Runnable
 		}
 		catch (InterruptedException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -8,7 +8,7 @@ import com.distsc.comm.protobuf.MessageProto.Request;
 import com.distsc.network.maps.NodeChannelContextMap;
 import com.distsc.server.listener.ListnerConnectionRequestQueue;
 
-public class NodeDiscoveryMsgQueueWorker implements Runnable
+public class NodeDiscoveryQueueWorker implements Runnable
 {
 	public void run()
 	{

@@ -21,7 +21,6 @@ public class ClusterDiscoveryThread implements Runnable
 	private EventLoopGroup group = null;
 	private ChannelFuture lastWriteFuture = null;
 	private Channel ch = null;
-    private ClusterDiscoveryHandler clusterDisc=null;
 	public void run()
 	{
 		System.out.println("ClusterDiscoveryThread Started...");

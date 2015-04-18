@@ -1,12 +1,125 @@
 package com.distsc.app.config;
 
 import java.util.ArrayList;
+
 import com.distsc.beans.Node;
 
 public class GlobalConfiguration
 {	
 
-	private static int messageLimit=900000;
+	private static int messageLimit=0;
+	public static int getNoDeclareCandidacyThreads()
+	{
+		return noDeclareCandidacyThreads;
+	}
+
+	public static void setNoDeclareCandidacyThreads(int noDeclareCandidacyThreads)
+	{
+		GlobalConfiguration.noDeclareCandidacyThreads = noDeclareCandidacyThreads;
+	}
+
+	public static int getNoRequestVoteResultListenerThreads()
+	{
+		return noRequestVoteResultListenerThreads;
+	}
+
+	public static void setNoRequestVoteResultListenerThreads(int noRequestVoteResultListenerThreads)
+	{
+		GlobalConfiguration.noRequestVoteResultListenerThreads = noRequestVoteResultListenerThreads;
+	}
+
+	public static int getNoRequestVoteListenerThread()
+	{
+		return noRequestVoteListenerThread;
+	}
+
+	public static void setNoRequestVoteListenerThread(int noRequestVoteListenerThread)
+	{
+		GlobalConfiguration.noRequestVoteListenerThread = noRequestVoteListenerThread;
+	}
+
+	public static int getNoLogAppendListener()
+	{
+		return noLogAppendListener;
+	}
+
+	public static void setNoLogAppendListener(int noLogAppendListener)
+	{
+		GlobalConfiguration.noLogAppendListener = noLogAppendListener;
+	}
+
+	public static int getNoLogAppendResultListener()
+	{
+		return noLogAppendResultListener;
+	}
+
+	public static void setNoLogAppendResultListener(int noLogAppendResultListener)
+	{
+		GlobalConfiguration.noLogAppendResultListener = noLogAppendResultListener;
+	}
+
+	public static int getNoHeartbeatSenderThread()
+	{
+		return noHeartbeatSenderThread;
+	}
+
+	public static void setNoHeartbeatSenderThread(int noHeartbeatSenderThread)
+	{
+		GlobalConfiguration.noHeartbeatSenderThread = noHeartbeatSenderThread;
+	}
+
+	private static Node currentNode=null;
+	private static ArrayList<Node> nodes=new ArrayList<Node>();
+	private static String clientMessageStorageDir="client_messages/";
+	private static int noRequestWorkerThreads=1;
+	private static int noNodeDiscoverWorkerThreads=1;
+	private static int noClientMsgWorkerThreads=1;
+	private static int noDeclareCandidacyThreads=1;
+	private static int noRequestVoteResultListenerThreads=1;
+	private static int noRequestVoteListenerThread=1;
+	private static int noLogAppendListener=1;
+	private static int noLogAppendResultListener=1;
+	private static int noHeartbeatSenderThread=1;
+
+	
+
+	
+
+	public static int getNoClientMsgWorkerThreads()
+	{
+		return noClientMsgWorkerThreads;
+	}
+
+	public static void setNoClientMsgWorkerThreads(int noClientMsgWorkerThreads)
+	{
+		GlobalConfiguration.noClientMsgWorkerThreads = noClientMsgWorkerThreads;
+	}
+
+	public static int getNoNodeDiscoverWorkerThreads()
+	{
+		return noNodeDiscoverWorkerThreads;
+	}
+
+	public static void setNoNodeDiscoverWorkerThreads(int noNodeDiscoverWorkerThreads)
+	{
+		GlobalConfiguration.noNodeDiscoverWorkerThreads = noNodeDiscoverWorkerThreads;
+	}
+
+	public static int getNoRequestWorkerThreads()
+	{
+		return noRequestWorkerThreads;
+	}
+
+	public static void setNoRequestWorkerThreads(int noRequestWorkerThreads)
+	{
+		GlobalConfiguration.noRequestWorkerThreads = noRequestWorkerThreads;
+	}
+
+	public static String getClientMessageStorageDir()
+	{
+		return clientMessageStorageDir;
+	}
+
 	public static int getMessageLimit()
 	{
 		return messageLimit;
@@ -16,32 +129,11 @@ public class GlobalConfiguration
 	{
 		GlobalConfiguration.messageLimit = messageLimit;
 	}
-
-	private static String clientMessageStorageDir="client_messages/";
-	public static String getClientMessageStorageDir()
-	{
-		return clientMessageStorageDir;
-	}
-
 	public static void setClientMessageStorageDir(String clientMessageStorageDir)
 	{
 		GlobalConfiguration.clientMessageStorageDir = clientMessageStorageDir;
 	}
 
-	private static int clinetListenerPort=4000;
-
-	private static Node currentNode=null;
-	
-	private static ArrayList<Node> nodes=new ArrayList<Node>();
-	public static int getClinetListenerPort()
-	{
-		return clinetListenerPort;
-	}
-
-	public static void setClinetListenerPort(int clinetListenerPort)
-	{
-		GlobalConfiguration.clinetListenerPort = clinetListenerPort;
-	}
 	
 	public static synchronized int getNetwotkSize()
 	{

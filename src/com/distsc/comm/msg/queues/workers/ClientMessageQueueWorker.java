@@ -3,7 +3,7 @@ import com.distsc.beans.RequestContext;
 import com.distsc.client.msg.handler.ClientMessageDecoder;
 import com.distsc.comm.msg.queues.ClientMessageMsgQueue;
 
-public class ClientMessageMsgQueueWorker implements Runnable
+public class ClientMessageQueueWorker implements Runnable
 {
 	public void run()
 	{

@@ -6,12 +6,25 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import com.distsc.raft.RAFTStatus;
+
 public class Persistor {
 	
+	
+	static String filePath;
+	
+	public static void setUp(String filepath)
+	{	
+		if( Persistor.isRAFTStateFileExists() ){
+			RAFTStatus.setRaftState(Persistor.readPersistedRAFTStatus());
+		}else{
+			RAFTStatus.createNewRAFTState();
+		}
+	}
 	public static void persistRAFTStatus(RAFTState raftState){
 		 try{
 			 
-			FileOutputStream raft = new FileOutputStream("persistence/RAFTState.ser");
+			FileOutputStream raft = new FileOutputStream(filePath);
 			ObjectOutputStream oos = new ObjectOutputStream(raft);   
 			oos.writeObject(raftState);
 			oos.close();
@@ -25,7 +38,7 @@ public class Persistor {
 	public static RAFTState readPersistedRAFTStatus(){
 		RAFTState raftState;
 		 try{
-			   FileInputStream raft = new FileInputStream("persistence/RAFTState.ser");
+			   FileInputStream raft = new FileInputStream(filePath);
 			   ObjectInputStream ois = new ObjectInputStream(raft);
 			   raftState = (RAFTState) ois.readObject();
 			   ois.close();

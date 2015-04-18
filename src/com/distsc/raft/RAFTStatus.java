@@ -186,14 +186,9 @@ public class RAFTStatus implements Serializable
 
 	public static synchronized int getRaftTimer()
 	{
-		return raftTimer;
+		return getRandomRAFTTimer();
 	}
 
-
-	public static synchronized void setRaftTimer(int raftTimer)
-	{
-		RAFTStatus.raftTimer = raftTimer;
-	}
 
 	public static void reset()
 	{
@@ -209,14 +204,14 @@ public class RAFTStatus implements Serializable
 
 
 	
-	public static synchronized void raftTimerInit() 
+	public static synchronized int getRandomRAFTTimer() 
 	{
 
 	    Random rand = new Random();
 
 	    int randomNum = rand.nextInt((5000 - 3600) + 1) + 3600;
 	    
-	    setRaftTimer(randomNum);
+	    return randomNum;
 	}
 	
 }

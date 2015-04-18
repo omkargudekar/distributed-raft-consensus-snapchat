@@ -8,15 +8,6 @@ public class GlobalConfiguration
 {	
 
 	private static int messageLimit=0;
-	public static int getNoDeclareCandidacyThreads()
-	{
-		return noDeclareCandidacyThreads;
-	}
-
-	public static void setNoDeclareCandidacyThreads(int noDeclareCandidacyThreads)
-	{
-		GlobalConfiguration.noDeclareCandidacyThreads = noDeclareCandidacyThreads;
-	}
 
 	public static int getNoRequestVoteResultListenerThreads()
 	{
@@ -58,15 +49,6 @@ public class GlobalConfiguration
 		GlobalConfiguration.noLogAppendResultListener = noLogAppendResultListener;
 	}
 
-	public static int getNoHeartbeatSenderThread()
-	{
-		return noHeartbeatSenderThread;
-	}
-
-	public static void setNoHeartbeatSenderThread(int noHeartbeatSenderThread)
-	{
-		GlobalConfiguration.noHeartbeatSenderThread = noHeartbeatSenderThread;
-	}
 
 	private static Node currentNode=null;
 	private static ArrayList<Node> nodes=new ArrayList<Node>();
@@ -74,12 +56,10 @@ public class GlobalConfiguration
 	private static int noRequestWorkerThreads=1;
 	private static int noNodeDiscoverWorkerThreads=1;
 	private static int noClientMsgWorkerThreads=1;
-	private static int noDeclareCandidacyThreads=1;
 	private static int noRequestVoteResultListenerThreads=1;
 	private static int noRequestVoteListenerThread=1;
 	private static int noLogAppendListener=1;
 	private static int noLogAppendResultListener=1;
-	private static int noHeartbeatSenderThread=1;
 
 	
 

@@ -4,9 +4,6 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
-
-import com.distc.cluster.msg.queue.ClusterRequestContext;
-import com.distc.cluster.msg.queue.ClusterRequestQueue;
 import com.distc.cluster.proto.App.Request;
 
 

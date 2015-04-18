@@ -91,13 +91,7 @@ public class RAFTStatus implements Serializable
 		RAFTStatus.currentTerm = currentTerm;
 	}
 
-
-
-
-
-
 	private static String declaredLeader=null;
-	private static int raftTimer=5000;
 	private static int heartBeatFrequency=1000;
 	private static boolean voted=false;
 	

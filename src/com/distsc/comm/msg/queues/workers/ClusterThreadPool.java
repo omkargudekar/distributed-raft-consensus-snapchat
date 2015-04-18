@@ -53,18 +53,8 @@ public class ClusterThreadPool implements Runnable
 		    }
 		}.start();
 		
-		
-		new Thread()
-		{
-		    public void run() 
-		    {
-		    	for(int counter=0;counter<GlobalConfiguration.getNoDeclareCandidacyThreads();counter++)
-				{
-					new Thread(new DeclareCandidacyThread()).start();
-				}
-		    }
-		}.start();
-		
+		new Thread(new DeclareCandidacyThread()).start();
+
 		
 		new Thread()
 		{
@@ -100,19 +90,9 @@ public class ClusterThreadPool implements Runnable
 				}
 		    }
 		}.start();
-		
-		
-		new Thread()
-		{
-		    public void run() 
-		    {
+		new Thread(new HeartbeatSenderThread()).start();
 
-				for(int counter=0;counter<GlobalConfiguration.getNoHeartbeatSenderThread();counter++)
-				{
-					new Thread(new HeartbeatSenderThread()).start();
-				}
-		    }
-		}.start();
+	
 		
 		
 				

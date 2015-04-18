@@ -16,18 +16,10 @@ public class RunMain
 		}
 		else
 		{
-				boolean readSuccess=ConfigReader.setUp(args[0]);
-				if(readSuccess==true)
-				{
-					new Thread(new ClusterThreadPool()).start();
-					new Thread(new InterClusterThreads()).start();
-				}
-		}
-		
-		
-
-		
-		
+				ConfigReader.setUp(args[0]);
+				new Thread(new ClusterThreadPool()).start();
+				new Thread(new InterClusterThreads()).start();
+		}		
 	}
 	
 }

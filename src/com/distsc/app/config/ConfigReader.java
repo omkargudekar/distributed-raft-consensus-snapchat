@@ -5,10 +5,8 @@ import com.distsc.util.PropertyFileParser;
 
 public class ConfigReader
 {
-	@SuppressWarnings("finally")
-	public static boolean setUp(String propertyFilePath)
+	public static void setUp(String propertyFilePath)
 	{
-		boolean readSuccess = false;
 		try
 		{
 			PropertyFileParser propertFileParser = new PropertyFileParser(propertyFilePath);
@@ -19,21 +17,16 @@ public class ConfigReader
 			GlobalConfiguration.setNoRequestWorkerThreads(Integer.parseInt(propertFileParser.getValue("NoOfRequestWorkerThread")));
 			GlobalConfiguration.setNoNodeDiscoverWorkerThreads(Integer.parseInt(propertFileParser.getValue("NoOfNodeDiscoveryWorkerThread")));
 			GlobalConfiguration.setNoClientMsgWorkerThreads(Integer.parseInt(propertFileParser.getValue("NoClientMsgWorkerThreads")));
-			GlobalConfiguration.setNoDeclareCandidacyThreads(Integer.parseInt(propertFileParser.getValue("NoDeclareCandidacyThreads")));
 			GlobalConfiguration.setNoRequestVoteResultListenerThreads(Integer.parseInt(propertFileParser.getValue("NoRequestVoteResultListenerThreads")));
 			GlobalConfiguration.setNoRequestVoteResultListenerThreads(Integer.parseInt(propertFileParser.getValue("NoRequestVoteResultListenerThreads")));
 			GlobalConfiguration.setNoLogAppendListener(Integer.parseInt(propertFileParser.getValue("NoLogAppendListener")));
 			GlobalConfiguration.setNoLogAppendResultListener(Integer.parseInt(propertFileParser.getValue("NoLogAppendResultListener")));
-			GlobalConfiguration.setNoHeartbeatSenderThread(Integer.parseInt(propertFileParser.getValue("NoHeartbeatSenderThread")));
-			readSuccess = true;
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
+			System.exit(0);
 		}
-		finally
-		{
-			return readSuccess;
-		}
+	
 	}
 }

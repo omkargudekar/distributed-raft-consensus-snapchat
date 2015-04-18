@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import com.distsc.comm.protobuf.MessageProto.Request;
 import com.distsc.network.maps.NodeChannelContextMap;
-public class ClusterMulticast
+public class ServerMulticast
 {
 
 	public void send(Request request)

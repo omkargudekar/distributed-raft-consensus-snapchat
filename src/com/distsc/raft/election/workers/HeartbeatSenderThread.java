@@ -4,7 +4,7 @@ import com.distsc.app.config.GlobalConfiguration;
 import com.distsc.comm.protobuf.MessageProto;
 import com.distsc.comm.protobuf.MessageProto.Request;
 import com.distsc.raft.RAFTStatus;
-import com.distsc.server.ClusterMulticast;
+import com.distsc.server.ServerMulticast;
 
 public class HeartbeatSenderThread implements Runnable
 {
@@ -43,7 +43,7 @@ public class HeartbeatSenderThread implements Runnable
 	
 	private void sendHeartbeat()
 	{
-		ClusterMulticast followerMulticast=new ClusterMulticast();
+		ServerMulticast followerMulticast=new ServerMulticast();
 		
 		Request msg=Request.newBuilder().setMessageHeader(Request.MessageHeader.AppendEntriesMsg)
 											.setPayload(MessageProto.Payload.newBuilder().setAppendEntries(MessageProto.AppendEntries.newBuilder()

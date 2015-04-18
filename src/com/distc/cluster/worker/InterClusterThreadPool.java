@@ -6,7 +6,7 @@ import com.distc.cluster.config.ClusterConfiguration;
 import com.distc.cluster.discovery.ClusterDiscoveryThread;
 import com.distc.cluster.server.ClusterNode;
 import com.distc.cluster.server.ClusterServer;
-public class InterClusterThreads implements Runnable
+public class InterClusterThreadPool implements Runnable
 {
 
 	@Override

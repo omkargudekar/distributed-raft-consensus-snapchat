@@ -1,24 +1,30 @@
 package com.distsc.app;
-import com.distc.cluster.worker.InterClusterThreads;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.distc.cluster.worker.InterClusterThreadPool;
 import com.distsc.app.config.ConfigReader;
 import com.distsc.comm.msg.queues.workers.ClusterThreadPool;
 
 public class RunMain
 {
-
+	static Logger logger = LoggerFactory.getLogger(RunMain.class);
 	public static void main(String args[])
 	{
-		
+		logger.info("Starting Application");
 		if(args[0]==null || args[0].trim().equals(""))
 		{
-			System.out.println("No Configuration File Parameter");
+			logger.error("Configuration file parameter missing. Program Terminating");
 			System.exit(0);
 		}
 		else
 		{
+				logger.info("Reading Configuration File "+ args[0]);
 				ConfigReader.setUp(args[0]);
+				logger.info("Starting ClusterThreadPool");
 				new Thread(new ClusterThreadPool()).start();
-				new Thread(new InterClusterThreads()).start();
+				logger.info("Starting InterClusterThreadPool");
+				new Thread(new InterClusterThreadPool()).start();
 		}		
 	}
 	

@@ -52,7 +52,7 @@ public class GlobalConfiguration
 
 	private static Node currentNode=null;
 	private static ArrayList<Node> nodes=new ArrayList<Node>();
-	private static String clientMessageStorageDir="client_messages/";
+	private static String clientMessageStorageDir;
 	private static int noRequestWorkerThreads=1;
 	private static int noNodeDiscoverWorkerThreads=1;
 	private static int noClientMsgWorkerThreads=1;

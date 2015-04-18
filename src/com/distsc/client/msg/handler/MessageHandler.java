@@ -1,5 +1,8 @@
 package com.distsc.client.msg.handler;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.netty.channel.ChannelHandlerContext;
 
 import com.distsc.comm.protobuf.MessageProto;
@@ -8,6 +11,8 @@ import com.distsc.network.maps.UserChannelContextMap;
 
 public class MessageHandler implements ClientMsgHandlerInterface
 {
+
+	static Logger logger = LoggerFactory.getLogger(MessageHandler.class);
 
 	@Override
 	public void handle(ChannelHandlerContext ctx,Request msg )
@@ -20,7 +25,7 @@ public class MessageHandler implements ClientMsgHandlerInterface
 	public void sendMessage(ChannelHandlerContext ctx,Request msg)
 	{
 
-		System.out.println("Sending "+msg.getPayload().getClientMessage().getClientMessageType()
+		logger.info("Sending "+msg.getPayload().getClientMessage().getClientMessageType()
 				+" From "+msg.getPayload().getClientMessage().getSenderUserName()
 				+" To "+msg.getPayload().getClientMessage().getReceiverUserName());
 		
@@ -28,11 +33,13 @@ public class MessageHandler implements ClientMsgHandlerInterface
 		
 		if(validator.validateMessageSize(ctx,msg)==true)
 		{
+			logger.info("Valid Client Message"+msg);
 			if(UserChannelContextMap.isExist(msg.getPayload().getClientMessage().getReceiverUserName()))
 			{
 				
+				
 				UserChannelContextMap.getClientContext(msg.getPayload().getClientMessage().getReceiverUserName()).writeAndFlush(msg);
-				System.out.println("Message Sent.");
+				logger.info("Message Sent."+msg);
 				Request message=MessageProto.Request.newBuilder()
 						.setMessageHeader(Request.MessageHeader.ClientMessageMsg)
 						.setPayload(MessageProto.Payload.newBuilder()
@@ -44,6 +51,8 @@ public class MessageHandler implements ClientMsgHandlerInterface
 			}
 			else
 			{
+				
+				logger.info("Invalid Receiver : "+msg);
 				Request message=MessageProto.Request.newBuilder()
 						.setMessageHeader(Request.MessageHeader.ClientMessageMsg)
 						.setPayload(MessageProto.Payload.newBuilder()

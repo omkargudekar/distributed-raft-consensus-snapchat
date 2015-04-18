@@ -6,15 +6,20 @@ import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.distsc.beans.Node;
 
-public class ClusterConfigReader
+public class NodeConfigReader
 {
 	
-	
+	static Logger logger = LoggerFactory.getLogger(NodeConfigReader.class);
+
 	public static void readAndSetUp(String filepath)
 	{
+		
+		
+		logger.info("Reading NodeConfiguration File "+filepath);
 		FileReader fileReader =null;
 		JSONParser jsonParser=null;
 		JSONObject jsonObject=null;
@@ -26,6 +31,8 @@ public class ClusterConfigReader
 			jsonObject = (JSONObject) jsonParser.parse(fileReader);
 			System.out.println(jsonObject);
 
+			
+			logger.info("Reading Adjacent Nodes Information"+filepath);
 			JSONObject nodes = (JSONObject) jsonObject.get("nodes");
 			JSONArray nodeArray= (JSONArray)  nodes.get("node");
 			JSONObject nodeDetails;
@@ -43,6 +50,7 @@ public class ClusterConfigReader
 			GlobalConfiguration.setNodes(peers);
 			
 			
+			logger.info("Reading Current Node Information"+filepath);
 			nodes = (JSONObject) jsonObject.get("currentNode");
 			nodes = (JSONObject) jsonObject.get("currentNode");
 			node=new Node();
@@ -50,16 +58,15 @@ public class ClusterConfigReader
 			node.setNodeIP(nodes.get("host").toString());
 			node.setNodePort(Integer.parseInt(nodes.get("port").toString()));
 			GlobalConfiguration.setCurrentNode(node);
-			
+			logger.info("NodeConfiguration Read Complete "+filepath);
+
 			
 		}
 		catch(Exception e)
 		{	
-			System.out.println(e);
-			
+			logger.error(e.toString());
+			e.printStackTrace();
 		}
-		
-
 	}
 
 }

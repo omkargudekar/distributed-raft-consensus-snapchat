@@ -12,7 +12,7 @@ import com.distsc.beans.RequestContext;
 import com.distsc.comm.protobuf.MessageProto;
 import com.distsc.comm.protobuf.MessageProto.Request;
 
-public class ListenerThread implements Runnable
+public class RequestListenerThread implements Runnable
 {
 	private EventLoopGroup group = null;
 	private ChannelFuture lastWriteFuture = null;

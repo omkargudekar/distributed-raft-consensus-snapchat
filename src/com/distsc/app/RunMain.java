@@ -1,8 +1,8 @@
 package com.distsc.app;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.distsc.app.config.ConfigReader;
+import com.distsc.app.config.GlobalConfiguration;
 import com.distsc.comm.msg.queues.workers.ClusterThreadPool;
 import com.distsc.intercluster.worker.InterClusterThreadPool;
 
@@ -11,6 +11,8 @@ public class RunMain
 	static Logger logger = LoggerFactory.getLogger(RunMain.class);
 	public static void main(String args[])
 	{
+		
+		GlobalConfiguration.setClusterConfigurationFilePath("runtime/cluster.conf");
 		logger.info("Starting Application");
 		if(args[0]==null || args[0].trim().equals(""))
 		{

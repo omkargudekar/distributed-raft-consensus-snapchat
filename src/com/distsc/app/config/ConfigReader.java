@@ -2,6 +2,7 @@ package com.distsc.app.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.distsc.persistence.Persistor;
 import com.distsc.util.PropertyFileParser;
 
@@ -15,7 +16,7 @@ public class ConfigReader
 			
 			PropertyFileParser propertFileParser = new PropertyFileParser(propertyFilePath);
 			logger.debug("Reading NodeConfigurationFile Parameter from "+propertyFilePath);
-			NodeConfigReader.readAndSetUp(propertFileParser.getValue("ClusterConfigurationFile"));
+			NodeConfigReader.readAndSetUp(propertFileParser.getValue("NodeConfigurationFile"));
 			logger.debug("Reading ClusterConfiguration Parameter from "+propertyFilePath);
 			GlobalConfiguration.setClusterConfigurationFilePath(propertFileParser.getValue("ClusterConfigurationPath"));			
 			logger.debug("Reading Cluster Information from "+propertyFilePath);

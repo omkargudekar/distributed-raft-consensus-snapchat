@@ -8,21 +8,32 @@ public class ClusterNode
 		this.clusterID = clusterID;
 	}
 	
-
+private String clusterName;
+	public String getClusterName()
+{
+	return clusterName;
+}
+public void setClusterName(String clusterName)
+{
+	this.clusterName = clusterName;
+}
 	public ClusterNode()
 	{
 		super();
 	}
+	
 	@Override
 	public String toString()
 	{
-		return "ClusterNode [clusterID=" + clusterID + ", nodeIP=" + nodeIP + ", nodePort=" + nodePort + "]";
+		return "ClusterNode [clusterName=" + clusterName + ", clusterID=" + clusterID + ", nodeIP=" + nodeIP + ", nodePort=" + nodePort + "]";
 	}
+
 	private String clusterID;
 	public ClusterNode(String clusterID, String nodeIP, int nodePort)
 	{
 		super();
 		this.clusterID = clusterID;
+		
 		this.nodeIP = nodeIP;
 		this.nodePort = nodePort;
 		

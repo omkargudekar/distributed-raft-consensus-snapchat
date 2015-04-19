@@ -15,7 +15,6 @@ import com.distsc.beans.RequestContext;
 import com.distsc.comm.msg.queues.ListnerConnectionRequestQueue;
 import com.distsc.comm.protobuf.MessageProto;
 import com.distsc.comm.protobuf.MessageProto.Request;
-import com.distsc.server.ServerrInitializer;
 
 public class RequestListenerThread implements Runnable
 {

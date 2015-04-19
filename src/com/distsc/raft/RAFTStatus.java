@@ -13,9 +13,6 @@ import com.distsc.persistence.RAFTState;
 public class RAFTStatus implements Serializable
 {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private static RAFTState raftState;

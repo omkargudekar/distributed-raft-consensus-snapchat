@@ -9,7 +9,7 @@ import com.distsc.beans.RequestContext;
 
 public class RequestVoteResultMsgQueue
 {
-	static Logger logger = LoggerFactory.getLogger(RequestVoteMsgQueue.class);
+	static Logger logger = LoggerFactory.getLogger(RequestVoteResultMsgQueue.class);
 
 	private static ArrayList<RequestContext> queue = new ArrayList<RequestContext>();
 	

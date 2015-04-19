@@ -4,14 +4,12 @@ import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.distsc.beans.RequestContext;
-import com.distsc.client.msg.handler.MessageHandler;
 
 public class AppendEntriesQueue
 {
 	
-	static Logger logger = LoggerFactory.getLogger(MessageHandler.class);
+	static Logger logger = LoggerFactory.getLogger(AppendEntriesQueue.class);
 
 	private static ArrayList<RequestContext> queue = new ArrayList<RequestContext>();
 	

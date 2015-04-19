@@ -18,7 +18,7 @@ import com.distsc.network.maps.NodeChannelContextMap;
 
 public class NodeDiscoveryThread implements Runnable
 {
-	static Logger logger = LoggerFactory.getLogger(NodeDiscoveryHandler.class);
+	static Logger logger = LoggerFactory.getLogger(NodeDiscoveryThread.class);
 
 	private EventLoopGroup group = null;
 	private ChannelFuture lastWriteFuture = null;

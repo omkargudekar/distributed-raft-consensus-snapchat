@@ -4,10 +4,6 @@ import io.netty.channel.ChannelHandlerContext;
 
 import com.distsc.intercluster.proto.App.Request;
 
-
-
-
-
 public class ClusterRequestContext
 {
 	private ChannelHandlerContext context;

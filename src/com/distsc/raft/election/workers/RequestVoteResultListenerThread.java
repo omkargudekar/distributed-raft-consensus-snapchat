@@ -11,7 +11,7 @@ import com.distsc.raft.RAFTStatus;
 public class RequestVoteResultListenerThread implements Runnable
 {
 
-	static Logger logger = LoggerFactory.getLogger(RequestVoteListenerThread.class);
+	static Logger logger = LoggerFactory.getLogger(RequestVoteResultListenerThread.class);
 
 	@Override
 	public void run()

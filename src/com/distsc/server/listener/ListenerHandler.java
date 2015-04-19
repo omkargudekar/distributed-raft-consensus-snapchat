@@ -9,11 +9,10 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import com.distsc.beans.RequestContext;
 import com.distsc.comm.msg.queues.RequestQueue;
 import com.distsc.comm.protobuf.MessageProto.Request;
-import com.distsc.raft.election.workers.RequestVoteListenerThread;
 
 public class ListenerHandler extends SimpleChannelInboundHandler<Request> 
 {
-	static Logger logger = LoggerFactory.getLogger(RequestVoteListenerThread.class);
+	static Logger logger = LoggerFactory.getLogger(ListenerHandler.class);
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();

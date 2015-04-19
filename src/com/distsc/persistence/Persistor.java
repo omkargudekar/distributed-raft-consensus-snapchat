@@ -21,9 +21,12 @@ public class Persistor {
 	public static void setUp(String filepath)
 	{	
 		logger.info("Setting Up : "+filepath);
-		if( Persistor.isRAFTStateFileExists() ){
+		if( Persistor.isRAFTStateFileExists() )
+		{
 			RAFTStatus.setRaftState(Persistor.readPersistedRAFTStatus());
-		}else{
+		}
+		else
+		{
 			RAFTStatus.createNewRAFTState();
 		}
 	}

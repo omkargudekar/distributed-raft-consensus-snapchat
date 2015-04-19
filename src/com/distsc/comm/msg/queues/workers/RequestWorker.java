@@ -13,7 +13,7 @@ import com.distsc.comm.msg.queues.RequestVoteResultMsgQueue;
 
 public class RequestWorker implements Runnable
 {
-	static Logger logger = LoggerFactory.getLogger(NodeDiscoveryQueueWorker.class);
+	static Logger logger = LoggerFactory.getLogger(RequestWorker.class);
 
 	public void run()
 	{

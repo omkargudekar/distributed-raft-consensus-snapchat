@@ -13,7 +13,7 @@ import com.distsc.intercluster.proto.App.Request;
 
 public class ClusterDiscoveryHandler extends SimpleChannelInboundHandler<Request> 
 {
-	static Logger logger = LoggerFactory.getLogger(ClusterClientMsgProcessor.class);
+	static Logger logger = LoggerFactory.getLogger(ClusterDiscoveryHandler.class);
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {

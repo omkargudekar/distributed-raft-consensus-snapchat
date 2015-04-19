@@ -10,7 +10,7 @@ import com.distsc.raft.RAFTStatus;
 
 public class LogAppendResultListener implements Runnable
 {
-	static Logger logger = LoggerFactory.getLogger(HeartbeatSenderThread.class);
+	static Logger logger = LoggerFactory.getLogger(LogAppendResultListener.class);
 
 
 	@Override

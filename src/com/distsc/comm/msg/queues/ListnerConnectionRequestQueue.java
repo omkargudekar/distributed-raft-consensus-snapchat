@@ -9,7 +9,7 @@ import com.distsc.beans.RequestContext;
 
 public class ListnerConnectionRequestQueue
 {
-	static Logger logger = LoggerFactory.getLogger(ClientMsgQueue.class);
+	static Logger logger = LoggerFactory.getLogger(ListnerConnectionRequestQueue.class);
 
 	private static ArrayList<RequestContext> queue = new ArrayList<RequestContext>();
 	

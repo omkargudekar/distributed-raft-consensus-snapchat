@@ -2,7 +2,6 @@ package com.distsc.comm.msg.queues.workers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.distsc.app.RunMain;
 import com.distsc.app.config.GlobalConfiguration;
 import com.distsc.raft.election.workers.DeclareCandidacyThread;
 import com.distsc.raft.election.workers.HeartbeatSenderThread;
@@ -14,7 +13,7 @@ import com.distsc.server.listener.RequestListenerThread;
 
 public class ClusterThreadPool implements Runnable
 {
-	static Logger logger = LoggerFactory.getLogger(RunMain.class);
+	static Logger logger = LoggerFactory.getLogger(ClusterThreadPool.class);
 	@Override
 	public void run()
 	{

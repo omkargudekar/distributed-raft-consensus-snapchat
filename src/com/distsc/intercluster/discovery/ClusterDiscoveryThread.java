@@ -21,7 +21,7 @@ import com.distsc.intercluster.server.ClusterNode;
 
 public class ClusterDiscoveryThread implements Runnable
 {
-	static Logger logger = LoggerFactory.getLogger(ClusterClientMsgProcessor.class);
+	static Logger logger = LoggerFactory.getLogger(ClusterDiscoveryThread.class);
 	private EventLoopGroup group = null;
 	private ChannelFuture lastWriteFuture = null;
 	private Channel ch = null;

@@ -1,6 +1,10 @@
 package com.distsc.intercluster.server;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.distsc.app.config.ClusterConfiguration;
+import com.distsc.intercluster.discovery.ClusterClientMsgProcessor;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.EventLoopGroup;
@@ -12,14 +16,16 @@ import io.netty.handler.logging.LoggingHandler;
 
 public final class ClusterServer implements Runnable
 {
+	static Logger logger = LoggerFactory.getLogger(ClusterClientMsgProcessor.class);
+
     public void run()
     {
-    	System.out.println("ClusterServer  Started...");
+    	logger.info("ClusterServer  Started...");
     	EventLoopGroup bossGroup=null;
     	EventLoopGroup workerGroup=null;
         try 
         {
-        	System.out.println("Starting Server on : "+ClusterConfiguration.getClusterServerPort());
+        	logger.info("Starting Server on : "+ClusterConfiguration.getClusterServerPort());
             bossGroup = new NioEventLoopGroup(1);
             workerGroup = new NioEventLoopGroup();
             ServerBootstrap b = new ServerBootstrap();
@@ -33,7 +39,7 @@ public final class ClusterServer implements Runnable
         } 
         catch(Exception e)
         {
-        	System.out.println(e);
+        	logger.info(e.toString());
         }
         finally 
         {

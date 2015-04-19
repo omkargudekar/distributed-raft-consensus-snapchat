@@ -2,7 +2,6 @@ package com.distsc.app;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.distsc.app.config.ConfigReader;
-import com.distsc.app.config.GlobalConfiguration;
 import com.distsc.comm.msg.queues.workers.ClusterThreadPool;
 import com.distsc.intercluster.worker.InterClusterThreadPool;
 

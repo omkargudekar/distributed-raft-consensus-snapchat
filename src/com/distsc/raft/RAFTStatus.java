@@ -3,16 +3,22 @@ package com.distsc.raft;
 import java.io.Serializable;
 import java.util.Random;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.distsc.comm.msg.queues.AppendEntriesQueue;
 import com.distsc.comm.msg.queues.AppendEntriesResultQueue;
 import com.distsc.comm.msg.queues.RequestVoteMsgQueue;
 import com.distsc.comm.msg.queues.RequestVoteResultMsgQueue;
+import com.distsc.intercluster.worker.InterClusterThreadPool;
 import com.distsc.persistence.Persistor;
 import com.distsc.persistence.RAFTState;
 
 public class RAFTStatus implements Serializable
 {
 	
+	static Logger logger = LoggerFactory.getLogger(RAFTStatus.class);
+
 	private static final long serialVersionUID = 1L;
 	
 	private static RAFTState raftState;
@@ -111,7 +117,7 @@ public class RAFTStatus implements Serializable
 
 	public static synchronized void setCurrentNodeState(NodeState currentNodeState)
 	{
-		System.out.println("Changing Node State From "+RAFTStatus.currentNodeState +" to "+currentNodeState);
+		logger.info("Changing Node State From "+RAFTStatus.currentNodeState +" to "+currentNodeState);
 		RAFTStatus.currentNodeState = currentNodeState;
 	}
 

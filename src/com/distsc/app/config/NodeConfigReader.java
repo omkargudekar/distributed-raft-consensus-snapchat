@@ -29,7 +29,7 @@ public class NodeConfigReader
 			fileReader = new FileReader(filepath);
 			jsonParser = new JSONParser();
 			jsonObject = (JSONObject) jsonParser.parse(fileReader);
-			System.out.println(jsonObject);
+			logger.info(jsonObject.toString());
 
 			
 			logger.info("Reading Adjacent Nodes Information"+filepath);

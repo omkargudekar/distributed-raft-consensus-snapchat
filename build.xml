@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="distributed-snapchat">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="distributed-snapchat.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="lib/netty-all-4.0.26.Final.jar"/>
+        <pathelement location="lib/slf4j-api-1.7.12.jar"/>
+        <pathelement location="lib/slf4j-simple-1.7.12.jar"/>
+        <pathelement location="lib/protobuf-java-2.6.1.jar"/>
+        <pathelement location="lib/json_simple-1.1.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.xtend"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-project" name="build"/>
+    <target depends="init" name="build-project">
+    	<exec executable="/bin/bash">
+    	    					<arg value="server.sh"/>
+    	</exec>
+    	<echo message="Protobuf compiled"/>
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="distributed-snapchat.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target name="run">
+        <java classname="com.distsc.app.RunMain" failonerror="true" fork="yes">
+            <arg line="runtime/node.properties"/>
+            <classpath refid="distributed-snapchat.classpath"/>
+        </java>
+    </target>
+</project>

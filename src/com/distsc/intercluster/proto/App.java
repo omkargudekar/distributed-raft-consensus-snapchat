@@ -792,7 +792,7 @@ public final class App {
                 com.distsc.intercluster.proto.App.NameValueSet.class, com.distsc.intercluster.proto.App.NameValueSet.Builder.class);
       }
 
-      // Construct using com.distc.cluster.proto.App.NameValueSet.newBuilder()
+      // Construct using com.distsc.intercluster.proto.App.NameValueSet.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2143,7 +2143,7 @@ public final class App {
                 com.distsc.intercluster.proto.App.NameSpace.class, com.distsc.intercluster.proto.App.NameSpace.Builder.class);
       }
 
-      // Construct using com.distc.cluster.proto.App.NameSpace.newBuilder()
+      // Construct using com.distsc.intercluster.proto.App.NameSpace.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -3465,7 +3465,7 @@ public final class App {
                 com.distsc.intercluster.proto.App.JobDesc.class, com.distsc.intercluster.proto.App.JobDesc.Builder.class);
       }
 
-      // Construct using com.distc.cluster.proto.App.JobDesc.newBuilder()
+      // Construct using com.distsc.intercluster.proto.App.JobDesc.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -4322,7 +4322,7 @@ public final class App {
                 com.distsc.intercluster.proto.App.Ping.class, com.distsc.intercluster.proto.App.Ping.Builder.class);
       }
 
-      // Construct using com.distc.cluster.proto.App.Ping.newBuilder()
+      // Construct using com.distsc.intercluster.proto.App.Ping.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -5115,7 +5115,7 @@ public final class App {
                 com.distsc.intercluster.proto.App.NameSpaceOperation.class, com.distsc.intercluster.proto.App.NameSpaceOperation.Builder.class);
       }
 
-      // Construct using com.distc.cluster.proto.App.NameSpaceOperation.newBuilder()
+      // Construct using com.distsc.intercluster.proto.App.NameSpaceOperation.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -6018,7 +6018,7 @@ public final class App {
                 com.distsc.intercluster.proto.App.NameSpaceStatus.class, com.distsc.intercluster.proto.App.NameSpaceStatus.Builder.class);
       }
 
-      // Construct using com.distc.cluster.proto.App.NameSpaceStatus.newBuilder()
+      // Construct using com.distsc.intercluster.proto.App.NameSpaceStatus.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -7234,7 +7234,7 @@ public final class App {
                 com.distsc.intercluster.proto.App.JobOperation.class, com.distsc.intercluster.proto.App.JobOperation.Builder.class);
       }
 
-      // Construct using com.distc.cluster.proto.App.JobOperation.newBuilder()
+      // Construct using com.distsc.intercluster.proto.App.JobOperation.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -8609,7 +8609,7 @@ public final class App {
                 com.distsc.intercluster.proto.App.JobProposal.class, com.distsc.intercluster.proto.App.JobProposal.Builder.class);
       }
 
-      // Construct using com.distc.cluster.proto.App.JobProposal.newBuilder()
+      // Construct using com.distsc.intercluster.proto.App.JobProposal.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -9867,7 +9867,7 @@ public final class App {
                 com.distsc.intercluster.proto.App.JobBid.class, com.distsc.intercluster.proto.App.JobBid.Builder.class);
       }
 
-      // Construct using com.distc.cluster.proto.App.JobBid.newBuilder()
+      // Construct using com.distsc.intercluster.proto.App.JobBid.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -10893,7 +10893,7 @@ public final class App {
                 com.distsc.intercluster.proto.App.JobStatus.class, com.distsc.intercluster.proto.App.JobStatus.Builder.class);
       }
 
-      // Construct using com.distc.cluster.proto.App.JobStatus.newBuilder()
+      // Construct using com.distsc.intercluster.proto.App.JobStatus.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -11841,7 +11841,7 @@ public final class App {
                 com.distsc.intercluster.proto.App.RoutingPath.class, com.distsc.intercluster.proto.App.RoutingPath.Builder.class);
       }
 
-      // Construct using com.distc.cluster.proto.App.RoutingPath.newBuilder()
+      // Construct using com.distsc.intercluster.proto.App.RoutingPath.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -12973,7 +12973,7 @@ public final class App {
                 com.distsc.intercluster.proto.App.Header.class, com.distsc.intercluster.proto.App.Header.Builder.class);
       }
 
-      // Construct using com.distc.cluster.proto.App.Header.newBuilder()
+      // Construct using com.distsc.intercluster.proto.App.Header.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -14944,7 +14944,7 @@ public final class App {
                 com.distsc.intercluster.proto.App.Payload.class, com.distsc.intercluster.proto.App.Payload.Builder.class);
       }
 
-      // Construct using com.distc.cluster.proto.App.Payload.newBuilder()
+      // Construct using com.distsc.intercluster.proto.App.Payload.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -16561,7 +16561,7 @@ public final class App {
                 com.distsc.intercluster.proto.App.Request.class, com.distsc.intercluster.proto.App.Request.Builder.class);
       }
 
-      // Construct using com.distc.cluster.proto.App.Request.newBuilder()
+      // Construct using com.distsc.intercluster.proto.App.Request.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -17442,7 +17442,7 @@ public final class App {
                 com.distsc.intercluster.proto.App.JoinMessage.class, com.distsc.intercluster.proto.App.JoinMessage.Builder.class);
       }
 
-      // Construct using com.distc.cluster.proto.App.JoinMessage.newBuilder()
+      // Construct using com.distsc.intercluster.proto.App.JoinMessage.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -18445,7 +18445,7 @@ public final class App {
                 com.distsc.intercluster.proto.App.ClientMessage.class, com.distsc.intercluster.proto.App.ClientMessage.Builder.class);
       }
 
-      // Construct using com.distc.cluster.proto.App.ClientMessage.newBuilder()
+      // Construct using com.distsc.intercluster.proto.App.ClientMessage.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -19369,7 +19369,7 @@ public final class App {
                 com.distsc.intercluster.proto.App.ClusterMessage.class, com.distsc.intercluster.proto.App.ClusterMessage.Builder.class);
       }
 
-      // Construct using com.distc.cluster.proto.App.ClusterMessage.newBuilder()
+      // Construct using com.distsc.intercluster.proto.App.ClusterMessage.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -19811,8 +19811,8 @@ public final class App {
       "eStatus\022\n\n\006UKNOWN\020\001\022\013\n\007SUCCESS\020\002\022\013\n\007NOFO" +
       "UND\020d\022\020\n\014NOINCOMPLETE\020e\022\n\n\006NOAUTH\020f\022\020\n\014N",
       "OCONNECTION\020g\022\017\n\013NOREACHABLE\020h\022\016\n\nNORESO" +
-      "URCE\020i\022\014\n\007FAILURE\020\307\001B\033\n\027com.distc.cluste" +
-      "r.protoH\001"
+      "URCE\020i\022\014\n\007FAILURE\020\307\001B!\n\035com.distsc.inter" +
+      "cluster.protoH\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

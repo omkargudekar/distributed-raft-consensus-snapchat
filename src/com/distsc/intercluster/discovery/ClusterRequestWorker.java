@@ -1,6 +1,9 @@
 package com.distsc.intercluster.discovery;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.distsc.intercluster.map.OuboundClusterContextMap;
 import com.distsc.intercluster.msg.queue.ClusterRequestContext;
 import com.distsc.intercluster.msg.queue.ClusterRequestQueue;
@@ -8,16 +11,19 @@ import com.distsc.intercluster.msg.queue.ClusterRequestQueue;
 
 public class ClusterRequestWorker implements Runnable
 {
+	static Logger logger = LoggerFactory.getLogger(ClusterRequestWorker.class);
+
+
 	public void run()
 	{
-		System.out.println("ClusterDiscoveryMsgQueueWorker Thread Started");
+		logger.info("ClusterRequestWorker Thread Started");
 
 		ClusterRequestContext requestMessage = null;
 		while (true)
 		{
 			if (ClusterRequestQueue.getCount() > 0)
 			{
-				System.out.println("&&&&&&&&&CLuster Message Found");
+					logger.info("Processing Cluster Request Found");
 					requestMessage = ClusterRequestQueue.pop();
 				
 					if(requestMessage.getRequest().hasJoinMessage())
@@ -40,7 +46,7 @@ public class ClusterRequestWorker implements Runnable
 	public void addClusterChannel(ClusterRequestContext requestMessage)
 	{
 	
-			System.out.println("Adding Channel for " + requestMessage.getRequest().getJoinMessage().getFromClusterId());
+			logger.info("Adding Channel for " + requestMessage.getRequest().getJoinMessage().getFromClusterId());
 			OuboundClusterContextMap.addClusterContextChnnelContext(Integer.toString(requestMessage.getRequest().getJoinMessage().getFromClusterId()), requestMessage.getContext());
 			
 	}

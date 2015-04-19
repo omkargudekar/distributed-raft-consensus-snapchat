@@ -6,6 +6,31 @@ import com.distsc.beans.Node;
 
 public class GlobalConfiguration
 {	
+	
+	
+	private static String clusterID;
+	public static String getClusterID()
+	{
+		return clusterID;
+	}
+
+	public static void setClusterID(String clusterID)
+	{
+		GlobalConfiguration.clusterID = clusterID;
+	}
+
+	public static String getClusterConfigurationFilePath()
+	{
+		return clusterConfigurationFilePath;
+	}
+
+	public static void setClusterConfigurationFilePath(String clusterConfigurationFilePath)
+	{
+		GlobalConfiguration.clusterConfigurationFilePath = clusterConfigurationFilePath;
+	}
+
+
+	private static String clusterConfigurationFilePath=null;
 
 	private static int messageLimit=0;
 

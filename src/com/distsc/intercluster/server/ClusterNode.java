@@ -3,14 +3,20 @@ package com.distsc.intercluster.server;
 
 public class ClusterNode
 {
-	@Override
-	public String toString()
+	public void setClusterID(String clusterID)
 	{
-		return "Node [ClusterID=" + clusterID + ", nodeIP=" + nodeIP + ", nodePort=" + nodePort + "]";
+		this.clusterID = clusterID;
 	}
+	
+
 	public ClusterNode()
 	{
 		super();
+	}
+	@Override
+	public String toString()
+	{
+		return "ClusterNode [clusterID=" + clusterID + ", nodeIP=" + nodeIP + ", nodePort=" + nodePort + "]";
 	}
 	private String clusterID;
 	public ClusterNode(String clusterID, String nodeIP, int nodePort)

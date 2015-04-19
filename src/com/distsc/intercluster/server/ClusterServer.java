@@ -1,6 +1,6 @@
 package com.distsc.intercluster.server;
 
-import com.distsc.intercluster.config.ClusterConfiguration;
+import com.distsc.app.config.ClusterConfiguration;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.EventLoopGroup;

@@ -12,9 +12,14 @@ public class ConfigReader
 	{
 		try
 		{
+			
 			PropertyFileParser propertFileParser = new PropertyFileParser(propertyFilePath);
-			logger.debug("Reading ClusterConfigurationFile Parameter from "+propertyFilePath);
+			logger.debug("Reading NodeConfigurationFile Parameter from "+propertyFilePath);
 			NodeConfigReader.readAndSetUp(propertFileParser.getValue("ClusterConfigurationFile"));
+			logger.debug("Reading ClusterConfiguration Parameter from "+propertyFilePath);
+			GlobalConfiguration.setClusterConfigurationFilePath(propertFileParser.getValue("ClusterConfigurationPath"));			
+			logger.debug("Reading Cluster Information from "+propertyFilePath);
+			GlobalConfiguration.setClusterID(propertFileParser.getValue("ClusterID"));			
 			logger.debug("Reading PersistanceFileLocation Parameter from "+propertyFilePath);
 			Persistor.setUp(propertFileParser.getValue("PersistanceFileLocation"));
 			logger.debug("Reading MessageSizeLimit Parameter from "+propertyFilePath);
@@ -35,6 +40,7 @@ public class ConfigReader
 			GlobalConfiguration.setNoLogAppendListener(Integer.parseInt(propertFileParser.getValue("NoLogAppendListener")));
 			logger.debug("Reading NoLogAppendResultListener Parameter from "+propertyFilePath);
 			GlobalConfiguration.setNoLogAppendResultListener(Integer.parseInt(propertFileParser.getValue("NoLogAppendResultListener")));
+		
 		}
 		catch (Exception e)
 		{

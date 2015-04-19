@@ -11,8 +11,8 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
+import com.distsc.app.config.ClusterConfiguration;
 import com.distsc.app.config.GlobalConfiguration;
-import com.distsc.intercluster.config.ClusterConfiguration;
 import com.distsc.intercluster.map.InboundClusterContextMap;
 import com.distsc.intercluster.proto.App;
 import com.distsc.intercluster.proto.App.Request;
@@ -121,7 +121,7 @@ public class ClusterDiscoveryThread implements Runnable
 						  .setJoinMessage(
 								  App.JoinMessage
 								  .newBuilder()
-								  .setFromClusterId(Integer.parseInt(ClusterConfiguration.getCurrentClusterNode().getClusterID()))
+								  .setFromClusterId(Integer.parseInt(GlobalConfiguration.getClusterID()))
 								  .setFromNodeId(Integer.parseInt(GlobalConfiguration.getCurrentNode().getNodeID())))
 						  .build();
 		}

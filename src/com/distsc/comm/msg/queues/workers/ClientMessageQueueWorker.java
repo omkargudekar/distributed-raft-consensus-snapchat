@@ -1,21 +1,25 @@
 package com.distsc.comm.msg.queues.workers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.distsc.beans.RequestContext;
 import com.distsc.client.msg.handler.ClientMessageDecoder;
-import com.distsc.comm.msg.queues.ClientMessageMsgQueue;
+import com.distsc.comm.msg.queues.ClientMsgQueue;
 
 public class ClientMessageQueueWorker implements Runnable
 {
+	static Logger logger = LoggerFactory.getLogger(ClientMessageQueueWorker.class);
+
 	public void run()
 	{
-		System.out.println("ClientMessageMsgQueueWorker Thread Started");
+		logger.info("ClientMessageMsgQueueWorker Thread Started");
 		RequestContext requestMessage = null;
 		while (true)
 		{
-			if (ClientMessageMsgQueue.getCount() > 0)
+			if (ClientMsgQueue.getCount() > 0)
 			{
-				System.out.println("Client Message Found...");
-
-				requestMessage = ClientMessageMsgQueue.pop();
+				logger.info("Client Message Found");
+				requestMessage = ClientMsgQueue.pop();
 				handleMessage(requestMessage);
 			}
 			else
@@ -27,7 +31,7 @@ public class ClientMessageQueueWorker implements Runnable
 	
 	public void handleMessage(RequestContext request)
 	{
-		
+
 		ClientMessageDecoder.handle(request.getContext(),request.getRequest());
 
 		
@@ -39,7 +43,7 @@ public class ClientMessageQueueWorker implements Runnable
 		}
 		catch (InterruptedException e)
 		{
-			// TODO Auto-generated catch block
+			logger.error(e.toString());
 			e.printStackTrace();
 		}
 	}

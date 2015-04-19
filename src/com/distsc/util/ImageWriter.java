@@ -8,6 +8,8 @@ import com.distsc.comm.protobuf.MessageProto.Request;
 
 public class ImageWriter
 {
+	
+	
 
 	public void storeImage(Request message)
 	{

@@ -6,7 +6,8 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.LengthFieldPrepender;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
-import com.distc.cluster.proto.App;
+
+import com.distsc.intercluster.proto.App;
 
 public class ListenerInitializer extends ChannelInitializer<SocketChannel> {
 

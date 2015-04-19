@@ -1,9 +1,11 @@
 package com.distsc.network.maps.discovery;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -16,13 +18,15 @@ import com.distsc.network.maps.NodeChannelContextMap;
 
 public class NodeDiscoveryThread implements Runnable
 {
+	static Logger logger = LoggerFactory.getLogger(NodeDiscoveryHandler.class);
+
 	private EventLoopGroup group = null;
 	private ChannelFuture lastWriteFuture = null;
 	private Channel ch = null;
 
 	public void run()
 	{
-		System.out.println("NodeDiscoveryThread Started...");
+		logger.info("NodeDiscoveryThread Started...");
 		try
 		{
 			group = new NioEventLoopGroup(1);
@@ -38,7 +42,7 @@ public class NodeDiscoveryThread implements Runnable
 						{
 							ch = b.connect(node.getNodeIP(), node.getNodePort()).sync().channel();
 							lastWriteFuture = ch.writeAndFlush(getNodeDiscoveryMessage());
-							System.out.println("Sending Message to "+node.getNodeIP()+node.getNodePort());
+							logger.info("Sending Message to "+node.getNodeIP()+node.getNodePort());
 						}
 						
 					}
@@ -47,7 +51,7 @@ public class NodeDiscoveryThread implements Runnable
 				}
 				catch (Exception e)
 				{
-					System.out.println(e);
+					logger.error(e.toString());
 				}
 
 			}
@@ -55,7 +59,8 @@ public class NodeDiscoveryThread implements Runnable
 		}
 		catch (Exception e)
 		{
-			System.out.println(e);
+			logger.error(e.toString());
+
 		}
 		finally
 		{
@@ -66,30 +71,14 @@ public class NodeDiscoveryThread implements Runnable
 			}
 			catch (Exception e)
 			{
+				logger.error(e.toString());
+
 
 			}
 		}
 
 	}
 
-	public boolean isChannelActive(ChannelHandlerContext ctx)
-	{
-		
-		boolean writable=false;
-		try
-		{
-			ctx.write("Test");
-			writable=true;
-		}
-		catch(Exception e)
-		{
-			writable=false;
-
-		}
-		
-		return writable;
-		
-	}
 	public void pause()
 	{
 		try
@@ -98,7 +87,8 @@ public class NodeDiscoveryThread implements Runnable
 		}
 		catch (InterruptedException e)
 		{
-			// TODO Auto-generated catch block
+
+			logger.error(e.toString());
 			e.printStackTrace();
 		}
 	}

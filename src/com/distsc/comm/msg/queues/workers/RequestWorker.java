@@ -1,8 +1,11 @@
 package com.distsc.comm.msg.queues.workers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.distsc.beans.RequestContext;
 import com.distsc.comm.msg.queues.AppendEntriesQueue;
 import com.distsc.comm.msg.queues.AppendEntriesResultQueue;
-import com.distsc.comm.msg.queues.ClientMessageMsgQueue;
+import com.distsc.comm.msg.queues.ClientMsgQueue;
 import com.distsc.comm.msg.queues.NodeDiscoveryMsgQueue;
 import com.distsc.comm.msg.queues.RequestQueue;
 import com.distsc.comm.msg.queues.RequestVoteMsgQueue;
@@ -10,6 +13,8 @@ import com.distsc.comm.msg.queues.RequestVoteResultMsgQueue;
 
 public class RequestWorker implements Runnable
 {
+	static Logger logger = LoggerFactory.getLogger(NodeDiscoveryQueueWorker.class);
+
 	public void run()
 	{
 		RequestContext requestMessage = null;
@@ -22,37 +27,38 @@ public class RequestWorker implements Runnable
 				switch (requestMessage.getRequest().getMessageHeader())
 				{
 				case AppendEntriesMsg:
-				System.out.println("Message pushed to AppendEntriesQueue");
+				logger.info("Message pushed to AppendEntriesQueue");
 				AppendEntriesQueue.push(requestMessage);
 				break;
 
 				case AappendEntriesResultMsg:
-				System.out.println("Message pushed to AppendEntriesResultQueue");
+				logger.info("Message pushed to AppendEntriesResultQueue");
 				AppendEntriesResultQueue.push(requestMessage);
 				break;
 
 				case RequestVoteMsg:
-				System.out.println("Message pushed to RequestVoteMsgQueue");
+				logger.info("Message pushed to RequestVoteMsgQueue");
 				RequestVoteMsgQueue.push(requestMessage);
 				break;
 
 				case RequestVoteResultMsg:
-				System.out.println("Message pushed to RequestVoteResultMsgQueue");
+				logger.info("Message pushed to RequestVoteResultMsgQueue");
 				RequestVoteResultMsgQueue.push(requestMessage);
 				break;
 
 				case NodeDiscoveryMsg:
+				logger.info("Message pushed to NodeDiscoveryMsg ");
 				NodeDiscoveryMsgQueue.push(requestMessage);
 				break;
 
 				case ClientMessageMsg:
-				System.out.println("Message pushed to ClientMessageMsgQueue");
-				ClientMessageMsgQueue.push(requestMessage);
+				logger.info("Message pushed to ClientMessageMsgQueue");
+				ClientMsgQueue.push(requestMessage);
 				break;
 					
 				default:
-					System.out.println("Unknown Request Message Rejected");
-					break;
+				logger.error("Unknown Request Message Rejected");
+				break;
 
 				}
 			}
@@ -70,6 +76,7 @@ public class RequestWorker implements Runnable
 		}
 		catch (InterruptedException e)
 		{
+			logger.error(e.toString());
 			e.printStackTrace();
 		}
 	}

@@ -1,5 +1,8 @@
 package com.distsc.server.listener;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -9,11 +12,15 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 import com.distsc.app.config.GlobalConfiguration;
 import com.distsc.beans.RequestContext;
+import com.distsc.comm.msg.queues.ListnerConnectionRequestQueue;
 import com.distsc.comm.protobuf.MessageProto;
 import com.distsc.comm.protobuf.MessageProto.Request;
+import com.distsc.server.ServerrInitializer;
 
 public class RequestListenerThread implements Runnable
 {
+	static Logger logger = LoggerFactory.getLogger(RequestListenerThread.class);
+
 	private EventLoopGroup group = null;
 	private ChannelFuture lastWriteFuture = null;
 	private Channel ch = null;
@@ -30,7 +37,9 @@ public class RequestListenerThread implements Runnable
 			while (true)
 			{
 				if (ListnerConnectionRequestQueue.getCount() > 0)
-				{	requestContext=ListnerConnectionRequestQueue.pop();
+				{	
+					logger.info("Message Found in ListnerConnectionRequestQueue");
+					requestContext=ListnerConnectionRequestQueue.pop();
 					request=requestContext.getRequest();
 					try
 					{
@@ -40,7 +49,7 @@ public class RequestListenerThread implements Runnable
 					}
 					catch (Exception e)
 					{
-						System.out.println(e);
+						logger.info(e.toString());
 					}
 				}
 				else
@@ -52,7 +61,7 @@ public class RequestListenerThread implements Runnable
 		}
 		catch (Exception e)
 		{
-			System.out.println(e);
+			logger.info(e.toString());
 		}
 		finally
 		{
@@ -63,7 +72,7 @@ public class RequestListenerThread implements Runnable
 			}
 			catch (Exception e)
 			{
-
+				logger.error(e.toString());
 			}
 		}
 
@@ -83,7 +92,6 @@ public class RequestListenerThread implements Runnable
 
 	public Request getAcceptConnectionMsg()
 	{
-		
 		return MessageProto.Request.newBuilder().setMessageHeader(Request.MessageHeader.NodeDiscoveryMsg)
 				.setPayload(MessageProto.Payload.newBuilder().setNodeDiscovery(MessageProto.NodeDiscovery.newBuilder().setNodeDiscoveryMessageType(MessageProto.NodeDiscovery.NodeDiscoveryMessageType.RESPONSE_CONNECTION_ACCEPTED).setNODEID(GlobalConfiguration.getCurrentNode().getNodeID()).setNODEIP(GlobalConfiguration.getCurrentNode().getNodeIP()).setNODEPORT(GlobalConfiguration.getCurrentNode().getNodePort()))).build();
 	}

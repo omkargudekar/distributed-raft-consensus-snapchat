@@ -1,5 +1,8 @@
 package com.distsc.raft.election.workers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.distsc.app.config.GlobalConfiguration;
 import com.distsc.comm.msg.queues.AppendEntriesQueue;
 import com.distsc.comm.msg.queues.AppendEntriesResultQueue;
@@ -13,10 +16,12 @@ import com.distsc.server.ServerMulticast;
 public class DeclareCandidacyThread implements Runnable
 {
 
+	static Logger logger = LoggerFactory.getLogger(DeclareCandidacyThread.class);
+
 	@Override
 	public void run()
 	{
-		System.out.println("DeclareCandidacyThread Started");
+		logger.info("DeclareCandidacyThread Started");
 		while (true)
 		{
 
@@ -46,7 +51,7 @@ public class DeclareCandidacyThread implements Runnable
 		RAFTTimeout();
 		if(RAFTStatus.getCurrentNodeState()==RAFTStatus.NodeState.Follower && RAFTStatus.getDeclaredLeader()==null && RAFTStatus.hasVoted()==false)
 		{
-			System.out.println("Declaring Candidacy...");
+			logger.info("Declaring Candidacy...");
 			RAFTStatus.setVoted(true);
 			RAFTStatus.setTotalVotes(1);
 			RAFTStatus.setCurrentNodeState(RAFTStatus.NodeState.Candidate);

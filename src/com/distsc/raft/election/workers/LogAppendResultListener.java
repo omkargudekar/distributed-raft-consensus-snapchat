@@ -1,5 +1,8 @@
 package com.distsc.raft.election.workers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.distsc.beans.RequestContext;
 import com.distsc.comm.msg.queues.AppendEntriesQueue;
 import com.distsc.comm.msg.queues.AppendEntriesResultQueue;
@@ -7,11 +10,13 @@ import com.distsc.raft.RAFTStatus;
 
 public class LogAppendResultListener implements Runnable
 {
+	static Logger logger = LoggerFactory.getLogger(HeartbeatSenderThread.class);
+
 
 	@Override
 	public void run()
 	{
-		System.out.println("LogAppendRequestListener Thread Started");
+		logger.info("LogAppendRequestListener Thread Started");
 
 		while (true)
 		{
@@ -52,7 +57,7 @@ public class LogAppendResultListener implements Runnable
 			for(int counter=0;counter<AppendEntriesQueue.getCount();counter++)
 			{
 				requestContext=AppendEntriesQueue.pop();
-				System.out.println("AppendEntriesResult Received From \nNode: "+requestContext.getRequest().getPayload().getAppendEntriesresult().getSenderNodeId()+
+				logger.info("AppendEntriesResult Received From \nNode: "+requestContext.getRequest().getPayload().getAppendEntriesresult().getSenderNodeId()+
 									" \n TermId: "+requestContext.getRequest().getPayload().getAppendEntriesresult().getTerm()+
 									" \n Success: "+requestContext.getRequest().getPayload().getAppendEntriesresult().getSuccess());
 				

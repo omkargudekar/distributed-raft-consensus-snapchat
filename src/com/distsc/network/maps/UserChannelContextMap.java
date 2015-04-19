@@ -4,8 +4,13 @@ import io.netty.channel.ChannelHandlerContext;
 
 import java.util.HashMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class UserChannelContextMap
 {
+	static Logger logger = LoggerFactory.getLogger(UserChannelContextMap.class);
+
 	private static HashMap<String,ChannelHandlerContext> contextMap=new HashMap<String,ChannelHandlerContext>();
 	
 	public static ChannelHandlerContext getClientContext(String clinetUsername)
@@ -16,13 +21,14 @@ public class UserChannelContextMap
 	
 	public static void addClientContext(String username,ChannelHandlerContext clientContext)
 	{
-		System.out.println("Channel Added for User : "+username);
+		logger.info("Channel Added for User : "+username);
 		contextMap.put(username, clientContext);
 		
 	}
 	
 	public static void removeClientContext(String username)
 	{
+		logger.info("Channel Removed for User :"+username);
 		contextMap.remove(username);
 		
 	}

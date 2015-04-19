@@ -2,10 +2,15 @@ package com.distsc.comm.msg.queues;
 
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.distsc.beans.RequestContext;
 
 public class RequestVoteMsgQueue
 {
+	static Logger logger = LoggerFactory.getLogger(RequestVoteMsgQueue.class);
+
 	private static ArrayList<RequestContext> queue = new ArrayList<RequestContext>();
 	
 	
@@ -16,6 +21,8 @@ public class RequestVoteMsgQueue
 	
 	public static void push(RequestContext request)
 	{
+		logger.debug("Pushing Request to RequestVoteMsgQueue : "+ request);
+
 		queue.add(request);
 	}
 	public static RequestContext pop()
@@ -24,6 +31,7 @@ public class RequestVoteMsgQueue
 		{
 			RequestContext request=queue.get(0);
 			queue.remove(0);
+			logger.debug("Popping Message From RequestVoteMsgQueue : "+ request);
 			return request;
 		}
 

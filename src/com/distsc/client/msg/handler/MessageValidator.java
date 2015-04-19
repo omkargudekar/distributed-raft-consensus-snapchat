@@ -1,5 +1,8 @@
 package com.distsc.client.msg.handler;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.netty.channel.ChannelHandlerContext;
 
 import com.distsc.app.config.GlobalConfiguration;
@@ -9,8 +12,11 @@ import com.distsc.util.SH1Generator;
 public class MessageValidator
 {
 	
+	static Logger logger = LoggerFactory.getLogger(MessageHandler.class);
+
 	public boolean validateRequest(ChannelHandlerContext ctx,Request msg)
 	{
+		logger.info("Validating Request "+ msg);
 		boolean valid=true;
 		
 		if(valid==true)
@@ -38,6 +44,9 @@ public class MessageValidator
 	public boolean validateMessageSize(ChannelHandlerContext ctx,Request msg)
 	{
 		
+		logger.info("Validating Message Size ");
+
+		
 		if(msg.getSerializedSize() <= GlobalConfiguration.getMessageLimit())
 		{
 			return true;
@@ -62,6 +71,8 @@ public class MessageValidator
 	public boolean validateMsgText(ChannelHandlerContext ctx,Request request)
 	{
 		
+		logger.info("Validating Message Text ");
+
 		if(request.getPayload().getClientMessage().getSenderMsgChecksumMsgText().equals(SH1Generator.getStringCheckSum(request.getPayload().getClientMessage().getSenderMsgText())))
 		{
 
@@ -87,6 +98,9 @@ public class MessageValidator
 	}
 	public boolean validateMsgImg(ChannelHandlerContext ctx,Request msg)
 	{
+		
+		logger.info("Validating Message Image ");
+
 
 		if(msg.getPayload().getClientMessage().getSenderMsgChecksumImageBytes().equals(SH1Generator.getByteChecksum(msg.getPayload().getClientMessage().getSenderMsgImageBytes().toByteArray())))
 		{

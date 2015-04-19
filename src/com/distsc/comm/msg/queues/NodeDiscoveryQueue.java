@@ -1,10 +1,15 @@
 package com.distsc.comm.msg.queues;
 
 import java.util.ArrayList;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.distsc.comm.protobuf.MessageProto.Request;
 
 public class NodeDiscoveryQueue
 {
+	static Logger logger = LoggerFactory.getLogger(NodeDiscoveryQueue.class);
 	private static ArrayList<Request> queue = new ArrayList<Request>();
 	
 	
@@ -15,6 +20,7 @@ public class NodeDiscoveryQueue
 	
 	public static void push(Request request)
 	{
+		logger.debug("Pushing Request to NodeDiscoveryQueue : "+ request);
 		queue.add(request);
 	}
 	public static Request pop()
@@ -23,6 +29,7 @@ public class NodeDiscoveryQueue
 		{
 			Request request=queue.get(0);
 			queue.remove(0);
+			logger.debug("Popping Message From NodeDiscoveryQueue : "+ request);
 			return request;
 		}
 

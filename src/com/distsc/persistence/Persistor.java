@@ -6,15 +6,21 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.distsc.raft.RAFTStatus;
 
 public class Persistor {
 	
+	static Logger logger = LoggerFactory.getLogger(Persistor.class);
+
 	
 	static String filePath;
 	
 	public static void setUp(String filepath)
 	{	
+		logger.info("Setting Up : "+filepath);
 		if( Persistor.isRAFTStateFileExists() ){
 			RAFTStatus.setRaftState(Persistor.readPersistedRAFTStatus());
 		}else{
@@ -28,8 +34,9 @@ public class Persistor {
 			ObjectOutputStream oos = new ObjectOutputStream(raft);   
 			oos.writeObject(raftState);
 			oos.close();
-			System.out.println("Persisted RAFTStatus to disk");
-	 
+
+			logger.info("Storing persistence file to disk : ");
+
 		   }catch(Exception ex){
 			   ex.printStackTrace();
 		   }
@@ -42,7 +49,7 @@ public class Persistor {
 			   ObjectInputStream ois = new ObjectInputStream(raft);
 			   raftState = (RAFTState) ois.readObject();
 			   ois.close();
-			   System.out.println("Reading RAFTState from disk");
+			   logger.info("Reading persistence file from disk...");
 			   return raftState;
 	 	   }catch(Exception ex){
 			   ex.printStackTrace();

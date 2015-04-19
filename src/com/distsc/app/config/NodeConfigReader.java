@@ -64,8 +64,10 @@ public class NodeConfigReader
 		}
 		catch(Exception e)
 		{	
-			logger.error(e.toString());
+			logger.error("Error while reading node configuration file.Terminating Program");
 			e.printStackTrace();
+			System.exit(0);
+
 		}
 	}
 

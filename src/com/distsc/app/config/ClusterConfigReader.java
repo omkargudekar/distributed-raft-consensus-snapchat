@@ -62,6 +62,7 @@ public class ClusterConfigReader
 		catch (Exception e)
 		{
 			logger.error(e.toString());
+			logger.error("Error while reading cluster configuration file.Terminating Program");
 			e.printStackTrace();
 		}
 	}

@@ -3,6 +3,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.distsc.app.config.GlobalConfiguration;
+import com.distsc.network.maps.discovery.NodeDiscoveryThread;
 import com.distsc.raft.election.workers.DeclareCandidacyThread;
 import com.distsc.raft.election.workers.HeartbeatSenderThread;
 import com.distsc.raft.election.workers.LogAppendListener;
@@ -22,6 +23,7 @@ public class ClusterThreadPool implements Runnable
 		logger.info("Starting RequestListener Thread");
 		new Thread(new RequestListenerThread()).start();
 		
+		
 		logger.info("Starting RequestWorker Threads");
 		new Thread()
 		{
@@ -35,7 +37,10 @@ public class ClusterThreadPool implements Runnable
 				}
 		    }
 		}.start();
+	
 		
+		logger.info("Starting NodeDiscovery Thread");
+		new Thread(new NodeDiscoveryThread()).start();
 		logger.info("Starting NodeDiscoveryQueueWorker Threads");
 		new Thread()
 		{

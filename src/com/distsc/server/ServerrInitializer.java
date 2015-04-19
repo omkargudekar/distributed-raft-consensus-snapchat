@@ -11,8 +11,7 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.LengthFieldPrepender;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
-
-import com.distsc.intercluster.proto.App;
+import com.distsc.comm.protobuf.MessageProto;
 public class ServerrInitializer extends ChannelInitializer<SocketChannel> {
 
 	static Logger logger = LoggerFactory.getLogger(ServerrInitializer.class);
@@ -23,11 +22,11 @@ public class ServerrInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override
     public void initChannel(SocketChannel ch) throws Exception {
-        ChannelPipeline pipeline = ch.pipeline();
-    	pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(67108864, 0, 4, 0, 4));
-    	pipeline.addLast("protobufDecoder", new ProtobufDecoder(App.Request.getDefaultInstance()));
-    	pipeline.addLast("frameEncoder", new LengthFieldPrepender(4));
-    	pipeline.addLast("protobufEncoder", new ProtobufEncoder());
+    	ChannelPipeline pipeline = ch.pipeline();
+     	pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(67108864, 0, 4, 0, 4));
+     	pipeline.addLast("protobufDecoder", new ProtobufDecoder(MessageProto.Request.getDefaultInstance()));
+     	pipeline.addLast("frameEncoder", new LengthFieldPrepender(4));
+     	pipeline.addLast("protobufEncoder", new ProtobufEncoder());
         pipeline.addLast(new ServerHandler());
     }
 }

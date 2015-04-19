@@ -12,7 +12,6 @@ public class RunMain
 	public static void main(String args[])
 	{
 		
-		GlobalConfiguration.setClusterConfigurationFilePath("runtime/cluster.conf");
 		logger.info("Starting Application");
 		if(args[0]==null || args[0].trim().equals(""))
 		{

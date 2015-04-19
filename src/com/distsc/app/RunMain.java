@@ -24,7 +24,7 @@ public class RunMain
 				logger.info("Starting ClusterThreadPool");
 				new Thread(new ClusterThreadPool()).start();
 				logger.info("Starting InterClusterThreadPool");
-				new Thread(new InterClusterThreadPool()).start();
+			//	new Thread(new InterClusterThreadPool()).start();
 				
 				
 		}		

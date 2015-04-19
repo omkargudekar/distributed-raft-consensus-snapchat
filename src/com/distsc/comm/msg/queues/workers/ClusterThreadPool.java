@@ -8,6 +8,7 @@ import com.distsc.raft.election.workers.DeclareCandidacyThread;
 import com.distsc.raft.election.workers.HeartbeatSenderThread;
 import com.distsc.raft.election.workers.LogAppendListener;
 import com.distsc.raft.election.workers.LogAppendResultListener;
+import com.distsc.raft.election.workers.RequestVoteListenerThread;
 import com.distsc.raft.election.workers.RequestVoteResultListenerThread;
 import com.distsc.server.Server;
 import com.distsc.server.listener.RequestListenerThread;
@@ -124,6 +125,9 @@ public class ClusterThreadPool implements Runnable
 		logger.info("Starting HeartbeatSenderThread Thread");
 		new Thread(new HeartbeatSenderThread()).start();
 
+		logger.info("Starting RequestVoteListerThread Thread");
+
+		new Thread(new RequestVoteListenerThread()).start();
 	
 		
 		

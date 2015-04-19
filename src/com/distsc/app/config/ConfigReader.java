@@ -45,9 +45,10 @@ public class ConfigReader
 		}
 		catch (Exception e)
 		{
-			logger.error("Error while reading configuration file.");
+			logger.error("Error while reading configuration file.Terminating Program");
 			logger.error(e.toString());
 			e.printStackTrace();
+			System.exit(0);
 	
 		}
 	

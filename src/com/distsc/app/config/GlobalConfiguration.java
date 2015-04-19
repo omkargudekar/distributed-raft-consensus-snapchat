@@ -7,7 +7,21 @@ import com.distsc.beans.Node;
 public class GlobalConfiguration
 {	
 	
+	private static int interClusterServerPort;
 	
+
+
+	public static int getInterClusterServerPort()
+	{
+		return interClusterServerPort;
+	}
+
+	public static void setInterClusterServerPort(int interClusterServerPort)
+	{
+		GlobalConfiguration.interClusterServerPort = interClusterServerPort;
+	}
+
+
 	private static String clusterID;
 	public static String getClusterID()
 	{

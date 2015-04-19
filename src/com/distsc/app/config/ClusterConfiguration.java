@@ -9,19 +9,6 @@ public class ClusterConfiguration
 {
 	private static ArrayList<ClusterNode> clusters=new ArrayList<ClusterNode>();
 
-	private static int clusterServerPort;
-
-	public static int getClusterServerPort()
-	{
-		return clusterServerPort;
-	}
-
-	public static void setClusterServerPort(int clusterServerPort)
-	{
-		ClusterConfiguration.clusterServerPort = clusterServerPort;
-	}
-
-	
 
 	public static ArrayList<ClusterNode> getNodes()
 	{

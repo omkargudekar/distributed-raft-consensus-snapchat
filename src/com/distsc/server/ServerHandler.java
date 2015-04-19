@@ -23,7 +23,6 @@ public class ServerHandler extends SimpleChannelInboundHandler<Request>
 	@Override
 	public void channelActive(final ChannelHandlerContext ctx)
 	{
-		logger.info("Channel Added "+ctx);
 		channels.add(ctx.channel());
 	}
 

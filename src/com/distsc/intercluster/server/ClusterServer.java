@@ -3,7 +3,7 @@ package com.distsc.intercluster.server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.distsc.app.config.ClusterConfiguration;
+import com.distsc.app.config.GlobalConfiguration;
 import com.distsc.intercluster.discovery.ClusterClientMsgProcessor;
 
 import io.netty.bootstrap.ServerBootstrap;
@@ -25,7 +25,7 @@ public final class ClusterServer implements Runnable
     	EventLoopGroup workerGroup=null;
         try 
         {
-        	logger.info("Starting Server on : "+ClusterConfiguration.getClusterServerPort());
+        	logger.info("Starting Server on : "+GlobalConfiguration.getInterClusterServerPort());
             bossGroup = new NioEventLoopGroup(1);
             workerGroup = new NioEventLoopGroup();
             ServerBootstrap b = new ServerBootstrap();
@@ -33,7 +33,7 @@ public final class ClusterServer implements Runnable
              .channel(NioServerSocketChannel.class)
              .handler(new LoggingHandler(LogLevel.INFO))
              .childHandler(new ClusterServerrInitializer());
-            b.bind(ClusterConfiguration.getClusterServerPort()).sync().channel().closeFuture().sync();
+            b.bind(GlobalConfiguration.getInterClusterServerPort()).sync().channel().closeFuture().sync();
            
             
         } 

@@ -21,6 +21,8 @@ public class ConfigReader
 			GlobalConfiguration.setClusterConfigurationFilePath(propertFileParser.getValue("ClusterConfigurationPath"));			
 			logger.debug("Reading Cluster Information from "+propertyFilePath);
 			GlobalConfiguration.setClusterID(propertFileParser.getValue("ClusterID"));			
+			logger.debug("Reading InterClusterServerPort Parameter from "+propertyFilePath);
+			GlobalConfiguration.setInterClusterServerPort(Integer.parseInt(propertFileParser.getValue("InterClusterServerPort")));		
 			logger.debug("Reading PersistanceFileLocation Parameter from "+propertyFilePath);
 			Persistor.setUp(propertFileParser.getValue("PersistanceFileLocation"));
 			logger.debug("Reading MessageSizeLimit Parameter from "+propertyFilePath);
